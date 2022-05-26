@@ -38,7 +38,7 @@ static int	is_redirection(char *s, int quote)
 	return (r_cnt);
 }
 
-int	ft_wordcount(char *str)
+int	ft_wordcount(char const *str)
 {
 	int	i;
 	int	wc;
@@ -49,7 +49,7 @@ int	ft_wordcount(char *str)
 	wc = 0;
 	while (str[i])
 	{
-		if (str[i] && is_ifs(str[i]) == FALSE && quote == 0) //탭, 개행 문자 => isIFS
+		if (str[i] && is_ifs(str[i]) == FALSE && quote == 0)
 		{
 			wc++;
 			while (str[i] && (is_ifs(str[i]) == FALSE || quote > 0))
@@ -62,17 +62,17 @@ int	ft_wordcount(char *str)
 					quote = 0;
 				else if (str[i] == '\'' && quote == SINGLE_QUOTE)
 					quote = 0;
-				else if (is_redirection(&str[i], quote) > 0)
+				else if (is_redirection((char *)str + i, quote) > 0)
 				{ // >>   ,   <<   ,   >   ,  <
 					wc++;
-					while(str[i] && is_redirection(&str[i], quote))
+					while(str[i] && is_redirection((char *)str + i, quote))
 						i++;
-					if(is_ifs(str[i]))
-						continue ;
-					if(str[i])
+					if (str[i] && is_ifs(str[i]) == FALSE)
 						wc++;
+					if ((str[i] == '\'' && str[i] == '\"') || is_ifs(str[i]))
+						continue ; 
 				}
-				else if (is_redirection(&str[i], quote) == ERROR)
+				else if (is_redirection((char *)str + i, quote) == ERROR)
 					return (ERROR);
 				i++;
 			}			
@@ -89,8 +89,17 @@ int main()
 	char 	*str;
 
 //	scanf("%s\n", str);
+	i = ft_wordcount("c>>a>a.txt");
+	printf("5 == %d\n", i);
 	i = ft_wordcount("c>>a> a.txt");
-	printf("%d\n", i);
-
+	printf("5 == %d\n", i);
+	i = ft_wordcount("c>>>a>a.txt");
+	printf("-1 == %d\n", i);
+	i = ft_wordcount("c<>>a>a.txt");
+	printf("-1 == %d\n", i);
+	i = ft_wordcount("c >> a> a.txt");
+	printf("5 == %d\n", i);
+	i = ft_wordcount("c<<>>a>a.txt");
+	printf("-1 == %d\n", i);
 
 }
