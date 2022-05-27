@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 14:07:02 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 14:11:19 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 
 static char *ft_free_all(char **ret)
 {
+	int	i;
+
+	i = 0;
+	while (ret[i])
+	{
+		free(ret[i]);
+		i++;
+	}
+	free(ret);
 	return (NULL);
 }
 
