@@ -33,7 +33,8 @@ typedef struct s_lexer
 
 typedef struct s_cmd
 {
-	char *cmd[]
+	char *cmd[8];
+	
 }			t_cmd;
 
 enum type
