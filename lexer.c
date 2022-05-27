@@ -3,51 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: katherinejang <katherinejang@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:10:59 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 19:10:59 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 23:07:06 by katherineja      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_cmd	*create_cmd_struct(void)
-{
-	t_cmd *cmd;
-
-	cmd = (t_cmd *)ft_calloc(1, sizeof(t_cmd));
-	cmd[0] = ft_strdup("echo");
-	cmd[1] = ft_strdup("cd");
-	cmd[2] = ft_strdup("pwd");
-	cmd[3] = ft_strdup("export");
-	cmd[4] = ft_strdup("unset");
-	cmd[5] = ft_strdup("env");
-	cmd[6] = ft_strdup("exit");
-	cmd[7] = NULL;
-	// ft_strdup NULL체크 필요
-	return (cmd);
-}
-
-static int	is_cmd(char *value)
-{
-	t_cmd *cmd;
-
-	cmd = create_cmd_struct();
-	while (*cmd)
-	{
-		if(ft_strncmp(value, *cmd, ft_strlen(value)))
-			return (TRUE);
-	}
-	return (FALSE);
-}
 
 static int	get_type(char *value)
 {
 	int	type;
 
 	/*
-	4. CMD? => strcmp로 일일이 비교
 	5. not QUOTE str == word
 	6. QUOTE str
 		6-1. in quote str

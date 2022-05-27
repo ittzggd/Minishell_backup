@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: katherinejang <katherinejang@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/27 19:57:31 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 22:53:50 by katherineja      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		is_pipe(const char *s);
 //lexer
 t_lexer	*lexical_analysis(char **tokens);
 t_cmd	*create_cmd_struct(void);
+int		is_cmd(char *value);
 //parser
 
-#endif
+# endif
