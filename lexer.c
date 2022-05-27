@@ -12,11 +12,27 @@
 
 #include "minishell.h"
 
+t_cmd	*create_cmd_struct(void)
+{
+	t_cmd *cmd;
+
+	cmd = (t_cmd *)ft_calloc(1, sizeof(t_cmd));
+	cmd[0] = "echo";
+	cmd[1] = "cd";
+	cmd[2] = "pwd";
+	cmd[3] = "export";
+	cmd[4] = "unset";
+	cmd[5] = "env";
+	cmd[6] = "exit";
+	cmd[7] = NULL;
+	return (cmd);
+}
+
 static int	is_cmd(char *value)
 {
-	char	*cmd[];
+	t_cmd *cmd;
 
-	cmd = 
+	cmd = create_cmd_struct();
 	if(ft_strncmp(value, cmd, ft_strlen(value)))
 		return (TRUE);
 	return (FALSE);

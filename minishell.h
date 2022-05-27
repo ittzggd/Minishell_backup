@@ -34,7 +34,6 @@ typedef struct s_lexer
 typedef struct s_cmd
 {
 	char *cmd[8];
-	
 }			t_cmd;
 
 enum type
@@ -72,6 +71,7 @@ int		is_quote(const char c);
 int		is_pipe(const char *s);
 //lexer
 t_lexer	*lexical_analysis(char **tokens);
+t_cmd	*create_cmd_struct(void);
 //parser
 
 #endif
