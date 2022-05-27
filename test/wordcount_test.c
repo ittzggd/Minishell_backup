@@ -1,16 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_wordcount.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 13:15:47 by yukim            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include<stdio.h>
 
-#include "minishell.h"
+# define TRUE 1
+# define FALSE 0
+# define ERROR -1
+
+enum quote_flag
+{
+	SINGLE_QUOTE = 1,
+	DOUBLE_QUOTE
+};
 
 static int	is_ifs(const char c)
 {
@@ -53,9 +51,14 @@ int	ft_wordcount(char const *str)
 	wc = 0;
 	while (str[i])
 	{
+		/*
+		1. 따옴표인가?
+		2. 리다이렉션인가?
+		3. ifs인가?
+		*/
 		if (str[i] && is_quote(str[i]))
 		{
-			quote = is_quote(str[i]);
+			quote = is_quote(str[i]); // 여기 너무 지니어스
 			while(str[i] && quote != 0)
 			{
 				i++;
@@ -86,4 +89,31 @@ int	ft_wordcount(char const *str)
 		}
 	}
 	return (wc);
+}
+
+int main()
+{
+	int		i;
+	char 	*str;
+
+//	scanf("%s\n", str);
+	i = ft_wordcount("c>>a>a.txt");
+	printf("5 == %d\n", i);
+	i = ft_wordcount("c>>a> a.txt");
+	printf("5 == %d\n", i);
+	i = ft_wordcount("c>>>a>a.txt");
+	printf("-1 == %d\n", i);
+	i = ft_wordcount("c<>>a>a.txt");
+	printf("-1 == %d\n", i);
+	i = ft_wordcount("c >> a> a.txt");
+	printf("5 == %d\n", i);
+	i = ft_wordcount("c<<>>a>a.txt");
+	printf("-1 == %d\n", i);
+	i = ft_wordcount("echo ");
+	printf("1 == %d\n", i);
+	i = ft_wordcount("echo 'hi hi' > a.txt | ls -al");
+	printf("7 == %d\n", i);
+	i = ft_wordcount("'hi>a.txt'");
+	printf("1 == %d\n", i);
+
 }

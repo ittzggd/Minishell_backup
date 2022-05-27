@@ -1,14 +1,16 @@
-#include<stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
+/*   Updated: 2022/05/27 12:40:07 by yukim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# define TRUE 1
-# define FALSE 0
-# define ERROR -1
-
-enum quote_flag
-{
-	SINGLE_QUOTE = 1,
-	DOUBLE_QUOTE
-};
+#include "minishell.h"
 
 static int	is_ifs(char c)
 {
@@ -30,11 +32,6 @@ static int	is_redirection(char *s, int quote)
 			return (ERROR); //// redirection ERROR : zsh: parse error near `>'
 		s++;
 	}
-/*	if(r_cnt == 1 || r_cnt == 2)
-		return (TRUE);
-	if(*s != '<' || *s != '>')
-		return (FALSE);
-	return (TRUE);*/
 	return (r_cnt);
 }
 
@@ -81,25 +78,4 @@ int	ft_wordcount(char const *str)
 			i++; // 공백 다음 문자위치로 이동
 	}
 	return (wc);
-}
-
-int main()
-{
-	int		i;
-	char 	*str;
-
-//	scanf("%s\n", str);
-	i = ft_wordcount("c>>a>a.txt");
-	printf("5 == %d\n", i);
-	i = ft_wordcount("c>>a> a.txt");
-	printf("5 == %d\n", i);
-	i = ft_wordcount("c>>>a>a.txt");
-	printf("-1 == %d\n", i);
-	i = ft_wordcount("c<>>a>a.txt");
-	printf("-1 == %d\n", i);
-	i = ft_wordcount("c >> a> a.txt");
-	printf("5 == %d\n", i);
-	i = ft_wordcount("c<<>>a>a.txt");
-	printf("-1 == %d\n", i);
-
 }
