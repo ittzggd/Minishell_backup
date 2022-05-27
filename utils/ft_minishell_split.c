@@ -6,11 +6,11 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 14:11:19 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 19:07:34 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 /*
 	1. 단어 개수 세기
@@ -25,7 +25,7 @@
 	3-4. 성공시 return ret
 	*/
 
-static char *ft_free_all(char **ret)
+void ft_free_all(char **ret)
 {
 	int	i;
 
@@ -36,7 +36,6 @@ static char *ft_free_all(char **ret)
 		i++;
 	}
 	free(ret);
-	return (NULL);
 }
 
 static int	ft_wordlen(char const *str)
@@ -68,9 +67,16 @@ static int	ft_wordlen(char const *str)
 				i++;
 			return (i);
 		}
+		else if (str[i] && is_pipe(&str[i]))
+		{
+			if (is_pipe(&str[i]) == ERROR)
+				return (ERROR);
+			i++;
+			return (i);
+		}
 		else 
 		{
-			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]))
+			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;
 			return (i);
 		}
@@ -94,6 +100,8 @@ static int	 ft_split_str(char *str, char **ret)
 		{
 		 	while (*str && is_ifs(*str))
 				str++;
+			if(*str == '\0')
+				break;       // str의 맨 마지막에 space인 경우 탈출 하게끔
 		}
 		j = 0;
 		wlen = ft_wordlen(str);
@@ -102,11 +110,11 @@ static int	 ft_split_str(char *str, char **ret)
 			return (i);
 		while(j < wlen)
 		{
-			ret[i][j] == *str;
+			ret[i][j] = *str;
 			j++;
 			str++;
 		}
-		ret[i][j] == '\0';
+		ret[i][j] = '\0';
 		i++;	
 	}
 	ret[i] = NULL;
@@ -129,6 +137,9 @@ char	**ft_minishell_split(char const *str)
 		return (NULL); // 2. ret malloc => NULL 체크
 	split_res = ft_split_str((char *)str, ret);
 	if(split_res != wc)
-		return (ft_free_all(ret));
+	{
+		ft_free_all(ret);
+		ret = NULL;
+	}
 	return (ret);
 }

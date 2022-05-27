@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/27 14:08:31 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 19:07:50 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,19 @@ enum quote_flag
 };
 
 int		analyze_input(char *input);
-char	**tokenize_input(char *input);
+void	ft_free_all(char **ret);
 
-char	**ft_minishell_split(char const *str);
+// tokens
+char	**tokenize_input(char *input);
+char	**ft_minishell_split(const char *str);
 int		ft_wordcount(char const *str);
 int		is_ifs(const char c);
 int		is_redirection(const char *s);
 int		is_quote(const char c);
+int		is_pipe(const char *s);
+
+//lexer
+
+//parser
+
 #endif

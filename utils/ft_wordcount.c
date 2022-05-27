@@ -6,18 +6,18 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 13:15:47 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 18:44:54 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static int	is_ifs(const char c)
+int	is_ifs(const char c)
 {
 	return ((c == '\n' || c == '\t' || c == ' '));
 }
 
-static int	is_redirection(const char *s)
+int	is_redirection(const char *s)
 {
 	int	r_cnt;
 
@@ -33,13 +33,28 @@ static int	is_redirection(const char *s)
 	return (r_cnt);
 }
 
-static int	is_quote(const char c)
+int	is_quote(const char c)
 {
 	if (c == '\'')
 		return (SINGLE_QUOTE);
 	else if(c == '\"')
 		return (DOUBLE_QUOTE);
 	return (FALSE);
+}
+
+int	is_pipe(const char *s)
+{
+	int	p_cnt;
+
+	p_cnt = 0;
+	while(*s == '|')
+	{
+		p_cnt++;
+		if (p_cnt > 1)
+			return (ERROR);
+		s++;
+	}
+	return (p_cnt);
 }
 
 int	ft_wordcount(char const *str)
@@ -63,7 +78,7 @@ int	ft_wordcount(char const *str)
 					quote = 0;
 			}
 			i++;
-			wc++;
+			//wc++;
 		}
 		else if (str[i] && is_redirection(&str[i]))
 		{
@@ -71,19 +86,26 @@ int	ft_wordcount(char const *str)
 				return (ERROR);
 			while (str[i] && is_redirection(&str[i]))
 				i++;
-			wc++;
+			//wc++;
 		}
 		else if (str[i] && is_ifs(str[i]))
 		{
 			while (str[i] && is_ifs(str[i]))
 				i++;
-		}	
+			continue ;
+		}
+		else if (str[i] && is_pipe(&str[i]))
+		{
+			//wc++;
+			i++;
+		}
 		else 
 		{
-			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]))
+			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;
-			wc++;
+			//wc++;
 		}
+		wc++;
 	}
 	return (wc);
 }

@@ -15,6 +15,21 @@ static int	is_ifs(const char c)
 	return ((c == '\n' || c == '\t' || c == ' '));
 }
 
+int is_pipe(const char *s)
+{
+	int	p_cnt;
+
+	p_cnt = 0;
+	while(*s == '|')
+	{
+		p_cnt++;
+		if (p_cnt > 1)
+			return (ERROR);
+		s++;
+	}
+	return (p_cnt);
+}
+
 static int	is_redirection(const char *s)
 {
 	int	r_cnt;
@@ -51,14 +66,9 @@ int	ft_wordcount(char const *str)
 	wc = 0;
 	while (str[i])
 	{
-		/*
-		1. 따옴표인가?
-		2. 리다이렉션인가?
-		3. ifs인가?
-		*/
 		if (str[i] && is_quote(str[i]))
 		{
-			quote = is_quote(str[i]); // 여기 너무 지니어스
+			quote = is_quote(str[i]);
 			while(str[i] && quote != 0)
 			{
 				i++;
@@ -66,7 +76,7 @@ int	ft_wordcount(char const *str)
 					quote = 0;
 			}
 			i++;
-			wc++;
+			//wc++;
 		}
 		else if (str[i] && is_redirection(&str[i]))
 		{
@@ -74,19 +84,26 @@ int	ft_wordcount(char const *str)
 				return (ERROR);
 			while (str[i] && is_redirection(&str[i]))
 				i++;
-			wc++;
+			//wc++;
 		}
 		else if (str[i] && is_ifs(str[i]))
 		{
 			while (str[i] && is_ifs(str[i]))
 				i++;
-		}	
+			continue ;
+		}
+		else if (str[i] && is_pipe(&str[i]))
+		{
+			//wc++;
+			i++;
+		}
 		else 
 		{
-			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]))
+			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;
-			wc++;
+			//wc++;
 		}
+		wc++;
 	}
 	return (wc);
 }
@@ -96,8 +113,12 @@ int main()
 	int		i;
 	char 	*str;
 
+	i = ft_wordcount("echo|'hi hi' ''>a.txt|ls -al");
+	printf("9 == %d\n", i);
+	i = ft_wordcount("|");
+	printf("1 == %d\n", i);
 //	scanf("%s\n", str);
-	i = ft_wordcount("c>>a>a.txt");
+	/*i = ft_wordcount("c>>a>a.txt");
 	printf("5 == %d\n", i);
 	i = ft_wordcount("c>>a> a.txt");
 	printf("5 == %d\n", i);
@@ -114,6 +135,7 @@ int main()
 	i = ft_wordcount("echo 'hi hi' > a.txt | ls -al");
 	printf("7 == %d\n", i);
 	i = ft_wordcount("'hi>a.txt'");
-	printf("1 == %d\n", i);
+	printf("1 == %d\n", i);*/
+
 
 }
