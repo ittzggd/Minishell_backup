@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/26 21:10:28 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 19:14:54 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	analyze_input(char *input)
 {
-	char	**tokens;
+	char		**tokens;
+	t_lexer		*lexer_tokens;
 
 	tokens = tokenize_input(input);
 	if(!tokens)
 		return (ERROR); // 에러 넘버 여러 경우로 나눌지 생각하기
-	//lexer, parser
+	lexer_tokens = lexical_analysis(tokens);
+	if (!lexer_tokens)
+		return (ERROR);
+	// parser
 }
 
 int	main(void)

@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 19:07:34 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/27 19:24:12 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@
 		ft_split_str의 ret된 i < wc인 경우
 	3-4. 성공시 return ret
 	*/
-
-void ft_free_all(char **ret)
-{
-	int	i;
-
-	i = 0;
-	while (ret[i])
-	{
-		free(ret[i]);
-		i++;
-	}
-	free(ret);
-}
 
 static int	ft_wordlen(char const *str)
 {
