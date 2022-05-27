@@ -17,14 +17,15 @@ t_cmd	*create_cmd_struct(void)
 	t_cmd *cmd;
 
 	cmd = (t_cmd *)ft_calloc(1, sizeof(t_cmd));
-	cmd[0] = "echo";
-	cmd[1] = "cd";
-	cmd[2] = "pwd";
-	cmd[3] = "export";
-	cmd[4] = "unset";
-	cmd[5] = "env";
-	cmd[6] = "exit";
+	cmd[0] = ft_strdup("echo");
+	cmd[1] = ft_strdup("cd");
+	cmd[2] = ft_strdup("pwd");
+	cmd[3] = ft_strdup("export");
+	cmd[4] = ft_strdup("unset");
+	cmd[5] = ft_strdup("env");
+	cmd[6] = ft_strdup("exit");
 	cmd[7] = NULL;
+	// ft_strdup NULL체크 필요
 	return (cmd);
 }
 
@@ -33,8 +34,11 @@ static int	is_cmd(char *value)
 	t_cmd *cmd;
 
 	cmd = create_cmd_struct();
-	if(ft_strncmp(value, cmd, ft_strlen(value)))
-		return (TRUE);
+	while (*cmd)
+	{
+		if(ft_strncmp(value, *cmd, ft_strlen(value)))
+			return (TRUE);
+	}
 	return (FALSE);
 }
 
