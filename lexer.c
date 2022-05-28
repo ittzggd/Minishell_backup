@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: katherinejang <katherinejang@student.42    +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:10:59 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 23:07:06 by katherineja      ###   ########.fr       */
+/*   Updated: 2022/05/28 11:18:20 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ static int	get_type(char *value)
 	6. QUOTE str
 		6-1. in quote str
 		6-2. in quote cmd
-	7. flag 처리 고민
+		6-3. in quote option_flag
+	7. option "-n" ?
 	*/
-	if (!value)
+	if (!value || *value == '\0') // Value 널가드 
 		type = T_NULL;
 	else if (is_pipe(value))
 		type = T_PIPE;
@@ -31,20 +32,22 @@ static int	get_type(char *value)
 		type = T_REDIRECTION;
 	else if (is_cmd(value))
 		type = T_COMMAND;
+	else if (is_option(value))
+		type = T_OPTION;
+	else if (is_quote(*value))
+	{
+		value++;
+		type = get_type(value);
+		if(type == T_PIPE || type == T_REDIRECTION)
+			type = T_WORD;
+	}
+	else
+		type = T_WORD;
 	return (type);
 }
 
 t_lexer	*lexical_analysis(char **tokens)
 {
-	/*
-	1. t_lexer 구조체 calloc => NULL 체크
-	2. t_lexer->value = tokens[i] 복사
-	3. t_lexer->type 정하기
-	4. t_lexer->pLink 연결
-	5. 에러 예외 처리
-
-	7. 반환
-	*/
 	t_lexer	*dummy_header;
 	t_lexer	*curr;
 	t_lexer	*add_node;
@@ -63,8 +66,8 @@ t_lexer	*lexical_analysis(char **tokens)
 		add_node->value = tokens[i];
 		add_node->type = get_type(tokens[i]);
 		curr->plink = add_node;
-		curr = curr->plink;	
-		i++;	
+		curr = curr->plink;
+		i++;
 	}
 	return (dummy_header);
 }

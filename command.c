@@ -45,29 +45,8 @@ t_cmd	*create_cmd_struct(void)
 			ft_free_all(cmd->cmd);
 			return (NULL);
 		}
+		i++;
 	}
 	cmd->cmd[7] = NULL;
 	return (cmd);
-}
-
-int	is_cmd(char *value)
-{
-	int		i;
-	t_cmd	*cmd;
-
-	i = 0;
-	cmd = create_cmd_struct();
-	if (!cmd)
-	{
-		// 에러 부분을 플로우차트 작성해서 따로 빼주기
-		// 에러메세지를 출력해주자
-		// 이전에 malloc된 부분들을 free
-	}
-	while (cmd->cmd[i])
-	{
-		if (ft_strncmp(value, cmd->cmd[i], ft_strlen(value)))
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
 }

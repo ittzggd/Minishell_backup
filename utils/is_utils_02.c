@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   is_utils_02.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: katherinejang <katherinejang@student.42    +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 19:46:30 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/28 10:34:26 by katherineja      ###   ########.fr       */
+/*   Created: 2022/05/28 10:44:39 by katherineja       #+#    #+#             */
+/*   Updated: 2022/05/28 11:03:21 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	is_option(char *value)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
+	if (!value)
 	{
-		if (s1[i] == '\0' && s2[i] == '\0')
-			return (TRUE);
-		if (s1[i] != s2[i])
-			return (FALSE);
-		i++;
+		//에러 처리는 이후 추가
 	}
-	return (TRUE);
+	return (ft_strncmp(value, "-n", ft_strlen(value)));
 }

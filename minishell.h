@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: katherinejang <katherinejang@student.42    +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/27 22:53:50 by katherineja      ###   ########.fr       */
+/*   Updated: 2022/05/28 13:59:56 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 typedef struct s_lexer
 {
-	int		type;
-	char	*value;
-	t_lexer	*plink;
+	int				type;
+	char			*value;
+	struct s_lexer	*plink;
 }			t_lexer;
 
 typedef struct s_cmd
@@ -40,7 +40,7 @@ enum type
 {
 	T_COMMAND = 1,
 	T_WORD,
-	T_FLAG,
+	T_OPTION,
 	T_PIPE,
 	T_REDIRECTION,
 	D_QUOTE,
@@ -74,6 +74,7 @@ int		is_pipe(const char *s);
 t_lexer	*lexical_analysis(char **tokens);
 t_cmd	*create_cmd_struct(void);
 int		is_cmd(char *value);
+int		is_option(char *value);
 //parser
 
 # endif

@@ -2,5 +2,7 @@
 	"editor.insertSpaces": false,
 	"files.associations": {
 		"minishell.h": "c"
-	}
+	},
+	"42header.email": "hejang@student.42seoul.kr",
+	"42header.username": "hejang"
 }
