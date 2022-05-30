@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/28 13:59:56 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/30 11:12:38 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,44 @@ typedef struct s_lexer
 	struct s_lexer	*plink;
 }			t_lexer;
 
+typedef struct s_data
+{
+	struct s_ast	ast;
+	t_lexer			*lexer;
+	int				pipe_cnt;
+	int				redirection_cnt;
+}			t_data;
+
+typedef struct s_ast
+{
+	struct s_astnode	*prootnode;
+}			t_ast;
+
+typedef struct s_astnode
+{
+	int					visited;
+	int					nodetype;
+	t_lexer				*lexervalue;
+	struct s_astnode	*pleftchild;
+	struct s_astnode	*prightchild;
+}			t_astnode;
+
 typedef struct s_cmd
 {
 	char *cmd[8];
 }			t_cmd;
+
+enum ast_node_type
+{
+	A_PIPE = 1,
+	A_COMMAND,
+	A_REDIRECTIONS,
+	A_REDIRECTION,
+	A_ARGUMENTS,
+	A_ARGUMENT,
+	A_FILEPATH,
+	A_FILENAME
+}; 
 
 enum type
 {
@@ -71,10 +105,11 @@ int		is_redirection(const char *s);
 int		is_quote(const char c);
 int		is_pipe(const char *s);
 //lexer
-t_lexer	*lexical_analysis(char **tokens);
+void	lexical_analysis(char **tokens, t_data *data);
 t_cmd	*create_cmd_struct(void);
 int		is_cmd(char *value);
 int		is_option(char *value);
 //parser
+void	syntax_analysis(t_data *data);
 
 # endif

@@ -6,11 +6,19 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:10:59 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/28 11:18:20 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/30 10:444:23 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+	헤더파일 구조체랑 lexer 배열로 바꾸기
+	lexer 배열로 바꿔도 괜찮을 듯 => command는 무조건 맨 앞 아니면 pipe 다음임
+	command의 위치를 안다? 그럼 option위치도 || argument위치도 바로 알 수 있음
+
+	더 좋다
+*/
 
 static int	get_type(char *value)
 {
@@ -46,7 +54,7 @@ static int	get_type(char *value)
 	return (type);
 }
 
-t_lexer	*lexical_analysis(char **tokens)
+void	lexical_analysis(char **tokens, t_data *data)
 {
 	t_lexer	*dummy_header;
 	t_lexer	*curr;
@@ -65,9 +73,13 @@ t_lexer	*lexical_analysis(char **tokens)
 			retun (NULL);
 		add_node->value = tokens[i];
 		add_node->type = get_type(tokens[i]);
+		if(add_node->type == T_PIPE)
+			data->pipe_cnt++;
+		else if(add_node->type == T_REDIRECTION)
+			data->redirection_cnt++;
 		curr->plink = add_node;
 		curr = curr->plink;
 		i++;
 	}
-	return (dummy_header);
+	data->lexer = dummy_header;
 }
