@@ -1,7 +1,8 @@
 {
 	"editor.insertSpaces": false,
 	"files.associations": {
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"sstream": "c"
 	},
 	"42header.email": "hejang@student.42seoul.kr",
 	"42header.username": "hejang"

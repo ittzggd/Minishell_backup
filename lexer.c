@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:10:59 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 13:49:18 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/05/31 16:40:07 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,44 @@ static int	get_type(char *value)
 
 void	lexical_analysis(t_data *data)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	dummy_header = ft_calloc(1, sizeof(t_lexer));
-	if (!dummy_header)
-		return (NULL);
-	curr = dummy_header;
-	while (tokens[i])
+	data->type = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
+	while (data->tokens[i])
 	{
-		add_node = ft_calloc(1, sizeof(t_lexer));
-		if (!add_node)
-			retun (NULL);
-		add_node->value = tokens[i];
-		add_node->type = get_type(tokens[i]);
-		if (add_node->type == T_PIPE)
+		data->type[i] = get_type(data->tokens[i]);
+		if (data->type[i] == T_PIPE)
 			data->pipe_cnt++;
-		else if (add_node->type == T_REDIRECTION)
+		else if (data->type[i] == T_REDIRECTION)
 			data->redirection_cnt++;
-		curr->plink = add_node;
-		curr = curr->plink;
 		i++;
 	}
-	data->lexer = dummy_header;
 }
+
+// void	lexical_analysis(t_data *data)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	dummy_header = ft_calloc(1, sizeof(t_lexer));
+// 	if (!dummy_header)
+// 		return (NULL);
+// 	curr = dummy_header;
+// 	while (tokens[i])
+// 	{
+// 		add_node = ft_calloc(1, sizeof(t_lexer));
+// 		if (!add_node)
+// 			retun (NULL);
+// 		add_node->value = tokens[i];
+// 		add_node->type = get_type(tokens[i]);
+// 		if (add_node->type == T_PIPE)
+// 			data->pipe_cnt++;
+// 		else if (add_node->type == T_REDIRECTION)
+// 			data->redirection_cnt++;
+// 		curr->plink = add_node;
+// 		curr = curr->plink;
+// 		i++;
+// 	}
+// 	data->lexer = dummy_header;
+// }

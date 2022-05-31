@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/31 14:17:02 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/05/31 16:32:09 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_data
 	int				redirection_cnt;
 	int				tokens_cnt;
 	char			**tokens;  // tokens 배열 추가
-	t_lexer			*lexer; // 토큰배열을 구조체에 들고 다니면, lexer 구조체 말고 int *type을 들고 다녀도 괜찮을거 같은둣? 
+	// t_lexer			*lexer; // 토큰배열을 구조체에 들고 다니면, lexer 구조체 말고 int *type을 들고 다녀도 괜찮을거 같은둣? 
+	int				*type;
 	struct s_ast	ast;
 }			t_data;
 

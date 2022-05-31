@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 13:48:26 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/05/31 16:38:39 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,25 +108,25 @@ static int	ft_split_str(char *str, char **ret)
 	return (i);
 }
 
-char	**ft_minishell_split(char const *str)
-{
-	int		wc;
-	int		split_res;
-	char	**ret;
+// char	**ft_minishell_split(char const *str)
+// {
+// 	int		wc;
+// 	int		split_res;
+// 	char	**ret;
 
-	if (!str)
-		return (NULL);
-	wc = ft_wordcount(str); // 1. 단어 개수 세기
-	if (wc == ERROR)
-		return (NULL);
-	ret = (char **)malloc(sizeof(char *) * (wc + 1));
-	if (!ret)
-		return (NULL); // 2. ret malloc => NULL 체크
-	split_res = ft_split_str((char *)str, ret);
-	if (split_res != wc)
-	{
-		ft_free_all(ret);
-		ret = NULL;
-	}
-	return (ret);
-}
+// 	if (!str)
+// 		return (NULL);
+// 	wc = ft_wordcount(str); // 1. 단어 개수 세기
+// 	if (wc == ERROR)
+// 		return (NULL);
+// 	ret = (char **)malloc(sizeof(char *) * (wc + 1));
+// 	if (!ret)
+// 		return (NULL); // 2. ret malloc => NULL 체크
+// 	split_res = ft_split_str((char *)str, ret);
+// 	if (split_res != wc)
+// 	{
+// 		ft_free_all(ret);
+// 		ret = NULL;
+// 	}
+// 	return (ret);
+// }
