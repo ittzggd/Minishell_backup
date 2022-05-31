@@ -38,7 +38,7 @@ int	recur_pipe(t_astnode *ast_node, int index, t_data data) // 가장 처음은 
 	while(tokens[index])
 	{
 		// echo "hi" > a.txt | cat
-		if (type[index] == T_PIPE) // index = 5
+		if (type[index] == T_PIPE) // index = 4
 		{
 			ast_node->nodetype = A_PIPE; // astnode = rootNode => 루트 노드는 파이프
 
