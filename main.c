@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/31 13:44:21 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/05/31 19:19:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	analyze_input(char *input)
 	if (!data)
 		return (ERROR);
 	tokenize_input(data, input); // data구조체 내부에 tokens 추가
-	if (!data->tokens)
+	if (!data->plexer->pptokens) // data 모두 프리
 		return (ERROR); // 에러 넘버 여러 경우로 나눌지 생각하기
 	lexical_analysis(data);
-	if (!data->lexer)
-		return (ERROR);
+	if (!data->plexer->ptype) // data Free
+		return (ERROR); 
 	syntax_analysis(data);
 	// parser
 }

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:10:59 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 16:40:07 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/05/31 18:39:318 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,22 @@ static int	get_type(char *value)
 
 void	lexical_analysis(t_data *data)
 {
-	int	i;
+	char	**tokens;
+	int		*type;
+	int		i;
 
 	i = 0;
-	data->type = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
-	while (data->tokens[i])
+	tokens = data->plexer->pptokens;
+	type = data->plexer->ptype;
+	type = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
+	if (!type)
+		return ;
+	while (tokens[i])
 	{
-		data->type[i] = get_type(data->tokens[i]);
-		if (data->type[i] == T_PIPE)
+		type = get_type(tokens[i]);
+		if (type == T_PIPE)
 			data->pipe_cnt++;
-		else if (data->type[i] == T_REDIRECTION)
+		else if (type == T_REDIRECTION)
 			data->redirection_cnt++;
 		i++;
 	}

@@ -6,69 +6,67 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 08:51:50 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/30 11:08:08 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/31 19:19:41 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_first_position(t_lexer *prev)
-{
-	return (!prev->type && !prev->value);
-}
-
 void	syntax_analysis(t_data *data)
 {
-	t_lexer *curr;
-	t_lexer *prev;
-
-	curr = data->lexer->plink; // 1st Pos
-	prev = data->lexer; //dummy
-	while(curr)
+	int		curr;
+	int		prev;
+	int		*type;
+	char	**tokens;
+	
+	curr = 0; 
+	type = data->plexer->ptype;
+	tokens = data->plexer->pptokens;
+	while(curr < data->tokens_cnt)
 	{
-		if(curr->type == T_COMMAND)
+		prev = curr - 1;
+		if(type[curr] == T_COMMAND)
 		{
-			if (prev->type == T_REDIRECTION || prev->type == T_OPTION || prev->type == T_COMMAND)
-				curr->type == T_WORD;
+			if (curr != 0 && (type[prev] == T_REDIRECTION || type[prev] == T_OPTION || type[prev] == T_COMMAND))
+				type[curr] == T_WORD;
 		}
-		else if(curr->type == T_OPTION)
+		else if(type[curr] == T_OPTION)
 		{
-			if ((prev->type == T_COMMAND && !ft_strncmp(curr->value, "echo", ft_strlen(curr->value)))
-				|| prev->type != T_COMMAND)
+			if (curr != 0 && ((type[prev] == T_COMMAND && !ft_strncmp(tokens[curr], "echo", ft_strlen(tokens[curr])))
+				|| type[prev] != T_COMMAND))
 			{
 				//error
 			}
 		}
-		else if(curr->type == T_REDIRECTION)
+		else if(type[curr] == T_REDIRECTION)
 		{
-			if(prev->type == T_PIPE || prev->type == T_REDIRECTION)
+			if (curr != 0 && (type[prev] == T_PIPE || type[prev] == T_REDIRECTION))
 			{
 				// ERROR;
 			}
 		}
-		else if (is_first_position(prev)) //
+		else if (curr == 0) //첫자리가 !CMD && !Redirection == ERROR
 		{
 			//error => command not found	
 		}
-		else if (curr->type == T_PIPE)
+		else if (type[curr] == T_PIPE)
 		{
-			if(curr->plink->type != T_COMMAND || prev->type == T_REDIRECTION)
+			if(type[curr + 1] != T_COMMAND || (curr != 0 && type[prev] == T_REDIRECTION))
 			{
 				// ERROR
 			}
 		}
-		// else if (curr->type == T_WORD)
+		// else if (type[curr] == T_WORD)
 		// {
 			
 		// }
-		else if (curr->type == T_NULL)
+		else if (type[curr] == T_NULL)
 		{
-			if(prev->type == T_REDIRECTION || prev->type == T_PIPE)
+			if (curr != 0 && (type[prev] == T_REDIRECTION || type[prev] == T_PIPE))
 			{
 				//error
 			}
 		}
-		curr = curr->plink;
-		prev = prev->plink;
+		curr++;
 	}
 }

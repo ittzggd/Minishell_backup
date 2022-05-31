@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize.c                                         :+:      :+:    :+:   */
+/*   new_tokenize.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 17:20:55 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 13:49:16 by hejang           ###   ########seoul.kr  */
+/*   Created: 2022/05/31 16:36:15 by hejang            #+#    #+#             */
+/*   Updated: 2022/05/31 18:38:39 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,22 @@
 3. split Return 이중 포인터 받을 애 필요 -> 
 */
 
-char	**tokenize_input(t_data *data, char *input)
+void	tokenize_input(t_data *data, char *input)
 {
-	data->tokens = ft_minishell_split(input);
-	if (!data->tokens)
+	int		split_index;
+
+	if (!input)
 		return (NULL);
-	return (data->tokens);
+	data->tokens_cnt = ft_wordcount(input); // 1. 단어 개수 세기
+	if (data->tokens_cnt == ERROR)
+		return (NULL);
+	data->plexer->pptokens = (char **)malloc(sizeof(char *) * (data->tokens_cnt + 1));
+	if (!data->plexer->pptokens)
+		return (NULL); // 2. data->tokens malloc => NULL 체크
+	split_index = ft_split_str((char *)input, data->plexer->pptokens);
+	if (split_index != data->tokens_cnt)
+	{
+		ft_free_all(data->plexer->pptokens);
+		data->plexer->pptokens = NULL;
+	}
 }
-/*
-
-tokenize input함수와 ft_minishell_split 을 합쳐주는 건 어떨지 의논하기
-그리고 data->tokens_cnt에 ft_minishell_split의 wc+1 = tokens length 저장하기
-
-*/

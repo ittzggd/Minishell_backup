@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 16:38:39 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/05/31 19:19:57 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 	3-4. 성공시 return ret
 	*/
 
-static int	ft_wordlen(char const *str)
+int	ft_wordlen(char const *str)
 {
 	int	i;
 	int	quote;
@@ -71,7 +71,7 @@ static int	ft_wordlen(char const *str)
 	return (i);
 }
 
-static int	ft_split_str(char *str, char **ret)
+int	ft_split_str(char *str, char **ret)
 {
 	int	i;
 	int	j;
