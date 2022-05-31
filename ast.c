@@ -22,41 +22,49 @@
 			  pipe
 		cmd			pipe
 				cmd		cmd
+*/
+int	recur_pipe(t_astnode *ast_node, int index, t_data data) // 가장 처음은 초기화된 rootNode, index = 0 이 들어옴
+{
+	char **tokens;
+	int *type;
+	// t_astnode	*lnode; 	=> ast_node 구조체의 pleftchild, prightchild 사용
+	// t_astnode	*rnode;
 
-	int	recur_pipe(t_astnode *ast_node, int index, t_data data)
+	tokens = data->plexer->pptokens;
+	type = data->plexer->ptype;
+	/*
+	ast_node->plexer // ?????? ast_node는 ft_calloc으로 만들어짐. data->plexer와 연결 필요
+	*/
+	while(tokens[index])
 	{
-		char **tokens;
-		char *type;
-		t_astnode	*lnode;
-		t_astnode	*rnode;
-
-		tokens = data->plexer->pptokens;
-		type = data->plexer->ptype;
-		while(tokens[index])
+		// echo "hi" > a.txt | cat
+		if (type[index] == T_PIPE) // index = 5
 		{
-			if(type[index] == T_PIPE)
-			{
-				ast_node->nodetype = T_PIPE; // 노드 타입을 따로 만들어야 될까?
-				lnode = insertPLeftChild(ast_node, A_COMMAND);  // 
-				rnode = insertPRightChild(ast_node, 0);
-				if(recur_pipe(rnode, index, data))
-					return(TRUE);
-			}
-			index++;
-		}
-	//	if(tokens[index] == NULL) // 일단 주석
-			ast_node->node_type = A_COMMAND;
-		return (TRUE)
-	}
+			ast_node->nodetype = A_PIPE; // astnode = rootNode => 루트 노드는 파이프
 
+			// lnode = insertPLeftChild(ast_node, A_COMMAND);
+			// rnode = insertPRightChild(ast_node, 0);
+			ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_COMMAND);
+			ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
+			// if (recur_pipe(rnode, index + 1, data))
+			if (recur_pipe(ast_node->prightchild, index + 1, data))
+				return(TRUE);
+		}
+		index++;
+	}
+//	if (tokens[index] == NULL) // 일단 주석
+		ast_node->node_type = A_COMMAND;
+	return (TRUE);
+}
+/*
 	// cmd 함수의 역할은 첫번째 리다이렉션을 만날때까지 탐색해서
 	// args   reds  트리 노드를 만드는 것이다
 	void	tree_cmd(t_astnode *ast_node, int index, t_data data)
 	{
-		char **tokens;
+		char	**tokens;
 		char	*type;
-		t_astnode	*lnode;
-		t_astnode	*rnode;
+		// t_astnode	*lnode;
+		// t_astnode	*rnode;
 
 		if (astnode->nodetype != A_COMMAND)
 			return ;

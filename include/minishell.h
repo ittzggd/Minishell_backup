@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include "utils.h"
 # include "minishell_define.h"
+# include "tree_utils.h"
 
 int		analyze_input(char *input);
 
