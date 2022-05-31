@@ -13,12 +13,14 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+/*
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <signal.h>
 # include <fcntl.h>
+*/
 
 void	*ft_calloc(size_t number, size_t size);
 void	ft_free_all(char **ret);
