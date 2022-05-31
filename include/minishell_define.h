@@ -29,7 +29,7 @@ typedef struct s_data
 	int				redirection_cnt;
 	int				tokens_cnt;
 	t_lexer			*plexer;
-	struct s_ast	ast;
+	struct s_ast	*p_ast;
 }			t_data;
 
 typedef struct s_ast
@@ -53,6 +53,7 @@ typedef struct s_cmd
 
 enum e_ast_node_type
 {
+	// 트리그림 이름이랑 똑같이 바꾸기
 	A_PIPE = 1,
 	A_COMMAND,
 	A_REDIRECTIONS,
