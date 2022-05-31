@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_tokenize.c                                     :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/31 16:36:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/31 18:38:39 by hejang           ###   ########.fr       */
+/*   Created: 2022/05/26 17:20:55 by yukim             #+#    #+#             */
+/*   Updated: 2022/05/31 22:12:09 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-/*
-0. ft_split을 공백 탭 개행 기준 토큰화 하기 => 왜냐면 파일로 들어올수도 있다
-1. 왼쪽 큰따옴표, 작은따옴표 체크
-2. 오른쪽 큰따옴표, 작은 따옴표 체크
-3. split Return 이중 포인터 받을 애 필요 -> 
-*/
+#include"minishell.h"
 
 void	tokenize_input(t_data *data, char *input)
 {
@@ -38,3 +31,4 @@ void	tokenize_input(t_data *data, char *input)
 		data->plexer->pptokens = NULL;
 	}
 }
+

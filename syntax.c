@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 08:51:50 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 19:19:41 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/31 22:09:26 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	syntax_analysis(t_data *data)
 				//error
 			}
 		}
+		
 		curr++;
 	}
 }
