@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/28 11:04:00 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/31 13:21:49 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	ft_wordcount(char const *str)
 		if (str[i] && is_quote(str[i]))
 		{
 			quote = is_quote(str[i]);
-			while(str[i] && quote != 0)
+			while (str[i] && quote != 0)
 			{
 				i++;
-				if(quote == is_quote(str[i]))
+				if (quote == is_quote(str[i]))
 					quote = 0;
 			}
 			i++;
@@ -49,7 +49,7 @@ int	ft_wordcount(char const *str)
 		}
 		else if (str[i] && is_pipe(&str[i]))
 			i++;
-		else 
+		else
 		{
 			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;

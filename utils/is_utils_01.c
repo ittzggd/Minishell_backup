@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:36:09 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/28 13:59:49 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/31 13:22:06 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	is_redirection(const char *s)
 	int	r_cnt;
 
 	r_cnt = 0;
-	while(*s == '<' || *s == '>')
+	while (*s == '<' || *s == '>')
 	{
 		r_cnt++;
 		// 밑의 경우일 경우 에러 문구 출력 후 다음 입력 받기 (readline) 
@@ -59,7 +59,7 @@ int	is_quote(const char c)
 {
 	if (c == '\'')
 		return (SINGLE_QUOTE);
-	else if(c == '\"')
+	else if (c == '\"')
 		return (DOUBLE_QUOTE);
 	return (FALSE);
 }
@@ -69,7 +69,7 @@ int	is_pipe(const char *s)
 	int	p_cnt;
 
 	p_cnt = 0;
-	while(*s == '|')
+	while (*s == '|')
 	{
 		p_cnt++;
 		if (p_cnt > 1)

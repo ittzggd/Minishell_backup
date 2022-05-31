@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell_split.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 19:24:12 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/31 13:48:26 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static int	ft_wordlen(char const *str)
 		if (str[i] && is_quote(str[i]))
 		{
 			quote = is_quote(str[i]);
-			while(str[i] && quote != 0)
+			while (str[i] && quote != 0)
 			{
 				i++;
-				if(quote == is_quote(str[i]))
+				if (quote == is_quote(str[i]))
 					quote = 0;
 			}
 			i++;
@@ -61,7 +61,7 @@ static int	ft_wordlen(char const *str)
 			i++;
 			return (i);
 		}
-		else 
+		else
 		{
 			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;
@@ -71,38 +71,38 @@ static int	ft_wordlen(char const *str)
 	return (i);
 }
 
-static int	 ft_split_str(char *str, char **ret)
+static int	ft_split_str(char *str, char **ret)
 {
 	int	i;
 	int	j;
 	int	wlen;
 	int	quote;
-	
+
 	i = 0;
 	wlen = 0;
 	quote = 0;
-	while(*str)
+	while (*str)
 	{
-		if (*str && is_ifs(*str))	
+		if (*str && is_ifs(*str))
 		{
-		 	while (*str && is_ifs(*str))
+			while (*str && is_ifs(*str))
 				str++;
-			if(*str == '\0')
-				break;       // str의 맨 마지막에 space인 경우 탈출 하게끔
+			if (*str == '\0')
+				break ;       // str의 맨 마지막에 space인 경우 탈출 하게끔
 		}
 		j = 0;
 		wlen = ft_wordlen(str);
 		ret[i] = (char *)malloc(sizeof(char) * (wlen + 1));
 		if (!ret[i])
 			return (i);
-		while(j < wlen)
+		while (j < wlen)
 		{
 			ret[i][j] = *str;
 			j++;
 			str++;
 		}
 		ret[i][j] = '\0';
-		i++;	
+		i++;
 	}
 	ret[i] = NULL;
 	return (i);
@@ -120,10 +120,10 @@ char	**ft_minishell_split(char const *str)
 	if (wc == ERROR)
 		return (NULL);
 	ret = (char **)malloc(sizeof(char *) * (wc + 1));
-	if(!ret)
+	if (!ret)
 		return (NULL); // 2. ret malloc => NULL 체크
 	split_res = ft_split_str((char *)str, ret);
-	if(split_res != wc)
+	if (split_res != wc)
 	{
 		ft_free_all(ret);
 		ret = NULL;

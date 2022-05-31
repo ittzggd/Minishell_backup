@@ -6,14 +6,14 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:10:59 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/30 10:444:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/05/31 13:49:18 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-	헤더파일 구조체랑 lexer 배열로 바꾸기
+	헤더파일 구조체랑 lexer 배열로 바꾸기  => tokens의 길이를 구조체에 저장해줌
 	lexer 배열로 바꿔도 괜찮을 듯 => command는 무조건 맨 앞 아니면 pipe 다음임
 	command의 위치를 안다? 그럼 option위치도 || argument위치도 바로 알 수 있음
 
@@ -46,7 +46,7 @@ static int	get_type(char *value)
 	{
 		value++;
 		type = get_type(value);
-		if(type == T_PIPE || type == T_REDIRECTION)
+		if (type == T_PIPE || type == T_REDIRECTION)
 			type = T_WORD;
 	}
 	else
@@ -54,11 +54,8 @@ static int	get_type(char *value)
 	return (type);
 }
 
-void	lexical_analysis(char **tokens, t_data *data)
+void	lexical_analysis(t_data *data)
 {
-	t_lexer	*dummy_header;
-	t_lexer	*curr;
-	t_lexer	*add_node;
 	int		i;
 
 	i = 0;
@@ -66,16 +63,16 @@ void	lexical_analysis(char **tokens, t_data *data)
 	if (!dummy_header)
 		return (NULL);
 	curr = dummy_header;
-	while(tokens[i])
+	while (tokens[i])
 	{
 		add_node = ft_calloc(1, sizeof(t_lexer));
-		if(!add_node)
+		if (!add_node)
 			retun (NULL);
 		add_node->value = tokens[i];
 		add_node->type = get_type(tokens[i]);
-		if(add_node->type == T_PIPE)
+		if (add_node->type == T_PIPE)
 			data->pipe_cnt++;
-		else if(add_node->type == T_REDIRECTION)
+		else if (add_node->type == T_REDIRECTION)
 			data->redirection_cnt++;
 		curr->plink = add_node;
 		curr = curr->plink;

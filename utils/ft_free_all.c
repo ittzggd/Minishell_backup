@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:23:54 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/27 19:23:54 by yukim            ###   ########.fr       */
+/*   Updated: 2022/05/31 13:20:34 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void ft_free_all(char **ret)
+void	ft_free_all(char **ret)
 {
 	int	i;
 
