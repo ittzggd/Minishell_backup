@@ -73,6 +73,8 @@ void	tree_cmd(t_astnode *ast_node, int index, t_data data)
 	// rnode = insertPRightChild(ast_node, 0);
 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_ARGUMENTS);
 	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
+	// tree_args 함수 호출
+	tree_args(ast_node->pleftchild, index, data);
 	// while(type[index]tokens[index])
 	while (type[index] != T_PIPE && tokens[index])
 	{
@@ -122,6 +124,7 @@ void	tree_reds(t_astnode *ast_node, int index, t_data data)
 	{
 		ast_node->pleftchild-> pleftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION_TYPE);
 		ast_node->pleftchild->prightchild = insert_rightchildnode_ast(ast_node, A_FILENAME);
+		//A_REDIRECTION_TYPE 와 A_FILENAME 노드에 value 넣기 추가해야 함
 	}
 	index++; 
 	while (type[index] != T_PIPE && tokens[index])
