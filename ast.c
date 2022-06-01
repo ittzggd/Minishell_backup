@@ -27,11 +27,13 @@ int	recur_pipe(t_astnode *ast_node, int index, t_data data) // 가장 처음은 
 {
 	char **tokens;
 	int *type;
+	int c_index;
 	// t_astnode	*lnode; 	=> ast_node 구조체의 pleftchild, prightchild 사용
 	// t_astnode	*rnode;
 
 	tokens = data->plexer->pptokens;
 	type = data->plexer->ptype;
+	c_index = index;
 	/*
 	ast_node->plexer // ?????? ast_node는 ft_calloc으로 만들어짐. data->plexer와 연결 필요
 	*/
@@ -45,7 +47,7 @@ int	recur_pipe(t_astnode *ast_node, int index, t_data data) // 가장 처음은 
 			// lnode = insertPLeftChild(ast_node, A_COMMAND);
 			// rnode = insertPRightChild(ast_node, 0);
 			ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_COMMAND);
-			// tree_cmd(ast_node->left, index, data); => index 값 의논 필요
+			tree_cmd(ast_node->left, c_index, data);
 			ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
 			// if (recur_pipe(rnode, index + 1, data))
 			if (recur_pipe(ast_node->prightchild, index + 1, data))
@@ -55,7 +57,7 @@ int	recur_pipe(t_astnode *ast_node, int index, t_data data) // 가장 처음은 
 	}
 //	if (tokens[index] == NULL) // 일단 주석
 		ast_node->node_type = A_COMMAND;
-		// tree_cmd(ast_node, index, data); => index 의논 필요
+		tree_cmd(ast_node, c_index, data);
 	return (TRUE);
 }
 
