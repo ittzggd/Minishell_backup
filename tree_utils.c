@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ds_tree.c                                          :+:      :+:    :+:   */
+/*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:23:51 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/01 03:23:51 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/01 17:02:57 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_astnode* insert_rightchildnode_ast(t_astnode* p_parentnode, int nodetype)
 {
 	t_astnode *pchild;
 
-	if (p_parentnode->pRightChild)
+	if (p_parentnode->prightchild)
 	{
 	// printf ("RightChild Node already exist \n");
 	// return (NULL);

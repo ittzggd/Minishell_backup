@@ -41,7 +41,7 @@ typedef struct s_astnode
 {
 	int					visited;
 	int					nodetype;
-	t_lexer				*plexer;
+	char				*pvalue;
 	struct s_astnode	*pleftchild;
 	struct s_astnode	*prightchild;
 }			t_astnode;
