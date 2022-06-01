@@ -56,31 +56,82 @@ int	recur_pipe(t_astnode *ast_node, int index, t_data data) // 가장 처음은 
 		ast_node->node_type = A_COMMAND;
 	return (TRUE);
 }
-/*
-	// cmd 함수의 역할은 첫번째 리다이렉션을 만날때까지 탐색해서
-	// args   reds  트리 노드를 만드는 것이다
-	void	tree_cmd(t_astnode *ast_node, int index, t_data data)
-	{
-		char	**tokens;
-		char	*type;
-		// t_astnode	*lnode;
-		// t_astnode	*rnode;
 
-		if (astnode->nodetype != A_COMMAND)
-			return ;
-		tokens = data->plexer->pptokens;
-		lnode = insertPLeftChild(ast_node, A_ARGUMENTS);  // 
-		rnode = insertPRightChild(ast_node, 0);
-		while(type[index]tokens[index])
+// cmd 함수의 역할은 첫번째 리다이렉션을 만날때까지 탐색해서
+// args   reds  트리 노드를 만드는 것이다
+void	tree_cmd(t_astnode *ast_node, int index, t_data data)
+{
+	char	**tokens;
+	int		*type;
+	// t_astnode	*lnode;
+	// t_astnode	*rnode;
+	if (astnode->nodetype != A_COMMAND)
+		return ;
+	tokens = data->plexer->pptokens;
+	type = data->plexer->type;
+	// lnode = insertPLeftChild(ast_node, A_ARGUMENTS);  // 
+	// rnode = insertPRightChild(ast_node, 0);
+	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_ARGUMENTS);
+	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
+	// while(type[index]tokens[index])
+	while (type[index] != T_PIPE && tokens[index])
+	{
+		if (type[index] = T_REDIRECTION)
 		{
-			if(type[index] = T_REDIRECTION)
-			{
-				rnode->nodetype = A_REDIRECTIONS;
-			}
-			index++;
+			ast_node->prightchild->nodetype = A_REDIRECTIONS;
+			// tree_reds 함수 호출
+			tree_reds(ast_nnode->prightchild, index, data);
+			break ;
 		}
+		index++;
 	}
-*/
+}
+
 
 // args 밑부분 만들기
+void	tree_args(t_astnode *ast_node, int index, t_data data)
+{
+	char	**tokens;
+	int		*type;
+
+	if (astnode->nodetype != A_ARGUMENTS)
+		return ;
+	tokens = data->plexer->pptokens;
+	type = data->plexer->type;
+	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_FILEPATH);
+	ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENT);
+	while (type[index] != T_REDIRECTION && tokens[index])
+	{
+		// A_FILEPATH와 A_ARGUMENT value 넣기
+		index++;
+	}
+}
 // reds 밑부분 만들기
+void	tree_reds(t_astnode *ast_node, int index, t_data data)
+{
+	char	**tokens;
+	int		*type;
+
+	if (astnode->nodetype != A_REDIRECTIONS)
+		return ;
+	tokens = data->plexer->pptokens;
+	type = data->plexer->type;
+	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION);
+	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
+	if (type[index] == T_REDIRECTION)
+	{
+		ast_node->pleftchild-> pleftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION_TYPE);
+		ast_node->pleftchild->prightchild = insert_rightchildnode_ast(ast_node, A_FILENAME);
+	}
+	index++; 
+	while (type[index] != T_PIPE && tokens[index])
+	{
+		if (type[index] == T_REDIRECTION)
+		{
+			ast_node->prightchild->nodetype = A_REDIRECTIONS;
+			tree_reds(ast_node->prightchild, index, data);
+			break ;
+		}
+		index++;
+	}
+}
