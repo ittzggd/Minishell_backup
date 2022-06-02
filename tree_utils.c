@@ -6,11 +6,12 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:23:51 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/01 17:02:57 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:47:39 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "./include/tree_utils.h"
 
 t_astnode* insert_leftchildnode_ast(t_astnode* p_parentnode, int nodetype)
 {
@@ -48,6 +49,35 @@ t_astnode* insert_rightchildnode_ast(t_astnode* p_parentnode, int nodetype)
 	pchild->nodetype = nodetype;
 	p_parentnode->prightchild = pchild;
 	return (pchild);
+}
+
+int	init_idx(int index, t_astnode *node)
+{
+	int	*tmp;
+	int	i;
+	int	existing_size;
+
+	i = 0;
+	existing_size = 0;
+	if (!node->pvalue_index) // 근데 사실 우리가 insertnode_에서 초기화를 시켜주기 때문에 정확하게 널 포인터는 아니지 않을까...?
+		tmp = (int *)ft_calloc(1, sizeof(int));
+	else
+	{
+		existing_size = sizeof(node->pvalue_index) / sizeof(int);
+		tmp = (int *)ft_calloc(existing_size + 1, sizeof(int));
+	}
+	if (!tmp)
+		return (ERROR);=
+	while (i < existing_size)
+	{
+		tmp[i] = node->pvalue_index[i];
+		i++;
+	}
+	tmp[i] = index;
+	if(node->pvalue_index)
+		free(node->pvalue_index);
+	node->pvalue_index = tmp;
+	return (TRUE);
 }
 
 // void deleteBinTree(BinTree* pBinTree)

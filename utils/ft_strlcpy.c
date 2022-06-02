@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:57:58 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/01 14:59:59 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:47:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 	size_t	src_size;
 
+	if(!dst || !src)
+		return (0);
 	src_size = ft_strlen(src);
 	if (size == 0)
 		return (src_size);

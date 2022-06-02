@@ -25,11 +25,12 @@ typedef struct s_lexer
 
 typedef struct s_data
 {
-	int				pipe_cnt;
-	int				redirection_cnt;
-	int				tokens_cnt;
-	t_lexer			*plexer;
-	struct s_ast	*p_ast;
+	int						pipe_cnt;
+	int						redirection_cnt;
+	int						tokens_cnt;
+	t_lexer					*plexer;
+	struct s_ast			*p_ast;
+	struct s_ioredirection	**io_red;
 }			t_data;
 
 typedef struct s_ast
@@ -41,7 +42,7 @@ typedef struct s_astnode
 {
 	int					visited;
 	int					nodetype;
-	char				*pvalue;
+	int					*pvalue_index;
 	struct s_astnode	*pleftchild;
 	struct s_astnode	*prightchild;
 }			t_astnode;
@@ -50,6 +51,14 @@ typedef struct s_cmd
 {
 	char	*cmd[8];
 }			t_cmd;
+
+typedef	struct s_ioredirection
+{
+	char	*stdin;
+	char	*stdout;
+	//char	*heredoc;
+}			t_ioredirection;
+
 
 enum e_ast_node_type
 {
@@ -74,13 +83,21 @@ enum e_type
 	T_REDIRECTION,
 	D_QUOTE,
 	S_QUOTE,
-	T_NULL
+	T_NULL,
+	T_ENV
 };
 
 enum e_quote_flag
 {
 	SINGLE_QUOTE = 1,
 	DOUBLE_QUOTE
+};
+
+enum e_io_redirection
+{
+	stdin = 1,
+	stdout,
+	heredoc
 };
 
 #endif

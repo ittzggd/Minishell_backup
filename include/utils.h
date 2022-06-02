@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/01 17:02:59 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:47:44 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		is_quote(const char c);
 int		is_pipe(const char *s);
 int		is_cmd(char *value);
 int		is_option(char *value);
+int		is_env(char value);
+int		is_valid_env(char *str);
 
 
 

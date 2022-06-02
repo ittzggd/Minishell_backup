@@ -46,7 +46,7 @@ static int	get_type(char *value)
 	{
 		value++;
 		type = get_type(value);
-		if (type == T_PIPE || type == T_REDIRECTION)
+		if (type == T_PIPE || type == T_REDIRECTION || type == T_ENV)
 			type = T_WORD;
 	}
 	else
@@ -73,6 +73,16 @@ void	lexical_analysis(t_data *data)
 			data->pipe_cnt++;
 		else if (type == T_REDIRECTION)
 			data->redirection_cnt++;
+		else if (type == T_WORD)
+		{
+			if (is_env(tokens[i]))
+			{
+				// $와 괄호를 제외한 key값을 tokens[i]에 저장하기
+				replace_env(i, data);
+				if (!data->plexer->pptokens[i])
+				// 에러처리를 함수 쪼갤때 해주기
+			}
+		}
 		i++;
 	}
 }

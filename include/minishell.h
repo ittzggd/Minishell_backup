@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/05/31 22:09:32 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/02 13:47:30 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		ft_wordcount(char const *str);
 //lexer
 void	lexical_analysis(t_data *data);
 t_cmd	*create_cmd_struct(void);
+void	replace_env(int i, t_data *data);
 
 void	syntax_analysis(t_data *data);
 
