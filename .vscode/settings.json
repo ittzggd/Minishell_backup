@@ -3,7 +3,8 @@
 	"files.associations": {
 		"minishell.h": "c",
 		"sstream": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"minishell_define.h": "c"
 	},
 	"42header.email": "hejang@student.42seoul.kr",
 	"42header.username": "hejang"
