@@ -80,6 +80,9 @@ void	lexical_analysis(t_data *data)
 				// $와 괄호를 제외한 key값을 tokens[i]에 저장하기
 				replace_env(i, data);
 				if (!data->plexer->pptokens[i])
+				{
+					
+				}
 				// 에러처리를 함수 쪼갤때 해주기
 			}
 		}

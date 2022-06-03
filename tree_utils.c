@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:23:51 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/02 13:47:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/03 15:00:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,21 @@ int	init_idx(int index, t_astnode *node)
 	i = 0;
 	existing_size = 0;
 	if (!node->pvalue_index) // 근데 사실 우리가 insertnode_에서 초기화를 시켜주기 때문에 정확하게 널 포인터는 아니지 않을까...?
-		tmp = (int *)ft_calloc(1, sizeof(int));
+		tmp = (int *)ft_calloc(2, sizeof(int));
 	else
 	{
 		existing_size = sizeof(node->pvalue_index) / sizeof(int);
-		tmp = (int *)ft_calloc(existing_size + 1, sizeof(int));
+		tmp = (int *)ft_calloc(existing_size + 2, sizeof(int));
 	}
 	if (!tmp)
-		return (ERROR);=
-	while (i < existing_size)
+		return (ERROR);
+	while (i < existing_size) // 복사
 	{
 		tmp[i] = node->pvalue_index[i];
 		i++;
 	}
 	tmp[i] = index;
+	tmp[i + 1] = -1;
 	if(node->pvalue_index)
 		free(node->pvalue_index);
 	node->pvalue_index = tmp;

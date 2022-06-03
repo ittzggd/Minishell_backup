@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/02 13:47:51 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/03 15:00:46 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@ t_cmd	*create_cmd_struct(void);
 void	replace_env(int i, t_data *data);
 
 void	syntax_analysis(t_data *data);
+
+//built in
+int		ft_echo(t_data *data, t_astnode *args_node);
+int		ft_pwd(void);
 
 #endif
