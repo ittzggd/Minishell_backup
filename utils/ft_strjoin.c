@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:57:54 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/01 17:02:58 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/04 20:36:19 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len1;
 	size_t	len2;
 	char	*new_str;
-	
+
 	if (!s1 || !s2)
 		return (0);
 	len1 = ft_strlen(s1);

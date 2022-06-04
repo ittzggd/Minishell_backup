@@ -1,22 +1,12 @@
 #include<stdio.h>
 #include <stdlib.h>
+#include "./include/minishell.h"
 
 int main()
 {
-	int *num;
-	int *tmp;
-	int	*i;
-	int	j;
+	t_data *data = ft_calloc(1, sizeof(t_data));
 
-	tmp = malloc(sizeof(int) * 3);
-	num = tmp;
-	j = 4;
-	i = &j;
-	printf("i : %lu\n", sizeof(i));
-	printf("*i : %lu\n", sizeof(*i));
-	printf("tmp : %lu\n", sizeof(tmp));
-	printf("*tmp : %lu\n", sizeof(*tmp));
-	printf("num : %lu\n", sizeof(num));
-	printf("*num : %lu\n", sizeof(*num));
+	char *str = "hello \'sfj\'";
+	printf("%p\n", tokenize_input(data, str)); 
 
 }

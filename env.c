@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/03 15:00:59 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/04 21:28:59 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 
 // 환경변수를 비교하여 교체
-void	replace_env(int i, t_data *data)
+void	replace_env_to_word(int i, t_data *data)
 {
 	/*
 	strncmp로 환경변수 목록에서 찾아오기 => get_env함수 존재
@@ -29,7 +29,7 @@ void	replace_env(int i, t_data *data)
 	char	*argv;
 	int		j;
 	int		key_len;
-	
+
 	token = data->plexer->pptokens[i]; // $USER 혹은 "$USER"
 	j = 0;
 	while (token[j] && (token[j] == '$' || token[j] == '\"'))

@@ -7,5 +7,6 @@
 		"minishell_define.h": "c"
 	},
 	"42header.email": "hejang@student.42seoul.kr",
-	"42header.username": "hejang"
+	"42header.username": "hejang",
+	"files.insertFinalNewline": true
 }

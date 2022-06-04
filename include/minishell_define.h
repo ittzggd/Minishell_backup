@@ -54,8 +54,8 @@ typedef struct s_cmd
 
 typedef	struct s_ioredirection
 {
-	char	*stdin;
-	char	*stdout;
+	char	*red_stdin;
+	char	*red_stdout;
 	//char	*heredoc;
 }			t_ioredirection;
 
@@ -95,9 +95,9 @@ enum e_quote_flag
 
 enum e_io_redirection
 {
-	stdin = 1,
-	stdout,
-	heredoc
+	STDINPUT = 1,
+	STDOUTPUT,
+	HEREDOC
 };
 
 #endif

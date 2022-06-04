@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:57:58 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/02 13:47:32 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/04 20:36:32 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 	size_t	src_size;
 
-	if(!dst || !src)
+	if (!dst || !src)
 		return (0);
 	src_size = ft_strlen(src);
 	if (size == 0)

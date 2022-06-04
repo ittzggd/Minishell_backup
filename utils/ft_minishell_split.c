@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_minishell_split.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 22:09:33 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/04 21:55:09 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,46 @@
 int	ft_wordlen(char const *str)
 {
 	int	i;
-	int	quote;
+	// int	quote;
 
 	i = 0;
-	quote = 0;
+	// quote = 0;
 	while (str[i])
 	{
 		if (str[i] && is_quote(str[i]))
 		{
-			quote = is_quote(str[i]);
-			while (str[i] && quote != 0)
-			{
-				i++;
-				if (quote == is_quote(str[i]))
-					quote = 0;
-			}
-			i++;
+			// quote = is_quote(str[i]);
+			// while (str[i] && quote != 0)
+			// {
+			// 	i++;
+			// 	if (quote == is_quote(str[i]))
+			// 		quote = 0;
+			// }
+			// i++;
+			case_quote(str, &i);
 			return (i);
 		}
 		else if (str[i] && is_redirection(&str[i]))
 		{
-			if (is_redirection(&str[i]) == ERROR)
-				return (ERROR);
-			while (str[i] && is_redirection(&str[i]))
-				i++;
+			// if (is_redirection(&str[i]) == ERROR)
+			// 	return (ERROR);
+			// while (str[i] && is_redirection(&str[i]))
+			// 	i++;
+			case_redirection(str, i);
 			return (i);
 		}
 		else if (str[i] && is_pipe(&str[i]))
 		{
-			if (is_pipe(&str[i]) == ERROR)
-				return (ERROR);
-			i++;
-			return (i);
+			// if (is_pipe(&str[i]) == ERROR)
+			// 	return (ERROR);
+			// i++;
+			// return (i);
+			return (1);
 		}
 		else
 		{
-			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) && !is_quote(str[i]) && !is_pipe(&str[i]))
+			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) \
+						&& !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;
 			return (i);
 		}
@@ -71,16 +75,16 @@ int	ft_wordlen(char const *str)
 	return (i);
 }
 
-int	ft_split_str(char *str, char **ret)
+int	ft_split_str(char *str, char **tokens)
 {
 	int	i;
 	int	j;
 	int	wlen;
-	int	quote;
+	// int	quote;
 
 	i = 0;
 	wlen = 0;
-	quote = 0;
+	// quote = 0;
 	while (*str)
 	{
 		if (*str && is_ifs(*str))
@@ -92,18 +96,22 @@ int	ft_split_str(char *str, char **ret)
 		}
 		j = 0;
 		wlen = ft_wordlen(str);
-		ret[i] = (char *)malloc(sizeof(char) * (wlen + 1));
-		if (!ret[i])
+		tokens[i] = (char *)malloc(sizeof(char) * (wlen + 1));
+		if (!tokens[i])
 			return (i);
-		while (j < wlen)
-		{
-			ret[i][j] = *str;
-			j++;
-			str++;
-		}
-		ret[i][j] = '\0';
+		// while (j < wlen)
+		// {
+		// 	tokens[i][j] = *str;
+		// 	j++;
+		// 	str++;
+		// }
+		// tokens[i][j] = '\0';
+		ft_strlcpy(tokens[i], str, wlen + 1);
+		str = str + wlen + 1;
 		i++;
 	}
-	ret[i] = NULL;
+	tokens[i] = NULL;
 	return (i);
 }
+
+

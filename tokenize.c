@@ -6,17 +6,17 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:20:55 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/03 15:00:54 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/04 21:45:16 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	tokenize_input(t_data *data, char *input)
+char	*tokenize_input(t_data *data, char *input)
 {
 	int		split_index;
 
-	if (!input)
+	if (!input || !data)
 		return (NULL);
 	data->tokens_cnt = ft_wordcount(input); // 1. 단어 개수 세기
 	if (data->tokens_cnt == ERROR)
@@ -30,5 +30,7 @@ void	tokenize_input(t_data *data, char *input)
 		ft_free_all(data->plexer->pptokens);
 		data->plexer->pptokens = NULL;
 	}
+
+	return ("SUCCESS");
 }
 

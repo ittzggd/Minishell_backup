@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/03 15:00:47 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/04 21:49:14 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_free_all(char **ret);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
-int		ft_split_str(char *str, char **ret);
+int		ft_split_str(char *str, char **tokens);
 int		ft_wordlen(char const *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
@@ -44,5 +44,8 @@ int		is_valid_env(char *str);
 int		is_env(char *value);
 int		ft_is_alpha(char c);
 int		ft_is_digit(int c);
+
+int		case_quote(char const *str, int *i);
+int		case_redirection(char const *str, int *i);
 
 #endif
