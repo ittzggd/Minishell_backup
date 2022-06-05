@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/04 21:49:14 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/05 15:50:00 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,22 @@
 */
 # include <stdlib.h>
 
-void	*ft_calloc(size_t number, size_t size);
-void	ft_free_all(char **ret);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-int		ft_split_str(char *str, char **tokens);
-int		ft_wordlen(char const *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+void		*ft_calloc(size_t number, size_t size);
+void		ft_free_all(char **ret);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t		ft_strlen(const char *s);
+char		*ft_strdup(const char *s);
+int			ft_split_str(char *str, char **tokens);
+int			ft_wordlen(char const *str);
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlcat(char *dst, const char *src, size_t size);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+char		*ft_strchr(const char *s, int c);
+t_envv_node	*ft_lstnew(t_envv_node element);
+void		ft_lstadd_back(t_data *data, t_envv_node *new);
+void		remove_ll_element(t_envv_node *p_list, char *key);
+
+
 //is_?
 int		is_ifs(const char c);
 int		is_redirection(const char *s);

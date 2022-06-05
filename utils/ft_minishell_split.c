@@ -41,7 +41,7 @@ int	ft_wordlen(char const *str)
 			// {
 			// 	i++;
 			// 	if (quote == is_quote(str[i]))
-			// 		quote = 0;
+			// 		xsquote = 0;
 			// }
 			// i++;
 			case_quote(str, &i);

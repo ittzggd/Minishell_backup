@@ -8,7 +8,7 @@ int main(void)
    char *pathvar;
  
 //   printf("%s\n", getenv("PATH"));
-	pathvar = getenv("PATH");
+	pathvar = getenv("student");
 	printf("pathvar=%s",pathvar);
 	
 }

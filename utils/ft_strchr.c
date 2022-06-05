@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/05 15:50:30 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/05 11:23:13 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/05 14:27:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/utils.h"
 
-
-
-int	ft_pwd(void)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*cwd;
+	int		i;
+	char	*save;
 
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		return (ERROR);
-	printf("%s\n", cwd);
-	// 환경변수 PWD초기화?? 재설정?? => OLD PWD 관련.
-	// env.c 파일에 생성하기
-	free(cwd);
-	return (TRUE);
+	save = NULL;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+		{
+			save = (char *)s + i;
+			return (save);
+		}
+		i++;
+	}
+	if ((char )c == '\0')
+		save = (char *)s + i;
+	return (save);
 }

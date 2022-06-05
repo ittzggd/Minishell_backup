@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/05 09:52:22 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/05 15:50:12 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,57 @@ void	replace_env_to_value(int i, t_data *data)
 	{
 		ft_strlcpy(key, token[j], key_len);
 	// 알고보니 strlcpy에서는 dst를 할당해서 return 해주지 않는다는 사실,,, 할당해주는거로 바꿔봐야겟금,,,널가드를 lcpy에 추가했는데 맞느지 머르겟슴...아는게 멀까....
-		argv = getenv(key);
+		argv = get_envv(data, key);
 		free(token);
 		free(key);
 		data->plexer->pptokens[i] = argv;
 	}
 }
+
+void	insert_envv(t_data *data, char *key, char *value) // export시 환경변수 설정
+{
+	t_envv_node	element;
+	t_envv_node	*is_exist;
+	t_envv_node	*new;
+	
+	is_exist = get_el_node(data->envv_list, key);
+	if (is_exist)
+	{
+		free(is_exist->value);
+		is_exist->value = ft_strdup(value);
+	}
+	else
+	{
+		element.key = key;
+		element.value = value;
+		new = ft_lstnew(element);
+		ft_lstadd_back(data, new);
+	}
+}
+
+char	*get_envv(t_data *data, char *key)
+{
+	t_envv_node *key_node;
+
+	key_node = get_el_node(data->envv_list, key);
+	if(!key_node)
+		return (NULL);
+	return (key_node->value);
+}
+
+t_envv_node	*get_el_node(t_envv_node *envv_list, char *key)
+{
+	t_envv_node *curr;
+
+	curr = envv_list;
+	while (curr)
+	{
+		if (ft_strncmp(key, curr->key, ft_strlen("key")))
+			break ;
+		curr = curr->p_link;
+	}
+	return (curr);
+}
+
 
 //환경 변수 문법을 체크한 뒤, key값만 반환하는 함수
