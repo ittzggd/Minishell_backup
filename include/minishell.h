@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/04 21:29:20 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/05 10:43:37 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "utils.h"
 # include "minishell_define.h"
 # include "tree_utils.h"
+# include "builtin.h"
 
 int		analyze_input(char *input);
 
@@ -33,7 +34,7 @@ int		ft_wordcount(char const *str);
 //lexer
 void	lexical_analysis(t_data *data);
 t_cmd	*create_cmd_struct(void);
-void	replace_env_to_word(int i, t_data *data);
+void	replace_env_to_value(int i, t_data *data);
 
 void	syntax_analysis(t_data *data);
 

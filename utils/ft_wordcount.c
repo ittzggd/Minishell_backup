@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/04 21:41:13 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/05 10:43:27 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	case_quote(char const *str, int *i)
 	while (str[*i] && quote != 0)
 	{
 		(*i)++;
-		if (str[*i] == '\0')
+		if (str[*i] == '\0') // "H \0
 			return (ERROR); // 닫은 따옴표가 없을 경우
 		if (quote == is_quote(str[*i]))
 			quote = 0;
@@ -64,7 +64,7 @@ int	ft_wordcount(char const *str)
 		}
 		else if (str[i] && is_redirection(&str[i]))
 		{
-			if (case_redirection(str, i) == ERROR)
+			if (case_redirection(str, &i) == ERROR)
 				return (ERROR);
 			// if (is_redirection(&str[i]) == ERROR)
 			// 	return (ERROR);

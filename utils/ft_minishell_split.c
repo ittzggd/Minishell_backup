@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/04 21:55:09 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/05 09:47:572 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_wordlen(char const *str)
 			// 	return (ERROR);
 			// while (str[i] && is_redirection(&str[i]))
 			// 	i++;
-			case_redirection(str, i);
+			case_redirection(str, &i);
 			return (i);
 		}
 		else if (str[i] && is_pipe(&str[i]))

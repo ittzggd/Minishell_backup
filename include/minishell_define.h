@@ -42,7 +42,7 @@ typedef struct s_astnode
 {
 	int					visited;
 	int					nodetype;
-	int					*pvalue_index;
+	int					*pvalue_index; // 마지막 인덱스에 -1 저장
 	struct s_astnode	*pleftchild;
 	struct s_astnode	*prightchild;
 }			t_astnode;
