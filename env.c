@@ -6,13 +6,40 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/07 17:27:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/07 21:28:42 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
+char	*remove_quote(char *quote_str)
+{
+	char	*ret;
+	int		ret_len;
+	int		i;
 
+	i = 0;
+	ret_len = 0;
+	while (quote_str[i])
+	{
+		if (!is_quote(quote_str[i]))
+			ret_len++;
+		i++;
+	}
+	ret = (char *)malloc(sizeof(char) * (ret_len + 1));
+	i = 0;
+	while(*quote_str)
+	{
+		if(!is_quote(*quote_str))
+		{
+			ret[i] = *quote_str;
+			i++;
+		}
+		quote_str++;
+	}
+	ret[i] = '\0';
+	return (ret);
+}
 
 // 환경변수를 비교하여 교체
 void	replace_env_to_value(int i, t_data *data)
@@ -32,20 +59,37 @@ void	replace_env_to_value(int i, t_data *data)
 
 	token = data->plexer->pptokens[i]; // $USER 혹은 "$USER"
 	j = 0;
-	while (token[j] && (token[j] == '$' || token[j] == '\"'))
+	if (ft_strncmp(token[j], "$", ft_strlen(token[j])))
+		return ;
+	else if (token[j] && (token[j] == '$' && token[j + 1] == '\"'))
+	{
+		data->plexer->pptokens[i] = remove_quote(token[j]);
+		return ;
+	}
+	else if (ft_strncmp(token[j], "\"$\"", 3))
+	{
+		data->plexer->pptokens[i] = remove_quote(token[j]);
+		return ;
+	}
+
+	// echo "$PATH"hello => $PATH가 get_envv로 치환한 뒤 strjoin
+	while (token[j] && (token[j] == '$' || (token[j] == '\"' && token[j + 1] == '$')))
 		j++;
-	key_len = ft_strlen(&token[j]);
-	if (token[key_len - 1] == '\"')
-		key_len--;
+	key_len = 0;
+	while (token[j - 2] == '\"' && token[j + key_len] != '\"')
+		key_len++;
 	key = (char *)malloc(ft_strlen(key_len) + 1);
 	if (key)
 	{
-		ft_strlcpy(key, token[j], key_len);
+		ft_strlcpy(key, token[j], key_len + 1);
 	// 알고보니 strlcpy에서는 dst를 할당해서 return 해주지 않는다는 사실,,, 할당해주는거로 바꿔봐야겟금,,,널가드를 lcpy에 추가했는데 맞느지 머르겟슴...아는게 멀까....
 		argv = get_envv(data, key);
-		free(token);
 		free(key);
-		data->plexer->pptokens[i] = argv;
+		if (token[j + key_len + 1] == '\0')
+			data->plexer->pptokens[i] = argv;
+		else
+			data->plexer->pptokens[i] = ft_strjoin(argv, token[j + key_len + 1]);
+		free(token);
 	}
 }
 

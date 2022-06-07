@@ -28,10 +28,10 @@
 int	ft_wordlen(char const *str)
 {
 	int	i;
-	// int	quote;
+	int	wc_flag;
 
 	i = 0;
-	// quote = 0;
+	wc_flag = 1;
 	while (str[i])
 	{
 		if (str[i] && is_quote(str[i]))
@@ -45,7 +45,8 @@ int	ft_wordlen(char const *str)
 			// }
 			// i++;
 			case_quote(str, &i);
-			return (i);
+			wc_flag = 0;
+			// return (i);
 		}
 		else if (str[i] && is_redirection(&str[i]))
 		{
@@ -54,7 +55,8 @@ int	ft_wordlen(char const *str)
 			// while (str[i] && is_redirection(&str[i]))
 			// 	i++;
 			case_redirection(str, &i);
-			return (i);
+			wc_flag = 1;
+			// return (i);
 		}
 		else if (str[i] && is_pipe(&str[i]))
 		{
@@ -64,13 +66,20 @@ int	ft_wordlen(char const *str)
 			// return (i);
 			return (1);
 		}
+		else if (str[i] && is_ifs(str[i]))
+			wc_flag = 1;
 		else
 		{
 			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) \
 						&& !is_quote(str[i]) && !is_pipe(&str[i]))
+			{
 				i++;
-			return (i);
+				if (is_quote(str[i]))
+					continue ;
+			}// return (i);
 		}
+		if (wc_flag == 1)
+			break ;
 	}
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/05 15:50:33 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/07 21:28:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,17 @@ int	ft_wordcount(char const *str)
 {
 	int	i;
 	int	wc;
+	int	wc_flag;
 	// int	quote;
 
-	// quote = 0;
+	wc_flag = 1;
 	i = 0;
 	wc = 0;
 	while (str[i])
 	{
 		if (str[i] && is_quote(str[i]))
 		{
+
 			// quote = is_quote(str[i]);
 			// while (str[i] && quote != 0)
 			// {
@@ -61,6 +63,7 @@ int	ft_wordcount(char const *str)
 			// i++;
 			if (case_quote(str, &i) == ERROR)
 				return (ERROR);
+			wc_flag = 0;
 		}
 		else if (str[i] && is_redirection(&str[i]))
 		{
@@ -70,11 +73,13 @@ int	ft_wordcount(char const *str)
 			// 	return (ERROR);
 			// while (str[i] && is_redirection(&str[i]))
 			// 	i++;
+			wc_flag = 1;
 		}
 		else if (str[i] && is_ifs(str[i]))
 		{
 			while (str[i] && is_ifs(str[i]))
 				i++;
+			wc_flag = 1;
 			continue ;
 		}
 		else if (str[i] && is_pipe(&str[i]))
@@ -82,6 +87,7 @@ int	ft_wordcount(char const *str)
 			if (is_pipe(&str[i]) == ERROR)
 				return (ERROR);
 			i++;
+			wc_flag = 1;
 		}
 		else
 		{
@@ -89,7 +95,8 @@ int	ft_wordcount(char const *str)
 						&& !is_quote(str[i]) && !is_pipe(&str[i]))
 				i++;
 		}
-		wc++;
+		if (wc_flag == 1)
+			wc++;
 	}
 	return (wc);
 }

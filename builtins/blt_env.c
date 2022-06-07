@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:28 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/07 17:18:45 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/07 21:27:10 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ int	ft_env(t_data *data, int export_flag)
 		{
 			if (curr->init_flag)
 				printf("declare -x %s=\"%s\"\n", curr->key, curr->value);
+			else
+				printf("declare -x %s\n", curr->key);
 			curr = curr->p_link;
 		}
 		return (0); // exit_status : 성공
 	}
 	while (curr)
 	{
-		printf("%s=%s\n", curr->key, curr->value);
+		if (curr->init_flag)
+			printf("%s=%s\n", curr->key, curr->value);
 		curr = curr->p_link;
 	}
 	return (0); // exit_status : 성공

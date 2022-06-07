@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/05 15:50:24 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/07 21:27:47 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void		insert_envv(t_data *data, char *key, char *value);
 
 void	syntax_analysis(t_data *data);
 
-//built inxs
-int		ft_echo(t_data *data, t_astnode *args_node);
-int		ft_pwd(void);
 
 
 
