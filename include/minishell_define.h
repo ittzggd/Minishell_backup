@@ -38,6 +38,7 @@ typedef struct s_envv_node
 {
 	char		*key;
 	char		*value;
+	int			init_flag;
 	t_envv_node	*p_link;
 }			t_envv_node;
 

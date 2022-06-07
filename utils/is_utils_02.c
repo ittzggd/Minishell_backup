@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:44:39 by katherineja       #+#    #+#             */
-/*   Updated: 2022/06/04 20:37:28 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/07 17:27:12 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,21 @@ int	is_env(char *value)
 
 	i = 0;
 	if (value[i] == '$' || (value[i] == '\"' && value[i + 1] == '$'))
-		return (is_valid_env(value));
+		return (TRUE);
 	return (FALSE);
 }
 
 int	is_valid_env(char *str)
 {
-	if (*str != '$')
-		return (FALSE);
-	str++;
 	if (!ft_is_alpha(*str) && (*str != '_'))
-		return (FALSE);
+		return (ERROR);					//ft_strncmp 함수 : ft_strlen(str) 를 -1로 바꿔도 문자열 끝까지 검색, because size_t 로 받기때문
+	else if (ft_strncmp(str, "_=", 2) || ft_strncmp(str, "_", ft_strlen(str))) // export _=123  || export _
+		return (FALSE); // 아무것도 안해야 됨
 	while (*str != '\0')
 	{
 		if (!ft_is_alpha(*str) && (*str != '_') \
 				&& !ft_is_digit(*str) && (*str != '?'))
-			return (FALSE);
+			return (ERROR);
 		str++;
 	}
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/05 15:50:12 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:27:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_envv_node	*get_el_node(t_envv_node *envv_list, char *key)
 	curr = envv_list;
 	while (curr)
 	{
-		if (ft_strncmp(key, curr->key, ft_strlen("key")))
+		if (ft_strncmp(key, curr->key, ft_strlen(key)))
 			break ;
 		curr = curr->p_link;
 	}
