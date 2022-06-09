@@ -5,7 +5,10 @@
 		"sstream": "c",
 		"history.h": "c",
 		"minishell_define.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"tree_utils.h": "c",
+		"signal.h": "c",
+		"limits.h": "c"
 	},
 	"42header.email": "hejang@student.42seoul.kr",
 	"42header.username": "hejang",
