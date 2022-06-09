@@ -12,6 +12,12 @@
 
 #include "../include/minishell.h"
 
+/*
+printf => write(fd, buf, len) 로 바꾸기
+echo "hi" > a.txt > b.txt
+
+*/
+
 static int	do_echo(t_data *data, t_astnode *args_node, int option_flag);
 
 int	ft_echo(t_data *data, t_astnode *args_node)

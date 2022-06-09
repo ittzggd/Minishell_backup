@@ -16,8 +16,6 @@ static int	exit_status_argc_error(t_data *data, t_astnode *args_node);
 
 void	ft_exit(t_data *data, t_astnode *args_node)
 {
-	// atoi에서 int 넘어간 범위 주면, not numeric
-	// atoi 고쳐야 해
 	int		cnt;
 	char	*str;
 	
@@ -28,14 +26,14 @@ void	ft_exit(t_data *data, t_astnode *args_node)
 	if(cnt >= 2)
 	{
 		str = data->plexer->pptokens[args_node->pvalue_index[1]];
-		//exit 123 num
-		// arg[1]이 num인지 체크 필요 
 		data->exit_status = ft_atoi(str, data, args_node);
 		if(cnt > 2)
+		{
 			data->exit_status = exit_status_argc_error(data, args_node);
+			return ;
+		}
 	}
-	else
-		exit(data->exit_status);
+	exit(data->exit_status);
 }
 
 void	exit_status_numeric_error(t_data *data, t_astnode *args_node)

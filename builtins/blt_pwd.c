@@ -12,9 +12,18 @@
 
 #include "minishell.h"
 
+void	updata_pwd_oldpwd(t_data *data, char *pwd_value)
+{
+	char *oldpwd_value;
+	oldpwd_value = get_envv(data, "OLDPWD");
+	if (oldpwd_value)
+		free(oldpwd_value);
+	oldpwd_value = get_envv(data, "PWD");
+	insert_envv(data, "OLDPWD", pwd_value);
+	insert_envv(data, "PWD", pwd_value);
+}
 
-
-int	ft_pwd(void)
+int	ft_pwd(t_data *data)
 {
 	char	*cwd;
 
@@ -24,6 +33,7 @@ int	ft_pwd(void)
 	printf("%s\n", cwd);
 	// 환경변수 PWD초기화?? 재설정?? => OLD PWD 관련.
 	// env.c 파일에 생성하기
+	updata_pwd_oldpwd(data, cwd);
 	free(cwd);
 	return (TRUE);
 }

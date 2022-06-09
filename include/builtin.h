@@ -16,12 +16,12 @@
 # include "minishell_define.h"
 
 int		ft_echo(t_data *data, t_astnode *args_node);
-int		ft_pwd(void);
+int		ft_pwd(t_data *data);
 int		ft_env(t_data *data, int export_flag);
 int		ft_unset(t_data *data, t_astnode *args_node);
 int		ft_export(t_data *data, t_astnode *args_node);
 void	ft_exit(t_data *data, t_astnode *args_node);
-
+int		ft_cd(t_data *data, t_astnode *args_node);
 
 void	exit_status_numeric_error(t_data *data, t_astnode *args_node);
 

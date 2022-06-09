@@ -29,6 +29,8 @@ char	*remove_quote(char *quote_str)
 	if (ret_len == ft_strlen(quote_str))
 		return (quote_str);
 	ret = (char *)malloc(sizeof(char) * (ret_len + 1));
+	if (!ret)
+		return (NULL);
 	i = 0;
 	while(*quote_str)
 	{
