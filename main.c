@@ -6,21 +6,16 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/03 15:00:57 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 19:29:59 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./include/minishell.h"
 
 // 에러 처리 함수 만들기
 
 int	analyze_input(char *input)
 {
-	t_data		*data;
-
-	data = (t_data *)ft_calloc(1, sizeof(t_data));
-	if (!data)
-		return (ERROR);
 	tokenize_input(data, input); // data구조체 내부에 tokens 추가
 	if (!data->plexer->pptokens) // data 모두 프리
 		return (ERROR); // 에러 넘버 여러 경우로 나눌지 생각하기
@@ -31,23 +26,34 @@ int	analyze_input(char *input)
 	// parser
 }
 
-int	main(void)
+int	main(int argc, char *argv[], char **envp)
 {
 	char	*input_str;
+	char	*key;
+	char	*value;
 
-	while (1)
+	if(argc == 1)
 	{
-		input_str = readline("nanoshell >> ");
-		if (input_str)
+		while (*envp)
 		{
-			if (analyze_input(input_str) == ERROR)
-				continue ;
-			// 명령어 실행 부분
+			init_envp(*envp, &key, &value);
+			insert_envv(data, key, value);
 		}
-		else
-			break ; //break가 없어야 할 듯 아마 우리는 ctrl+C가 아닌 이상 prompt를 계속 띄운 상태여야 함
-		add_history(input_str);
-		free(input_str);
+		insert_envv(data, "OLDPWD", NULL);
+		while (1)
+		{
+			input_str = readline("nanoshell >> ");
+			if (input_str)
+			{
+				if (analyze_input(input_str) == ERROR)
+					continue ;
+				// 명령어 실행 부분
+			}
+			else
+				break ; //break가 없어야 할 듯 아마 우리는 ctrl+C가 아닌 이상 prompt를 계속 띄운 상태여야 함
+			add_history(input_str);
+			free(input_str);
+		}
 	}
-	return (0);
+	return (data->exit_status);
 }

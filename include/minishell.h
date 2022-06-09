@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 12:51:58 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 18:41:42 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "minishell_define.h"
 # include "tree_utils.h"
 # include "builtin.h"
+
+extern	t_data		*data;
 
 int		analyze_input(char *input);
 
