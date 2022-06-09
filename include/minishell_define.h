@@ -31,6 +31,7 @@ typedef struct s_data
 	t_lexer					*plexer;
 	t_envv_node				*envv_list;
 	struct s_ast			*p_ast;
+	int						exit_status;
 	struct s_ioredirection	**io_red;
 }			t_data;
 

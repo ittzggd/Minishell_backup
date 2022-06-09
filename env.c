@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 10:39:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 13:00:44 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*remove_quote(char *quote_str)
 			ret_len++;
 		i++;
 	}
+	if (ret_len == ft_strlen(quote_str))
+		return (quote_str);
 	ret = (char *)malloc(sizeof(char) * (ret_len + 1));
 	i = 0;
 	while(*quote_str)
@@ -59,16 +61,24 @@ void	replace_env_to_value(int i, t_data *data)
 
 	token = data->plexer->pptokens[i]; // $USER 혹은 "$USER"
 	j = 0;
-	if (ft_strncmp(token[j], "$", ft_strlen(token[j])))
+	if (ft_strncmp(token[j], "$", ft_strlen(token[j]))) // $
 		return ;
-	else if (token[j] && (token[j] == '$' && token[j + 1] == '\"'))
+	else if (token[j] && (token[j] == '$' && token[j + 1] == '\"')) // $"USER" => 치환 안하는 경우
 	{
-		data->plexer->pptokens[i] = remove_quote(token[j]);
+		
+		data->plexer->pptokens[i] = remove_quote(token[j + 1]);
+		free(token);
 		return ;
 	}
-	else if (ft_strncmp(token[j], "\"$\"", 3))
+	else if (ft_strncmp(token[j], "\"$\"", 3)) // "$"USER, "$" => 치환 안하는 경우
 	{
 		data->plexer->pptokens[i] = remove_quote(token[j]);
+		free(token);
+		return ;
+	}
+	else if (ft_strncmp(token[j], "$?", -1)) // 
+	{
+	// 	data->plexer->pptokens[i] = ft_itoa(data->exit_status);
 		return ;
 	}
 

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 09:52:55 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 10:39:31 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 12:52:12 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int		ft_env(t_data *data, int export_flag);
 int		ft_unset(t_data *data, t_astnode *args_node);
 int		ft_export(t_data *data, t_astnode *args_node);
 void	ft_exit(t_data *data, t_astnode *args_node);
+
+
 void	exit_status_numeric_error(t_data *data, t_astnode *args_node);
 
 #endif

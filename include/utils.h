@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 10:39:28 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 12:52:08 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 char		*ft_strchr(const char *s, int c);
 char		**ft_split(char const *s, char c);
 size_t		ft_atoi(const char *str, t_data *data, t_astnode *args_node);
+char		*ft_itoa(size_t num);
 t_envv_node	*ft_lstnew(t_envv_node element);
 void		ft_lstadd_back(t_data *data, t_envv_node *new);
 void		remove_ll_element(t_envv_node *p_list, char *key);

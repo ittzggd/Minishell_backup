@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   blt_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/03 14:14:41 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 12:52:15 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 static int	do_echo(t_data *data, t_astnode *args_node, int option_flag);
-static char	*remove_quote(char *token);
 
 int	ft_echo(t_data *data, t_astnode *args_node)
 {
@@ -52,24 +51,17 @@ static int	do_echo(t_data *data, t_astnode *args_node, int option_flag)
 		rm_quote_str = remove_quote(data->plexer->pptokens[*arg]);
 		if(!rm_quote_str)
 			return (ERROR);
-		printf("%s", rm_quote_str);
+		if(ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
+		{
+			printf("%d", data->exit_status);
+			data->exit_status = 0;
+		}
+		else
+			printf("%s", rm_quote_str);
 		free(rm_quote_str);
 		arg++;
 	}
 	if (option_flag != TRUE)
 		printf("\n");
 	return (TRUE);
-}
-
-static char	*remove_quote(char *token)
-{
-	char	*ret;
-	int		len;
-
-	ret = ft_strdup(token + 1);
-	if (!ret)
-		return (NULL);
-	len = ft_strlen(ret);
-	ret[len - 1] = '\0';
-	return (ret);
 }

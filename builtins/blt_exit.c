@@ -3,46 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   blt_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:05 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/09 10:39:32 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/09 13:00:45 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	exit_status_numeric_error();
-static void	exit_status_argc_error();
+static int	exit_status_argc_error(t_data *data, t_astnode *args_node);
 
 void	ft_exit(t_data *data, t_astnode *args_node)
 {
 	// atoi에서 int 넘어간 범위 주면, not numeric
 	// atoi 고쳐야 해
-	int cnt;
-	int exit_status;
+	int		cnt;
+	char	*str;
 	
 	cnt = 0;
 	while (args_node->pvalue_index[cnt] != -1)
 		cnt++;
 	printf("exit\n");
-	if (cnt == 2)
+	if(cnt >= 2)
 	{
+		str = data->plexer->pptokens[args_node->pvalue_index[1]];
 		//exit 123 num
-		exit_status_argc_error(data, args_node);
-		//exit asd
-		exit_status_numeric_error(data, args_node);
 		// arg[1]이 num인지 체크 필요 
-		// num 이면 ft_atoi
+		data->exit_status = ft_atoi(str, data, args_node);
+		if(cnt > 2)
+			data->exit_status = exit_status_argc_error(data, args_node);
 	}
-	else if(cnt >= 3)
-	{
-		exit_status_numeric_error(data, args_node);
-		// arg[1]이 num인지 체크 필요 
-		printf("minishell: exit :too many arguments\n");
-	}
-	normal_exit();
-	
+	else
+		exit(data->exit_status);
 }
 
 void	exit_status_numeric_error(t_data *data, t_astnode *args_node)
@@ -54,7 +47,8 @@ void	exit_status_numeric_error(t_data *data, t_astnode *args_node)
 	printf("numeric argument required");
 	exit(255);
 }
-static void	exit_status_argc_error(t_data *data, t_astnode *args_node)
+static int	exit_status_argc_error(t_data *data, t_astnode *args_node)
 {
-	exit(1);
+	printf("minishell: exit :too many arguments\n");
+	return (1);
 }
