@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/05/27 19:23:54 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/09 09:43:42 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+char	*ft_free_all(char **ret)
 {
-	char	*cwd;
+	int	i;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	i = 0;
+	if (ret)
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		while (ret[i])
+		{
+			free(ret[i]);
+			i++;
+		}
+		free(ret);
 	}
-	return (data->exit_status);
+	return (NULL);
 }

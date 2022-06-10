@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 19:29:58 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 14:06:11 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,29 @@ t_envv_node	*get_el_node(t_envv_node *envv_list, char *key)
 	return (curr);
 }
 
+int	init_envp(char *input, char **key, char **value)
+{
+	int		i;
+	int		init_flag;
+	char	*p_equal;
 
-//환경 변수 문법을 체크한 뒤, key값만 반환하는 함수
+	p_equal = ft_strchr(input, '=');
+	if (p_equal) // 키와 값 저장
+	{
+		init_flag = TRUE;
+		// 키와 값을 분리하기 == ft_split시 = 기준 분린
+		*key = (char *)ft_calloc(p_equal - input + 1, sizeof(char));
+		if (!(*key))
+			return (ERROR);
+		*key = ft_strlcpy(*key, input, p_equal - input + 1);
+		*value = ft_strdup(p_equal + 1);
+		if (!(*value))
+			return (ERROR);
+	}
+	else
+	{
+		*key = input;
+		*value = NULL;
+	}
+	return (0);
+}

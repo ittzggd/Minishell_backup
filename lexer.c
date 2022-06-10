@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./include/minishell.h"
 
 /*
 	헤더파일 구조체랑 lexer 배열로 바꾸기  => tokens의 길이를 구조체에 저장해줌
@@ -24,15 +24,7 @@ static int	get_type(char *value)
 {
 	int	type;
 
-	/*
-	5. not QUOTE str == word
-	6. QUOTE str
-		6-1. in quote str
-		6-2. in quote cmd
-		6-3. in quote option_flag
-	7. option "-n" ?
-	*/
-	if (!value || *value == '\0') // Value 널가드 
+	if (!value || *value == '\0')
 		type = T_NULL;
 	else if (is_pipe(value))
 		type = T_PIPE;
@@ -62,18 +54,18 @@ void	lexical_analysis(t_data *data)
 
 	i = 0;
 	tokens = data->plexer->pptokens;
+	data->plexer->ptype = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
 	type = data->plexer->ptype;
-	type = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
 	if (!type)
 		return ;
 	while (tokens[i])
 	{
-		type = get_type(tokens[i]);
-		if (type == T_PIPE)
+		type[i] = get_type(tokens[i]);
+		if (type[i] == T_PIPE)
 			data->pipe_cnt++;
-		else if (type == T_REDIRECTION)
+		else if (type[i] == T_REDIRECTION)
 			data->redirection_cnt++;
-		else if (type == T_WORD)
+		else if (type[i] == T_WORD)
 		{
 			if (is_env(tokens[i]))
 			{
@@ -81,7 +73,8 @@ void	lexical_analysis(t_data *data)
 				replace_env_to_value(i, data);
 				if (!data->plexer->pptokens[i])
 				{
-					
+					data->exit_status = 1;
+					return ;
 				}
 				// 에러처리를 함수 쪼갤때 해주기
 			}
@@ -89,30 +82,3 @@ void	lexical_analysis(t_data *data)
 		i++;
 	}
 }
-
-// void	lexical_analysis(t_data *data)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	dummy_header = ft_calloc(1, sizeof(t_lexer));
-// 	if (!dummy_header)
-// 		return (NULL);
-// 	curr = dummy_header;
-// 	while (tokens[i])
-// 	{
-// 		add_node = ft_calloc(1, sizeof(t_lexer));
-// 		if (!add_node)
-// 			retun (NULL);
-// 		add_node->value = tokens[i];
-// 		add_node->type = get_type(tokens[i]);
-// 		if (add_node->type == T_PIPE)
-// 			data->pipe_cnt++;
-// 		else if (add_node->type == T_REDIRECTION)
-// 			data->redirection_cnt++;
-// 		curr->plink = add_node;
-// 		curr = curr->plink;
-// 		i++;
-// 	}
-// 	data->lexer = dummy_header;
-// }

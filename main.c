@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 19:29:59 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 17:07:25 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,16 @@ int	main(int argc, char *argv[], char **envp)
 			{
 				if (analyze_input(input_str) == ERROR)
 					continue ;
+				init_ast(data); // ast 트리 생성
+				
 				// 명령어 실행 부분
+
 			}
 			else
 				break ; //break가 없어야 할 듯 아마 우리는 ctrl+C가 아닌 이상 prompt를 계속 띄운 상태여야 함
 			add_history(input_str);
 			free(input_str);
+			// data에 있는 plexer free해주기
 		}
 	}
 	return (data->exit_status);

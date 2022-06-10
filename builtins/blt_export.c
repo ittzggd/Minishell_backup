@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/09 17:45:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 12:10:29 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,4 @@ int	ft_export(t_data *data, t_astnode *args_node) // export USER=1 HI=2 HOME=3
 			free(value);
 		}
 	}
-}
-
-int	init_envp(char *input, char **key, char **value)
-{
-	int		i;
-	int		init_flag;
-	char	*p_equal;
-
-	p_equal = ft_strchr(input, '=');
-	if (p_equal) // 키와 값 저장
-	{
-		init_flag = TRUE;
-		// 키와 값을 분리하기 == ft_split시 = 기준 분린
-		*key = (char *)ft_calloc(p_equal - input + 1, sizeof(char));
-		if (!(*key))
-			return (ERROR);
-		*key = ft_strlcpy(*key, input, p_equal - input + 1);
-		*value = ft_strdup(p_equal + 1);
-		if (!(*value))
-			return (ERROR);
-	}
-	else
-	{
-		*key = input;
-		*value = NULL;
-	}
-	return (0);
 }

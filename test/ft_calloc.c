@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/05/27 19:20:08 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/04 20:36:00 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+static void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*cwd;
+	unsigned char	*copy;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	copy = (unsigned char *)s;
+	while (n > 0)
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		*(copy++) = (unsigned char)c;
+		n--;
 	}
-	return (data->exit_status);
+	return (s);
+}
+
+static void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
+
+void	*ft_calloc(size_t number, size_t size)
+{
+	void	*ptr;
+
+	ptr = (void *)malloc(number * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, (number * size));
+	return (ptr);
 }

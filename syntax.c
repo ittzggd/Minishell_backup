@@ -6,11 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 08:51:50 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/03 15:00:55 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 14:44:22 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./include/minishell.h"
 
 void	syntax_analysis(t_data *data)
 {
@@ -28,11 +28,11 @@ void	syntax_analysis(t_data *data)
 		if(type[curr] == T_COMMAND)
 		{
 			if (curr != 0 && (type[prev] == T_REDIRECTION || type[prev] == T_OPTION || type[prev] == T_COMMAND))
-				type[curr] == T_WORD;
+				type[curr] = T_WORD;
 		}
 		else if(type[curr] == T_OPTION)
 		{
-			if (curr != 0 && ((type[prev] == T_COMMAND && !ft_strncmp(tokens[curr], "echo", ft_strlen(tokens[curr])))
+			if (curr != 0 && ((type[prev] == T_COMMAND && !ft_strncmp(tokens[curr], "echo", ft_strlen(tokens[prev])))
 				|| type[prev] != T_COMMAND))
 			{
 				//error

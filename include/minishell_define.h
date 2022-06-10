@@ -30,7 +30,7 @@ typedef struct s_data
 	int						redirection_cnt;
 	int						tokens_cnt;
 	t_lexer					*plexer;
-	t_envv_node				*envv_list;
+	struct s_envv_node		*envv_list;
 	struct s_ast			*p_ast;
 	int						exit_status;
 	struct s_ioredirection	**io_red;
@@ -38,10 +38,10 @@ typedef struct s_data
 
 typedef struct s_envv_node
 {
-	char		*key;
-	char		*value;
-	int			init_flag;
-	t_envv_node	*p_link;
+	char				*key;
+	char				*value;
+	int					init_flag;
+	struct s_envv_node	*p_link;
 }			t_envv_node;
 
 typedef struct s_ast

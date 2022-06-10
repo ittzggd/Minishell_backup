@@ -6,12 +6,16 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/10 17:04:16 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 17:54:55 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
-#include "./include/tree_utils.h"
+//1. 맨 처음 root node랑 ast 구조체 할당해주는 부분 못 찾아서 추가
+//2. tree_reds 는 void return 해서 ERROR 리턴 못 함
+
+
+#include "../include/minishell.h"
+#include "../include/tree_utils.h"
 
 // strdup 과 strjoin 가져오기
 // ast완성 후, pptokes , ptype , plexer free?!?!
@@ -111,7 +115,7 @@ int	tree_args(t_astnode *ast_node, int index, t_data *data)
 	t_astnode	*args_rightchild;
 
 	if (ast_node->nodetype != A_ARGUMENTS)
-		return ;
+		return (ERROR);
 	tokens = data->plexer->pptokens;
 	type = data->plexer->ptype;
 	args_leftchild = ast_node->pleftchild;
@@ -150,9 +154,9 @@ void	tree_reds(t_astnode *ast_node, int index, t_data *data)
 		reds_leftchild->pleftchild = insert_leftchildnode_ast(reds_leftchild, A_REDIRECTION_TYPE);
 		reds_leftchild->prightchild = insert_rightchildnode_ast(reds_leftchild, A_FILENAME);
 		if(init_idx(index, reds_leftchild->pleftchild) == ERROR)
-			return (ERROR);
+			return ;
 		if(init_idx(index + 1, reds_leftchild->prightchild) == ERROR)
-			return (ERROR);
+			return ;
 	}
 	index++;
 	while (type[index] != T_PIPE && tokens[index])

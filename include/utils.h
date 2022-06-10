@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:08 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 12:24:16 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 */
 # include "limits.h"
 # include <stdlib.h>
+# include "minishell_define.h"
 
 void		*ft_calloc(size_t number, size_t size);
 char		*ft_free_all(char **ret);

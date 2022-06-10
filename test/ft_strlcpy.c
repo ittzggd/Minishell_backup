@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/01 14:57:58 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/04 20:36:32 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	char	*cwd;
+	size_t	i;
+	size_t	src_size;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	if (!dst || !src)
+		return (0);
+	src_size = ft_strlen(src);
+	if (size == 0)
+		return (src_size);
+	i = 0;
+	while (src[i] && (i + 1 < size))
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		dst[i] = src[i];
+		i++;
 	}
-	return (data->exit_status);
+	dst[i] = '\0';
+	return (src_size);
 }

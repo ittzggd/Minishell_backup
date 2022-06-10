@@ -6,11 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:20:55 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/07 21:28:29 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 13:40:18 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./include/minishell.h"
 
 char	*tokenize_input(t_data *data, char *input)
 {
@@ -21,6 +21,7 @@ char	*tokenize_input(t_data *data, char *input)
 	data->tokens_cnt = ft_wordcount(input); // 1. 단어 개수 세기
 	if (data->tokens_cnt == ERROR)
 		return (NULL);
+	data->plexer = ft_calloc(1, sizeof(t_lexer));
 	data->plexer->pptokens = (char **)malloc(sizeof(char *) * (data->tokens_cnt + 1));
 	if (!data->plexer->pptokens)
 		return (NULL); // 2. data->tokens malloc => NULL 체크

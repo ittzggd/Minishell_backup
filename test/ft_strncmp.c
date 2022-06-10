@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/05/27 19:46:30 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/04 20:36:38 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*cwd;
+	size_t	i;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	i = 0;
+	while (i < n)
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		if (s1[i] == '\0' && s2[i] == '\0')
+			return (TRUE);
+		if (s1[i] != s2[i])
+			return (FALSE);
+		i++;
 	}
-	return (data->exit_status);
+	return (TRUE);
 }

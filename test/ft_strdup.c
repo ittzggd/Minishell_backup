@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/05/27 22:34:31 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/04 20:36:14 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+char	*ft_strdup(const char *s)
 {
-	char	*cwd;
+	char	*ptr;
+	int		s_len;
+	int		i;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	s_len = ft_strlen(s) + 1;
+	ptr = (char *)malloc(sizeof(char) * s_len);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		ptr[i] = s[i];
+		i++;
 	}
-	return (data->exit_status);
+	ptr[i] = '\0';
+	return (ptr);
 }

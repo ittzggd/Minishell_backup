@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/05/27 19:51:03 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/04 20:36:35 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+size_t	ft_strlen(const char *s)
 {
-	char	*cwd;
+	size_t	cnt;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	cnt = 0;
+	if (s)
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		while (s[cnt] != '\0')
+			cnt++;
 	}
-	return (data->exit_status);
+	return (cnt);
 }

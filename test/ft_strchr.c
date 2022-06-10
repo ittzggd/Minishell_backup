@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/05 11:23:13 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/05 14:27:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/utils.h"
 
-int	ft_pwd(t_data *data)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*cwd;
+	int		i;
+	char	*save;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	save = NULL;
+	i = 0;
+	while (s[i])
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		if (s[i] == (char) c)
+		{
+			save = (char *)s + i;
+			return (save);
+		}
+		i++;
 	}
-	return (data->exit_status);
+	if ((char )c == '\0')
+		save = (char *)s + i;
+	return (save);
 }

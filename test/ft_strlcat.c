@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_pwd.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 09:26:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:23:37 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/01 14:57:47 by hejang            #+#    #+#             */
+/*   Updated: 2022/06/04 20:36:23 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_pwd(t_data *data)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char	*cwd;
+	size_t	i;
+	size_t	dst_len;
+	size_t	result;
 
-	data->exit_status = 0;
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-		data->exit_status = 1;
-	else
+	i = 0;
+	dst_len = ft_strlen(dst);
+	if (size <= dst_len)
 	{
-		printf("%s\n", cwd);
-		free(cwd);
+		result = ft_strlen(src) + size;
+		return (result);
 	}
-	return (data->exit_status);
+	while (src[i] && (dst_len + i + 1 < size))
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	result = ft_strlen(src) + dst_len;
+	return (result);
 }

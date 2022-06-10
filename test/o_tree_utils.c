@@ -6,12 +6,12 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:23:51 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/10 15:46:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 16:00:26 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
-#include "./include/tree_utils.h"
+#include "../include/minishell.h"
+#include "../include/tree_utils.h"
 
 t_astnode* insert_leftchildnode_ast(t_astnode* p_parentnode, int nodetype)
 {
@@ -51,7 +51,7 @@ t_astnode* insert_rightchildnode_ast(t_astnode* p_parentnode, int nodetype)
 	return (pchild);
 }
 
-int	init_idx(int index, t_astnode *node)
+int	init_idx(int index, t_astnode *node) //예가 머하는 함수였드라...?
 {
 	int	*tmp;
 	int	i;
@@ -63,8 +63,11 @@ int	init_idx(int index, t_astnode *node)
 		tmp = (int *)ft_calloc(2, sizeof(int));
 	else
 	{
-		existing_size = sizeof(node->pvalue_index) / sizeof(int);
-		tmp = (int *)ft_calloc(existing_size + 2, sizeof(int));
+		//existing_size = sizeof(node->pvalue_index) / sizeof(int); 
+		//sizeof(node->pvalueidx)는 포인터라 배열 크기 상관 없이 8
+		while(node->pvalue_index[existing_size] != -1)
+			existing_size++;
+		tmp = (int *)ft_calloc(existing_size + 2, sizeof(int)); // + 2를 해주는 이유??
 	}
 	if (!tmp)
 		return (ERROR);
