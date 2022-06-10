@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/10 17:54:28 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/10 22:32:02 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,17 @@ int	ft_wordcount(char const *str)
 	wc = 0;
 	while (str[i])
 	{
-		// if (str[i] && is_quote(str[i]))
-		// {
+		 if (str[i] && is_quote(str[i]))
+		 {
+			i++;
+			while(!is_quote(str[i]))
+				i++;
 		// 	if (case_quote(str, &i) == ERROR)
 		// 		return (ERROR);
 		// 	wc_flag = 0;
 		// 	if (str[i] == '\0')
 		// 		wc_flag = 1;
-		// }
+		 }
 		if (str[i] && is_redirection(&str[i]))
 		{
 			if (case_redirection(str, &i) == ERROR)
