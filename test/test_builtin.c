@@ -7,11 +7,12 @@ int main()
 	char *str;
 	int 	i = 0;
 
-	str = "ecpho hi";
+	//str = "\"abc 'de f'g\" de";
+	str = "echo -n 'te  st''tt'>\"a.txt\" > b.txt | cd libft|echo \"hhh '\"";
 	data = ft_calloc(1, sizeof(t_data));
 	// token
-	printf("%d\n", ft_wordcount("echo -n 'te  st'tt>a.txt > b.txt | cd libft|echo hhh "));
-	tokenize_input(data, "echo -n 'te  st'tt>a.txt > b.txt | cd libft|echo hhh ");  //  | cd libft | echo hh
+	printf("wc 13 == %d\n", ft_wordcount(str));
+	tokenize_input(data, str);  //  | cd libft | echo hh
 
 	//printf("wc : %d\n",ft_wordcount("abc 'efg' hi"));
 	// tokenize에서 ><때문에 wordcnt 에서 
@@ -32,22 +33,22 @@ int main()
 	 	i++;
 	}
 
-	// // lexer
-	lexical_analysis(data);
-	i = 0;
-//	while(data->plexer->pptokens[i])
-	// {
-	// 	printf("pptokens[%d] : %s  ", i, data->plexer->pptokens[i]);
-	// 	printf("type[%d] : %d\n", i, data->plexer->ptype[i]);
-	// 	i++;
-	// }
+// 	// // lexer
+// 	lexical_analysis(data);
+// 	i = 0;
+// //	while(data->plexer->pptokens[i])
+// 	// {
+// 	// 	printf("pptokens[%d] : %s  ", i, data->plexer->pptokens[i]);
+// 	// 	printf("type[%d] : %d\n", i, data->plexer->ptype[i]);
+// 	// 	i++;
+// 	// }
 
-	// //syntax
-	syntax_analysis(data);
-	init_ast(data);
-	printf("ast tree : \n\n\n");
-	postorderTravelBinSTree(data->p_ast->prootnode);
-	ft_pwd(data);
+// 	// //syntax
+// 	syntax_analysis(data);
+// 	init_ast(data);
+// 	printf("ast tree : \n\n\n");
+// 	postorderTravelBinSTree(data->p_ast->prootnode);
+// 	ft_pwd(data);
 	// t_astnode *pelement = data->p_ast->prootnode->pleftchild->prightchild->prightchild;
 	// ft_echo(data, pelement);
 	

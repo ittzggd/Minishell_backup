@@ -16,17 +16,31 @@ int	ft_wordlen(char const *str)
 {
 	int	i;
 	int	wc_flag;
+	int quote;
 
+	quote = 0;
 	i = 0;
 	wc_flag = 1;
 	while (str[i])
 	{
-		if (str[i] && is_quote(str[i]))
+		quote = is_quote(str[i]);
+		if (str[i] && quote)
 		{
-			case_quote(str, &i);
-			wc_flag = 0;
+			i++;
+			while(str[i] && quote != is_quote(str[i])) // str[i] == 널문자 or 같은 따옴표인 상태로 탈출
+				i++;
+			if (str[i] == '\0' && quote != is_quote(str[i]))
+			{
+				data->exit_status = 1;
+				return (data->exit_status);
+			}
+			if(is_quote(str[i+1]))
+			{
+				i++;
+			 	continue;
+			}
 		}
-		else if (str[i] && is_redirection(&str[i]))
+		if (str[i] && is_redirection(&str[i]))
 		{
 			case_redirection(str, &i);
 			wc_flag = 1;
@@ -40,7 +54,7 @@ int	ft_wordlen(char const *str)
 		else
 		{
 			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) \
-						&& !is_quote(str[i]) && !is_pipe(&str[i]))
+						&&  !is_pipe(&str[i]))
 			{
 				i++;
 				if (is_quote(str[i]))

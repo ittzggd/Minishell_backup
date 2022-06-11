@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/10 12:24:16 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 15:26:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		is_env(char *value);
 int		ft_is_alpha(char c);
 int		ft_is_digit(int c);
 
-int		case_quote(char const *str, int *i);
+// int		case_quote(char const *str, int *i);
 int		case_redirection(char const *str, int *i);
 
 char	*remove_quote(char *quote_str);
