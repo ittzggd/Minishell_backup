@@ -75,11 +75,6 @@ int	ft_wordlen(char const *str)
 					}
 				}
 			}
-			// {
-			// 	i++;
-			// 	if (is_quote(str[i]))
-			// 		continue ;
-			// }
 		}
 		if (wc_flag == 1)
 			break ;

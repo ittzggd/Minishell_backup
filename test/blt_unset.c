@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 17:37:59 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 19:29:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_unset(t_data *data, t_astnode *args_node) //astNode로 받는 이유 : un
 		// 파이프 다음인가?
 		if (data->plexer->ptype[args_node->pvalue_index[0] - 1] == T_PIPE)
 			return (0); // exit_status : 성공
-		remove_ll_element(data->envv_list, env_node->key);
+		remove_ll_element(&data->envv_list, env_node->key);
 		i++;
 	}
 	return (0); // exit_status : 성공

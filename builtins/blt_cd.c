@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/09 19:29:00 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 19:29:19 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	ft_cd(t_data *data, t_astnode *args_node)
 	char	*tmp;
 	char	*dst_path;
 	int		chdir_ret;
+	int		idx;
 	// cd - 경우를 추가해야 함
 
 	data->exit_status = 0;
-	tmp = data->plexer->pptokens[args_node->pvalue_index[1]];
-	if (tmp == END || ft_strncmp(tmp, "~", -1)) // cd  ||  cd ~
+	tmp = data->plexer->pptokens[args_node->prightchild->pvalue_index[1]];
+	idx = args_node->prightchild->pvalue_index[1];
+	if (idx == END || ft_strncmp(tmp, "~", -1)) // cd  ||  cd ~
 	{	// cd 만 입력되면 HOME으로 이동해야 함.
 		dst_path = get_envv(data, "HOME");
 		if (!dst_path)
@@ -63,6 +65,6 @@ void	update_pwd_oldpwd(t_data *data, char *key)
 				free(tmp);
 			value = getcwd(NULL, 0);	
 		}
-		insert_envv(data, key, value);
+		insert_envv(data, key, value, TRUE); // 고민고민
 	}
 }
