@@ -57,9 +57,29 @@ int	ft_wordlen(char const *str)
 						&&  !is_pipe(&str[i]))
 			{
 				i++;
-				if (is_quote(str[i]))
-					continue ;
+				quote = is_quote(str[i]);
+				if (str[i] && quote)
+				{
+					i++;
+					while(str[i] && quote != is_quote(str[i])) // str[i] == 널문자 or 같은 따옴표인 상태로 탈출
+						i++;
+					if (str[i] == '\0' && quote != is_quote(str[i]))
+					{
+						data->exit_status = 1;
+						return (data->exit_status);
+					}
+					if(is_quote(str[i+1]))
+					{
+						i++;
+						continue;
+					}
+				}
 			}
+			// {
+			// 	i++;
+			// 	if (is_quote(str[i]))
+			// 		continue ;
+			// }
 		}
 		if (wc_flag == 1)
 			break ;

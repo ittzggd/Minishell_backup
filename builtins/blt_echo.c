@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:15 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 15:48:44 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ static int	do_echo(t_data *data, t_astnode *args_node, int option_flag)
 			data->exit_status = 0;
 		}
 		else
+		{
 			printf("%s", rm_quote_str);
+			if (*(arg + 1) != -1)
+				printf(" ");
+		}
 		free(rm_quote_str);
 		arg++;
 	}

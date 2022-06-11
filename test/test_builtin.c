@@ -8,10 +8,13 @@ int main()
 	int 	i = 0;
 
 	//str = "\"abc 'de f'g\" de";
-	str = "echo -n 'te  st''tt'>\"a.txt\" > b.txt | cd libft|echo \"hhh '\"";
+	// str = "export test1='mi  ni' test2='mmmmi  ni' test3='mi ni'";
+	str = "unset test1 test2 test3";
+	// str = "export test=minishell";
+	//str = "export test1='mi  ni'";
 	data = ft_calloc(1, sizeof(t_data));
 	// token
-	printf("wc 13 == %d\n", ft_wordcount(str));
+	printf("wc 4 == %d\n", ft_wordcount(str));
 	tokenize_input(data, str);  //  | cd libft | echo hh
 
 	//printf("wc : %d\n",ft_wordcount("abc 'efg' hi"));
@@ -27,30 +30,50 @@ int main()
 	// 4. 뭔가 잘못되었을 때 중지 시키지 않고 exit_status 만 변경시켜주거나 할 경우 계속 진행되다 꼬일 가능성 많음 예를들면 세그폴트라던가....
 	// 5. 다음 입력을 받기 전, data 구조체의 plexer와 관련된 것 free && 초기화
 	
-	while(data->plexer->pptokens[i])
-	{
-	 	printf("tokenize pptokens[%d] : %s\n", i, data->plexer->pptokens[i]);
-	 	i++;
-	}
+	// while(data->plexer->pptokens[i])
+	// {
+	//  	printf("tokenize pptokens[%d] : %s\n", i, data->plexer->pptokens[i]);
+	//  	i++;
+	// }
 
-// 	// // lexer
-// 	lexical_analysis(data);
-// 	i = 0;
-// //	while(data->plexer->pptokens[i])
-// 	// {
-// 	// 	printf("pptokens[%d] : %s  ", i, data->plexer->pptokens[i]);
-// 	// 	printf("type[%d] : %d\n", i, data->plexer->ptype[i]);
-// 	// 	i++;
-// 	// }
+	// // lexer
+	lexical_analysis(data);
+	// i = 0;
+	// while(data->plexer->pptokens[i])
+	// {
+	// 	printf("pptokens[%d] : %s  ", i, data->plexer->pptokens[i]);
+	// 	printf("type[%d] : %d\n", i, data->plexer->ptype[i]);
+	// 	i++;
+	// }
 
-// 	// //syntax
-// 	syntax_analysis(data);
-// 	init_ast(data);
-// 	printf("ast tree : \n\n\n");
-// 	postorderTravelBinSTree(data->p_ast->prootnode);
-// 	ft_pwd(data);
-	// t_astnode *pelement = data->p_ast->prootnode->pleftchild->prightchild->prightchild;
-	// ft_echo(data, pelement);
+	// //syntax
+	syntax_analysis(data);
+	init_ast(data);
+	printf("ast tree : \n\n\n");
+	postorderTravelBinSTree(data->p_ast->prootnode);
+	// ft_pwd(data);
+	t_astnode *pelement = data->p_ast->prootnode->prightchild;
+	// ft_export(data, pelement);
+	// printf("exportttttt \n");
 	
-	// printf("%d\n", data->exit_status);
+	char *key;
+	char *value;
+
+	key = "test1";
+	value = "123";
+	insert_envv(data, key, value,TRUE);
+	key = "test2";
+	value = "122222223";
+	insert_envv(data, key, value,TRUE);
+	key = "test3";
+	value = "1233333333";
+	insert_envv(data, key, value,TRUE);
+	
+	ft_env(data, TRUE);
+	ft_env(data, FALSE);
+	// ft_echo(data, pelement);
+
+	ft_unset(data, pelement);
+	ft_env(data, FALSE);
+	printf("%d\n", data->exit_status);
 }

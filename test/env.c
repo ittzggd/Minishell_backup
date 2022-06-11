@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/10 13:48:47 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 17:38:02 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	replace_env_to_value(int i, t_data *data)
 	}
 }
 
-void	insert_envv(t_data *data, char *key, char *value) // export시 환경변수 설정
+void	insert_envv(t_data *data, char *key, char *value, int init_flag) // export시 환경변수 설정
 {
 	t_envv_node	element;
 	t_envv_node	*is_exist;
@@ -121,6 +121,7 @@ void	insert_envv(t_data *data, char *key, char *value) // export시 환경변수
 	{
 		element.key = key;
 		element.value = value;
+		element.init_flag = init_flag;
 		new = ft_lstnew(element);
 		ft_lstadd_back(data, new);
 	}
@@ -174,5 +175,5 @@ int	init_envp(char *input, char **key, char **value)
 		*key = input;
 		*value = NULL;
 	}
-	return (0);
+	return (init_flag);
 }

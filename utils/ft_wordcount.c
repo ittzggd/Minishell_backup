@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 15:27:16 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 16:21:19 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	case_redirection(char const *str, int *i)
 	return (TRUE);
 }
 
-int	ft_wordcount(char const *str)
+int ft_wordcount(char const *str)
 {
 	int	i;
 	int	wc;
@@ -93,7 +93,26 @@ int	ft_wordcount(char const *str)
 		{
 			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) \
 					 && !is_pipe(&str[i]))
+			{
 				i++;
+				quote = is_quote(str[i]);
+				if (str[i] && quote)
+				{
+					i++;
+					while(str[i] && quote != is_quote(str[i])) // str[i] == 널문자 or 같은 따옴표인 상태로 탈출
+						i++;
+					if (str[i] == '\0' && quote != is_quote(str[i]))
+					{
+						data->exit_status = 1;
+						return (data->exit_status);
+					}
+					if(is_quote(str[i+1]))
+					{
+						i++;
+						continue;
+					}
+				}
+			}
 		}
 		if (wc_flag == 1)
 			wc++;

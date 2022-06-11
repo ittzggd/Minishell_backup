@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 15:27:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 16:46:49 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_envv_node	*ft_lstnew(t_envv_node element)
 	if(!new->key)
 		return (NULL);
 	new->value = ft_strdup(element.value);
+	new->init_flag = element.init_flag;
 	if (!new->value)
 	{
 		free(new->key);
@@ -39,7 +40,7 @@ void	ft_lstadd_back(t_data *data, t_envv_node *new)
 	if (!new)
 		return ;
 	if (!curr)
-		curr = new;
+		data->envv_list = new;
 	else
 	{
 		while(curr->p_link)
@@ -69,8 +70,3 @@ void	remove_ll_element(t_envv_node *p_list, char *key)
 	}
 	return ;
 }
-
-
-
-
-

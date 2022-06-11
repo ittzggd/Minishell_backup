@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/10 17:22:35 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/11 17:34:30 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_cmd		*create_cmd_struct(void);
 void		replace_env_to_value(int i, t_data *data);
 char		*get_envv(t_data *data, char *key);
 t_envv_node	*get_el_node(t_envv_node *envv_list, char *key);
-void		insert_envv(t_data *data, char *key, char *value); 
-
+void		insert_envv(t_data *data, char *key, char *value, int init_flag);
+int			init_envp(char *input, char **key, char **value);
 
 void	syntax_analysis(t_data *data);
 
