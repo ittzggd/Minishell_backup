@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/13 12:41:48 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/13 19:14:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,15 @@ echo "hi" > a.txt > b.txt
 
 */
 
-static int	do_echo(t_data *data, t_astnode *args_node, int option_flag, int fd);
+static int	do_echo(t_data *data, t_astnode *args_node, int option_flag);
 
-int	ft_echo(t_data *data, t_astnode *args_node, int fd)
+int	ft_echo(t_data *data, t_astnode *args_node)
 {
 	int	*arg;
 	int	option_flag;
 
-	if (fd < 0)
-	{
-		data->exit_status = 1;
+	if (!data)
 		return (ERROR);
-	}	
 	option_flag = FALSE;
 	arg = args_node->prightchild->pvalue_index;
 	while(*arg != -1)
@@ -38,12 +35,12 @@ int	ft_echo(t_data *data, t_astnode *args_node, int fd)
 			option_flag = TRUE;
 		arg++;
 	}
-	if(do_echo(data, args_node, option_flag, fd) == ERROR)
+	if(do_echo(data, args_node, option_flag) == ERROR)
 		return (ERROR);
 	return (TRUE);
 }
 
-static int	do_echo(t_data *data, t_astnode *args_node, int option_flag, int fd)
+static int	do_echo(t_data *data, t_astnode *args_node, int option_flag)
 {
 	int		*arg;
 	char	*rm_quote_str;
@@ -62,20 +59,19 @@ static int	do_echo(t_data *data, t_astnode *args_node, int option_flag, int fd)
 			return (ERROR);
 		if(ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
 		{
-			write(fd, data->exit_status, sizeof(int));
-			// printf("%d", data->exit_status);
+			printf("%d", data->exit_status);
 			data->exit_status = 0;
 		}
 		else
 		{
-			write(fd, rm_quote_str, ft_strlen(rm_quote_str));
+			printf("%s", rm_quote_str);
 			if (*(arg + 1) != -1)
-				write(fd, " ", 1);
+				printf(" ");
 		}
 		free(rm_quote_str);
 		arg++;
 	}
 	if (option_flag != TRUE)
-		write(fd, "\n", 1);
+		printf("\n");
 	return (TRUE);
 }

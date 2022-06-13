@@ -6,19 +6,20 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:11:47 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/13 15:49:53 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/13 19:41:34 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include "string.h"
 
-void	c(t_astnode *cmdnode, int *fd)
+void	exec_cmd(t_astnode *cmdnode)
 {
 	t_astnode	*argsnode;
 	t_astnode	*argnode;
 	char *blt_cmd;
-	char *argv;
+	// char *argv;
+	// char **envp;
 
 	argsnode = cmdnode->prightchild;
 	argnode = argsnode->prightchild;
@@ -27,7 +28,7 @@ void	c(t_astnode *cmdnode, int *fd)
 	if (ft_strncmp(blt_cmd, "cd", -1))
 		ft_cd(data, argsnode);
 	else if (ft_strncmp(blt_cmd, "echo", -1))
-		ft_echo(data, argsnode, fd[1]); // 이러면 echo도 printf를 쓰는게 나을 듯
+		ft_echo(data, argsnode); // 이러면 echo도 printf를 쓰는게 나을 듯
 	else if (ft_strncmp(blt_cmd, "env", -1))
 		ft_env(data, FALSE);	// stdout에 출력하지 않고 dup2로 방향 바꿔서 써주기
 	else if (ft_strncmp(blt_cmd, "exit", -1))
@@ -38,72 +39,72 @@ void	c(t_astnode *cmdnode, int *fd)
 		ft_pwd(data);
 	else if (ft_strncmp(blt_cmd, "unset", -1))
 		ft_unset(data, argsnode);
-	else if (ft_strncmp(blt_cmd, "minishell", -1))
-	{
-		argv = data->plexer->pptokens[argnode->pvalue_index[0]];
-		execve(경로, argv, 환경변수 목록);
+	// else if (ft_strncmp(blt_cmd, "minishell", -1))
+	// {
+	// 	argv = data->plexer->pptokens[argnode->pvalue_index[0]];
+	// 	envp = envvlist_to_envp();
+	// 	execve(경로, argv, envp);
 	
-	}
+	// }
 }
 
-int	fork_pipe(int *fd, int *newfd, t_astnode *pipenode)
-{
-	int	pid;
 
-	pid = fork();
-	if (pid < 0)
-		return 1;
-	if (pid == 0)
-	{
-		
-	}
-	else
-	{
 
-	}
-}
+// int	fork_pipe(int *fd, int *newfd, t_astnode *pipenode)
+// {
+// 	int	pid;
 
-int	ft_pipe_main()
-{
-	int i;
-	pid_t pid;
-	int fd[2];
-	int newfd[2];
-	t_astnode *curr;
-	char	*blt_cmd;
+// 	pid = fork();
+// 	if (pid < 0)
+// 		return 1;
+// 	if (pid == 0)
+// 	{
+				
+// 	}
+// 	else
+// 	{
 
-	i = 0;
-	if (data->pipe_cnt > 0)
-	{
-		if (pipe(fd) < 0)
-			return (1);
-		if (pipe(newfd) < 0)
-			return (2);
-		curr = data->p_ast->prootnode;
-		while (i < data->pipe_cnt) // echo "hi" > a.txt | pwd | cd
-		{
-			pid = fork();
-			if (pid < 0)
-				return 1;
-			if (pid == 0)
-			{
-				close(fd[0]);
-				//fd[1] 에 쓰기
+// 	}
+// }
 
-				// 빌트인 명령어일 경우 어떤 함수를 실행해야하는지 찾아야 함,,,, 이게 맞는가ㅏ,,,execve는 어떻게 하는지 알아보기
-				exec_cmd(curr->pleftchild, fd);
-				// 만약 minishell 이 명령어로 들어온다=> parser의 is_cmd함수 고쳐줬음.
-				// 빌트인이 아닌 명령어는 execve로 실행
-			}
-			else
-			{
-				curr = curr->prightchild;
-				fork_pipe(fd, newfd, curr);
-			}
-		}
-	}
+// int	ft_pipe_main()
+// {
+// 	int 		i;
+// 	pid_t 		pid;
+// 	int 		fd[2];
+// 	int 		newfd[2];
+// 	t_astnode 	*curr;
+
+// 	if (data->pipe_cnt > 0)
+// 	{
+// 		if (pipe(fd) < 0)
+// 			return (1);
+// 		if (pipe(newfd) < 0)
+// 			return (2);
+// 		i = 0;
+// 		curr = data->p_ast->prootnode;
+// 		while (i < data->pipe_cnt) // echo "hi" > a.txt | pwd | cd
+// 		{
+// 			pid = fork();
+// 			if (pid < 0)
+// 				return 1;
+// 			if (pid == 0)
+// 			{
+// 				close(fd[0]);
+// 				//fd[1] 에 쓰기
+// 				// dup2(fd[1], 1);
+// 				exec_cmd(curr->pleftchild);
+// 				// 리다이렉션 , heredoc 이 있으면 실행
+// 			}
+// 			else
+// 			{
+// 				curr = curr->prightchild;
+// 				fork_pipe(fd, newfd, curr);
+// 			}
+// 		}
+// 	}
 	
-}
+// }
 
 int	main()
 {
