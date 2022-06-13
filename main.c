@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/11 15:26:51 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/13 12:43:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[], char **envp)
 	char	*key;
 	char	*value;
 
-	if(argc == 1)
+	if (argc == 1)
 	{
 		while (*envp)
 		{

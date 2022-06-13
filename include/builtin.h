@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 09:52:55 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/09 19:29:09 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/13 12:36:56 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "minishell_define.h"
 
-int		ft_echo(t_data *data, t_astnode *args_node);
+int		ft_echo(t_data *data, t_astnode *args_node, int fd);
 int		ft_pwd(t_data *data);
 int		ft_env(t_data *data, int export_flag);
 int		ft_unset(t_data *data, t_astnode *args_node);
