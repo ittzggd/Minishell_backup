@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:36:09 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 15:27:17 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/13 15:36:14 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	is_cmd(char *value)
 {
 	int		i;
 	t_cmd	*cmd;
+	int ret;
 
+	ret = FALSE;
 	i = 0;
 	cmd = create_cmd_struct();
 	if (!cmd)
@@ -28,10 +30,12 @@ int	is_cmd(char *value)
 	while (cmd->cmd[i])
 	{
 		if (ft_strncmp(value, cmd->cmd[i], ft_strlen(value)))
-			return (TRUE);
+			ret = TRUE;
+		free(cmd->cmd[i]);
 		i++;
 	}
-	return (FALSE);
+	free(cmd);
+	return (ret);
 }
 
 int	is_ifs(const char c)

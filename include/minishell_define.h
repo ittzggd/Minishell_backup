@@ -60,7 +60,7 @@ typedef struct s_astnode
 
 typedef struct s_cmd
 {
-	char	*cmd[8];
+	char	*cmd[9];
 }			t_cmd;
 
 typedef	struct s_ioredirection

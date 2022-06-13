@@ -28,6 +28,8 @@ static void	set_cmd(char **cmd, int i)
 		cmd[5] = ft_strdup("env");
 	else if (i == 6)
 		cmd[6] = ft_strdup("exit");
+	else if (i == 7)
+		cmd[7] = ft_strdup("minishell");
 }
 
 t_cmd	*create_cmd_struct(void)
@@ -37,7 +39,7 @@ t_cmd	*create_cmd_struct(void)
 
 	i = 0;
 	cmd = (t_cmd *)ft_calloc(1, sizeof(t_cmd));
-	while (i < 7)
+	while (i < 8)
 	{
 		set_cmd(cmd->cmd, i);
 		if (!cmd->cmd[i])
@@ -47,6 +49,6 @@ t_cmd	*create_cmd_struct(void)
 		}
 		i++;
 	}
-	cmd->cmd[7] = NULL;
+	cmd->cmd[8] = NULL;
 	return (cmd);
 }
