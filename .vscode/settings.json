@@ -31,7 +31,9 @@
 		"memory": "c",
 		"array": "c",
 		"string": "c",
-		"string_view": "c"
+		"string_view": "c",
+		"unistd.h": "c",
+		"dirent.h": "c"
 	},
 	"42header.email": "hejang@student.42seoul.kr",
 	"42header.username": "hejang",

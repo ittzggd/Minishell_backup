@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/11 17:34:30 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/13 11:56:43 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "minishell_define.h"
 # include "tree_utils.h"
 # include "builtin.h"
+# include "minishell_pipe.h"
 
 extern	t_data		*data;
 

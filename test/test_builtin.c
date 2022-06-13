@@ -9,7 +9,7 @@ int main()
 
 	//str = "\"abc 'de f'g\" de";
 	// str = "export test1='mi  ni' test2='mmmmi  ni' test3='mi ni'";
-	str = "unset test1 test2 test3";
+	str = "exit 5";
 	// str = "export test=minishell";
 	//str = "export test1='mi  ni'";
 	data = ft_calloc(1, sizeof(t_data));
@@ -75,5 +75,6 @@ int main()
 
 	ft_unset(data, pelement);
 	ft_env(data, FALSE);
+	ft_exit(data, pelement);
 	printf("%d\n", data->exit_status);
 }
