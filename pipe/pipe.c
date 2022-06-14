@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:11:47 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/13 19:41:34 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/14 12:40:38 by hejang           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,10 @@ void	exec_cmd(t_astnode *cmdnode)
 // 			{
 // 				close(fd[0]);
 // 				//fd[1] 에 쓰기
-// 				// dup2(fd[1], 1);
+// 				// 트리 전위 순회 : 리다이렉션 , heredoc 이 있으면 실행
+// 				// 리다이렉션 file open => dup2(fd, 1); : 파일에 쓰기
+				// dup2(fd[1], 1); => 표준출력을 다음 파이프로 보내기
 // 				exec_cmd(curr->pleftchild);
-// 				// 리다이렉션 , heredoc 이 있으면 실행
 // 			}
 // 			else
 // 			{
