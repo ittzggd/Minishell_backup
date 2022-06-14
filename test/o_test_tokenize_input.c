@@ -1,7 +1,5 @@
 #include "../include/minishell.h"
 
-t_data *data;
-
 char	*tokenize_input(t_data *data, char *input)
 {
 	int		split_index;

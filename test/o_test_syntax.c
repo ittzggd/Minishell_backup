@@ -29,7 +29,8 @@ void	syntax_analysis(t_data *data)
 		}
 		else if(type[curr] == T_REDIRECTION)
 		{
-			if (curr != 0 && (type[prev] == T_PIPE || type[prev] == T_REDIRECTION))
+			//if (curr != 0 && (type[prev] == T_PIPE || type[prev] == T_REDIRECTION))
+			if (curr != 0 && (type[prev] == T_REDIRECTION))
 			{
 				printf("red_ERROR\n");
 				exit(0);
@@ -43,7 +44,7 @@ void	syntax_analysis(t_data *data)
 		}
 		else if (type[curr] == T_PIPE)
 		{
-			if(type[curr + 1] != T_COMMAND || (curr != 0 && type[prev] == T_REDIRECTION))
+			if((type[curr + 1] != T_COMMAND && type[curr + 1] != T_REDIRECTION) || (curr != 0 && type[prev] == T_REDIRECTION))
 			{
 				printf("pipe_ERROR\n");
 				exit(0);

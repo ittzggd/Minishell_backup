@@ -1,45 +1,73 @@
 #include"../include/minishell.h"
 
-void	postorderTravelBinSTree(t_astnode *pipenode)
+void	postorder_travel_ast(t_astnode *ast_node)
 {
-	int	i;
-
-	i = 0;
-	if(pipenode)
+	if (ast_node)
 	{
-		printf("node type : %d  ", pipenode->nodetype);
-		if(pipenode->pvalue_index)
+		if(ast_node->nodetype == A_COMMAND)
 		{
-			while(pipenode->pvalue_index[i] != -1)
-			{
-				printf("       value : %s         ", data->plexer->pptokens[pipenode->pvalue_index[i]]);
-				i++;
-			}
+			postorder_travel_command(ast_node);
+			return;
 		}
-		printf("\n");
-		postorderTravelBinSTree(pipenode->pleftchild);
-		postorderTravelBinSTree(pipenode->prightchild);
+		else if (ast_node->nodetype == A_PIPE)
+		{
+			// 여기서 fork 필요하긴 함.
+			postorder_travel_command(ast_node->pleftchild);
+			if (ast_node->prightchild->nodetype == A_COMMAND)
+			{
+				//여기서 fork 해야 자식에게 cmd node를 넘겨줌
+				postorder_travel_command(ast_node->prightchild);
+				return ;
+			}
+			postorder_travel_ast(ast_node->prightchild);
+		}
 	}
+	return ; 
 }
 
-// void	postorderTravelBinSTree(t_astnode *node)
-// {
-// 	int i = 0;
+void	postorder_travel_command(t_astnode *cmdnode)
+{
+	if (cmdnode)
+	{
+		// reds
+		postorder_travel_reds(cmdnode->pleftchild);
+		
+		// args
+		exec_cmd(cmdnode->prightchild);
+	}
+	return ; 
 
-// 	if(node)
-// 	{
-// 		printf("node type : %d  ", node->nodetype);
-// 		if(node->pvalue_index)
-// 		{
-// 			while(node->pvalue_index[i] != -1)
-// 			{
-// 				printf("       value : %s         ", data->plexer->pptokens[node->pvalue_index[i]]);
-// 				i++;
-// 			}
-// 		}
-// 		printf("\n");
-// 		postorderTravelBinSTree(node->pleftchild);
-// 		postorderTravelBinSTree(node->prightchild);
-// 	}
-// }
+}
 
+void	postorder_travel_reds(t_astnode *reds_node)
+{
+	// red
+	if (reds_node->pleftchild)
+	{
+		goto_redirection(reds_node->pleftchild);
+		dup2(STDOUT_FILENO, 1);
+	}
+	// reds
+	if(reds_node->prightchild)
+	{
+		postorder_travel_reds(reds_node->prightchild);
+	}
+	
+}
+
+void	goto_redirection(t_astnode *red_node)
+{
+	char	*red;
+	char	*filename;
+
+	red = data->plexer->pptokens[red_node->pleftchild->pvalue_index[0]];
+	filename = data->plexer->pptokens[red_node->prightchild->pvalue_index[0]];
+	if(ft_strncmp(red, "<", -1)) // 타입이 어떤 타입으로 확인해야할지 잘 모르겠음ㅜㅇ ㅜ
+		in_red(filename);
+	else if(ft_strncmp(red,">", -1))
+		out_red(filename);
+	else if(ft_strncmp(red,">>", -1))
+		append_red(filename);
+	else if(ft_strncmp(red,"<<", -1))
+		heredoc(filename);
+}

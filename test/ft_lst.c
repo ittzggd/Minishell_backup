@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 19:27:25 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/14 19:12:59 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@ void	remove_ll_element(t_envv_node **p_list, char *key)
 				tmp = &curr->p_link;
 			else
 				prev->p_link = curr->p_link;
-			free(curr->value);
-			free(curr->key);
-			free(curr);
+			if (curr->value)
+				free(curr->value);
+			if (curr->key)
+				free(curr->key);
+			if (curr)
+				free(curr);
 			p_list = tmp;
 			data->envv_list = *p_list;
 			return ;

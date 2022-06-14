@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/13 19:44:20 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/14 19:15:42 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	ft_cd(t_data *data, t_astnode *args_node)
 	{
 		printf("minishell : cd : %s : No such file or directory\n", tmp);
 		if (dst_path != tmp)
-			free(dst_path);
+		{
+			if(dst_path)
+				free(dst_path);
+		}
 		data->exit_status = 1;
 		return (data->exit_status);
 	}

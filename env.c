@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/11 16:46:19 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/14 18:43:00 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ void	replace_env_to_value(int i, t_data *data)
 	// 	data->plexer->pptokens[i] = ft_itoa(data->exit_status);
 		return ;
 	}
+	else if(ft_strncmp(data->plexer->pptokens[i - 1], "<<", -1))
+		return ;
 
 	// echo "$PATH"hello => $PATH가 get_envv로 치환한 뒤 strjoin
 	while (token[j] && (token[j] == '$' || (token[j] == '\"' && token[j + 1] == '$')))
 		j++;
 	key_len = 0;
-	while (token[j - 2] == '\"' && token[j + key_len] != '\"')
+	while (token[j + key_len] && token[j + key_len] != '\"')
 		key_len++;
 	key = (char *)malloc(key_len + 1);
 	if (key)

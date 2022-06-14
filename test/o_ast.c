@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/10 17:03:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/14 17:50:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,13 @@ void	tree_cmd(t_astnode *ast_node, int index, t_data *data)
 	tokens = data->plexer->pptokens;
 	type = data->plexer->ptype;
 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, 0);
-	ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
-	tree_args(ast_node->prightchild, index, data);
+	// ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
+	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
+	if (type[index] == T_COMMAND)
+	{
+		ast_node->prightchild->nodetype = A_ARGUMENTS;
+		tree_args(ast_node->prightchild, index, data);
+	}
 	while (type[index] != T_PIPE && tokens[index])
 	{
 		if (type[index] == T_REDIRECTION)

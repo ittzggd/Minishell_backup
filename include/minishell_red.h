@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   minishell_red.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 22:34:31 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/14 19:03:05 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/14 15:55:50 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/14 19:03:29 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef MINISHELL_RED_H
+# define MINISHELL_RED_H
 
-char	*ft_strdup(const char *s)
-{
-	char	*ptr;
-	int		s_len;
-	int		i;
+# include <fcntl.h>
 
-	if(!s)
-		return (NULL);
-	s_len = ft_strlen(s) + 1;
-	ptr = (char *)malloc(sizeof(char) * s_len);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
+void	out_red(char *filename);
+void	in_red(char *filename);
+void	append_red(char *filename);
+void	heredoc(char *delimiter);
+void	goto_redirection(t_astnode *red_node);
+void	postorder_travel_reds(t_astnode *reds_node);
+void	postorder_travel_command(t_astnode *reds_node);
+
+#endif
