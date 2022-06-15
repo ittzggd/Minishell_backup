@@ -6,15 +6,16 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/14 18:59:29 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 12:07:06 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+t_data *data;
+
 void	postorder_travel_ast(t_astnode *ast_node);
 // 에러 처리 함수 만들기
-t_data *data;
 
 int	analyze_input(char *input)
 {

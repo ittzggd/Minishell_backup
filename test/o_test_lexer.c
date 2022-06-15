@@ -10,8 +10,6 @@ static int	get_type(char *value)
 		type = T_PIPE;
 	else if (is_redirection(value))
 		type = T_REDIRECTION;
-	else if (is_cmd(value))
-		type = T_COMMAND;
 	else if (is_option(value))
 		type = T_OPTION;
 	else if (is_quote(*value))
@@ -31,8 +29,10 @@ void	lexical_analysis(t_data *data)
 	char	**tokens;
 	int		*type;
 	int		i;
+	int		command_flag;
 
 	i = 0;
+	command_flag = FALSE;
 	tokens = data->plexer->pptokens;
 	data->plexer->ptype = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
 	type = data->plexer->ptype;
@@ -41,8 +41,29 @@ void	lexical_analysis(t_data *data)
 	while (tokens[i])
 	{
 		type[i] = get_type(tokens[i]);
+		if(type[i] == T_WORD)
+		{
+			if (i == 0)
+			{
+				type[i] = T_COMMAND;
+				command_flag = TRUE;
+			}
+			else if (i != 0 && type[i - 1] == T_PIPE)
+			{
+				type[i] = T_COMMAND;
+				command_flag = TRUE;
+			}
+			else if (command_flag == FALSE && type[i - 2] == T_REDIRECTION)
+			{
+				type[i] = T_COMMAND;
+				command_flag = TRUE;
+			}
+		}
 		if (type[i] == T_PIPE)
+		{
 			data->pipe_cnt++;
+			command_flag = FALSE;
+		}
 		else if (type[i] == T_REDIRECTION)
 			data->redirection_cnt++;
 		else if (type[i] == T_WORD)

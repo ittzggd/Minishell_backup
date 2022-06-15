@@ -26,6 +26,10 @@ void	exec_cmd(t_astnode *argsnode)
 		ft_pwd(data);
 	else if (ft_strncmp(blt_cmd, "unset", -1))
 		ft_unset(data, argsnode);
+	else if (ft_strncmp(blt_cmd, "minishell", -1))
+		printf("minishell hohoho\n");
+	else
+		printf("nanoshell : command not found : %s\n", blt_cmd);
 }
 
 void	postorderTravelBinSTree(t_astnode *node)

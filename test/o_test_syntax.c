@@ -1,5 +1,10 @@
 #include "../include/minishell.h"
 
+// void	syntax_analysis(void)
+// {
+	
+// }
+
 void	syntax_analysis(t_data *data)
 {
 	int		curr;

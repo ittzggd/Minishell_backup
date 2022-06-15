@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/14 17:50:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 15:00:17 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int	recur_pipe(t_astnode *ast_node, int index, t_data *data) // 가장 처음은
 	return (TRUE);
 }
 
-// cmd 함수의 역할은 첫번째 리다이렉션을 만날때까지 탐색해서
-// args   reds  트리 노드를 만드는 것이다
 void	tree_cmd(t_astnode *ast_node, int index, t_data *data)
 {
 	char	**tokens;
@@ -90,13 +88,8 @@ void	tree_cmd(t_astnode *ast_node, int index, t_data *data)
 	tokens = data->plexer->pptokens;
 	type = data->plexer->ptype;
 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, 0);
-	// ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
-	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
-	if (type[index] == T_COMMAND)
-	{
-		ast_node->prightchild->nodetype = A_ARGUMENTS;
-		tree_args(ast_node->prightchild, index, data);
-	}
+	ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
+	tree_args(ast_node->prightchild, index, data);
 	while (type[index] != T_PIPE && tokens[index])
 	{
 		if (type[index] == T_REDIRECTION)
@@ -108,6 +101,38 @@ void	tree_cmd(t_astnode *ast_node, int index, t_data *data)
 		index++;
 	}
 }
+
+// cmd 함수의 역할은 첫번째 리다이렉션을 만날때까지 탐색해서
+// args   reds  트리 노드를 만드는 것이다
+// void	tree_cmd(t_astnode *ast_node, int index, t_data *data)
+// {
+// 	char	**tokens;
+// 	int		*type;
+
+// 	if (ast_node->nodetype != A_COMMAND)
+// 	 	return ;
+// 	tokens = data->plexer->pptokens;
+// 	type = data->plexer->ptype;
+// 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, 0);
+// 	// ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
+// 	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
+// 	if (type[index] == T_COMMAND) // == Command
+// 	{
+// 		ast_node->prightchild->nodetype = A_ARGUMENTS;
+// 		tree_args(ast_node->prightchild, index, data);
+// 	}
+// 	while (type[index] != T_PIPE && tokens[index])
+// 	{
+// 		if (type[index] == T_REDIRECTION)
+// 		{
+// 			ast_node->pleftchild->nodetype = A_REDIRECTIONS;
+// 			tree_red
+// 			s(ast_node->pleftchild, index, data); // red와 red다음 애만 추가되도록
+// 			break ;
+// 		}
+// 		index++;
+// 	}
+// }
 
 
 // args 밑부분 만들기
