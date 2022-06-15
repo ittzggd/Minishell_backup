@@ -33,7 +33,8 @@ void	postorder_travel_command(t_astnode *cmdnode)
 		postorder_travel_reds(cmdnode->pleftchild);
 		
 		// args
-		exec_cmd(cmdnode->prightchild);
+		if(cmdnode->prightchild->prightchild->pvalue_index)
+			exec_cmd(cmdnode->prightchild);
 	}
 	return ; 
 
@@ -60,6 +61,8 @@ void	goto_redirection(t_astnode *red_node)
 	char	*red;
 	char	*filename;
 
+	if(!red_node->prightchild->pvalue_index)
+		return ;
 	red = data->plexer->pptokens[red_node->pleftchild->pvalue_index[0]];
 	filename = data->plexer->pptokens[red_node->prightchild->pvalue_index[0]];
 	if(ft_strncmp(red, "<", -1)) // 타입이 어떤 타입으로 확인해야할지 잘 모르겠음ㅜㅇ ㅜ

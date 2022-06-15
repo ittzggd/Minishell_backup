@@ -6,7 +6,7 @@
 void	out_red(char *filename)
 {
 	int	fd;
-
+	
 	fd = open(filename, O_WRONLY|O_TRUNC, 0666); // 이미 존재하는 파일이면 내용 삭제 후 적기
 	if (fd < 0) // 파일이 존재 하지 않으면, 새로 생성
 	{
@@ -52,11 +52,11 @@ void	heredoc(char *delimiter)
 	delimiter_without_quote = remove_quote(delimiter);
 	while (1)
 	{
-		rl_on_new_line();
-    	rl_replace_line("here doc >", 1);
-    	rl_redisplay();
-	//	rl_replace_line("heredoc >", 1);
-		//input_str = readline("heredoc > ");
+		//rl_on_new_line();
+    	//rl_replace_line("here doc >", 1);
+    	//rl_redisplay();
+		//rl_replace_line("heredoc >", 1);
+		input_str = readline("heredoc > ");
 		if (ft_strncmp(input_str, delimiter_without_quote, -1))
 			break ;
 	}

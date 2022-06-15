@@ -10,8 +10,8 @@ static int	get_type(char *value)
 		type = T_PIPE;
 	else if (is_redirection(value))
 		type = T_REDIRECTION;
-	else if (is_option(value))
-		type = T_OPTION;
+	// else if (is_option(value))
+	// 	type = T_OPTION;
 	else if (is_quote(*value))
 	{
 		value++;
@@ -68,6 +68,11 @@ void	lexical_analysis(t_data *data)
 			data->redirection_cnt++;
 		else if (type[i] == T_WORD)
 		{
+			if(i != 0 && type[i - 1] == T_COMMAND)
+			{
+				if(is_option(tokens[i]))
+					type[i] = T_OPTION;
+			}
 			if (is_env(tokens[i]))
 			{
 				// $와 괄호를 제외한 key값을 tokens[i]에 저장하기

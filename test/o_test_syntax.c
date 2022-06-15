@@ -35,7 +35,7 @@ void	syntax_analysis(t_data *data)
 		else if(type[curr] == T_REDIRECTION)
 		{
 			//if (curr != 0 && (type[prev] == T_PIPE || type[prev] == T_REDIRECTION))
-			if (curr != 0 && (type[prev] == T_REDIRECTION))
+			if (type[curr + 1] != T_WORD  || (curr != 0 && (type[prev] == T_REDIRECTION)))
 			{
 				printf("red_ERROR\n");
 				exit(0);
