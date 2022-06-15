@@ -30,11 +30,13 @@ void	postorder_travel_command(t_astnode *cmdnode)
 	if (cmdnode)
 	{
 		// reds
+		dup2(STDOUT_FILENO, 100);
 		postorder_travel_reds(cmdnode->pleftchild);
 		
 		// args
 		if(cmdnode->prightchild->prightchild->pvalue_index)
 			exec_cmd(cmdnode->prightchild);
+		dup2(100, STDOUT_FILENO);
 	}
 	return ; 
 
@@ -46,7 +48,8 @@ void	postorder_travel_reds(t_astnode *reds_node)
 	if (reds_node->pleftchild)
 	{
 		goto_redirection(reds_node->pleftchild);
-		dup2(STDOUT_FILENO, 1);
+		//dup2(STDOUT_FILENO, 1);
+		//dup2(STDIN_FILENO, 0);
 	}
 	// reds
 	if(reds_node->prightchild)

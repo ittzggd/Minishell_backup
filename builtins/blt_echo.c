@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/13 19:14:04 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 20:48:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static int	do_echo(t_data *data, t_astnode *args_node, int option_flag)
 			if (*(arg + 1) != -1)
 				printf(" ");
 		}
-		free(rm_quote_str);
+		if (rm_quote_str != data->plexer->pptokens[*arg])
+			free(rm_quote_str);
 		arg++;
 	}
 	if (option_flag != TRUE)

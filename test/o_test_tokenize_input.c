@@ -20,6 +20,12 @@ char	*tokenize_input(t_data *data, char *input)
 		data->plexer->pptokens = NULL;
 	}
 
+	int k = 0;
+	while (data->plexer->pptokens[k])
+	{
+		printf("in tokenize__tokens[%d] : %s\n", k, data->plexer->pptokens[k]);
+		k++;
+	}
 	return ("SUCCESS");
 }
 

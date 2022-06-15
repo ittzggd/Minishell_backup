@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/15 15:00:17 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 20:22:32 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	tree_cmd(t_astnode *ast_node, int index, t_data *data)
 {
 	char	**tokens;
 	int		*type;
+	int		c_index;
 
 	if (ast_node->nodetype != A_COMMAND)
 		return ;
@@ -151,6 +152,12 @@ int	tree_args(t_astnode *ast_node, int index, t_data *data)
 	args_leftchild = ast_node->pleftchild;
 	args_rightchild = ast_node->prightchild;
 	args_leftchild = insert_leftchildnode_ast(ast_node, A_FILEPATH);
+	while(tokens[index] && type[index] != T_PIPE)
+	{
+		if (type[index] == T_COMMAND)
+			break;
+		index++;
+	}
 	if(init_idx(index, args_leftchild) == ERROR)
 		return (ERROR);
 	args_rightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENT);
@@ -198,5 +205,26 @@ void	tree_reds(t_astnode *ast_node, int index, t_data *data)
 			return ;
 		}
 		index++;
+	}
+}
+
+void	delete_ast(t_astnode *node)
+{
+	if(node)
+	{
+		delete_ast(node->pleftchild);
+		delete_ast(node->prightchild);
+		free(node);
+		node = NULL;
+	}
+}
+
+void free_ast(t_ast *ast)
+{
+	if(ast)
+	{
+		delete_ast(ast->prootnode);
+		free(ast);
+		ast = NULL;
 	}
 }

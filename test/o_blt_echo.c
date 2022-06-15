@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_echo.c                                         :+:      :+:    :+:   */
+/*   o_blt_echo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 15:48:47 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 20:48:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ static int	do_echo(t_data *data, t_astnode *args_node, int option_flag)
 		}
 		rm_quote_str = remove_quote(data->plexer->pptokens[*arg]);
 		if(!rm_quote_str)
+		{
+			data->exit_status = 1;
 			return (ERROR);
+		}
 		if(ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
 		{
 			printf("%d", data->exit_status);
@@ -68,10 +71,12 @@ static int	do_echo(t_data *data, t_astnode *args_node, int option_flag)
 			if (*(arg + 1) != -1)
 				printf(" ");
 		}
-		free(rm_quote_str);
+		if (rm_quote_str != data->plexer->pptokens[*arg])
+			free(rm_quote_str);
 		arg++;
 	}
 	if (option_flag != TRUE)
 		printf("\n");
+	data->exit_status = 0;
 	return (TRUE);
 }

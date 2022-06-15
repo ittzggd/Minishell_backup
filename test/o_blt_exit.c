@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   blt_exit.c                                         :+:      :+:    :+:   */
+/*   o_blt_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:05 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/13 11:56:48 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 20:04:03 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_exit(t_data *data, t_astnode *args_node)
 	char	*str;
 	
 	cnt = 0;
+	data->exit_status = 0;
 	while (args_node->prightchild->pvalue_index[cnt] != -1)
 		cnt++;
 	printf("exit\n");

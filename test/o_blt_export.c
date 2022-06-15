@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/15 15:21:30 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 20:45:47 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,32 @@ int	ft_export(t_data *data, t_astnode *args_node) // export USER=1 HI=2 HOME=3
 	{
 		input = remove_quote(data->plexer->pptokens[args_node->prightchild->pvalue_index[i]]);
 		init_flag = init_envp(input, &key, &value);
+		if (input != data->plexer->pptokens[args_node->prightchild->pvalue_index[i]])
+			free(input);
 		if (init_flag == ERROR)
 		{
 			data->exit_status = 1;
-			return (data->exit_status);
-		}
-		if (!is_valid_env(key))
-		{
-			data->exit_status = 1;
-			return (data->exit_status);
-		}
-		insert_envv(data, key, value, init_flag);
-		if (!value)
+			i++;
 			continue ;
-		else
+			// return (data->exit_status);
+		}
+		if (is_valid_env(key) == ERROR)
 		{
-			free(key);
-			free(value);
+			printf("nanoshell: export: %s: not a valid identifier\n", key);
+			data->exit_status = 1;
+		}
+		else if (is_valid_env(key) == TRUE)
+		{
+			insert_envv(data, key, value, init_flag);
+			if (!value)
+				continue ;
+			else
+			{
+				if(key)
+					free(key);
+				if(value)
+					free(value);
+			}
 		}
 		i++;
 	}

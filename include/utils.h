@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/14 12:33:44 by hejang           ###   ########seoul.kr  */
+/*   Updated: 2022/06/15 19:28:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ char	*remove_quote(char *quote_str);
 
 //data
 
-int		init_data();
-int		reset_data();
-int		free_data();
+void	init_data(void);
+void	free_data_lexer(void);
+void	reset_data(void);
+void	free_data(void);
 #endif
