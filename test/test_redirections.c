@@ -1,4 +1,7 @@
 #include "../include/minishell.h"
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <termios.h>
 
 void	out_red(char *filename)
 {
@@ -49,7 +52,11 @@ void	heredoc(char *delimiter)
 	delimiter_without_quote = remove_quote(delimiter);
 	while (1)
 	{
-		input_str = readline("heredoc > ");
+		rl_on_new_line();
+    	rl_replace_line("here doc >", 1);
+    	rl_redisplay();
+	//	rl_replace_line("heredoc >", 1);
+		//input_str = readline("heredoc > ");
 		if (ft_strncmp(input_str, delimiter_without_quote, -1))
 			break ;
 	}

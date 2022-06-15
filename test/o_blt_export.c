@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/15 15:00:16 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/15 15:21:30 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_export(t_data *data, t_astnode *args_node) // export USER=1 HI=2 HOME=3
 
 	init_flag = FALSE;
 	data->exit_status = 0;
-	input = data->plexer->pptokens[args_node->prightchild->pvalue_index[1]];
+	// input = data->plexer->pptokens[args_node->prightchild->pvalue_index[1]];
 	if (args_node->prightchild->pvalue_index[1] == END) // 아스키 코드순으로 출력 = env 실행
 	{
 		ft_env(data, TRUE);
