@@ -33,9 +33,9 @@ void	lexical_analysis(void)
 
 	i = 0;
 	command_flag = FALSE;
-	tokens = data->plexer->pptokens;
-	data->plexer->ptype = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
-	type = data->plexer->ptype;
+	tokens = data.plexer->pptokens;
+	data.plexer->ptype = (int *)ft_calloc(data.tokens_cnt + 1, sizeof(int));
+	type = data.plexer->ptype;
 	if (!type)
 		return ;
 	while (tokens[i])
@@ -61,11 +61,11 @@ void	lexical_analysis(void)
 		}
 		if (type[i] == T_PIPE)
 		{
-			data->pipe_cnt++;
+			data.pipe_cnt++;
 			command_flag = FALSE;
 		}
 		else if (type[i] == T_REDIRECTION)
-			data->redirection_cnt++;
+			data.redirection_cnt++;
 		else if (type[i] == T_WORD)
 		{
 			if(i != 0 && type[i - 1] == T_COMMAND)
@@ -76,10 +76,10 @@ void	lexical_analysis(void)
 			if (is_env(tokens[i]))
 			{
 				// $와 괄호를 제외한 key값을 tokens[i]에 저장하기
-				replace_env_to_value(i, data);
-				if (!data->plexer->pptokens[i])
+				replace_env_to_value(i);
+				if (!data.plexer->pptokens[i])
 				{
-					data->exit_status = 1;
+					data.exit_status = 1;
 					return ;
 				}
 				// 에러처리를 함수 쪼갤때 해주기
@@ -98,19 +98,19 @@ void	lexical_analysis(void)
 // 	data = ft_calloc(1, sizeof(t_data));
 // 	// token
 // 	tokenize_input(data, "echo hi");
-// 	while(data->plexer->pptokens[i])
+// 	while(data.plexer->pptokens[i])
 // 	{
-// 		printf("tokenize pptokens[%d] : %s\n", i, data->plexer->pptokens[i]);
+// 		printf("tokenize pptokens[%d] : %s\n", i, data.plexer->pptokens[i]);
 // 		i++;
 // 	}
 
 // 	// lexer
 // 	lexical_analysis(data);
 // 	i = 0;
-// 	while(data->plexer->pptokens[i])
+// 	while(data.plexer->pptokens[i])
 // 	{
-// 		printf("pptokens[%d] : %s  ", i, data->plexer->pptokens[i]);
-// 		printf("type[%d] : %d\n", i, data->plexer->ptype[i]);
+// 		printf("pptokens[%d] : %s  ", i, data.plexer->pptokens[i]);
+// 		printf("type[%d] : %d\n", i, data.plexer->ptype[i]);
 // 		i++;
 // 	}
 // }

@@ -10,22 +10,22 @@ void	exec_cmd(t_astnode *argsnode)
 	char *blt_cmd;
 
 	argnode = argsnode->prightchild;
-	blt_cmd = data->plexer->pptokens[argnode->pvalue_index[0]];
+	blt_cmd = data.plexer->pptokens[argnode->pvalue_index[0]];
 
 	if (ft_strncmp(blt_cmd, "cd", -1))
-		ft_cd(data, argsnode);
+		ft_cd(argsnode);
 	else if (ft_strncmp(blt_cmd, "echo", -1))
-		ft_echo(data, argsnode); 
+		ft_echo(argsnode); 
 	else if (ft_strncmp(blt_cmd, "env", -1))
-		ft_env(data, FALSE);	// stdout에 출력하지 않고 dup2로 방향 바꿔서 써주기
+		ft_env(FALSE);	// stdout에 출력하지 않고 dup2로 방향 바꿔서 써주기
 	else if (ft_strncmp(blt_cmd, "exit", -1))
-		ft_exit(data, argsnode);
+		ft_exit(argsnode);
 	else if (ft_strncmp(blt_cmd, "export", -1))
-		ft_export(data, argsnode);
+		ft_export(argsnode);
 	else if (ft_strncmp(blt_cmd, "pwd", -1))
-		ft_pwd(data);
+		ft_pwd();
 	else if (ft_strncmp(blt_cmd, "unset", -1))
-		ft_unset(data, argsnode);
+		ft_unset(argsnode);
 	else if (ft_strncmp(blt_cmd, "minishell", -1))
 		printf("minishell hohoho\n");
 	else
@@ -43,7 +43,7 @@ void	exec_cmd(t_astnode *argsnode)
 // 		{
 // 			while(node->pvalue_index[i] != -1)
 // 			{
-// 				printf("       value : %s         ", data->plexer->pptokens[node->pvalue_index[i]]);
+// 				printf("       value : %s         ", data.plexer->pptokens[node->pvalue_index[i]]);
 // 				i++;
 // 			}
 // 		}
@@ -72,24 +72,24 @@ void	exec_cmd(t_astnode *argsnode)
 
 // 	key = "test1";
 //  	value = "123";
-//  	insert_envv(data, key, value,TRUE);
+//  	insert_envv(key, value,TRUE);
 //  	key = "test2";
 //  	value = "122222223";
-//  	insert_envv(data, key, value,TRUE);
+//  	insert_envv(key, value,TRUE);
 // 	key = "test3";
 // 	value = "1233333333";
-// 	insert_envv(data, key, value,TRUE);
+// 	insert_envv(key, value,TRUE);
 	
 	
-// 	tokenize_input(data, strr);
-// 	lexical_analysis(data);
-// 	syntax_analysis(data);
+// 	tokenize_input(strr);
+// 	lexical_analysis();
+// 	syntax_analysis();
 
-// 	init_ast(data);
-// 	//postorderTravelBinSTree(data->p_ast->prootnode);
+// 	init_ast();
+// 	//postorderTravelBinSTree(data.p_ast->prootnode);
 
-// 	postorder_travel_ast(data->p_ast->prootnode);
-//      //t_astnode *red_node = data->p_ast->prootnode->pleftchild->pleftchild;
+// 	postorder_travel_ast(data.p_ast->prootnode);
+//      //t_astnode *red_node = data.p_ast->prootnode->pleftchild->pleftchild;
 //     // goto_redirection(red_node);
 
 

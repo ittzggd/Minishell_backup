@@ -52,8 +52,8 @@ void	replace_env_to_value(int i)
 	strncmp로 환경변수 목록에서 찾아오기 => get_env함수 존재
 	$와 괄호를 제외한 문자열구하기 = name
 	원래 환경변수 $()문자열 free!
-	data->ptype[i] = T_WORD
-	return (new env)  혹은 data->pptokens[i] = new env
+	data.ptype[i] = T_WORD
+	return (new env)  혹은 data.pptokens[i] = new env
 	*/
 	char	*key;
 	char	*token;
@@ -61,30 +61,30 @@ void	replace_env_to_value(int i)
 	int		j;
 	int		key_len;
 
-	token = data->plexer->pptokens[i]; // $USER 혹은 "$USER"
+	token = data.plexer->pptokens[i]; // $USER 혹은 "$USER"
 	j = 0;
 	if (ft_strncmp(&token[j], "$", -1)) // $
 		return ;
 	else if (token[j] && (token[j] == '$' && token[j + 1] == '\"')) // $"USER" => 치환 안하는 경우
 	{
-		data->plexer->pptokens[i] = remove_quote(&token[j + 1]);
+		data.plexer->pptokens[i] = remove_quote(&token[j + 1]);
 		if(token)
 			free(token);
 		return ;
 	}
 	else if (ft_strncmp(&token[j], "\"$\"", 3)) // "$"USER, "$" => 치환 안하는 경우
 	{
-		data->plexer->pptokens[i] = remove_quote(&token[j]);
+		data.plexer->pptokens[i] = remove_quote(&token[j]);
 		if(token)
 			free(token);
 		return ;
 	}
 	else if (ft_strncmp(&token[j], "$?", -1)) // 
 	{
-	// 	data->plexer->pptokens[i] = ft_itoa(data->exit_status);
+	// 	data.plexer->pptokens[i] = ft_itoa(data.exit_status);
 		return ;
 	}
-	else if(ft_strncmp(data->plexer->pptokens[i - 1], "<<", -1))
+	else if(ft_strncmp(data.plexer->pptokens[i - 1], "<<", -1))
 		return ;
 	// echo "$PATH"hello => $PATH가 get_envv로 치환한 뒤 strjoin
 	while (token[j] && (token[j] == '$' || (token[j] == '\"' && token[j + 1] == '$')))
@@ -99,13 +99,13 @@ void	replace_env_to_value(int i)
 	{
 		ft_strlcpy(key, &token[j], key_len + 1);
 	// 알고보니 strlcpy에서는 dst를 할당해서 return 해주지 않는다는 사실,,, 할당해주는거로 바꿔봐야겟금,,,널가드를 lcpy에 추가했는데 맞느지 머르겟슴...아는게 멀까....
-		argv = get_envv(data, key);
+		argv = get_envv(key);
 		if(key)
 			free(key);
 		if (token[j + key_len + 1] == '\0')
-			data->plexer->pptokens[i] = argv;
+			data.plexer->pptokens[i] = argv;
 		else
-			data->plexer->pptokens[i] = ft_strjoin(argv, &token[j + key_len + 1]);
+			data.plexer->pptokens[i] = ft_strjoin(argv, &token[j + key_len + 1]);
 		if(token)
 			free(token);
 	}
@@ -117,8 +117,8 @@ void	insert_envv(char *key, char *value, int init_flag) // export시 환경변�
 	t_envv_node	*is_exist;
 	t_envv_node	*new;
 	
-	// if (data->envv_list)
-		is_exist = get_el_node(data->envv_list, key);
+	// if (data.envv_list)
+		is_exist = get_el_node(data.envv_list, key);
 	// else
 	// 	is_exist = NULL;
 	if (is_exist)
@@ -133,7 +133,7 @@ void	insert_envv(char *key, char *value, int init_flag) // export시 환경변�
 		element.value = value;
 		element.init_flag = init_flag;
 		new = ft_lstnew(element);
-		ft_lstadd_back(data, new);
+		ft_lstadd_back(new);
 	}
 }
 
@@ -141,7 +141,7 @@ char	*get_envv(char *key)
 {
 	t_envv_node *key_node;
 
-	key_node = get_el_node(data->envv_list, key);
+	key_node = get_el_node(data.envv_list, key);
 	if(!key_node)
 		return (NULL);
 	return (key_node->value);

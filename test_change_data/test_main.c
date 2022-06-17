@@ -16,13 +16,13 @@
 
 // int	analyze_input(char *input)
 // {
-// 	tokenize_input(data, input); // data구조체 내부에 tokens 추가
-// 	if (!data->plexer->pptokens) // data 모두 프리
+// 	tokenize_input(input); // data구조체 내부에 tokens 추가
+// 	if (!data.plexer->pptokens) // data 모두 프리
 // 		return (ERROR); // 에러 넘버 여러 경우로 나눌지 생각하기
-// 	lexical_analysis(data);
-// 	if (!data->plexer->ptype) // data Free
+// 	lexical_analysis();
+// 	if (!data.plexer->ptype) // data Free
 // 		return (ERROR); 
-// 	syntax_analysis(data);
+// 	syntax_analysis();
 // 	// parser
 // }
 
@@ -38,9 +38,9 @@
 // 		while (*envp)
 // 		{
 // 			init_envp(*envp, &key, &value);
-// 			insert_envv(data, key, value);
+// 			insert_envv(key, value);
 // 		}
-// 		insert_envv(data, "OLDPWD", NULL);
+// 		insert_envv("OLDPWD", NULL);
 // 		while (1)
 // 		{
 // 			input_str = readline("nanoshell >> ");
@@ -60,5 +60,5 @@
 // 			// data에 있는 plexer free해주기
 // 		}
 // 	}
-// 	return (data->exit_status);
+// 	return (data.exit_status);
 // }

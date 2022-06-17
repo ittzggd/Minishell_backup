@@ -16,18 +16,18 @@ int	ft_pwd(void)
 {
 	char	*cwd;
 
-	data->exit_status = 0;
+	data.exit_status = 0;
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		data->exit_status = 1;
-		return (data->exit_status);
+		data.exit_status = 1;
+		return (data.exit_status);
 	}
 	else
 	{
 		printf("%s\n", cwd);
 		free(cwd);
 	}
-	data->exit_status = 0;
-	return (data->exit_status);
+	data.exit_status = 0;
+	return (data.exit_status);
 }

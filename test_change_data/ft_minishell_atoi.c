@@ -24,15 +24,15 @@ long long	ft_atoi(const char *str, t_astnode *args_node)
 	if (*str == '-' || *str == '+')
 		str++;
 	if (!ft_is_digit(*str))
-		exit_status_numeric_error(data, args_node);
+		exit_status_numeric_error(args_node);
 	while (*str >= '0' && *str <= '9' && *str != '\0')
 	{
 		n = (n * 10) + (*str - '0');
 		str++;
 	}
 	if ((n * negative) > LLONG_MAX || (n * negative) < LLONG_MIN)
-		exit_status_numeric_error(data, args_node);
+		exit_status_numeric_error(args_node);
 	if ((*str <= '0' || *str >= '9') && *str != '\0')
-		exit_status_numeric_error(data, args_node);
+		exit_status_numeric_error(args_node);
 	return ((n * negative));
 }

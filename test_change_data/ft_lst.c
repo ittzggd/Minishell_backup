@@ -32,15 +32,15 @@ t_envv_node	*ft_lstnew(t_envv_node element)
 	return (new);
 }
 
-void	ft_lstadd_back(t_data *data, t_envv_node *new)
+void	ft_lstadd_back(t_envv_node *new)
 {
 	t_envv_node	*curr;
 
-	curr = data->envv_list;
+	curr = data.envv_list;
 	if (!new)
 		return ;
 	if (!curr)
-		data->envv_list = new;
+		data.envv_list = new;
 	else
 	{
 		while(curr->p_link)
@@ -73,7 +73,7 @@ void	remove_ll_element(t_envv_node **p_list, char *key)
 			if (curr)
 				free(curr);
 			p_list = tmp;
-			data->envv_list = *p_list;
+			data.envv_list = *p_list;
 			return ;
 		}
 		prev = curr;
@@ -98,7 +98,7 @@ void	clear_linked_list(t_envv_node **p_list)
 	if (curr)
 		free(curr);
 	p_list = tmp;
-	data->envv_list = *p_list;
+	data.envv_list = *p_list;
 	return ;
 }
 

@@ -28,7 +28,7 @@ int	ft_cd(t_astnode *args_node)
 	idx = args_node->prightchild->pvalue_index[1];
 	if (idx == END || ft_strncmp(rm_quote_tmp, "~", 1)) // cd  ||  cd ~
 	{	// cd 만 입력되면 HOME으로 이동해야 함.
-		home_path = get_envv(data, "HOME");
+		home_path = get_envv("HOME");
 		dst_path = ft_strjoin(home_path, rm_quote_tmp + 1);
 		if (!home_path)
 		{

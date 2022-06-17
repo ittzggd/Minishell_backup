@@ -42,10 +42,10 @@ void	init_ast(void)
 			free(ast);
 			return ;
 		}
-		data->p_ast = ast;
-		data->p_ast->prootnode = root_node;
+		data.p_ast = ast;
+		data.p_ast->prootnode = root_node;
 	}
-	recur_pipe(root_node, 0, data);
+	recur_pipe(root_node, 0);
 }
 
 int	recur_pipe(t_astnode *ast_node, int index) // 가장 처음은 초기화된 rootNode, index = 0 이 들어옴
@@ -54,8 +54,8 @@ int	recur_pipe(t_astnode *ast_node, int index) // 가장 처음은 초기화된 
 	int *type;
 	int c_index;
 
-	tokens = data->plexer->pptokens;
-	type = data->plexer->ptype;
+	tokens = data.plexer->pptokens;
+	type = data.plexer->ptype;
 	c_index = index;
 	while(tokens[index])
 	{
@@ -65,16 +65,16 @@ int	recur_pipe(t_astnode *ast_node, int index) // 가장 처음은 초기화된 
 			if(init_idx(index, ast_node) == ERROR)  //파이프 동가리 인덱스 저장
 				return (ERROR);
 			ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_COMMAND);
-			tree_cmd(ast_node->pleftchild, c_index, data);
+			tree_cmd(ast_node->pleftchild, c_index);
 			ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
-			if (recur_pipe(ast_node->prightchild, index + 1, data))
+			if (recur_pipe(ast_node->prightchild, index + 1))
 				return (TRUE);
 		}
 		index++;
 	}
 //	if (tokens[index] == NULL) // 일단 주석
 		ast_node->nodetype = A_COMMAND;
-		tree_cmd(ast_node, c_index, data);
+		tree_cmd(ast_node, c_index);
 	return (TRUE);
 }
 
@@ -86,17 +86,17 @@ void	tree_cmd(t_astnode *ast_node, int index)
 
 	if (ast_node->nodetype != A_COMMAND)
 		return ;
-	tokens = data->plexer->pptokens;
-	type = data->plexer->ptype;
+	tokens = data.plexer->pptokens;
+	type = data.plexer->ptype;
 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, 0);
 	ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
-	tree_args(ast_node->prightchild, index, data);
+	tree_args(ast_node->prightchild, index);
 	while (type[index] != T_PIPE && tokens[index])
 	{
 		if (type[index] == T_REDIRECTION)
 		{
 			ast_node->pleftchild->nodetype = A_REDIRECTIONS;
-			tree_reds(ast_node->pleftchild, index, data);
+			tree_reds(ast_node->pleftchild, index);
 			break ;
 		}
 		index++;
@@ -112,15 +112,15 @@ void	tree_cmd(t_astnode *ast_node, int index)
 
 // 	if (ast_node->nodetype != A_COMMAND)
 // 	 	return ;
-// 	tokens = data->plexer->pptokens;
-// 	type = data->plexer->ptype;
+// 	tokens = data.plexer->pptokens;
+// 	type = data.plexer->ptype;
 // 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, 0);
 // 	// ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
 // 	ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
 // 	if (type[index] == T_COMMAND) // == Command
 // 	{
 // 		ast_node->prightchild->nodetype = A_ARGUMENTS;
-// 		tree_args(ast_node->prightchild, index, data);
+// 		tree_args(ast_node->prightchild, index);
 // 	}
 // 	while (type[index] != T_PIPE && tokens[index])
 // 	{
@@ -128,7 +128,7 @@ void	tree_cmd(t_astnode *ast_node, int index)
 // 		{
 // 			ast_node->pleftchild->nodetype = A_REDIRECTIONS;
 // 			tree_red
-// 			s(ast_node->pleftchild, index, data); // red와 red다음 애만 추가되도록
+// 			s(ast_node->pleftchild, index); // red와 red다음 애만 추가되도록
 // 			break ;
 // 		}
 // 		index++;
@@ -147,8 +147,8 @@ int	tree_args(t_astnode *ast_node, int index)
 
 	if (ast_node->nodetype != A_ARGUMENTS)
 		return (ERROR);
-	tokens = data->plexer->pptokens;
-	type = data->plexer->ptype;
+	tokens = data.plexer->pptokens;
+	type = data.plexer->ptype;
 	args_leftchild = ast_node->pleftchild;
 	args_rightchild = ast_node->prightchild;
 	args_leftchild = insert_leftchildnode_ast(ast_node, A_FILEPATH);
@@ -181,8 +181,8 @@ void	tree_reds(t_astnode *ast_node, int index)
 	
 	if (ast_node->nodetype != A_REDIRECTIONS)
 		return ;
-	tokens = data->plexer->pptokens;
-	type = data->plexer->ptype;
+	tokens = data.plexer->pptokens;
+	type = data.plexer->ptype;
 	reds_leftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION); // RED
 	reds_rightchild = insert_rightchildnode_ast(ast_node, 0); // REDS
 	if (type[index] == T_REDIRECTION)
@@ -201,7 +201,7 @@ void	tree_reds(t_astnode *ast_node, int index)
 		if (type[index] == T_REDIRECTION)
 		{
 			reds_rightchild->nodetype = A_REDIRECTIONS;
-			tree_reds(reds_rightchild, index, data);
+			tree_reds(reds_rightchild, index);
 			return ;
 		}
 		index++;

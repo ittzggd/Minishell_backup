@@ -30,30 +30,30 @@ void	postorderTravelBinSTree(t_astnode *node);
 // 	// 4. 뭔가 잘못되었을 때 중지 시키지 않고 exit_status 만 변경시켜주거나 할 경우 계속 진행되다 꼬일 가능성 많음 예를들면 세그폴트라던가....
 // 	// 5. 다음 입력을 받기 전, data 구조체의 plexer와 관련된 것 free && 초기화
 	
-// 	// while(data->plexer->pptokens[i])
+// 	// while(data.plexer->pptokens[i])
 // 	// {
-// 	//  	printf("tokenize pptokens[%d] : %s\n", i, data->plexer->pptokens[i]);
+// 	//  	printf("tokenize pptokens[%d] : %s\n", i, data.plexer->pptokens[i]);
 // 	//  	i++;
 // 	// }
 
 // 	// // lexer
-// 	lexical_analysis(data);
+// 	lexical_analysis();
 // 	// i = 0;
-// 	// while(data->plexer->pptokens[i])
+// 	// while(data.plexer->pptokens[i])
 // 	// {
-// 	// 	printf("pptokens[%d] : %s  ", i, data->plexer->pptokens[i]);
-// 	// 	printf("type[%d] : %d\n", i, data->plexer->ptype[i]);
+// 	// 	printf("pptokens[%d] : %s  ", i, data.plexer->pptokens[i]);
+// 	// 	printf("type[%d] : %d\n", i, data.plexer->ptype[i]);
 // 	// 	i++;
 // 	// }
 
 // 	// //syntax
-// 	syntax_analysis(data);
-// 	init_ast(data);
+// 	syntax_analysis();
+// 	init_ast();
 // 	printf("ast tree : \n\n\n");
-// 	postorderTravelBinSTree(data->p_ast->prootnode);
-// 	// ft_pwd(data);
-// 	t_astnode *pelement = data->p_ast->prootnode->prightchild;
-// 	// ft_export(data, pelement);
+// 	postorderTravelBinSTree(data.p_ast->prootnode);
+// 	// ft_pwd();
+// 	t_astnode *pelement = data.p_ast->prootnode->prightchild;
+// 	// ft_export(pelement);
 // 	// printf("exportttttt \n");
 	
 // 	char *key;
@@ -61,20 +61,20 @@ void	postorderTravelBinSTree(t_astnode *node);
 
 // 	key = "test1";
 // 	value = "123";
-// 	insert_envv(data, key, value,TRUE);
+// 	insert_envv(key, value,TRUE);
 // 	key = "test2";
 // 	value = "122222223";
-// 	insert_envv(data, key, value,TRUE);
+// 	insert_envv(key, value,TRUE);
 // 	key = "test3";
 // 	value = "1233333333";
-// 	insert_envv(data, key, value,TRUE);
+// 	insert_envv(key, value,TRUE);
 	
-// 	ft_env(data, TRUE);
-// 	ft_env(data, FALSE);
-// 	// ft_echo(data, pelement);
+// 	ft_env(TRUE);
+// 	ft_env(FALSE);
+// 	// ft_echo(pelement);
 
-// 	ft_unset(data, pelement);
-// 	ft_env(data, FALSE);
-// 	ft_exit(data, pelement);
-// 	printf("%d\n", data->exit_status);
+// 	ft_unset(pelement);
+// 	ft_env(FALSE);
+// 	ft_exit(pelement);
+// 	printf("%d\n", data.exit_status);
 // }

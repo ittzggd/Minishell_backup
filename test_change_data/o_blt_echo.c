@@ -25,17 +25,17 @@ int	ft_echo(t_astnode *args_node)
 	int	*arg;
 	int	option_flag;
 
-	if (!data)
-		return (ERROR);
+	// if (!data)
+	// 	return (ERROR);
 	option_flag = FALSE;
 	arg = args_node->prightchild->pvalue_index;
 	while(*arg != -1)
 	{
-		if(data->plexer->ptype[*arg] == T_OPTION)
+		if(data.plexer->ptype[*arg] == T_OPTION)
 			option_flag = TRUE;
 		arg++;
 	}
-	if(do_echo(data, args_node, option_flag) == ERROR)
+	if(do_echo(args_node, option_flag) == ERROR)
 		return (ERROR);
 	return (TRUE);
 }
@@ -49,21 +49,21 @@ static int	do_echo(t_astnode *args_node, int option_flag)
 	arg++;
 	while(*arg != -1)
 	{
-		if(data->plexer->ptype[*arg] == T_OPTION)
+		if(data.plexer->ptype[*arg] == T_OPTION)
 		{
 			arg++;
 			continue;
 		}
-		rm_quote_str = remove_quote(data->plexer->pptokens[*arg]);
+		rm_quote_str = remove_quote(data.plexer->pptokens[*arg]);
 		if(!rm_quote_str)
 		{
-			data->exit_status = 1;
+			data.exit_status = 1;
 			return (ERROR);
 		}
 		if(ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
 		{
-			printf("%d", data->exit_status);
-			data->exit_status = 0;
+			printf("%d", data.exit_status);
+			data.exit_status = 0;
 		}
 		else
 		{
@@ -71,12 +71,12 @@ static int	do_echo(t_astnode *args_node, int option_flag)
 			if (*(arg + 1) != -1)
 				printf(" ");
 		}
-		if (rm_quote_str != data->plexer->pptokens[*arg])
+		if (rm_quote_str != data.plexer->pptokens[*arg])
 			free(rm_quote_str);
 		arg++;
 	}
 	if (option_flag != TRUE)
 		printf("\n");
-	data->exit_status = 0;
+	data.exit_status = 0;
 	return (TRUE);
 }

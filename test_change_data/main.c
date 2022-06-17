@@ -31,7 +31,7 @@ void	postorderTravelBinSTree(t_astnode *node)
 		{
 			while(node->pvalue_index[i] != -1)
 			{
-				printf("       value : %s         ", data->plexer->pptokens[node->pvalue_index[i]]);
+				printf("       value : %s         ", data.plexer->pptokens[node->pvalue_index[i]]);
 				i++;
 			}
 		}
@@ -44,15 +44,15 @@ void	postorderTravelBinSTree(t_astnode *node)
 
 int	analyze_input(char *input)
 {
-	tokenize_input(data, input); // data구조체 내부에 tokens 추가
-	if (!data->plexer->pptokens) // data 모두 프리
+	tokenize_input(input); // data구조체 내부에 tokens 추가
+	if (!data.plexer->pptokens) // data 모두 프리
 		return (ERROR); // 에러 넘버 여러 경우로 나눌지 생각하기
-	lexical_analysis(data);
-	if (!data->plexer->ptype) // data Free
+	lexical_analysis();
+	if (!data.plexer->ptype) // data Free
 		return (ERROR); 
-	if(syntax_analysis(data) != 0)
+	if(syntax_analysis() != 0)
 	{
-		data->exit_status = 258;
+		data.exit_status = 258;
 		return (ERROR);
 	}
 	// parser
@@ -71,10 +71,10 @@ int	main(int argc, char *argv[], char **envp)
 		while (*envp)
 		{
 			init_envp(*envp, &key, &value);
-			insert_envv(data, key, value, TRUE);
+			insert_envv(key, value, TRUE);
 			envp++;
 		}
-		insert_envv(data, "OLDPWD", NULL, TRUE);
+		insert_envv("OLDPWD", NULL, TRUE);
 		while (1)
 		{	
 			init_data();
@@ -87,9 +87,9 @@ int	main(int argc, char *argv[], char **envp)
 					free_data_lexer();
 					continue ;
 				}
-				init_ast(data); // ast 트리 생성
-				//postorderTravelBinSTree(data->p_ast->prootnode);
-				postorder_travel_ast(data->p_ast->prootnode);
+				init_ast(); // ast 트리 생성
+				//postorderTravelBinSTree(data.p_ast->prootnode);
+				postorder_travel_ast(data.p_ast->prootnode);
 				// 명령어 실행 부분
 
 			}
@@ -99,9 +99,9 @@ int	main(int argc, char *argv[], char **envp)
 			//free(input_str);
 
 			// int k = 0;
-			// while (data->plexer->pptokens[k])
+			// while (data.plexer->pptokens[k])
 			// {
-			// 	printf("in main__tokens[%d] : %s\n", k, data->plexer->pptokens[k]);
+			// 	printf("in main__tokens[%d] : %s\n", k, data.plexer->pptokens[k]);
 			// 	k++;
 			// }
 
@@ -110,6 +110,6 @@ int	main(int argc, char *argv[], char **envp)
 		}
 	}
 	//envv_list 랑 data만 free
-	return (data->exit_status);
+	return (data.exit_status);
 }
 

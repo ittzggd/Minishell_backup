@@ -17,10 +17,10 @@ int	syntax_analysis(void)
 	
 	curr = 0; 
 	ret_status = 0;
-	type = data->plexer->ptype;
-	tokens = data->plexer->pptokens;
-	printf("exit->status : %d\n", data->exit_status);
-	while(curr < data->tokens_cnt)
+	type = data.plexer->ptype;
+	tokens = data.plexer->pptokens;
+	printf("exit->status : %d\n", data.exit_status);
+	while(curr < data.tokens_cnt)
 	{
 		prev = curr - 1;
 		if(type[curr] == T_COMMAND)

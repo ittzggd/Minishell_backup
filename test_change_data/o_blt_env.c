@@ -16,7 +16,7 @@ int	ft_env(int export_flag)
 {
 	t_envv_node *curr;
 
-	curr = data->envv_list;
+	curr = data.envv_list;
 	if (export_flag == TRUE)
 	{
 		// 아스키코드 순 정렬
@@ -28,8 +28,8 @@ int	ft_env(int export_flag)
 				printf("declare -x %s\n", curr->key);
 			curr = curr->p_link;
 		}
-		data->exit_status = 0;
-		return (data->exit_status); // exit_status : 성공
+		data.exit_status = 0;
+		return (data.exit_status); // exit_status : 성공
 	}
 	while (curr)
 	{
@@ -37,6 +37,6 @@ int	ft_env(int export_flag)
 			printf("%s=%s\n", curr->key, curr->value);
 		curr = curr->p_link;
 	}
-	data->exit_status = 0;
-	return (data->exit_status); // exit_status : 성공
+	data.exit_status = 0;
+	return (data.exit_status); // exit_status : 성공
 }

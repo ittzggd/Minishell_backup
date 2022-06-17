@@ -24,35 +24,35 @@ void	free_data_lexer(void)
 	int	i;
 
 	i = 0;
-	data->pipe_cnt = 0;
-	data->redirection_cnt = 0;
-	data->pipe_cnt = 0;
-	if (data->plexer)
+	data.pipe_cnt = 0;
+	data.redirection_cnt = 0;
+	data.pipe_cnt = 0;
+	if (data.plexer)
 	{
-		if (data->plexer->ptype)
-			free(data->plexer->ptype);
-		while (data->plexer->pptokens[i])
+		if (data.plexer->ptype)
+			free(data.plexer->ptype);
+		while (data.plexer->pptokens[i])
 		{
-			if (data->plexer->pptokens[i])
+			if (data.plexer->pptokens[i])
 			{
-				free(data->plexer->pptokens[i]);
-				data->plexer->pptokens[i] = NULL;
+				free(data.plexer->pptokens[i]);
+				data.plexer->pptokens[i] = NULL;
 			}
 			i++;
 		}
-		if (data->plexer->pptokens)
-			free(data->plexer->pptokens);
-		free(data->plexer);
+		if (data.plexer->pptokens)
+			free(data.plexer->pptokens);
+		free(data.plexer);
 	}
-	//delete_linked_list(&data->envv_list);
-	//data->exit_status = 0;
+	//delete_linked_list(&data.envv_list);
+	//data.exit_status = 0;
 }
 
 void	reset_data(void)
 {
 	free_data_lexer();
-	if(data->p_ast)
-		free_ast(data->p_ast);
+	if(data.p_ast)
+		free_ast(data.p_ast);
 }
 
 
