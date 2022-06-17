@@ -1,10 +1,11 @@
-#include "../include/minishell.h"
+#include "./include/minishell.h"
 
 char	*tokenize_input(char *input)
 {
 	int		split_index;
 
-	if (!input || !data)
+	// if (!input || !data)
+	if (!input)
 		return (NULL);
 	data.tokens_cnt = ft_wordcount(input); // 1. 단어 개수 세기
 	if (data.tokens_cnt == ERROR)

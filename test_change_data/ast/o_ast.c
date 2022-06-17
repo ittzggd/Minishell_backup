@@ -31,8 +31,8 @@ void	init_ast(void)
 	t_ast		*ast;
 	t_astnode	*root_node;
 
-	if(data)
-	{
+	// if(data)
+	// {
 		ast = malloc(sizeof(t_ast));
 		if(!ast)
 			return ;
@@ -44,7 +44,7 @@ void	init_ast(void)
 		}
 		data.p_ast = ast;
 		data.p_ast->prootnode = root_node;
-	}
+	// }
 	recur_pipe(root_node, 0);
 }
 

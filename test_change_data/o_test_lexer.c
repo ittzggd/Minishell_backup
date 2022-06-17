@@ -1,4 +1,4 @@
-#include "../include/minishell.h"
+#include "./include/minishell.h"
 
 static int	get_type(char *value)
 {

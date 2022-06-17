@@ -66,8 +66,8 @@ void	goto_redirection(t_astnode *red_node)
 
 	if(!red_node->prightchild->pvalue_index)
 		return ;
-	red = data->plexer->pptokens[red_node->pleftchild->pvalue_index[0]];
-	filename = data->plexer->pptokens[red_node->prightchild->pvalue_index[0]];
+	red = data.plexer->pptokens[red_node->pleftchild->pvalue_index[0]];
+	filename = data.plexer->pptokens[red_node->prightchild->pvalue_index[0]];
 	if(ft_strncmp(red, "<", -1)) // 타입이 어떤 타입으로 확인해야할지 잘 모르겠음ㅜㅇ ㅜ
 		in_red(filename);
 	else if(ft_strncmp(red,">", -1))

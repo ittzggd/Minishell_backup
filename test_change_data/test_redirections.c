@@ -1,4 +1,4 @@
-#include "../include/minishell.h"
+#include "./include/minishell.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <termios.h>
@@ -24,7 +24,7 @@ void	in_red(char *filename)
 	{
 		dup2(1, 2);
 		printf("minishell: %s: No such file or directory\n", filename);
-		data->exit_status = 1;
+		data.exit_status = 1;
 		return ;
 	}
 	dup2(fd, 1);
@@ -84,18 +84,18 @@ void	heredoc(char *delimiter)
 // 	init_ast(data);
 	
 
-// 	filepath_node = data->p_ast->prootnode->pleftchild->pleftchild->prightchild;
-// 	char	*filepath = data->plexer->pptokens[filepath_node->pvalue_index[0]];
+// 	filepath_node = data.p_ast->prootnode->pleftchild->pleftchild->prightchild;
+// 	char	*filepath = data.plexer->pptokens[filepath_node->pvalue_index[0]];
 // 	fd = open(filepath, O_WRONLY|O_APPEND, 0666);
 // 	if(fd < 0)
 // 	{
 // 		printf("minishell: %s: No such file or directory\n", filepath);
 // 		return (ERROR);
-// 		data->exit_status = 1;
+// 		data.exit_status = 1;
 // 	}
 // 	dup2(fd, 1);
 	
-// 	exec_cmd(data->p_ast->prootnode);
+// 	exec_cmd(data.p_ast->prootnode);
 // }
 
 // void out_red()
@@ -113,8 +113,8 @@ void	heredoc(char *delimiter)
 // 	init_ast(data);
 	
 
-// 	filepath_node = data->p_ast->prootnode->pleftchild->pleftchild->prightchild;
-// 	char	*filepath = data->plexer->pptokens[filepath_node->pvalue_index[0]];
+// 	filepath_node = data.p_ast->prootnode->pleftchild->pleftchild->prightchild;
+// 	char	*filepath = data.plexer->pptokens[filepath_node->pvalue_index[0]];
 // 	fd = open(filepath, O_WRONLY|O_TRUNC, 0666); // 이미 존재하는 파일이면 내용 삭제 후 적기
 // 	if (fd < 0) // 파일이 존재 하지 않으면, 새로 생성
 // 	{
@@ -122,7 +122,7 @@ void	heredoc(char *delimiter)
 // 	}
 // 	dup2(fd, 1);
 	
-// 	exec_cmd(data->p_ast->prootnode);
+// 	exec_cmd(data.p_ast->prootnode);
 // }
 
 // void append_red()
@@ -141,8 +141,8 @@ void	heredoc(char *delimiter)
 // 	init_ast(data);
 	
 
-// 	filepath_node = data->p_ast->prootnode->pleftchild->pleftchild->prightchild;
-// 	char	*filepath = data->plexer->pptokens[filepath_node->pvalue_index[0]];
+// 	filepath_node = data.p_ast->prootnode->pleftchild->pleftchild->prightchild;
+// 	char	*filepath = data.plexer->pptokens[filepath_node->pvalue_index[0]];
 // 	fd = open(filepath, O_WRONLY|O_APPEND, 0666); // 이미 존재하는 파일이면 내용 삭제 후 적기
 // 	if (fd < 0) // 파일이 존재 하지 않으면, 새로 생성
 // 	{
@@ -150,5 +150,5 @@ void	heredoc(char *delimiter)
 // 	}
 // 	dup2(fd, 1);
 	
-// 	exec_cmd(data->p_ast->prootnode);
+// 	exec_cmd(data.p_ast->prootnode);
 // }

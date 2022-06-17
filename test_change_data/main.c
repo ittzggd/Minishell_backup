@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "./include/minishell.h"
 
 void	postorderTravelBinSTree(t_astnode *node);
 void	postorder_travel_ast(t_astnode *ast_node);
@@ -65,7 +65,7 @@ int	main(int argc, char *argv[], char **envp)
 	char	*key;
 	char	*value;
 
-	data = ft_calloc(1, sizeof(t_data));
+	// data = ft_calloc(1, sizeof(t_data));
 	if (argc == 1)
 	{
 		while (*envp)
