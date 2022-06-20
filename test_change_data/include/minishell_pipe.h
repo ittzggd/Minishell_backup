@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:12:30 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/14 19:13:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:33:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <string.h> // strerror
 # include <dirent.h> //opendir closedir readdir
 
-char	**envvlist_to_envp(void);
+void	exec_ast(void);
 void	exec_cmd(t_astnode *argsnode);
+
 
 #endif 

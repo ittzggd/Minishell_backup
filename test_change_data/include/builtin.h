@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 09:52:55 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/13 19:13:56 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:53:33 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		ft_unset(t_astnode *args_node);
 int		ft_export(t_astnode *args_node);
 void	ft_exit(t_astnode *args_node);
 int		ft_cd(t_astnode *args_node);
+void	ft_nanoshell(void);
 
 void	exit_status_numeric_error(t_astnode *args_node);
 void	update_pwd_oldpwd(char *key);

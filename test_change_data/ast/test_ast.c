@@ -1,45 +1,78 @@
 #include"../include/minishell.h"
 
-void	postorder_travel_ast(t_astnode *ast_node)
+void	postorder_travel_ast(t_astnode *ast_node, int *std_fd)
 {
-	if (ast_node)
+	int	pid;
+	int	i;
+
+	pid = fork();
+	if (pid < 0)
 	{
-		if(ast_node->nodetype == A_COMMAND)
+		data.exit_status = 1; // 1하면 되는지 확인
+		return ;
+	}
+	//sleep 10 | ls
+	while (ast_node->nodetype == A_PIPE)
+	{
+		if (pid == 0)
+			postorder_travel_command(ast_node->pleftchild, std_fd);
+		else // 부모 프로세스
 		{
-			postorder_travel_command(ast_node);
-			return;
-		}
-		else if (ast_node->nodetype == A_PIPE)
-		{
-			// 여기서 fork 필요하긴 함.
-			postorder_travel_command(ast_node->pleftchild);
-			if (ast_node->prightchild->nodetype == A_COMMAND)
+			// waitpid(-1, 0, WCONTINUED); 직렬, exit 하면 꼬임
+			pid = fork();
+			if (pid < 0)
 			{
-				//여기서 fork 해야 자식에게 cmd node를 넘겨줌
-				postorder_travel_command(ast_node->prightchild);
+				data.exit_status = 1; // 1하면 되는지 확인
 				return ;
 			}
-			postorder_travel_ast(ast_node->prightchild);
 		}
+		ast_node = ast_node->prightchild; // pipe
 	}
-	return ; 
+	if (pid == 0 && ast_node->nodetype == A_COMMAND)
+	{
+		postorder_travel_command(ast_node, std_fd);
+	}
+	// 가장 마지막에 끝나는 자식까지 기다리기
+	i = -1;
+	while (i < data.pipe_cnt)
+	{
+		wait(NULL);
+		i++;
+	}
+	// if (ast_node)
+	// {
+	// 	if(ast_node->nodetype == A_COMMAND)
+	// 	{
+	// 		postorder_travel_command(ast_node, std_fd);
+	// 		return;
+	// 	}
+	// 	else if (ast_node->nodetype == A_PIPE)
+	// 	{
+	// 		// 여기서 fork 필요하긴 함.
+	// 		postorder_travel_command(ast_node->pleftchild, std_fd);
+	// 		if (ast_node->prightchild->nodetype == A_COMMAND)
+	// 		{
+	// 			//여기서 fork 해야 자식에게 cmd node를 넘겨줌
+	// 			postorder_travel_command(ast_node->prightchild, std_fd);
+	// 			return ;
+	// 		}
+	// 		postorder_travel_ast(ast_node->prightchild, std_fd);
+	// 	}
+	// }
+	// return ; 
 }
 
-void	postorder_travel_command(t_astnode *cmdnode)
+void	postorder_travel_command(t_astnode *cmdnode, int *std_fd)
 {
 	if (cmdnode)
 	{
 		// reds
-		dup2(STDOUT_FILENO, 100);
 		postorder_travel_reds(cmdnode->pleftchild);
 		
 		// args
 		if(cmdnode->prightchild->prightchild->pvalue_index)
 			exec_cmd(cmdnode->prightchild);
-		dup2(100, STDOUT_FILENO);
 	}
-	return ; 
-
 }
 
 void	postorder_travel_reds(t_astnode *reds_node)
@@ -48,10 +81,7 @@ void	postorder_travel_reds(t_astnode *reds_node)
 	if (reds_node->pleftchild)
 	{
 		goto_redirection(reds_node->pleftchild);
-		//dup2(STDOUT_FILENO, 1);
-		//dup2(STDIN_FILENO, 0);
 	}
-	// reds
 	if(reds_node->prightchild)
 	{
 		postorder_travel_reds(reds_node->prightchild);

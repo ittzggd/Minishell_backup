@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/13 12:43:31 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 11:56:43 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	main(int argc, char *argv[], char **envp)
 		while (*envp)
 		{
 			init_envp(*envp, &key, &value);
-			insert_envv(data, key, value);
+			insert_envv(data, key, value, TRUE);
 		}
-		insert_envv(data, "OLDPWD", NULL);
+		insert_envv(data, "OLDPWD", NULL, TRUE);
 		while (1)
 		{
 			input_str = readline("nanoshell >> ");

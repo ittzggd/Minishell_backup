@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:46:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/14 18:43:24 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:39:24 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	out_red(char *filename)
 	{
 		fd = open(filename, O_WRONLY|O_CREAT|O_EXCL, 0666);
 	}
-	dup2(fd, 1);
+	dup2(fd, STDOUT_FILENO);
 }
 
 void	in_red(char *filename)
@@ -31,12 +31,12 @@ void	in_red(char *filename)
 	fd = open(filename, O_WRONLY|O_APPEND, 0666);
 	if(fd < 0)
 	{
-		dup2(1, 2);
+		dup2(STDERR_FILENO, STDOUT_FILENO);
 		printf("minishell: %s: No such file or directory\n", filename);
 		data->exit_status = 1;
 		return (data->exit_status);
 	}
-	dup2(fd, 1);
+	dup2(fd, STDOUT_FILENO);
 }
 
 void	append_red(char *filename)
@@ -50,7 +50,7 @@ void	append_red(char *filename)
 	{
 		fd = open(filename, O_WRONLY|O_CREAT|O_EXCL, 0666);
 	}
-	dup2(fd, 1);
+	dup2(fd, STDOUT_FILENO);
 }
 
 void	heredoc(char *delimiter)

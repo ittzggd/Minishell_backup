@@ -17,6 +17,8 @@
 # define FALSE 0
 # define ERROR -1
 # define END -1
+# define ALLOCATE_FAILED -2
+
 
 typedef struct s_lexer
 {
@@ -29,6 +31,7 @@ typedef struct s_data
 	int						pipe_cnt;
 	int						redirection_cnt;
 	int						tokens_cnt;
+	int						envv_cnt;
 	t_lexer					*plexer;
 	struct s_envv_node		*envv_list;
 	struct s_ast			*p_ast;

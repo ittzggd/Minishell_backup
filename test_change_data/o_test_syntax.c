@@ -1,10 +1,5 @@
 #include "./include/minishell.h"
 
-// void	syntax_analysis(void)
-// {
-	
-// }
-
 static void	syntax_error(int *ret_status);
 
 int	syntax_analysis(void)

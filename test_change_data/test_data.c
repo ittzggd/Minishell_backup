@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:31:33 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/15 20:26:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 15:25:36 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_data_lexer(void)
 	int	i;
 
 	i = 0;
-	data.pipe_cnt = 0;
+	data.tokens_cnt = 0;
 	data.redirection_cnt = 0;
 	data.pipe_cnt = 0;
 	if (data.plexer)

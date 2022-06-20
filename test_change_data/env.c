@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/15 20:55:57 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 12:43:34 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	replace_env_to_value(int i)
 	data.ptype[i] = T_WORD
 	return (new env)  혹은 data.pptokens[i] = new env
 	*/
+
+
+
 	char	*key;
 	char	*token;
 	char	*argv;
@@ -134,6 +137,7 @@ void	insert_envv(char *key, char *value, int init_flag) // export시 환경변�
 		element.init_flag = init_flag;
 		new = ft_lstnew(element);
 		ft_lstadd_back(new);
+		data.envv_cnt++;
 	}
 }
 

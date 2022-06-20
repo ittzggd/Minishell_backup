@@ -6,14 +6,13 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/15 20:42:03 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:53:38 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
 void	postorderTravelBinSTree(t_astnode *node);
-void	postorder_travel_ast(t_astnode *ast_node);
 void	free_data_lexer(void);
 void	clear_linked_list(t_envv_node **p_list);
 void	delete_linked_list(t_envv_node **p_list);
@@ -89,9 +88,9 @@ int	main(int argc, char *argv[], char **envp)
 				}
 				init_ast(); // ast 트리 생성
 				//postorderTravelBinSTree(data.p_ast->prootnode);
-				postorder_travel_ast(data.p_ast->prootnode);
+				exec_ast();
 				// 명령어 실행 부분
-
+				
 			}
 			else
 				break ; //break가 없어야 할 듯 아마 우리는 ctrl+C가 아닌 이상 prompt를 계속 띄운 상태여야 함
