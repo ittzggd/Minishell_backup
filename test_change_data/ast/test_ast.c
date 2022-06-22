@@ -1,6 +1,6 @@
 #include"../include/minishell.h"
 
-void	postorder_travel_ast(t_astnode *ast_node, int *std_fd)
+void	postorder_travel_ast(t_astnode *ast_node)
 {
 	int	pid;
 	int	i;
@@ -15,7 +15,7 @@ void	postorder_travel_ast(t_astnode *ast_node, int *std_fd)
 	while (ast_node->nodetype == A_PIPE)
 	{
 		if (pid == 0)
-			postorder_travel_command(ast_node->pleftchild, std_fd);
+			postorder_travel_command(ast_node->pleftchild);
 		else // 부모 프로세스
 		{
 			// waitpid(-1, 0, WCONTINUED); 직렬, exit 하면 꼬임
@@ -30,7 +30,7 @@ void	postorder_travel_ast(t_astnode *ast_node, int *std_fd)
 	}
 	if (pid == 0 && ast_node->nodetype == A_COMMAND)
 	{
-		postorder_travel_command(ast_node, std_fd);
+		postorder_travel_command(ast_node);
 	}
 	// 가장 마지막에 끝나는 자식까지 기다리기
 	i = -1;
@@ -62,7 +62,7 @@ void	postorder_travel_ast(t_astnode *ast_node, int *std_fd)
 	// return ; 
 }
 
-void	postorder_travel_command(t_astnode *cmdnode, int *std_fd)
+void	postorder_travel_command(t_astnode *cmdnode)
 {
 	if (cmdnode)
 	{

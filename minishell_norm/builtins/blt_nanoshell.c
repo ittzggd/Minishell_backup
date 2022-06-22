@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/20 12:55:30 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/21 20:26:22 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,41 @@
 static char	*envv_join(char *key, char *value);
 static char	**envvlist_to_envp(void);
 
-void	ft_nanoshell(void)
+void	ft_nanoshell(char *filepath)
 {
-	char	filepath[12];
-	char	**envp;
-	char	*argv[2]; 
+	pid_t		pid;
+	char		**envp;
+	char		*argv[2];
+	struct stat	*buf;
 	
 	data.exit_status = 0;
-	stat(file_name, struct stat *buf);
-	ft_strlcpy(filepath, "./nanoshell", 12);
-	envp = envvlist_to_envp();
-	if (!envp)
+	pid = fork();
+	if (pid < 0)
 	{
-		data.exit_status = 1;
-		return ;
+		exit(1);
 	}
-	argv[0] = "./nanoshell";
-	argv[1] = NULL;
-	execve(filepath, argv, envp);
-	// SHLVL 증가, 감소 기능 추가할지 고민
+	if(pid == 0)	
+	{
+		if (!ft_strncmp(filepath, "nanoshell", -1) && stat(filepath, buf) == -1)
+		{
+			printf("nanoshell : command not found : %s\n", filepath);
+			data.exit_status = 1;
+			exit(data.exit_status);
+		}
+		envp = envvlist_to_envp();
+		if (!envp)
+		{
+			data.exit_status = 1;
+			return ;
+		}
+		argv[0] = "./nanoshell";
+		argv[1] = NULL;
+		execve(argv[0], argv, envp);
+		// SHLVL 증가, 감소 기능 추가할지 고민
+		// 부모 미니쉘은 시그널 끄기
+	}
+	else
+		waitpid(pid, &data.exit_status, 0);
 }
 
 

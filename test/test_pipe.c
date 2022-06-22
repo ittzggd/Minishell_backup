@@ -28,6 +28,32 @@ void	exec_cmd(t_astnode *argsnode)
 		ft_unset(data, argsnode);
 	else if (ft_strncmp(blt_cmd, "minishell", -1))
 		printf("minishell hohoho\n");
+	else if (ft_strncmp(blt_cmd, "sleep", -1))
+	{
+		char *argv[3];
+		char *env[] = {"/bin/sleep", NULL};
+		argv[0] = "sleep";
+		argv[1] = "10";
+		argv[2] = 0;
+		execve(env[0], argv, env);
+	}
+	else if (ft_strncmp(blt_cmd, "cat", -1))
+	{
+		char *argv[2];
+		char *env[] = {"/bin/cat", NULL};
+		argv[0] = "cat";
+		argv[1] = 0;
+		execve(env[0], argv, env);
+	}
+	else if (ft_strncmp(blt_cmd, "ls", -1))
+	{
+		char *argv[2];
+		char *env[] = {"/bin/ls", NULL};
+		argv[0] = "ls";
+		argv[1] = NULL;
+		execve(env[0], argv, env);
+		//execve(env[0], argv, env);
+	}
 	else
 		printf("nanoshell : command not found : %s\n", blt_cmd);
 }

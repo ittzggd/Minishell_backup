@@ -34,7 +34,9 @@
 		"string_view": "c",
 		"unistd.h": "c",
 		"dirent.h": "c",
-		"types.h": "c"
+		"types.h": "c",
+		"errno.h": "c",
+		"minishell_pipe.h": "c"
 	},
 	"42header.email": "hejang@student.42seoul.kr",
 	"42header.username": "hejang",
