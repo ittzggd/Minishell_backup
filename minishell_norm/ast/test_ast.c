@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/22 21:08:45 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/23 15:55:15 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 	if (!pid)
 		exit(1);
 	i = 0;
-	prev_fd = 0;
+	prev_fd = -1;
 	while (ast_node->nodetype == A_PIPE || ast_node->nodetype == A_COMMAND)
 	{
 		if (i < data.pipe_cnt)
@@ -40,7 +40,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 		}
 		if (pid[i] == 0)
 		{
-			if (prev_fd)
+			if (prev_fd != -1)
 			{
 				dup2(prev_fd, STDIN_FILENO);
 				close(prev_fd);
@@ -60,7 +60,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 		}
 		else // 부모 프로세스
 		{
-			if (prev_fd)
+			if (prev_fd != -1)
 				close(prev_fd);
 			if (i == data.pipe_cnt) // 마지막 커맨드 노드면
 				close(pipe_line[0]);
@@ -71,12 +71,6 @@ void	postorder_travel_ast(t_astnode *ast_node)
 		}
 		ast_node = ast_node->prightchild; // pipe_node
 	}
-	// if (pid[i] == 0 && ast_node->nodetype == A_COMMAND)
-	// {
-	// 	postorder_travel_command(ast_node);
-	// 	pid_exit_status = data.exit_status;
-	// 	exit(data.exit_status);
-	// }
 	// 가장 마지막에 끝나는 자식까지 기다리기
 	data.exit_status = pid_exit_status;
 	i = 0;
@@ -84,29 +78,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 	{
 		waitpid(pid[i], &data.exit_status, 0);
 		i++;
-	}
-
-	// if (ast_node)
-	// {
-	// 	if(ast_node->nodetype == A_COMMAND)
-	// 	{
-	// 		postorder_travel_command(ast_node, std_fd);
-	// 		return;
-	// 	}
-	// 	else if (ast_node->nodetype == A_PIPE)
-	// 	{
-	// 		// 여기서 fork 필요하긴 함.
-	// 		postorder_travel_command(ast_node->pleftchild, std_fd);
-	// 		if (ast_node->prightchild->nodetype == A_COMMAND)
-	// 		{
-	// 			//여기서 fork 해야 자식에게 cmd node를 넘겨줌
-	// 			postorder_travel_command(ast_node->prightchild, std_fd);
-	// 			return ;
-	// 		}
-	// 		postorder_travel_ast(ast_node->prightchild, std_fd);
-	// 	}
-	// }
-	// return ; 
+	} 
 }
 
 void	postorder_travel_command(t_astnode *cmdnode)

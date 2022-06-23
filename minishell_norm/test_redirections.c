@@ -49,17 +49,24 @@ void	heredoc(char *delimiter)
 {
 	char	*input_str;
 	char	*delimiter_without_quote;
+	char	*tmp;
+	char	*line;
+	char	*save_buf;
 	
 	delimiter_without_quote = remove_quote(delimiter);
 	while (1)
 	{
-		//rl_on_new_line();
-    	//rl_replace_line("here doc >", 1);
-    	//rl_redisplay();
-		//rl_replace_line("heredoc >", 1);
 		input_str = readline("heredoc > ");
 		if (ft_strncmp(input_str, delimiter_without_quote, -1))
 			break ;
+		line = ft_strjoin(input_str, "\n");
+		if (!save_buf)
+			save_buf = ft_strdup("");
+		tmp = ft_strjoin(save_buf, line);
+		if (!tmp)
+			// malloc 실패
+		free(save_buf);
+		save_buf = tmp;
 	}
 	if (delimiter != delimiter_without_quote)
 		free(delimiter_without_quote);
