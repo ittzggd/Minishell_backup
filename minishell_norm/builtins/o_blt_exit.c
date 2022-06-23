@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:05 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/15 20:04:03 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/23 19:02:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_exit(t_astnode *args_node)
 	{
 		str = data.plexer->pptokens[args_node->prightchild->pvalue_index[1]];
 		data.exit_status = ft_atoi(str, args_node->prightchild);
+		printf("ft_exit str : %s\n", str);
+		printf("ft_exit str => data.exit_status : %d\n", data.exit_status);
 		if(cnt > 2)
 		{
 			data.exit_status = exit_status_argc_error(args_node->prightchild);

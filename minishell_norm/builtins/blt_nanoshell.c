@@ -6,30 +6,29 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/21 20:26:22 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/23 20:24:32 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static char	*envv_join(char *key, char *value);
-static char	**envvlist_to_envp(void);
+
 
 void	ft_nanoshell(char *filepath)
 {
-	pid_t		pid;
+	// pid_t		pid;
 	char		**envp;
 	char		*argv[2];
 	struct stat	*buf;
 	
-	data.exit_status = 0;
-	pid = fork();
-	if (pid < 0)
-	{
-		exit(1);
-	}
-	if(pid == 0)	
-	{
+	// data.exit_status = 0;
+	// pid = fork();
+	// if (pid < 0)
+	// {
+	// 	exit(1);
+	// }
+	// if(pid == 0)	
+	// {
 		if (!ft_strncmp(filepath, "nanoshell", -1) && stat(filepath, buf) == -1)
 		{
 			printf("nanoshell : command not found : %s\n", filepath);
@@ -47,13 +46,13 @@ void	ft_nanoshell(char *filepath)
 		execve(argv[0], argv, envp);
 		// SHLVL 증가, 감소 기능 추가할지 고민
 		// 부모 미니쉘은 시그널 끄기
-	}
-	else
-		waitpid(pid, &data.exit_status, 0);
+	// }
+	// else
+	// 	waitpid(pid, &data.exit_status, 0);
 }
 
 
-static char	**envvlist_to_envp(void)
+char	**envvlist_to_envp(void)
 {
 	int			cnt;
 	int			i;
@@ -78,7 +77,7 @@ static char	**envvlist_to_envp(void)
 	return (envp);
 }
 
-static char	*envv_join(char *key, char *value)
+char	*envv_join(char *key, char *value)
 {
 	size_t	len1;
 	size_t	len2;

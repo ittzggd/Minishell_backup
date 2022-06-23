@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/23 15:55:15 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/23 20:47:48 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 	int	i;
 	int	pipe_line[2];
 	int	prev_fd;
+	int	tmp;
 
 	pid = (int *)ft_calloc(data.pipe_cnt + 1, sizeof(int));
 	if (!pid)
@@ -38,6 +39,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 			data.exit_status = 1; // 1하면 되는지 확인
 			return ;  // exit
 		}
+		
 		if (pid[i] == 0)
 		{
 			if (prev_fd != -1)
@@ -72,13 +74,16 @@ void	postorder_travel_ast(t_astnode *ast_node)
 		ast_node = ast_node->prightchild; // pipe_node
 	}
 	// 가장 마지막에 끝나는 자식까지 기다리기
-	data.exit_status = pid_exit_status;
 	i = 0;
 	while (i < data.pipe_cnt + 1)
 	{
 		waitpid(pid[i], &data.exit_status, 0);
 		i++;
 	} 
+	if (WIFEXITED(data.exit_status))
+		data.exit_status = WEXITSTATUS(data.exit_status);
+	else if (WIFSIGNALED(data.exit_status))
+		data.exit_status = WTERMSIG(data.exit_status) + 128;
 }
 
 void	postorder_travel_command(t_astnode *cmdnode)

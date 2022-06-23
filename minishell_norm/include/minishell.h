@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/22 20:56:55 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/23 20:24:39 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int			init_envp(char *input, char **key, char **value);
 
 int		syntax_analysis(void);
 
-
+char	*envv_join(char *key, char *value);
+char	**envvlist_to_envp(void);
 
 
 #endif

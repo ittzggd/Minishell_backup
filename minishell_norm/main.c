@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/20 17:43:30 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/23 20:57:35 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char *argv[], char **envp)
 					continue ;
 				}
 				init_ast(); // ast 트리 생성
-				//postorderTravelBinSTree(data.p_ast->prootnode);
+				postorderTravelBinSTree(data.p_ast->prootnode);
 				exec_ast();
 				// 명령어 실행 부분
 				
@@ -97,12 +97,12 @@ int	main(int argc, char *argv[], char **envp)
 			add_history(input_str);
 			//free(input_str);
 
-			// int k = 0;
-			// while (data.plexer->pptokens[k])
-			// {
-			// 	printf("in main__tokens[%d] : %s\n", k, data.plexer->pptokens[k]);
-			// 	k++;
-			// }
+			int k = 0;
+			while (data.plexer->pptokens[k])
+			{
+				printf("in main__tokens[%d] : %s\n", k, data.plexer->pptokens[k]);
+				k++;
+			}
 
 			reset_data();
 			// data에 있는 plexer free해주기

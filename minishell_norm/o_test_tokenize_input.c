@@ -19,15 +19,15 @@ char	*tokenize_input(char *input)
 	 	ft_free_all(data.plexer->pptokens);
 		data.plexer->pptokens = NULL;
 	}
-	return ("SUCCESS");
-}
-
 	// int k = 0;
 	// while (data.plexer->pptokens[k])
 	// {
 	// 	printf("in tokenize__tokens[%d] : %s\n", k, data.plexer->pptokens[k]);
 	// 	k++;
 	// }
+	return ("SUCCESS");
+}
+
 
 // int main()
 // {
