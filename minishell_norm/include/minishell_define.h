@@ -13,6 +13,8 @@
 #ifndef MINISHELL_DEFINE_H
 # define MINISHELL_DEFINE_H
 
+# include <termios.h>
+
 # define TRUE 1
 # define FALSE 0
 # define ERROR -1
@@ -38,7 +40,10 @@ typedef struct s_data
 	struct s_envv_node		*envv_list;
 	struct s_ast			*p_ast;
 	int						exit_status;
-	struct s_ioredirection	**io_red;
+	struct termios			changed_term;
+	struct termios			origin_term;
+	// struct s_ioredirection	**io_red;
+	
 }			t_data;
 
 typedef struct s_envv_node
@@ -68,12 +73,12 @@ typedef struct s_cmd
 	char	*cmd[9];
 }			t_cmd;
 
-typedef	struct s_ioredirection
-{
-	char	*red_stdin;
-	char	*red_stdout;
-	//char	*heredoc;
-}			t_ioredirection;
+// typedef	struct s_ioredirection
+// {
+// 	char	*red_stdin;
+// 	char	*red_stdout;
+// 	//char	*heredoc;
+// }			t_ioredirection;
 
 
 enum e_ast_node_type

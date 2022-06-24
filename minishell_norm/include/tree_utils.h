@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:26:41 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/15 20:04:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 21:06:09 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ int			recur_pipe(t_astnode *ast_node, int index); // 가장 처음은 초기화�
 // void deletet_astnode(t_astnode** pㅜode); // 댕글링 포인터 처리 위해서 이중포인터로 전달
 void	delete_ast(t_astnode *node);
 void	free_ast(t_ast *ast);
+
+
 
 #endif

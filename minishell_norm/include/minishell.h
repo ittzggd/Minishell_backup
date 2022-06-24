@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 13:58:22 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 20:15:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 extern	t_data		data;
 
+void	init_setting(char **envp);
 int		analyze_input(char *input);
 
 // tokens
@@ -49,8 +50,14 @@ int			init_envp(char *input, char **key, char **value);
 
 int		syntax_analysis(void);
 
+
 char	*envv_join(char *key, char *value);
 char	**envvlist_to_envp(void);
 
+char	**join_filepath(char *execve_cmd);
+
+void	free_data_lexer(void);
+void	clear_linked_list(t_envv_node **p_list);
+void	delete_linked_list(t_envv_node **p_list);
 
 #endif

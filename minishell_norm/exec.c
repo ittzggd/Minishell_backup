@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 16:02:58 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 17:33:435 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exec_ast(void)
 	// dup2(data.std_fd[1], STDOUT_FILENO);
 	// close(data.std_fd[0]);
 	// close(data.std_fd[1]);
-	close(data.heredoc_fd[0]);
+	// close(data.heredoc_fd[0]);
 	// close(data.heredoc_fd[1]); // heredoc함수에서 닫아줬음
 }
 
@@ -108,11 +108,14 @@ void	execve_cmd(t_astnode *argsnode)
 	pid_t		pid;
 	char		**envp;
 	struct stat	*buf;
-	char		*filepath;
+	char		**filepath;
+	int			idx;
 	
 	data.exit_status = 0;
 	argnode = argsnode->prightchild;
 	execve_cmd = data.plexer->pptokens[argnode->pvalue_index[0]];
+	idx = 0;
+	filepath = join_filepath(execve_cmd);
 	i = 0;
 	j = 0;
 	while(argnode->pvalue_index[i] != -1)
@@ -137,8 +140,14 @@ void	execve_cmd(t_astnode *argsnode)
 				ft_nanoshell(execve_cmd);
 			else
 			{
-				filepath = ft_strjoin("/bin/", argv[0]); // PATH를 :기준 spilt으로 잘라서 모두 경로가 있는지 체크 후 없으면 에러
-				if(execve(filepath, argv, NULL) == -1)
+				while(filepath[idx])
+				{
+					if (execve(filepath[idx], argv, NULL) == -1)
+						idx++;
+					else
+						break ;
+				}
+				if(!filepath[idx])
 				{
 					printf("nanoshell : command not found : %s\n", argv[0]);
 					data.exit_status = 1;
@@ -151,19 +160,24 @@ void	execve_cmd(t_astnode *argsnode)
 	}
 	else
 	{
-		int	k = 0;
-		while (argv[k])
+		if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
+			ft_nanoshell(execve_cmd);
+		else
 		{
-			printf("\t====\targv[%d] %s\n", k, argv[k]);
-			k++;
-		}
-		filepath = ft_strjoin("/bin/", argv[0]); // PATH를 :기준 spilt으로 잘라서 모두 경로가 있는지 체크 후 없으면 에러
-		printf("pipecnt > 0 : filepath : %s\n", filepath);
-		if (execve(filepath, argv, NULL) == -1)
-		{
-			printf("nanoshell : command not found : %s\n", argv[0]);
-			data.exit_status = 1;
-			exit(data.exit_status);
+			while(filepath[idx])
+			{
+				if (execve(filepath[idx], argv, NULL) == -1)
+					idx++;
+				else
+					break ;
+			}
+			if(!filepath[idx])
+			{
+				printf("nanoshell : command not found : %s\n", argv[0]);
+				data.exit_status = 1;
+				exit(data.exit_status);
+			}
 		}
 	}
 }
+

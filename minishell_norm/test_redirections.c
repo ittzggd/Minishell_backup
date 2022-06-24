@@ -6,12 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 16:00:56 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:25:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
-#include <termios.h>
 
 void	out_red(char *filename)
 {
@@ -73,6 +72,7 @@ void	heredoc(char *delimiter)
 	if (delimiter != delimiter_without_quote)
 		free(delimiter_without_quote);
 	dup2(data.heredoc_fd[0], STDIN_FILENO);
+	close(data.heredoc_fd[0]);
 	close(data.heredoc_fd[1]);
 }
 

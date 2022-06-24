@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 15:58:53 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 20:07:24 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,44 @@ int	analyze_input(char *input)
 int	main(int argc, char *argv[], char **envp)
 {
 	char	*input_str;
-	char	*key;
-	char	*value;
+	// char	*key;
+	// char	*value;
 
 	// data = ft_calloc(1, sizeof(t_data));
 	if (argc == 1)
 	{
-		if (pipe(data.std_fd) < 0)
-		{
-			data.exit_status = 1;
-			return (data.exit_status);
-		}
-		close(data.std_fd[0]);
-		close(data.std_fd[1]);
-		data.std_fd[0] = dup(STDIN_FILENO);
-		data.std_fd[1] = dup(STDOUT_FILENO);
+		// // 현재 원본 stdin, stdout fd를 저장해놓음
+		// if (pipe(data.std_fd) < 0)
+		// {
+		// 	data.exit_status = 1;
+		// 	return (data.exit_status);
+		// }
+		// close(data.std_fd[0]);
+		// close(data.std_fd[1]);
+		// data.std_fd[0] = dup(STDIN_FILENO);
+		// data.std_fd[1] = dup(STDOUT_FILENO);
+
+		// // 현재 터미널의 원래 속성을 저장
+		// tcgetattr(data.std_fd[0], &data.origin_term);
+		// data.changed_term = data.origin_term;
+		// data.changed_term.c_cflag &= ECHO; // 이건 ctrl + C 를 사용할 때, echo로 시그널을 출력하지 않도록
+		// tcsetattr(data.std_fd[0], TCSANOW, &data.changed_term);
 		
-		while (*envp)
-		{
-			init_envp(*envp, &key, &value);
-			insert_envv(key, value, TRUE);
-			envp++;
-		}
-		insert_envv("OLDPWD", NULL, TRUE);
+		// // 환경변수 목록 받아서, data에 추가
+		// while (*envp)
+		// {
+		// 	init_envp(*envp, &key, &value);
+		// 	insert_envv(key, value, TRUE);
+		// 	envp++;
+		// }
+		// insert_envv("OLDPWD", NULL, TRUE);
+
+		init_setting(envp); 
+		// 명령어 실행
 		while (1)
 		{	
 			dup2(data.std_fd[0], STDIN_FILENO);
 			dup2(data.std_fd[1], STDOUT_FILENO);
-			init_data();
 			//input_str = "";
 			input_str = readline("nanoshell >> ");
 			if (input_str)

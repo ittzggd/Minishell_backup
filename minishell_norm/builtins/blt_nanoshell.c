@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/23 21:18:37 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 19:21:48 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	ft_nanoshell(char *filepath)
 	// }
 	// if(pid == 0)	
 	// {
+		// dup2(data.std_fd[0], STDIN_FILENO);
+		dup2(data.std_fd[1], STDOUT_FILENO);
+		
 		if (!ft_strncmp(filepath, "nanoshell", -1) && stat(filepath, buf) == -1)
 		{
 			printf("nanoshell : command not found : %s\n", filepath);

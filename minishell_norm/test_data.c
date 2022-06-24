@@ -6,18 +6,13 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:31:33 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/20 17:09:43 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 20:09:06 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
 t_data	data;
-
-void	init_data() // data malloc
-{
-	// 헤더파일에 전역변수를 포인터가 아닌 t_data data로 바꾸기, 다른 함수들도 모두 ㅁㅐ개변수 수정 및 포인터참조 수정
-}
 
 void	free_data_lexer(void)
 {
