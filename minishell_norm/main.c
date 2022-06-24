@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 12:34:46 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:58:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@ int	main(int argc, char *argv[], char **envp)
 	// data = ft_calloc(1, sizeof(t_data));
 	if (argc == 1)
 	{
+		if (pipe(data.std_fd) < 0)
+		{
+			data.exit_status = 1;
+			return (data.exit_status);
+		}
+		close(data.std_fd[0]);
+		close(data.std_fd[1]);
+		data.std_fd[0] = dup(STDIN_FILENO);
+		data.std_fd[1] = dup(STDOUT_FILENO);
+		
 		while (*envp)
 		{
 			init_envp(*envp, &key, &value);
@@ -76,6 +86,8 @@ int	main(int argc, char *argv[], char **envp)
 		insert_envv("OLDPWD", NULL, TRUE);
 		while (1)
 		{	
+			dup2(data.std_fd[0], STDIN_FILENO);
+			dup2(data.std_fd[1], STDOUT_FILENO);
 			init_data();
 			//input_str = "";
 			input_str = readline("nanoshell >> ");
@@ -107,6 +119,8 @@ int	main(int argc, char *argv[], char **envp)
 			reset_data();
 			// data에 있는 plexer free해주기
 		}
+		close(data.std_fd[0]);
+		close(data.std_fd[1]);
 	}
 	//envv_list 랑 data만 free
 	return (data.exit_status);

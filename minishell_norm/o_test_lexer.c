@@ -70,7 +70,7 @@ static void type_word_to_cmd(int *i, int *command_flag)
 		type[*i] = T_COMMAND;
 		*command_flag = TRUE;
 	}
-	else if (command_flag == FALSE && type[*i - 2] == T_REDIRECTION)
+	else if (*command_flag == FALSE && type[*i - 2] == T_REDIRECTION)
 	{
 		type[*i] = T_COMMAND;
 		*command_flag = TRUE;

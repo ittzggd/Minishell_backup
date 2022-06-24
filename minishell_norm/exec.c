@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 12:51:33 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 16:02:58 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@ void	execve_cmd(t_astnode *argsnode);
 
 void	exec_ast(void)
 {
-	// if (pipe(data.std_fd) < 0)
-	if (pipe(data.std_fd) < 0 || pipe(data.heredoc_fd) < 0)
+	// if (pipe(data.std_fd) < 0 || pipe(data.heredoc_fd) < 0)
+	if (pipe(data.heredoc_fd) < 0)
 	{
 		data.exit_status = 1;
 		return ;
 	}
-	close(data.std_fd[0]);
-	close(data.std_fd[1]);
-	data.std_fd[0] = dup(STDIN_FILENO);
-	data.std_fd[1] = dup(STDOUT_FILENO);
+	// close(data.std_fd[0]);
+	// close(data.std_fd[1]);
+	// data.std_fd[0] = dup(STDIN_FILENO);
+	// data.std_fd[1] = dup(STDOUT_FILENO);
 
 	if (data.pipe_cnt > 0)
 		postorder_travel_ast(data.p_ast->prootnode);
 	else
 		postorder_travel_command(data.p_ast->prootnode);
 
-	dup2(data.std_fd[0], STDIN_FILENO);
-	dup2(data.std_fd[1], STDOUT_FILENO);
-	close(data.std_fd[0]);
-	close(data.std_fd[1]);
+	// dup2(data.std_fd[0], STDIN_FILENO);
+	// dup2(data.std_fd[1], STDOUT_FILENO);
+	// close(data.std_fd[0]);
+	// close(data.std_fd[1]);
 	close(data.heredoc_fd[0]);
-	close(data.heredoc_fd[1]);
+	// close(data.heredoc_fd[1]); // heredoc함수에서 닫아줬음
 }
 
 void	exec_cmd(t_astnode *argsnode)

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/23 21:18:35 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:56:18 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,5 @@ void	goto_redirection(t_astnode *red_node)
 	else if(ft_strncmp(red,">>", -1))
 		append_red(filename);
 	else if(ft_strncmp(red,"<<", -1))
-		heredoc(filename);
+	 	heredoc(filename);
 }

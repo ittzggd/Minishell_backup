@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/21 15:59:22 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 15:32:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,16 +160,14 @@ int	tree_args(t_astnode *ast_node, int index)
 
 	if (ast_node->nodetype != A_ARGUMENTS)
 		return (ERROR);
-	args_leftchild = ast_node->pleftchild;
-	args_rightchild = ast_node->prightchild;
 	args_leftchild = insert_leftchildnode_ast(ast_node, A_FILEPATH);
-	while(data.plexer->pptokens[index] && data.plexer->ptype[index] != T_PIPE)
+	while (data.plexer->pptokens[index] && data.plexer->ptype[index] != T_PIPE)
 	{
 		if (data.plexer->ptype[index] == T_COMMAND)
 			break;
 		index++;
 	}
-	if(init_idx(index, args_leftchild) == ERROR)
+	if (init_idx(index, args_leftchild) == ERROR)
 		return (ERROR);
 	args_rightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENT);
 	while (data.plexer->pptokens[index] && data.plexer->ptype[index] != T_PIPE)

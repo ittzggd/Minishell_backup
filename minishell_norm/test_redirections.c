@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_redirections.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/24 16:00:56 by hejang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./include/minishell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 #include <termios.h>
 
 void	out_red(char *filename)
@@ -50,25 +60,21 @@ void	heredoc(char *delimiter)
 	char	*input_str;
 	char	*delimiter_without_quote;
 	
-	// printf("heredoc deleimiter : %s\n", delimiter);
 	delimiter_without_quote = remove_quote(delimiter);
-	
-	dup2(data.heredoc_fd[1], STDOUT_FILENO);
 	while (1)
 	{
-		printf("heredoc while : %s\n", delimiter);
+		//printf("heredoc while : %s\n", delimiter);
 		input_str = readline("heredoc > ");
 		if (ft_strncmp(input_str, delimiter_without_quote, -1))
 			break ;
+		write(data.heredoc_fd[1], input_str, ft_strlen(input_str));
+		write(data.heredoc_fd[1], "\n", 1);
 	}
 	if (delimiter != delimiter_without_quote)
 		free(delimiter_without_quote);
-	//dup2(data.heredoc_fd[0], STDIN_FILENO);
+	dup2(data.heredoc_fd[0], STDIN_FILENO);
+	close(data.heredoc_fd[1]);
 }
-
-
-	
-// }
 
 // void in_red()
 // {

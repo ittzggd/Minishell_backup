@@ -1,6 +1,12 @@
 {
 	"files.associations": {
 		"limits.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"signal.h": "c",
+		"termios.h": "c",
+		"minishell_define.h": "c",
+		"minishell_pipe.h": "c",
+		"types.h": "c",
+		"ostream": "c"
 	}
 }
