@@ -18,8 +18,6 @@ void	free_data_lexer(void)
 {
 	int	i;
 
-	if (!data.lexer)
-		return ;
 	i = 0;
 	if (data.lexer.ptype)
 		free(data.lexer.ptype);
@@ -27,15 +25,10 @@ void	free_data_lexer(void)
 	{
 		while (data.lexer.pptokens[i])
 		{
-			// if (data.lexer.pptokens[i])
-			// {
-				free(data.lexer.pptokens[i]);
-				// data.lexer.pptokens[i] = NULL;
-			// }
+			free(data.lexer.pptokens[i]);
 			i++;
 		}
-		// if (data.lexer.pptokens)
-			free(data.lexer.pptokens);
+		free(data.lexer.pptokens);
 	}
 	ft_bzero(&data.lexer, sizeof(t_lexer));
 }
@@ -46,8 +39,7 @@ void	reset_data(void)
 	data.redirection_cnt = 0;
 	data.pipe_cnt = 0;
 	free_data_lexer();
-	if (data.ast)
-		free_data_ast();
+	free_data_ast();
 }
 
 

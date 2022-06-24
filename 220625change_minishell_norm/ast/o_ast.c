@@ -167,7 +167,7 @@ void	delete_ast(t_astnode *node)
 
 void free_data_ast(void)
 {
-	if (data.ast)
+	if (data.ast.prootnode)
 	{
 		delete_ast(data.ast.prootnode);
 		ft_bzero(&data.ast, sizeof(t_ast));
