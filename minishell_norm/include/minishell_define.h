@@ -29,6 +29,7 @@ typedef struct s_lexer
 typedef struct s_data
 {
 	int						std_fd[2];
+	int						heredoc_fd[2];
 	int						pipe_cnt;
 	int						redirection_cnt;
 	int						tokens_cnt;

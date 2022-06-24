@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/23 21:18:33 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 12:51:33 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	execve_cmd(t_astnode *argsnode);
 
 void	exec_ast(void)
 {
-	if (pipe(data.std_fd) < 0)
+	// if (pipe(data.std_fd) < 0)
+	if (pipe(data.std_fd) < 0 || pipe(data.heredoc_fd) < 0)
 	{
+		data.exit_status = 1;
 		return ;
 	}
 	close(data.std_fd[0]);
@@ -34,6 +36,8 @@ void	exec_ast(void)
 	dup2(data.std_fd[1], STDOUT_FILENO);
 	close(data.std_fd[0]);
 	close(data.std_fd[1]);
+	close(data.heredoc_fd[0]);
+	close(data.heredoc_fd[1]);
 }
 
 void	exec_cmd(t_astnode *argsnode)

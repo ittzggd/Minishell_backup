@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:44:39 by katherineja       #+#    #+#             */
-/*   Updated: 2022/06/07 21:28:46 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/24 12:33:41 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	is_option(char *value)
 {
+	
 	if (*value != '-')
 		return (FALSE);
 	value++;
+	if (*value == '\0')
+		return (FALSE);
 	while (*value)
 	{
 		if (*value != 'n')
