@@ -6,33 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:36:09 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/07 21:28:17 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/26 13:41:42 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-int	is_cmd(char *value)
-{
-	int		i;
-	t_cmd	*cmd;
-
-	i = 0;
-	cmd = create_cmd_struct();
-	if (!cmd)
-	{
-		// 에러 부분을 플로우차트 작성해서 따로 빼주기
-		// 에러메세지를 출력해주자
-		// 이전에 malloc된 부분들을 free
-	}
-	while (cmd->cmd[i])
-	{
-		if (ft_strncmp(value, cmd->cmd[i], ft_strlen(value)))
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
 
 int	is_ifs(const char c)
 {

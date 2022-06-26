@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:31:33 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 20:09:06 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/26 17:29:09 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	reset_data(void)
 	data.tokens_cnt = 0;
 	data.redirection_cnt = 0;
 	data.pipe_cnt = 0;
+	data.p_flag = 0;
 	free_data_lexer();
 	free_data_ast();
 }

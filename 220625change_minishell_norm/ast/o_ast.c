@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 15:32:45 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/26 13:33:49 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 
 #include "../include/minishell.h"
-#include "../include/tree_utils.h"
+// #include "../include/tree_utils.h"
 
 int	insert_redschild(t_astnode *reds_leftchild, t_astnode *reds_rightchild, int index);
 int	args_utils(int *index, t_astnode *args_rightchild);

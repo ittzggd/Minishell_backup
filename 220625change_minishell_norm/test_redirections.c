@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 19:25:04 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/26 17:29:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ void	in_red(char *filename)
 	fd = open(filename, O_WRONLY|O_APPEND, 0666);
 	if (fd < 0)
 	{
-		write(2, "minishell: " ,11);
-		write(2, filename, ft_strlen(filename));
-		write(2, " No such file or directory\n", 27);
-		data.exit_status = 1;
+		ft_error_message("minishell: ", 1);
+		ft_error_message(filename, 1);
+		ft_error_message(" No such file or directory\n", 1);
 		return ;
 	}
 	dup2(fd, 1);

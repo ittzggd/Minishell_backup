@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 17:14:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/26 13:49:30 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ int		is_ifs(const char c);
 int		is_redirection(const char *s);
 int		is_quote(const char c);
 int		is_pipe(const char *s);
-int		is_cmd(char *value);
 int		is_option(char *value);
 int		is_valid_env(char *str);
 int		is_env(char *value);
 int		ft_is_alpha(char c);
 int		ft_is_digit(int c);
 
-// int		case_quote(char const *str, int *i);
 int		case_redirection(char const *str, int *i);
 
 char	*remove_quote(char *quote_str);
+
+void	ft_error_message(char *message, int exit_status);
 
 //data
 

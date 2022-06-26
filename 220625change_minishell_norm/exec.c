@@ -102,6 +102,7 @@ void	execve_cmd(t_astnode *argsnode)
 		{
 			exit(1);
 		}
+	//	data.p_flag = TRUE;
 		if(pid == 0)	
 		{
 			if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))

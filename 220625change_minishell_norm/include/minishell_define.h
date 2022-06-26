@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_define.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim<yukim@student.42seoul.kr>            +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:03:00 by yukim             #+#    #+#             */
-/*   Updated: 2022/05/31 19:03:39 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/26 17:06:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,26 @@
 # define ALLOCATE_FAILED -2
 
 
+typedef struct s_astnode
+{
+	int					visited;
+	int					nodetype;
+	int					*pvalue_index; // 마지막 인덱스에 -1 저장
+	struct s_astnode	*pleftchild;
+	struct s_astnode	*prightchild;
+}			t_astnode;
+
+typedef struct s_ast
+{
+	struct s_astnode	*prootnode;
+}			t_ast;
+
+
+typedef struct s_lexer
+{
+	char	**pptokens;
+	int		*ptype;
+}			t_lexer;
 
 typedef struct s_data
 {
@@ -37,13 +57,9 @@ typedef struct s_data
 	int						pipe_cnt;
 	struct s_lexer			lexer;
 	struct s_ast			ast;
+	int						p_flag;
 }			t_data;
 
-typedef struct s_lexer
-{
-	char	**pptokens;
-	int		*ptype;
-}			t_lexer;
 
 typedef struct s_envv_node
 {
@@ -53,19 +69,6 @@ typedef struct s_envv_node
 	struct s_envv_node	*p_link;
 }			t_envv_node;
 
-typedef struct s_ast
-{
-	struct s_astnode	*prootnode;
-}			t_ast;
-
-typedef struct s_astnode
-{
-	int					visited;
-	int					nodetype;
-	int					*pvalue_index; // 마지막 인덱스에 -1 저장
-	struct s_astnode	*pleftchild;
-	struct s_astnode	*prightchild;
-}			t_astnode;
 
 typedef struct s_cmd
 {

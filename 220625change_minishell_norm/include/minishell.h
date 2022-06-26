@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 20:15:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/26 15:00:27 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		ft_wordcount(char const *str);
 
 //lexer
 void		lexical_analysis(void);
-t_cmd		*create_cmd_struct(void);
 void		replace_env_to_value(int i);
 char		*get_envv(char *key);
 t_envv_node	*get_el_node(t_envv_node *envv_list, char *key);
@@ -59,5 +58,7 @@ char	**join_filepath(char *execve_cmd);
 void	free_data_lexer(void);
 void	clear_linked_list(t_envv_node **p_list);
 void	delete_linked_list(t_envv_node **p_list);
+
+void	ft_sig_handler(int sig_num);
 
 #endif
