@@ -80,3 +80,5 @@ static int	do_echo(t_astnode *args_node, int option_flag)
 	data.exit_status = 0;
 	return (TRUE);
 }
+
+static 

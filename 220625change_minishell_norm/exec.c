@@ -16,12 +16,11 @@ void	execve_cmd(t_astnode *argsnode);
 
 void	exec_ast(void)
 {
-	// if (pipe(data.std_fd) < 0 || pipe(data.heredoc_fd) < 0)
-	if (pipe(data.heredoc_fd) < 0)
-	{
-		data.exit_status = 1;
-		return ;
-	}
+	// if (pipe(data.heredoc_fd) < 0)
+	// {
+	// 	data.exit_status = 1;
+	// 	return ;
+	// }
 	// close(data.std_fd[0]);
 	// close(data.std_fd[1]);
 	// data.std_fd[0] = dup(STDIN_FILENO);
@@ -102,7 +101,7 @@ void	execve_cmd(t_astnode *argsnode)
 		{
 			exit(1);
 		}
-	//	data.p_flag = TRUE;
+		data.p_flag = TRUE;
 		if(pid == 0)	
 		{
 			if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
@@ -125,7 +124,11 @@ void	execve_cmd(t_astnode *argsnode)
 			}
 		}
 		else
+		{
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
 			waitpid(pid, &data.exit_status, 0);
+		}
 	}
 	else
 	{

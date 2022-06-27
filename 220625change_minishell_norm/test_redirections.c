@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/26 17:29:04 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/27 12:21:50 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ void	heredoc(char *delimiter)
 	char	*input_str;
 	char	*delimiter_without_quote;
 	
+	if (pipe(data.heredoc_fd) < 0)
+	{
+		data.exit_status = 1;
+		return ;
+	}
+	data.heredoc_flag = TRUE;
 	delimiter_without_quote = remove_quote(delimiter);
 	while (1)
 	{
@@ -73,4 +79,5 @@ void	heredoc(char *delimiter)
 	dup2(data.heredoc_fd[0], STDIN_FILENO);
 	close(data.heredoc_fd[0]);
 	close(data.heredoc_fd[1]);
+	data.heredoc_flag = FALSE;
 }

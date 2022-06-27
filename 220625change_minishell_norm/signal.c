@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:36:12 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/26 17:43:59 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/27 12:21:49 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ void	ft_sig_handler(int sig_num)
 
 static void	ctrl_c()
 {
+	if(data.heredoc_flag == TRUE)
+		close(STDIN_FILENO);
 	if (data.p_flag == TRUE)
 	{
-		printf("1234");
-		write(1, "test", 4);
-		write(data.std_fd[1], "\n", 1);
-		data.exit_status = 130;
+		ft_error_message("\n", 130);
+		rl_on_new_line();
 		exit(data.exit_status);
 	}
 	else if (data.p_flag == FALSE)
 	{
-		write(data.std_fd[1], "\n", 1);
-		data.exit_status = 1;
-
-		// rl_on_new_line();
-		// rl_replace_line("", 0);
-		// rl_redisplay();
-
+		ft_error_message("\n", 1);
+		rl_on_new_line();
+		if(data.heredoc_fd == FALSE);
+		{
+			rl_replace_line("", 0);
+			rl_redisplay();
+		}
 		/*
 		int rl_on_new_line (void) 
 			: Tell the update functions that we have moved onto a new (empty) line, 
@@ -63,13 +63,14 @@ static void ctrl_bs()
 {
 	if (data.p_flag == TRUE)
 	{
-		write(2, "^\\Quit: 3", ft_strlen("^\\Quit: 3"));
-		data.exit_status = 131;
+		ft_error_message("Quit: 3", 131);
 		exit(data.exit_status);
 	}
 	else if (data.p_flag == FALSE)
 	{
+		rl_replace_line("", 0);
+		rl_redisplay();
 		//SIG_IGN를 주면 해당 시그널을 무시한다
-		signal(SIGQUIT, SIG_IGN);
+		// signal(SIGQUIT, SIG_IGN);
 	}
 }

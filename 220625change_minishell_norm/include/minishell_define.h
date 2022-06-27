@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:03:00 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/26 17:06:53 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/27 12:22:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	struct s_lexer			lexer;
 	struct s_ast			ast;
 	int						p_flag;
+	int						heredoc_flag;
 }			t_data;
 
 

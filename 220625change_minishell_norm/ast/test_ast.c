@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 15:56:18 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/27 12:17:26 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	postorder_travel_ast(t_astnode *ast_node)
 		exit(1);
 	i = 0;
 	prev_fd = -1;
+	data.p_flag = TRUE;
 	while (ast_node->nodetype == A_PIPE || ast_node->nodetype == A_COMMAND)
 	{
 		if (i < data.pipe_cnt)
@@ -62,6 +63,8 @@ void	postorder_travel_ast(t_astnode *ast_node)
 		}
 		else // 부모 프로세스
 		{
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
 			if (prev_fd != -1)
 				close(prev_fd);
 			if (i == data.pipe_cnt) // 마지막 커맨드 노드면
