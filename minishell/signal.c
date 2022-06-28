@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:36:12 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/27 19:17:43 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 15:42:21 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ static void ctrl_bs();
 void	handler_tmp(int sig)
 {
 	if (sig == SIGINT)
+	{
+		data.exit_status = 130;
 		printf("\n");
+	}
 	if (sig == SIGQUIT)
+	{
+		data.exit_status = 131;
 		printf("Quit: %d\n", sig);
+	}
 }
 
 void	ft_heredoc_handler(int sig_num)
@@ -30,8 +36,6 @@ void	ft_heredoc_handler(int sig_num)
 		rl_replace_line("", 0);
 		rl_redisplay();
 		close(STDIN_FILENO);
-		// ft_error_message("\n", 1);
-		// rl_on_new_line();
 	}
 }
 

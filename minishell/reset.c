@@ -6,16 +6,19 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:27:53 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/27 15:50:36 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 14:14:141 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
+void	sigquit_handler(int signum);
+void	sigint_handler(int signum);
+
 void	reset_signal(void)
 {
-	signal(SIGINT, ft_sig_handler);
-	signal(SIGQUIT, ft_sig_handler);
+	// signal(SIGINT, sigint_handler);
+	// signal(SIGQUIT, sigquit_handler);
 }
 
 void	reset_stdfd(void)

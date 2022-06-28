@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/27 17:47:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 14:16:50 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int	main(int argc, char *argv[], char **envp)
 		{	
 			// 리다이렉션이나 파이프를 거치면서 바뀐 STDIN, STDOUT 초기화
 			// reset_signal();
-			signal(SIGINT, &ft_sig_handler);
-			signal(SIGQUIT, &ft_sig_handler);
+			reset_signal();
+			// signal(SIGINT, &handler_tmp);
+			// signal(SIGQUIT, &handler_tmp);
 			reset_stdfd();
 
 			input_str = readline("nanoshell >> ");

@@ -12,6 +12,8 @@
 
 #include "./include/minishell.h"
 
+void	exec_sigint(int signum);
+void	exec_sigquit(int signum);
 void	execve_cmd(t_astnode *argsnode);
 
 void	exec_ast(void)
@@ -101,7 +103,7 @@ void	execve_cmd(t_astnode *argsnode)
 		{
 			exit(1);
 		}
-		data.p_flag = TRUE;
+		// data.p_flag = TRUE;
 		if(pid == 0)	
 		{
 			if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
@@ -115,6 +117,9 @@ void	execve_cmd(t_astnode *argsnode)
 					else
 						break ;
 				}
+
+				printf("after execve data.exit_status = %d\n", data.exit_status);
+				
 				if(!filepath[idx])
 				{
 					printf("nanoshell : command not found : %s\n", argv[0]);
