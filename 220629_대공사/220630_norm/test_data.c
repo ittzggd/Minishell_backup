@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:31:33 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 03:46:09 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/29 23:27:27 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,10 @@ void	reset_data(void)
 	data.heredoc_cnt = 0;
 	free_data_lexer();
 	free_data_ast();
+}
+
+
+void	free_data() // data  envv_lst포함 모두 FREE
+{
+	
 }

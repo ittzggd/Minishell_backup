@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset.c                                            :+:      :+:    :+:   */
+/*   hejang.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 13:10:39 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:22:11 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/30 02:52:58 by hejang            #+#    #+#             */
+/*   Updated: 2022/06/30 03:13:22 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "./minishell.h"
 
-void	reset_stdfd(void)
-{
-	dup2(data.std_fd[0], STDIN_FILENO);
-	dup2(data.std_fd[1], STDOUT_FILENO);
-}
-
-void	reset_signal(void)
-{
-	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, ctrl_bs);
-}
+int	    check_env(char	*token, int i, int j);
+void	get_value(char *key, char *token, int key_len);
+char	**create_argv(int cnt, t_astnode *argsnode);
+void	command_not_found_error(char *cmd);

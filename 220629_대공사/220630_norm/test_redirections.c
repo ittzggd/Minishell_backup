@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_redirections.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 03:04:56 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 02:04:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	out_red(char *filename)
 {
 	int	fd;
-
-	fd = open(filename, O_WRONLY | O_TRUNC, 0666);
-	if (fd < 0)
+	
+	fd = open(filename, O_WRONLY|O_TRUNC, 0666); // 이미 존재하는 파일이면 내용 삭제 후 적기
+	if (fd < 0) // 파일이 존재 하지 않으면, 새로 생성
 	{
-		fd = open(filename, O_WRONLY | O_CREAT | O_EXCL, 0666);
+		fd = open(filename, O_WRONLY|O_CREAT|O_EXCL, 0666);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -28,16 +28,14 @@ void	out_red(char *filename)
 void	in_red(char *filename)
 {
 	int	fd;
-
+	
+	// ft_error_message("in_red\n", 222);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_error_message("minishell: ", 1);
 		ft_error_message(filename, 1);
 		ft_error_message(" No such file or directory\n", 1);
-		/*
-		error
-		*/
 		return ;
 	}
 	dup2(fd, STDIN_FILENO);
@@ -46,12 +44,14 @@ void	in_red(char *filename)
 
 void	append_red(char *filename)
 {
+	// >>
+
 	int	fd;
 
-	fd = open(filename, O_WRONLY | O_APPEND, 0666);
-	if (fd < 0)
+	fd = open(filename, O_WRONLY|O_APPEND, 0666); // 이미 존재하는 파일이면 내용 삭제 후 적기
+	if (fd < 0) // 파일이 존재 하지 않으면, 새로 생성
 	{
-		fd = open(filename, O_WRONLY | O_CREAT | O_EXCL, 0666);
+		fd = open(filename, O_WRONLY|O_CREAT|O_EXCL, 0666);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -66,7 +66,7 @@ void	heredoc(char *delimiter)
 	while (i < data.heredoc_cnt)
 	{
 		if (ft_strncmp(data.heredoc_delimiter[i], delimiter, -1))
-			break ;
+			break;
 		i++;
 	}
 	read_fd = data.heredoc_fd[i].fd[0];
