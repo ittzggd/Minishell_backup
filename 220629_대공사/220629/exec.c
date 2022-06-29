@@ -108,10 +108,10 @@ void	execve_cmd(t_astnode *argsnode)
 				ft_nanoshell(execve_cmd);
 			else
 			{
-//				pid2 = fork();
-//				if(pid2 == 0)
-//				{
-					reset_signal();
+				pid2 = fork();
+				if(pid2 == 0)
+				{
+					//reset_signal();
 					while(filepath[idx])
 					{
 						if (execve(filepath[idx], argv, NULL) == -1)
@@ -126,20 +126,20 @@ void	execve_cmd(t_astnode *argsnode)
 						ft_error_message("\n", 1);
 						exit(data.exit_status);
 					}
-//				}
-				// else
-				// {
-				// 	waitpid(pid, &(data.exit_status), 0);
-				// 	exit(data.exit_status) ;
-				// }
+				}
+				else
+				{
+					waitpid(pid, &(data.exit_status), 0);
+					exit(data.exit_status) ;
+				}
 			}
 		}
-		// else
-		// {
+		else
+		{
 			signal(SIGINT, SIG_IGN);
 			signal(SIGQUIT, SIG_IGN);
 			waitpid(pid, &data.exit_status, 0);
-		// }
+		}
 		if (WIFEXITED(data.exit_status))
 			data.exit_status = WEXITSTATUS(data.exit_status);
 		else if (WIFSIGNALED(data.exit_status))
@@ -148,24 +148,53 @@ void	execve_cmd(t_astnode *argsnode)
 	else
 	{
 		if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
-			ft_nanoshell(execve_cmd);
+				ft_nanoshell(execve_cmd);
 		else
 		{
-			while(filepath[idx])
+			pid2 = fork();
+			if(pid2 == 0)
 			{
-				if (execve(filepath[idx], argv, NULL) == -1)
-					idx++;
-				else
-					break ;
+				//reset_signal();
+				while(filepath[idx])
+				{
+					if (execve(filepath[idx], argv, NULL) == -1)
+						idx++;
+					else
+						break ;
+				}
+				if(!filepath[idx])
+				{
+					ft_error_message("nanoshell : command not found : ", 1);
+					ft_error_message(argv[0], 1);
+					ft_error_message("\n", 1);
+					exit(data.exit_status);
+				}
 			}
-			if(!filepath[idx])
+			else
 			{
-				ft_error_message("nanoshell : command not found : ", 1);
-				ft_error_message(argv[0], 1);
-				ft_error_message("\n", 1);
-				exit(data.exit_status);
+				waitpid(pid, &(data.exit_status), 0);
+				exit(data.exit_status) ;
 			}
 		}
+		// if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
+		// 	ft_nanoshell(execve_cmd);
+		// else
+		// {
+		// 	while(filepath[idx])
+		// 	{
+		// 		if (execve(filepath[idx], argv, NULL) == -1)
+		// 			idx++;
+		// 		else
+		// 			break ;
+		// 	}
+		// 	if(!filepath[idx])
+		// 	{
+		// 		ft_error_message("nanoshell : command not found : ", 1);
+		// 		ft_error_message(argv[0], 1);
+		// 		ft_error_message("\n", 1);
+		// 		exit(data.exit_status);
+		// 	}
+		// }
 	}
 }
 

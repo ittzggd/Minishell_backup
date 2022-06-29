@@ -33,6 +33,8 @@ void ft_sig_handler_in_heredoc(int sig_num)
 
 void	ctrl_c()
 {
+	// ft_error_message("hi\n", 222);
+	// printf("process ? : %d\n\n", getpid());
 	if(data.heredoc_flag == TRUE)
 	{
 		return ;

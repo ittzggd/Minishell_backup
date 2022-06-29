@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 00:45:41 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 02:25:48 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	postorder_travel_ast(t_astnode *ast_node)
 {
-	int	*pid;
+	pid_t	*pid;
 	int	pid_exit_status;
 	int	i;
 	int	pipe_line[2];

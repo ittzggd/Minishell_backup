@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 00:54:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 02:04:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	in_red(char *filename)
 {
 	int	fd;
 	
-	ft_error_message("in_red\n", 222);
+	// ft_error_message("in_red\n", 222);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{

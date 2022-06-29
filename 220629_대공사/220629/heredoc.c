@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 00:59:08 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 02:11:19 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 	}
 	if (pid == 0)
 	{
+		// printf("child: %d\n");
+		// printf("child: %d\n", getpid());
 		signal(SIGINT, ft_sig_handler_in_heredoc);
 		signal(SIGQUIT, ft_sig_handler_in_heredoc);
 		while (1)
@@ -116,10 +118,11 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 	else
 	{
 		close(heredoc_fd->fd[1]);
+	//	printf("parent : %d\n", getpid());
 		waitpid(pid, &(data.exit_status), 0);
-		printf("%d\n", data.heredoc_fd[1]);
-		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_IGN);
+		// printf("%d\n", data.heredoc_fd[1]);
+		// signal(SIGINT, SIG_IGN);
+		// signal(SIGQUIT, SIG_IGN);
 		if (WIFEXITED(data.exit_status))
 			data.exit_status = WEXITSTATUS(data.exit_status);
 		// else if (WIFSIGNALED(data.exit_status))

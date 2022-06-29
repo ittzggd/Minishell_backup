@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 01:03:17 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 02:02:59 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	main(int argc, char *argv[], char **envp)
 	if (argc == 1)
 	{
 		init_setting(envp); 
-		printf("main before while data.exit_status : %d\n", data.exit_status);
 		// 명령어 실행
 		while (1)
 		{	
@@ -74,7 +73,6 @@ int	main(int argc, char *argv[], char **envp)
 			// dup2(data.std_fd[1], STDOUT_FILENO);
 			reset_stdfd();
 			input_str = readline("nanoshell >> ");
-			printf("after readline data.exit_status : %d\n",  data.exit_status);
 			if (input_str)
 			{
 				if (analyze_input(input_str) == ERROR)
@@ -85,13 +83,11 @@ int	main(int argc, char *argv[], char **envp)
 				init_ast(); // ast 트리 생성
 
 				// heredoc 입력받기
-				printf("before heredoc data.exit_status : %d\n",  data.exit_status);
 				if(data.heredoc_cnt > 0)
 				{
 					preprocess_heredoc();
 					if (data.exit_status == 1)
 					{
-						printf("after heredoc : data.exit_status : %d\n",  data.exit_status);
 						add_history(input_str);
 						reset_data();
 						continue;
