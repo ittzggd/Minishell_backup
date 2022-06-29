@@ -6,13 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 13:35:58 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 21:07:20 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
-
-void ft_sig_handler_in_heredoc(int sig_num);
 
 void	out_red(char *filename)
 {
@@ -23,7 +21,7 @@ void	out_red(char *filename)
 	{
 		fd = open(filename, O_WRONLY|O_CREAT|O_EXCL, 0666);
 	}
-	dup2(fd, 1);
+	dup2(fd, STDOUT_FILENO);
 }
 
 void	in_red(char *filename)
@@ -38,7 +36,7 @@ void	in_red(char *filename)
 		ft_error_message(" No such file or directory\n", 1);
 		return ;
 	}
-	dup2(fd, 0);
+	dup2(fd, STDIN_FILENO);
 }
 
 void	append_red(char *filename)
@@ -52,43 +50,21 @@ void	append_red(char *filename)
 	{
 		fd = open(filename, O_WRONLY|O_CREAT|O_EXCL, 0666);
 	}
-	dup2(fd, 1);
+	dup2(fd, STDOUT_FILENO);
 }
 
 void	heredoc(char *delimiter)
 {
-	char	*input_str;
-	char	*delimiter_without_quote;
-	
-	// dup2(data->std_fd[0], STDIN_FILENO);
-	// dup2(data->std_fd[1], STDOUT_FILENO);
-	reset_stdfd();
-	
-	signal(SIGINT, &ft_sig_handler_in_heredoc);
-	if (pipe(data->heredoc_fd) < 0)
+	int	i;
+	int	read_fd;
+
+	i = 0;
+	while (i < data->heredoc_cnt)
 	{
-		data->exit_status = 1;
-		return ;
+		if (ft_strncmp(data->heredoc_delimiter[i], delimiter, -1))
+			break;
+		i++;
 	}
-	data->heredoc_flag = TRUE;
-	delimiter_without_quote = remove_quote(delimiter);
-	while (1)
-	{
-		//printf("heredoc while : %s\n", delimiter);
-		input_str = readline("heredoc > ");
-		if (ft_strncmp(input_str, delimiter_without_quote, -1))
-			break ;
-		write(data->heredoc_fd[1], input_str, ft_strlen(input_str));
-		write(data->heredoc_fd[1], "\n", 1);
-		// if (input_str)
-		// {
-		// 	free(input_str);
-		// }
-	}
-	if (delimiter != delimiter_without_quote)
-		free(delimiter_without_quote);
-	dup2(data->heredoc_fd[0], STDIN_FILENO);
-	close(data->heredoc_fd[0]);
-	close(data->heredoc_fd[1]);
-	data->heredoc_flag = FALSE;
+	read_fd = data->heredoc_fd[i].fd[0];
+	dup2(read_fd, STDIN_FILENO);
 }
