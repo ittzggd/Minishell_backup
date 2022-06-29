@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:08:48 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/28 18:01:34 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:45:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	init_data_envvlist(char **envp);
 
 void	init_setting(char **envp)
 {
+	data = ft_calloc(1, sizeof(t_data));
 	// 현재 원본 stdin, stdout fd를 저장해놓음
 	init_data_stdfd();
 
@@ -31,26 +32,26 @@ void	init_setting(char **envp)
 static void	init_data_stdfd(void)
 {
 	// 현재 원본 stdin, stdout fd를 저장해놓음
-	if (pipe(data.std_fd) < 0)
+	if (pipe(data->std_fd) < 0)
 	{
-		data.exit_status = 1;
-		exit(data.exit_status);
+		data->exit_status = 1;
+		exit(data->exit_status);
 	}
-	close(data.std_fd[0]);
-	close(data.std_fd[1]);
-	data.std_fd[0] = dup(STDIN_FILENO);
-	data.std_fd[1] = dup(STDOUT_FILENO);
+	close(data->std_fd[0]);
+	close(data->std_fd[1]);
+	data->std_fd[0] = dup(STDIN_FILENO);
+	data->std_fd[1] = dup(STDOUT_FILENO);
 }
 
 static void	init_data_termios(void)
 {
 	// 현재 터미널의 원래 설정된 속성 저장
-	tcgetattr(data.std_fd[0], &data.origin_term);
-	data.changed_term = data.origin_term;
+	tcgetattr(data->std_fd[0], &data->origin_term);
+	data->changed_term = data->origin_term;
 
-	data.changed_term.c_lflag &= ~(ECHOCTL);
-//	data.changed_term.c_lflag &= ~(ICANON | ECHO); // 이건 ctrl + C 를 사용할 때, echo로 시그널을 출력하지 않도록
-	// printf("origin_term c_lflag = %lx\n", data.origin_term.c_lflag);
+	data->changed_term.c_lflag &= ~(ECHOCTL);
+//	data->changed_term.c_lflag &= ~(ICANON | ECHO); // 이건 ctrl + C 를 사용할 때, echo로 시그널을 출력하지 않도록
+	// printf("origin_term c_lflag = %lx\n", data->origin_term.c_lflag);
 	// printf("changed_term c_lflag = %lx\n", data.changed_term.c_lflag);
 	
 	/*TIME 이 0이지만 MIN은 0이 아닐 때.
@@ -62,7 +63,7 @@ static void	init_data_termios(void)
 	// data.changed_term.c_cc[VMIN] = 1;
 	
 	// 터미널에 changed_term 속성 적용
-	tcsetattr(data.std_fd[0], TCSANOW, &data.changed_term);
+	tcsetattr(data->std_fd[0], TCSANOW, &data->changed_term);
 }
 
 static void	init_data_envvlist(char **envp)

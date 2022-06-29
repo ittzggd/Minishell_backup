@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/27 12:21:56 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:38:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_ast(void)
 	{
 		return ;
 	}
-	data.ast.prootnode = root_node;
+	data->ast.prootnode = root_node;
 	recur_pipe(root_node, 0);
 }
 
@@ -38,11 +38,11 @@ int	recur_pipe(t_astnode *ast_node, int index) // 가장 처음은 초기화된 
 	char **tokens;
 	int c_index;
 
-	tokens = data.lexer.pptokens;
+	tokens = data->lexer.pptokens;
 	c_index = index;
 	while(tokens[index])
 	{
-		if (data.lexer.ptype[index] == T_PIPE)
+		if (data->lexer.ptype[index] == T_PIPE)
 		{
 			ast_node->nodetype = A_PIPE;
 			if(init_idx(index, ast_node) == ERROR)  //파이프 동가리 인덱스 저장
@@ -68,8 +68,8 @@ void	tree_cmd(t_astnode *ast_node, int index)
 
 	if (ast_node->nodetype != A_COMMAND)
 		return ;
-	tokens = data.lexer.pptokens;
-	type = data.lexer.ptype;
+	tokens = data->lexer.pptokens;
+	type = data->lexer.ptype;
 	ast_node->pleftchild = insert_leftchildnode_ast(ast_node, 0);
 	ast_node->prightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENTS);
 	tree_args(ast_node->prightchild, index);
@@ -110,16 +110,16 @@ int	tree_args(t_astnode *ast_node, int index)
 	if (ast_node->nodetype != A_ARGUMENTS)
 		return (ERROR);
 	args_leftchild = insert_leftchildnode_ast(ast_node, A_FILEPATH);
-	while (data.lexer.pptokens[index] && data.lexer.ptype[index] != T_PIPE)
+	while (data->lexer.pptokens[index] && data->lexer.ptype[index] != T_PIPE)
 	{
-		if (data.lexer.ptype[index] == T_COMMAND)
+		if (data->lexer.ptype[index] == T_COMMAND)
 			break;
 		index++;
 	}
 	if (init_idx(index, args_leftchild) == ERROR)
 		return (ERROR);
 	args_rightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENT);
-	while (data.lexer.pptokens[index] && data.lexer.ptype[index] != T_PIPE)
+	while (data->lexer.pptokens[index] && data->lexer.ptype[index] != T_PIPE)
 	{
 		if(args_utils(&index, args_rightchild) == ERROR)
 			return (ERROR);
@@ -136,16 +136,16 @@ void	tree_reds(t_astnode *ast_node, int index)
 	
 	if (ast_node->nodetype != A_REDIRECTIONS)
 		return ;
-	tokens = data.lexer.pptokens;
+	tokens = data->lexer.pptokens;
 	reds_leftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION); // RED
 	reds_rightchild = insert_rightchildnode_ast(ast_node, 0); // REDS
-	if (data.lexer.ptype[index] == T_REDIRECTION)
+	if (data->lexer.ptype[index] == T_REDIRECTION)
 		if(!insert_redschild(reds_leftchild, reds_rightchild, index))
 			return ;
 	index++;
-	while (data.lexer.ptype[index] != T_PIPE && tokens[index])
+	while (data->lexer.ptype[index] != T_PIPE && tokens[index])
 	{
-		if (data.lexer.ptype[index] == T_REDIRECTION)
+		if (data->lexer.ptype[index] == T_REDIRECTION)
 		{
 			reds_rightchild->nodetype = A_REDIRECTIONS;
 			tree_reds(reds_rightchild, index);
@@ -167,10 +167,10 @@ void	delete_ast(t_astnode *node)
 
 void free_data_ast(void)
 {
-	if (data.ast.prootnode)
+	if (data->ast.prootnode)
 	{
-		delete_ast(data.ast.prootnode);
-		ft_bzero(&data.ast, sizeof(t_ast));
+		delete_ast(data->ast.prootnode);
+		ft_bzero(&data->ast, sizeof(t_ast));
 	}
 }
 
@@ -178,7 +178,7 @@ int	args_utils(int *index, t_astnode *args_rightchild)
 {
 	int	*type;
 
-	type = data.lexer.ptype;
+	type = data->lexer.ptype;
 	if (type[*index] == T_REDIRECTION) // red filename
 		(*index)++;
 	else if(init_idx(*index, args_rightchild) == ERROR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_nanoshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/24 19:21:48 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:52:10 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_nanoshell(char *filepath)
 	char		*argv[2];
 	struct stat	*buf;
 	
-	// data.exit_status = 0;
+	// data->exit_status = 0;
 	// pid = fork();
 	// if (pid < 0)
 	// {
@@ -29,19 +29,19 @@ void	ft_nanoshell(char *filepath)
 	// }
 	// if(pid == 0)	
 	// {
-		// dup2(data.std_fd[0], STDIN_FILENO);
-		dup2(data.std_fd[1], STDOUT_FILENO);
+		dup2(data->std_fd[0], STDIN_FILENO);
+		dup2(data->std_fd[1], STDOUT_FILENO);
 		
 		if (!ft_strncmp(filepath, "nanoshell", -1) && stat(filepath, buf) == -1)
 		{
 			printf("nanoshell : command not found : %s\n", filepath);
-			data.exit_status = 1;
-			exit(data.exit_status);
+			data->exit_status = 1;
+			exit(data->exit_status);
 		}
 		envp = envvlist_to_envp();
 		if (!envp)
 		{
-			data.exit_status = 1;
+			data->exit_status = 1;
 			return ;
 		}
 		argv[0] = "./nanoshell";
@@ -51,7 +51,7 @@ void	ft_nanoshell(char *filepath)
 		// 부모 미니쉘은 시그널 끄기
 	// }
 	// else
-	// 	waitpid(pid, &data.exit_status, 0);
+	// 	waitpid(pid, &data->exit_status, 0);
 }
 
 
@@ -62,11 +62,11 @@ char	**envvlist_to_envp(void)
 	char		**envp;
 	t_envv_node	*curr;
 
-	cnt = data.envv_cnt;
+	cnt = data->envv_cnt;
 	envp = (char **)ft_calloc((cnt + 1), sizeof(char *)); // malloc 후 null 체크 해주는 함수 만들기 exit
 	if (!envp)
 		return (NULL);
-	curr = data.envv_list;
+	curr = data->envv_list;
 	i = 0;
 	while (curr)
 	{

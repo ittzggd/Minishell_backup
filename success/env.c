@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/20 17:09:20 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:38:46 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,20 @@ void	replace_env_to_value(int i)
 	int		j;
 	int		key_len;
 
-	token = data.lexer.pptokens[i]; // $USER 혹은 "$USER"
+	token = data->lexer.pptokens[i]; // $USER 혹은 "$USER"
 	j = 0;
 	if (ft_strncmp(&token[j], "$", -1)) // $
 		return ;
 	else if (token[j] && (token[j] == '$' && token[j + 1] == '\"')) // $"USER" => 치환 안하는 경우
 	{
-		data.lexer.pptokens[i] = remove_quote(&token[j + 1]);
+		data->lexer.pptokens[i] = remove_quote(&token[j + 1]);
 		if(token)
 			free(token);
 		return ;
 	}
 	else if (ft_strncmp(&token[j], "\"$\"", 3)) // "$"USER, "$" => 치환 안하는 경우
 	{
-		data.lexer.pptokens[i] = remove_quote(&token[j]);
+		data->lexer.pptokens[i] = remove_quote(&token[j]);
 		if(token)
 			free(token);
 		return ;
@@ -87,7 +87,7 @@ void	replace_env_to_value(int i)
 	// 	data.lexer.pptokens[i] = ft_itoa(data.exit_status);
 		return ;
 	}
-	else if(ft_strncmp(data.lexer.pptokens[i - 1], "<<", -1))
+	else if(ft_strncmp(data->lexer.pptokens[i - 1], "<<", -1))
 		return ;
 	// echo "$PATH"hello => $PATH가 get_envv로 치환한 뒤 strjoin
 	while (token[j] && (token[j] == '$' || (token[j] == '\"' && token[j + 1] == '$')))
@@ -106,9 +106,9 @@ void	replace_env_to_value(int i)
 		if(key)
 			free(key);
 		if (token[j + key_len + 1] == '\0')
-			data.lexer.pptokens[i] = argv;
+			data->lexer.pptokens[i] = argv;
 		else
-			data.lexer.pptokens[i] = ft_strjoin(argv, &token[j + key_len + 1]);
+			data->lexer.pptokens[i] = ft_strjoin(argv, &token[j + key_len + 1]);
 		if(token)
 			free(token);
 	}
@@ -120,7 +120,7 @@ void	insert_envv(char *key, char *value, int init_flag) // export시 환경변�
 	t_envv_node	*is_exist;
 	t_envv_node	*new;
 	
-	is_exist = get_el_node(data.envv_list, key);
+	is_exist = get_el_node(data->envv_list, key);
 	if (is_exist)
 	{
 		if (is_exist->value)
@@ -134,7 +134,7 @@ void	insert_envv(char *key, char *value, int init_flag) // export시 환경변�
 		element.init_flag = init_flag;
 		new = ft_lstnew(element);
 		ft_lstadd_back(new);
-		data.envv_cnt++;
+		data->envv_cnt++;
 	}
 }
 
@@ -142,7 +142,7 @@ char	*get_envv(char *key)
 {
 	t_envv_node *key_node;
 
-	key_node = get_el_node(data.envv_list, key);
+	key_node = get_el_node(data->envv_list, key);
 	if(!key_node)
 		return (NULL);
 	return (key_node->value);

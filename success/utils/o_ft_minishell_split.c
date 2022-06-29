@@ -31,8 +31,8 @@ int	ft_wordlen(char const *str)
 				i++;
 			if (str[i] == '\0' && quote != is_quote(str[i]))
 			{
-				data.exit_status = 1;
-				return (data.exit_status);
+				data->exit_status = 1;
+				return (data->exit_status);
 			}
 			if(is_quote(str[i+1]))
 			{
@@ -65,8 +65,8 @@ int	ft_wordlen(char const *str)
 						i++;
 					if (str[i] == '\0' && quote != is_quote(str[i]))
 					{
-						data.exit_status = 1;
-						return (data.exit_status);
+						data->exit_status = 1;
+						return (data->exit_status);
 					}
 					if(is_quote(str[i+1]))
 					{

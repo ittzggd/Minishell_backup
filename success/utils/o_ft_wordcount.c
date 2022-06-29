@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/11 16:21:26 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:42:06 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int ft_wordcount(char const *str)
 				i++;
 			if (str[i] == '\0' && quote != is_quote(str[i]))
 			{
-				data.exit_status = 1;
-				return (data.exit_status);
+				data->exit_status = 1;
+				return (data->exit_status);
 			}
 			if(is_quote(str[i+1]))
 			{
@@ -86,8 +86,8 @@ int ft_wordcount(char const *str)
 						i++;
 					if (str[i] == '\0' && quote != is_quote(str[i]))
 					{
-						data.exit_status = 1;
-						return (data.exit_status);
+						data->exit_status = 1;
+						return (data->exit_status);
 					}
 					if(is_quote(str[i+1]))
 					{

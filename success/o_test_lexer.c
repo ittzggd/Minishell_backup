@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   o_test_lexer.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
+/*   Updated: 2022/06/28 18:44:49 by hejang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./include/minishell.h"
 
 static int	get_type(char *value);
@@ -12,19 +24,19 @@ void	lexical_analysis(void)
 
 	i = -1;
 	command_flag = FALSE;
-	data.lexer.ptype = (int *)ft_calloc(data.tokens_cnt + 1, sizeof(int));
-	if (!data.lexer.ptype)
+	data->lexer.ptype = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
+	if (!data->lexer.ptype)
 		return ;
-	while (data.lexer.pptokens[++i])
+	while (data->lexer.pptokens[++i])
 	{
-		data.lexer.ptype[i] = get_type(data.lexer.pptokens[i]);
-		if(data.lexer.ptype[i] == T_WORD)
+		data->lexer.ptype[i] = get_type(data->lexer.pptokens[i]);
+		if(data->lexer.ptype[i] == T_WORD)
 			type_word_to_cmd(&i, &command_flag);
-		if (data.lexer.ptype[i] == T_PIPE)
+		if (data->lexer.ptype[i] == T_PIPE)
 			type_pipe(&command_flag);
-		else if (data.lexer.ptype[i] == T_REDIRECTION)
-			data.redirection_cnt++;
-		else if (data.lexer.ptype[i] == T_WORD)
+		else if (data->lexer.ptype[i] == T_REDIRECTION)
+			data->redirection_cnt++;
+		else if (data->lexer.ptype[i] == T_WORD)
 		{
 			if(word_to_option(&i, &command_flag) == FALSE)
 				return ;
@@ -60,7 +72,7 @@ static void type_word_to_cmd(int *i, int *command_flag)
 {
 	int	*type;
 
-	type = data.lexer.ptype;
+	type = data->lexer.ptype;
 	if(*i == 0)
 	{
 		type[*i] = T_COMMAND;
@@ -83,8 +95,8 @@ static int	word_to_option(int *i, int *command_flag)
 	int		*type;
 	char	**tokens;
 
-	type = data.lexer.ptype;
-	tokens = data.lexer.pptokens;
+	type = data->lexer.ptype;
+	tokens = data->lexer.pptokens;
 	if(i != 0 && type[*i - 1] == T_COMMAND)
 	{
 		if(is_option(tokens[*i]))
@@ -94,9 +106,9 @@ static int	word_to_option(int *i, int *command_flag)
 	{
 		// $와 괄호를 제외한 key값을 tokens[i]에 저장하기
 		replace_env_to_value(*i);
-		if (!data.lexer.pptokens[*i])
+		if (!data->lexer.pptokens[*i])
 		{
-			data.exit_status = 1;
+			data->exit_status = 1;
 			return (FALSE);
 		}
 				// 에러처리를 함수 쪼갤때 해주기
@@ -106,7 +118,7 @@ static int	word_to_option(int *i, int *command_flag)
 
 static void type_pipe(int *command_flag)
 {
-	data.pipe_cnt++;
+	data->pipe_cnt++;
 	*command_flag = FALSE;
 }
 
@@ -120,18 +132,18 @@ static void type_pipe(int *command_flag)
 // 	data = ft_calloc(1, sizeof(t_data));
 // 	// token
 // 	tokenize_input(data, "echo hi");
-// 	while(data.lexer.pptokens[i])
+// 	while(data->lexer.pptokens[i])
 // 	{
-// 		printf("tokenize pptokens[%d] : %s\n", i, data.lexer.pptokens[i]);
+// 		printf("tokenize pptokens[%d] : %s\n", i, data->lexer.pptokens[i]);
 // 		i++;
 // 	}
 
 // 	// lexer
 // 	lexical_analysis(data);
 // 	i = 0;
-// 	while(data.lexer.pptokens[i])
+// 	while(data->lexer.pptokens[i])
 // 	{
-// 		printf("pptokens[%d] : %s  ", i, data.lexer.pptokens[i]);
+// 		printf("pptokens[%d] : %s  ", i, data->lexer.pptokens[i]);
 // 		printf("type[%d] : %d\n", i, data.lexer.ptype[i]);
 // 		i++;
 // 	}

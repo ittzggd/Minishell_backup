@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_message.c                                 :+:      :+:    :+:   */
+/*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 13:45:09 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/28 18:39:54 by hejang           ###   ########.fr       */
+/*   Created: 2022/06/29 13:10:39 by yukim             #+#    #+#             */
+/*   Updated: 2022/06/29 13:13:29 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "./include/minishell.h"
 
-void	ft_error_message(char *message, int exit_status)
+void	reset_stdfd(void)
 {
-	int	len;
+	dup2(data->std_fd[0], STDIN_FILENO);
+	dup2(data->std_fd[1], STDOUT_FILENO);
+}
 
-	len = ft_strlen(message);
-	write(2, message, len);
-	data->exit_status = exit_status;
+void	reset_signal(void)
+{
+	signal(SIGINT, &ctrl_c);
+	signal(SIGQUIT, &ctrl_bs);
 }

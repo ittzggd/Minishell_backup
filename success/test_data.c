@@ -6,39 +6,39 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:31:33 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/26 17:29:09 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/28 18:43:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-t_data	data;
+t_data	*data;
 
 void	free_data_lexer(void)
 {
 	int	i;
 
 	i = 0;
-	if (data.lexer.ptype)
-		free(data.lexer.ptype);
-	if (data.lexer.pptokens)
+	if (data->lexer.ptype)
+		free(data->lexer.ptype);
+	if (data->lexer.pptokens)
 	{
-		while (data.lexer.pptokens[i])
+		while (data->lexer.pptokens[i])
 		{
-			free(data.lexer.pptokens[i]);
+			free(data->lexer.pptokens[i]);
 			i++;
 		}
-		free(data.lexer.pptokens);
+		free(data->lexer.pptokens);
 	}
-	ft_bzero(&data.lexer, sizeof(t_lexer));
+	ft_bzero(&data->lexer, sizeof(t_lexer));
 }
 
 void	reset_data(void)
 {
-	data.tokens_cnt = 0;
-	data.redirection_cnt = 0;
-	data.pipe_cnt = 0;
-	data.p_flag = 0;
+	data->tokens_cnt = 0;
+	data->redirection_cnt = 0;
+	data->pipe_cnt = 0;
+	data->p_flag = 0;
 	free_data_lexer();
 	free_data_ast();
 }

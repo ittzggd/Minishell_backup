@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/28 17:50:40 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 13:13:34 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "minishell_pipe.h"
 # include "minishell_red.h"
 
-extern	t_data		data;
+extern	t_data		*data;
 
 void	init_setting(char **envp);
 int		analyze_input(char *input);
@@ -59,10 +59,9 @@ void	free_data_lexer(void);
 void	clear_linked_list(t_envv_node **p_list);
 void	delete_linked_list(t_envv_node **p_list);
 
-void	ft_sig_handler(int sig_num);
-
 void	ctrl_c();
-void ctrl_bs();
-
+void	ctrl_bs();
+void	reset_stdfd(void);
+void	reset_signal(void);
 
 #endif

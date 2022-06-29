@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test_redirections.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/27 12:21:52 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/29 13:35:58 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
+
+void ft_sig_handler_in_heredoc(int sig_num);
 
 void	out_red(char *filename)
 {
@@ -58,12 +60,17 @@ void	heredoc(char *delimiter)
 	char	*input_str;
 	char	*delimiter_without_quote;
 	
-	if (pipe(data.heredoc_fd) < 0)
+	// dup2(data->std_fd[0], STDIN_FILENO);
+	// dup2(data->std_fd[1], STDOUT_FILENO);
+	reset_stdfd();
+	
+	signal(SIGINT, &ft_sig_handler_in_heredoc);
+	if (pipe(data->heredoc_fd) < 0)
 	{
-		data.exit_status = 1;
+		data->exit_status = 1;
 		return ;
 	}
-	data.heredoc_flag = TRUE;
+	data->heredoc_flag = TRUE;
 	delimiter_without_quote = remove_quote(delimiter);
 	while (1)
 	{
@@ -71,13 +78,17 @@ void	heredoc(char *delimiter)
 		input_str = readline("heredoc > ");
 		if (ft_strncmp(input_str, delimiter_without_quote, -1))
 			break ;
-		write(data.heredoc_fd[1], input_str, ft_strlen(input_str));
-		write(data.heredoc_fd[1], "\n", 1);
+		write(data->heredoc_fd[1], input_str, ft_strlen(input_str));
+		write(data->heredoc_fd[1], "\n", 1);
+		// if (input_str)
+		// {
+		// 	free(input_str);
+		// }
 	}
 	if (delimiter != delimiter_without_quote)
 		free(delimiter_without_quote);
-	dup2(data.heredoc_fd[0], STDIN_FILENO);
-	close(data.heredoc_fd[0]);
-	close(data.heredoc_fd[1]);
-	data.heredoc_flag = FALSE;
+	dup2(data->heredoc_fd[0], STDIN_FILENO);
+	close(data->heredoc_fd[0]);
+	close(data->heredoc_fd[1]);
+	data->heredoc_flag = FALSE;
 }
