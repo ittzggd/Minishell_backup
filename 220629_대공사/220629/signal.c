@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:36:12 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:10:03 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 23:36:0 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,38 @@
 
 void ft_sig_handler_in_heredoc(int sig_num)
 {
-	// ft_error_message("Called : ft_sig_handler_in_heredoc\n", 222);
+//	ft_error_message("Called : ft_sig_handler_in_heredoc\n", 222);
 	if (sig_num == SIGINT)
 	{
 		close(STDIN_FILENO);
-		// ft_error_message("\n", 1);
-	//	rl_on_new_line();
-	//	ft_error_message("heredoc_handler\n", 333);
-		data->exit_status = 1;
-		exit(data->exit_status);
+		ft_error_message("\n", 1);
+		rl_on_new_line();
+		data.exit_status = 1;
+	//	if(data.p_flag == TRUE)	
+		//	exit(data.exit_status);
+	}
+	else if (sig_num == SIGQUIT)
+	{
+		rl_on_new_line();
+		rl_redisplay();
 	}
 }
 
 void	ctrl_c()
 {
+	if(data.heredoc_flag == TRUE)
+	{
+		return ;
+		// ft_sig_handler_in_heredoc(SIGINT);
+	}	
 //	ft_error_message("defalut ctrl_c signal \n", 333);
-	// if(data->heredoc_flag == TRUE)
-	// {
-	// 	ft_sig_handler_in_heredoc(SIGINT);
-	// }	
-	if (data->p_flag == TRUE)
+	if (data.p_flag == TRUE)
 	{
 		ft_error_message("", 130);
 		rl_on_new_line();
-		exit(data->exit_status);
+		exit(data.exit_status);
 	}
-	else if ( data->p_flag == FALSE)
+	else if ( data.p_flag == FALSE)
 	{
 		ft_error_message("\n", 1);
 		rl_on_new_line();
@@ -57,14 +63,17 @@ void	ctrl_c()
 	}
 }
 
-void ctrl_bs()
+
+void ctrl_bs(int sig_num)
 {
-	if (data->p_flag == TRUE)
+	if (data.p_flag == TRUE)
 	{
+		if(data.heredoc_flag == TRUE)
+			return ;
 		ft_error_message("Quit: 3\n", 131);
-		exit(data->exit_status);
+		exit(data.exit_status);
 	}
-	else if (data->p_flag == FALSE)
+	else if (data.p_flag == FALSE)
 	{
 		rl_on_new_line();
 		rl_redisplay();

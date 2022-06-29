@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/29 23:06:57 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 23:29:20 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "minishell_pipe.h"
 # include "minishell_red.h"
 
-extern	t_data		*data;
+extern	t_data	data;
 
 void	init_setting(char **envp);
 int		analyze_input(char *input);
@@ -56,11 +56,13 @@ char	**envvlist_to_envp(void);
 char	**join_filepath(char *execve_cmd);
 
 void	free_data_lexer(void);
+void	reset_data(void);
+// void	free_data(void);
 void	clear_linked_list(t_envv_node **p_list);
 void	delete_linked_list(t_envv_node **p_list);
 
-void	ctrl_c(void);
-void	ctrl_bs(void);
+void	ctrl_c(int sig_num);
+void	ctrl_bs(int sig_num);
 void	ft_sig_handler_in_heredoc(int sig_num);
 void	reset_stdfd(void);
 void	reset_signal(void);

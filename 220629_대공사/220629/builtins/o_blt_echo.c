@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/28 18:47:46 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 23:30:15 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_echo(t_astnode *args_node)
 	arg = args_node->prightchild->pvalue_index;
 	while(*arg != -1)
 	{
-		if(data->lexer.ptype[*arg] == T_OPTION)
+		if(data.lexer.ptype[*arg] == T_OPTION)
 			option_flag = TRUE;
 		arg++;
 	}
@@ -49,21 +49,21 @@ static int	do_echo(t_astnode *args_node, int option_flag)
 	arg++;
 	while(*arg != -1)
 	{
-		if(data->lexer.ptype[*arg] == T_OPTION)
+		if(data.lexer.ptype[*arg] == T_OPTION)
 		{
 			arg++;
 			continue;
 		}
-		rm_quote_str = remove_quote(data->lexer.pptokens[*arg]);
+		rm_quote_str = remove_quote(data.lexer.pptokens[*arg]);
 		if(!rm_quote_str)
 		{
-			data->exit_status = 1;
+			data.exit_status = 1;
 			return (ERROR);
 		}
 		if(ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
 		{
-			printf("%d", data->exit_status);
-			data->exit_status = 0;
+			printf("%d", data.exit_status);
+			data.exit_status = 0;
 		}
 		else
 		{
@@ -71,12 +71,12 @@ static int	do_echo(t_astnode *args_node, int option_flag)
 			if (*(arg + 1) != -1)
 				printf(" ");
 		}
-		if (rm_quote_str != data->lexer.pptokens[*arg])
+		if (rm_quote_str != data.lexer.pptokens[*arg])
 			free(rm_quote_str);
 		arg++;
 	}
 	if (option_flag != TRUE)
 		printf("\n");
-	data->exit_status = 0;
+	data.exit_status = 0;
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/29 23:14:14 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 01:03:17 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	postorderTravelBinSTree(t_astnode *node)
 		{
 			while(node->pvalue_index[i] != -1)
 			{
-				printf("       value : %s         ", data->lexer.pptokens[node->pvalue_index[i]]);
+				printf("       value : %s         ", data.lexer.pptokens[node->pvalue_index[i]]);
 				i++;
 			}
 		}
@@ -41,14 +41,14 @@ void	postorderTravelBinSTree(t_astnode *node)
 int	analyze_input(char *input)
 {
 	tokenize_input(input); // data구조체 내부에 tokens 추가
-	if (!data->lexer.pptokens) // data 모두 프리
+	if (!data.lexer.pptokens) // data 모두 프리
 		return (ERROR); // 에러 넘버 여러 경우로 나눌지 생각하기
 	lexical_analysis();
-	if (!data->lexer.ptype) // data Free
+	if (!data.lexer.ptype) // data Free
 		return (ERROR); 
 	if(syntax_analysis() != 0)
 	{
-		data->exit_status = 258;
+		data.exit_status = 258;
 		return (ERROR);
 	}
 	// parser
@@ -62,7 +62,7 @@ int	main(int argc, char *argv[], char **envp)
 	if (argc == 1)
 	{
 		init_setting(envp); 
-
+		printf("main before while data.exit_status : %d\n", data.exit_status);
 		// 명령어 실행
 		while (1)
 		{	
@@ -70,10 +70,11 @@ int	main(int argc, char *argv[], char **envp)
 			// signal(SIGQUIT, &ctrl_bs);
 			reset_signal();
 			// // 리다이렉션이나 파이프를 거치면서 바뀐 STDIN, STDOUT 초기화
-			// dup2(data->std_fd[0], STDIN_FILENO);
-			// dup2(data->std_fd[1], STDOUT_FILENO);
+			// dup2(data.std_fd[0], STDIN_FILENO);
+			// dup2(data.std_fd[1], STDOUT_FILENO);
 			reset_stdfd();
 			input_str = readline("nanoshell >> ");
+			printf("after readline data.exit_status : %d\n",  data.exit_status);
 			if (input_str)
 			{
 				if (analyze_input(input_str) == ERROR)
@@ -84,17 +85,19 @@ int	main(int argc, char *argv[], char **envp)
 				init_ast(); // ast 트리 생성
 
 				// heredoc 입력받기
-				if(data->heredoc_cnt > 0)
+				printf("before heredoc data.exit_status : %d\n",  data.exit_status);
+				if(data.heredoc_cnt > 0)
 				{
 					preprocess_heredoc();
-					if(data->exit_status == 1);
+					if (data.exit_status == 1)
 					{
+						printf("after heredoc : data.exit_status : %d\n",  data.exit_status);
 						add_history(input_str);
 						reset_data();
 						continue;
 					}
 				}
-				// postorderTravelBinSTree(data->ast.prootnode);
+				// postorderTravelBinSTree(data.ast.prootnode);
 				exec_ast(); // 명령어 실행 부분
 			
 			}
@@ -113,9 +116,9 @@ int	main(int argc, char *argv[], char **envp)
 			//free(input_str);
 
 			// int k = 0;
-			// while (data->lexer.pptokens[k])
+			// while (data.lexer.pptokens[k])
 			// {
-			// 	printf("in main__tokens[%d] : %s\n", k, data->lexer.pptokens[k]);
+			// 	printf("in main__tokens[%d] : %s\n", k, data.lexer.pptokens[k]);
 			// 	k++;
 			// }
 
@@ -124,11 +127,11 @@ int	main(int argc, char *argv[], char **envp)
 		}
 
 		// 종료 전 열린 파이프 닫기
-		close(data->std_fd[0]);
-		close(data->std_fd[1]);
+		close(data.std_fd[0]);
+		close(data.std_fd[1]);
 		// 종료 전 data에 남은 것들 free
 		//envv_list 랑 data,,,,
 	}
-	return (data->exit_status);
+	return (data.exit_status);
 }
 

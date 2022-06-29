@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/28 18:46:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 23:22:01 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	ft_cd(t_astnode *args_node) // cd -경우 추가 바람
 	char	*home_path;
 	int		idx;
 
-	data->exit_status = 0;
-	tmp = data->lexer.pptokens[args_node->prightchild->pvalue_index[1]];
+	data.exit_status = 0;
+	tmp = data.lexer.pptokens[args_node->prightchild->pvalue_index[1]];
 	rm_quote_tmp = remove_quote(tmp);
 	idx = args_node->prightchild->pvalue_index[1];
 	if (idx == END || ft_strncmp(rm_quote_tmp, "~", 1)) // cd  ||  cd ~
 	{
 		if(cd_home(&home_path, &dst_path, &rm_quote_tmp) == ERROR)
-			return (data->exit_status);
+			return (data.exit_status);
 	}
 	else // cd ./eee    cd ../zd   cd libft
 		dst_path = rm_quote_tmp;
@@ -43,7 +43,7 @@ int	ft_cd(t_astnode *args_node) // cd -경우 추가 바람
 		free(dst_path);
 	if (rm_quote_tmp != tmp)
 		free(rm_quote_tmp);
-	return (data->exit_status);
+	return (data.exit_status);
 }
 
 void	update_pwd_oldpwd(char *key)
@@ -52,7 +52,7 @@ void	update_pwd_oldpwd(char *key)
 	char	*tmp;
 	t_envv_node	*node;
 	
-	node = get_el_node(data->envv_list, key);
+	node = get_el_node(data.envv_list, key);
 	if (node)
 	{
 		if (ft_strncmp(key, "OLDPWD", -1))
@@ -79,7 +79,7 @@ static int	cd_home(char **home_path, char **dst_path, char **rm_quote_tmp)
 	if (!home_path)
 	{
 		printf("minishell : cd : %s : No such file or directory\n", *dst_path);
-		data->exit_status = 1;
+		data.exit_status = 1;
 		return (ERROR); // exit_status 실패
 	}
 	return (TRUE);
@@ -88,7 +88,7 @@ static int	cd_home(char **home_path, char **dst_path, char **rm_quote_tmp)
 static void	chdir_error(char *tmp)
 {
 	printf("minishell : cd : %s : No such file or directory\n", tmp);
-	data->exit_status = 1;
+	data.exit_status = 1;
 }
 
 static void	update_pwd(void)

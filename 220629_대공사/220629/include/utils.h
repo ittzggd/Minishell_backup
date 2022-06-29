@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/26 13:49:33 by yukim            ###   ########.fr       */
+/*   Updated: 2022/06/29 23:24:12 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,4 @@ char	*remove_quote(char *quote_str);
 
 void	ft_error_message(char *message, int exit_status);
 
-//data
-
-// void	init_data(void);
-void	free_data_lexer(void);
-void	reset_data(void);
-void	free_data(void);
 #endif

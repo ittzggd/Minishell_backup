@@ -25,13 +25,12 @@ void	exec_ast(void)
 	// close(data.std_fd[1]);
 	// data.std_fd[0] = dup(STDIN_FILENO);
 	// data.std_fd[1] = dup(STDOUT_FILENO);
-
-	if (data->pipe_cnt > 0)
-		postorder_travel_ast(data->ast.prootnode);
+	if (data.pipe_cnt > 0)
+		postorder_travel_ast(data.ast.prootnode);
 	else
-		postorder_travel_command(data->ast.prootnode);
+		postorder_travel_command(data.ast.prootnode);
 
-	// dup2(data->std_fd[0], STDIN_FILENO);
+	// dup2(data.std_fd[0], STDIN_FILENO);
 	// dup2(data.std_fd[1], STDOUT_FILENO);
 	// close(data.std_fd[0]);
 	// close(data.std_fd[1]);
@@ -45,7 +44,7 @@ void	exec_cmd(t_astnode *argsnode)
 	char *blt_cmd;
 
 	argnode = argsnode->prightchild;
-	blt_cmd = data->lexer.pptokens[argnode->pvalue_index[0]];
+	blt_cmd = data.lexer.pptokens[argnode->pvalue_index[0]];
 
 	if (ft_strncmp(blt_cmd, "cd", -1))
 		ft_cd(argsnode);
@@ -79,9 +78,9 @@ void	execve_cmd(t_astnode *argsnode)
 	char		**filepath;
 	int			idx;
 	
-	data->exit_status = 0;
+	data.exit_status = 0;
 	argnode = argsnode->prightchild;
-	execve_cmd = data->lexer.pptokens[argnode->pvalue_index[0]];
+	execve_cmd = data.lexer.pptokens[argnode->pvalue_index[0]];
 	idx = 0;
 	filepath = join_filepath(execve_cmd);
 	i = 0;
@@ -91,27 +90,27 @@ void	execve_cmd(t_astnode *argsnode)
 	argv = (char **)ft_calloc(i + 1, sizeof(char *));
 	while(j < i)
 	{
-		argv[j] = ft_strdup(data->lexer.pptokens[argnode->pvalue_index[j]]);
+		argv[j] = ft_strdup(data.lexer.pptokens[argnode->pvalue_index[j]]);
 		j++;
 	}
 	argv[j] = NULL;
-	if (data->pipe_cnt == 0)
+	if (data.pipe_cnt == 0)
 	{
 		pid = fork();
 		if (pid < 0)
 		{
 			exit(1);
 		}
-		data->p_flag = TRUE;
+		data.p_flag = TRUE;
 		if(pid == 0)	
 		{
 			if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
 				ft_nanoshell(execve_cmd);
 			else
 			{
-				pid2 = fork();
-				if(pid2 == 0)
-				{
+//				pid2 = fork();
+//				if(pid2 == 0)
+//				{
 					reset_signal();
 					while(filepath[idx])
 					{
@@ -125,26 +124,26 @@ void	execve_cmd(t_astnode *argsnode)
 						ft_error_message("nanoshell : command not found : ", 1);
 						ft_error_message(argv[0], 1);
 						ft_error_message("\n", 1);
-						exit(data->exit_status);
+						exit(data.exit_status);
 					}
-				}
-				else
-				{
-					waitpid(pid, &(data->exit_status), 0);
-					exit(data->exit_status) ;
-				}
+//				}
+				// else
+				// {
+				// 	waitpid(pid, &(data.exit_status), 0);
+				// 	exit(data.exit_status) ;
+				// }
 			}
 		}
 		// else
 		// {
 			signal(SIGINT, SIG_IGN);
 			signal(SIGQUIT, SIG_IGN);
-			waitpid(pid, &data->exit_status, 0);
+			waitpid(pid, &data.exit_status, 0);
 		// }
-		if (WIFEXITED(data->exit_status))
-			data->exit_status = WEXITSTATUS(data->exit_status);
-		else if (WIFSIGNALED(data->exit_status))
-			data->exit_status = WTERMSIG(data->exit_status) + 128;
+		if (WIFEXITED(data.exit_status))
+			data.exit_status = WEXITSTATUS(data.exit_status);
+		else if (WIFSIGNALED(data.exit_status))
+			data.exit_status = WTERMSIG(data.exit_status) + 128;
 	}
 	else
 	{
@@ -164,7 +163,7 @@ void	execve_cmd(t_astnode *argsnode)
 				ft_error_message("nanoshell : command not found : ", 1);
 				ft_error_message(argv[0], 1);
 				ft_error_message("\n", 1);
-				exit(data->exit_status);
+				exit(data.exit_status);
 			}
 		}
 	}

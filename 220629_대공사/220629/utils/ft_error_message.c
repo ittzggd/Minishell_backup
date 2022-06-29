@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 13:45:09 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/28 18:39:54 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/29 23:24:42 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_error_message(char *message, int exit_status)
 
 	len = ft_strlen(message);
 	write(2, message, len);
-	data->exit_status = exit_status;
+	data.exit_status = exit_status;
 }
