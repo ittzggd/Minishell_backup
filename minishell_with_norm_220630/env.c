@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 04:46:57 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 05:29:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	replace_env_to_value(int i)
 	key = (char *)malloc(key_len + 1);
 	if (key)
 	{
-		get_value(key, token, keylen);
+		get_value(key, token, key_len, i, j);
 	}
 }
 
@@ -95,13 +95,9 @@ int	init_envp(char *input, char **key, char **value)
 	if (p_equal)
 	{
 		init_flag = TRUE;
-		*key = (char *)ft_calloc(p_equal - input + 1, sizeof(char));
-		if (!(*key))
-			return (ERROR);
+		calloc_nullcheck((void **)key, p_equal - input + 1, sizeof(char));
 		ft_strlcpy(*key, input, p_equal - input + 1);
 		*value = ft_strdup(p_equal + 1);
-		if (!(*value))
-			return (ERROR);
 	}
 	else
 	{

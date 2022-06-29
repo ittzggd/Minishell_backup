@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 04:46:34 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 05:29:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	execve_cmd(t_astnode *argsnode)
 
 	data.exit_status = 0;
 	cnt = 0;
-	execve_cmd = data.lexer.pptokens[argnode->pvalue_index[0]];
+	execve_cmd = data.lexer.pptokens[argsnode->prightchild->pvalue_index[0]];
 	filepath = join_filepath(execve_cmd);
 	while (argsnode->prightchild->pvalue_index[cnt] != -1)
 		cnt++;
-	argv = create_argv(i, argsnode);
+	argv = create_argv(cnt, argsnode);
 	if (data.pipe_cnt == 0)
-		command_without_pipe(execve_cmd, 0, argv);
+		command_without_pipe(execve_cmd, 0, argv, filepath);
 	else
 	{
 		if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
@@ -73,7 +73,7 @@ void	execve_cmd(t_astnode *argsnode)
 	}
 }
 
-void	command_without_pipe(char *execve_cmd, int idx, char **argv)
+void	command_without_pipe(char *execve_cmd, int idx, char **argv, char **filepath)
 {
 	pid_t	pid;
 
@@ -102,7 +102,7 @@ void	command_without_pipe(char *execve_cmd, int idx, char **argv)
 		data.exit_status = WTERMSIG(data.exit_status) + 128;
 }
 
-void	fork_before_run_execve(char *filepath, int idx, char **argv)
+void	fork_before_run_execve(char **filepath, int idx, char **argv)
 {
 	pid_t	pid2;
 

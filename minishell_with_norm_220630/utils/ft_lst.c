@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:24:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 05:34:30 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,10 @@ t_envv_node	*ft_lstnew(t_envv_node element)
 {
 	t_envv_node	*new;
 
-	new = (t_envv_node *)ft_calloc(1, sizeof(t_envv_node));
-	if (!new)
-		return (NULL);
+	calloc_nullcheck(&new, 1, sizeof(t_envv_node));
 	new->key = ft_strdup(element.key);
-	if(!new->key)
-		return (NULL);
 	new->value = ft_strdup(element.value);
 	new->init_flag = element.init_flag;
-	if (!new->value)
-	{
-		free(new->key);
-		return (NULL);
-	}
 	return (new);
 }
 
@@ -36,9 +27,9 @@ void	ft_lstadd_back(t_envv_node *new)
 {
 	t_envv_node	*curr;
 
-	curr = data.envv_list;
 	if (!new)
 		return ;
+	curr = data.envv_list;
 	if (!curr)
 		data.envv_list = new;
 	else

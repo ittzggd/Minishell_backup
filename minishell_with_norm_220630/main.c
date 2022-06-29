@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 04:45:41 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 05:53:28 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,11 @@
 
 int	analyze_input(char *input)
 {
-	tokenize_input(input);
-	if (!data.lexer.pptokens)
-	/*
-	error
-	*/
+	if (tokenize_input(input) == ERROR)
 		return (ERROR);
 	lexical_analysis();
-	/*
-	error
-	*/
-	if (!data.lexer.ptype)
-		return (ERROR);
 	if (syntax_analysis() != 0)
-	{
-	/*
-	error
-	*/
-		data.exit_status = 258;
 		return (ERROR);
-	}
 	return (TRUE);
 }
 

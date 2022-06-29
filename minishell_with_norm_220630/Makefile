@@ -1,6 +1,6 @@
 NAME = nanoshell
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CC = gcc -g3
+CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = crs
 COMFILE_FLAGS = -lreadline -L/opt/homebrew/opt/readline/lib

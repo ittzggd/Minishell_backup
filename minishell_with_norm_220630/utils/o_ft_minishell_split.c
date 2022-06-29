@@ -30,10 +30,7 @@ int	ft_wordlen(char const *str)
 			while(str[i] && quote != is_quote(str[i])) // str[i] == 널문자 or 같은 따옴표인 상태로 탈출
 				i++;
 			if (str[i] == '\0' && quote != is_quote(str[i]))
-			{
-				data.exit_status = 1;
-				return (data.exit_status);
-			}
+				return (ERROR);
 			if(is_quote(str[i+1]))
 			{
 				i++;
@@ -64,10 +61,7 @@ int	ft_wordlen(char const *str)
 					while(str[i] && quote != is_quote(str[i])) // str[i] == 널문자 or 같은 따옴표인 상태로 탈출
 						i++;
 					if (str[i] == '\0' && quote != is_quote(str[i]))
-					{
-						data.exit_status = 1;
-						return (data.exit_status);
-					}
+						return (ERROR);
 					if(is_quote(str[i+1]))
 					{
 						i++;
@@ -101,9 +95,9 @@ int	ft_split_str(char *str, char **tokens)
 		}
 		j = 0;
 		wlen = ft_wordlen(str);
-		tokens[i] = (char *)malloc(sizeof(char) * (wlen + 1));
-		if (!tokens[i])
-			return (i);
+		if (wlen == ERROR)
+			return (ERROR);
+		calloc_nullcheck(&tokens[i], wlen + 1, sizeof(char));
 		while (j < wlen)
 		{
 			tokens[i][j] = *str;

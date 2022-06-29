@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/29 23:29:20 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 05:43:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_setting(char **envp);
 int		analyze_input(char *input);
 
 // tokens
-char	*tokenize_input(char *input);
+int     tokenize_input(char *input);
 char	**ft_minishell_split(const char *str);
 int		ft_wordcount(char const *str);
 
@@ -72,5 +72,25 @@ void	free_data_heredoc_delimiter(void);
 
 void	preprocess_heredoc(void);
 void	get_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd);
+
+
+
+void    syntax_error(int *ret_status);
+void    syntax_check_command(int *curr);
+void    syntax_check_option(int *curr,  int *ret_status);
+void    syntax_check_redirection(int *curr, int *ret_status);
+void    syntax_check_pipe(int *curr,  int *ret_status);
+void    syntax_check_null(int *curr,  int *ret_status);
+void	calloc_nullcheck(void **address, int count, int size);
+void	free_all_in_data(void);
+void	free_data_envvlist(void);
+
+int	    check_env(char	*token, int i, int j);
+void	get_value(char *key, char *token, int key_len, int i, int j);
+// void	get_value(char *key, char *token,char **argv, int key_len, int i, int j);
+char	**create_argv(int cnt, t_astnode *argsnode);
+void	command_not_found_error(char *cmd);
+void	fork_before_run_execve(char **filepath, int idx, char **argv);
+void	command_without_pipe(char *execve_cmd, int idx, char **argv, char **filepath);
 
 #endif

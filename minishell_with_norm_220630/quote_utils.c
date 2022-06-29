@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:15:19 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 03:20:53 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 05:22:50 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"./include/minishell.h"
 
-static	int	get_len_witout_quote(char *quote_str);
+static	int	get_len_without_quote(char *quote_str);
 
 char	*remove_quote(char *quote_str)
 {
@@ -40,11 +40,13 @@ char	*remove_quote(char *quote_str)
 	return (ret);
 }
 
-static	int	get_len_witout_quote(char *quote_str)
+static	int	get_len_without_quote(char *quote_str)
 {
 	int	i;
+	int	ret_len;
 
 	i = 0;
+	ret_len = 0;
 	while (quote_str[i])
 	{
 		if (!is_quote(quote_str[i]))

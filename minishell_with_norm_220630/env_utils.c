@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:12:31 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 03:15:37 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 05:17:44 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	check_env(char	*token, int i, int j)
 		return (FALSE);
 }
 
-void	get_value(char *key, char *token, int key_len)
+void	get_value(char *key, char *token, int key_len, int i, int j)
 {
+	char *argv;
+
 	ft_strlcpy(key, &token[j], key_len + 1);
 	argv = get_envv(key);
 	if (key)

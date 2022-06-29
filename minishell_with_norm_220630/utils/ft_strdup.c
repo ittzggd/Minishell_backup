@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 22:34:31 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/14 19:03:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 05:31:59 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ char	*ft_strdup(const char *s)
 	if(!s)
 		return (NULL);
 	s_len = ft_strlen(s) + 1;
-	ptr = (char *)malloc(sizeof(char) * s_len);
-	if (!ptr)
-		return (NULL);
+	calloc_nullcheck(&ptr, s_len, sizeof(char));
 	i = 0;
 	while (s[i])
 	{

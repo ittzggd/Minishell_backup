@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:25:31 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 05:42:02 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ int ft_wordcount(char const *str)
 			while(str[i] && quote != is_quote(str[i])) // str[i] == 널문자 or 같은 따옴표인 상태로 탈출
 				i++;
 			if (str[i] == '\0' && quote != is_quote(str[i]))
-			{
-				data.exit_status = 1;
-				return (data.exit_status);
-			}
+				return (ERROR);
 			if(is_quote(str[i+1]))
 			{
 				i++;

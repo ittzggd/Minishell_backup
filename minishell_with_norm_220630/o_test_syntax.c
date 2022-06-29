@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   o_test_syntax.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:07:44 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 04:45:16 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 05:59:44 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ int	syntax_analysis(void)
 }
 
 void	syntax_error(int *ret_status)
-{
-	ft_error_message("nanoshell: syntax error near unexpected token\n", 1);
+{8
+	char *error_msg;
+	
+	error_msg = ft_strdup("nanoshell: syntax error near unexpected token\n");
+	write(2, error_msg, ft_strlen(error_msg));
+	data.exit_status = 258;
 	*ret_status = 258;
 }
