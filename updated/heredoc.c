@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 06:40:00 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 06:46:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	preprocess_heredoc(void)
 		free_all_in_data();
 		exit(1);
 	}
-	calloc_nullcheck(&data.heredoc_fd, data.heredoc, sizeof(t_heredoc_fd *));
+	calloc_nullcheck(&data.heredoc_fd, data.heredoc_cnt, sizeof(t_heredoc_fd *));
 	i = 0;
 	idx = 0;
 	while (idx < data.heredoc_cnt)

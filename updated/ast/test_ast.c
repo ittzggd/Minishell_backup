@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 02:25:48 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 07:13:16 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,18 @@ void	postorder_travel_ast(t_astnode *ast_node)
 	int	prev_fd;
 	int	tmp;
 
-	pid = (int *)ft_calloc(data.pipe_cnt + 1, sizeof(int));
-	if (!pid)
-		exit(1);
-	i = 0;
-	prev_fd = -1;
+	calloc_nullcheck(&pid, data.pipe_cnt + 1, sizeof(int)); -1;
 	data.p_flag = TRUE;
 	while (ast_node->nodetype == A_PIPE || ast_node->nodetype == A_COMMAND)
 	{
 		if (i < data.pipe_cnt)
 		{
 			if (pipe(pipe_line) < 0)
-				exit(1);
+			ft_error("[Pipe ERROR] ast failed\n");
 		}
 		pid[i] = fork();
 		if (pid[i] < 0)
-		{
-			data.exit_status = 1; // 1하면 되는지 확인
-			return ;  // exit
-		}
-		
+			ft_error("[Fork ERROR] ast failed\n");
 		if (pid[i] == 0)
 		{
 			reset_signal();

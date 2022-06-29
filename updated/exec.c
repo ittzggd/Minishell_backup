@@ -6,13 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 05:29:45 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 07:07:49 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
-
-void	execve_cmd(t_astnode *argsnode);
 
 void	exec_ast(void)
 {
@@ -79,9 +77,7 @@ void	command_without_pipe(char *execve_cmd, int idx, char **argv, char **filepat
 
 	pid = fork();
 	if (pid < 0)
-	{
-		exit(1);
-	}
+		ft_error("[Fork ERROR] execve failed\n");
 	data.p_flag = TRUE;
 	if (pid == 0)
 	{
@@ -107,6 +103,8 @@ void	fork_before_run_execve(char **filepath, int idx, char **argv)
 	pid_t	pid2;
 
 	pid2 = fork();
+	if (pid2 < 0)
+		ft_error("[Fork ERROR] execve failed\n");
 	if (pid2 == 0)
 	{
 		reset_signal();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:39:26 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 06:43:02 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 07:00:24 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void	get_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 	char	*delimiter_without_quote;
 
 	if (pipe(heredoc_fd->fd) < 0)
-	{
-		ft_error_message("[Pipe ERROR] Heredoc failed\n", 1);
-		return ;
-	}
+		ft_error("[Pipe ERROR] Heredoc failed\n");
 	if (delimiter[0] == '$' && delimiter[1] != '\0')
 	{
 		delimiter_without_quote = get_envv(delimiter + 1);
@@ -52,16 +49,12 @@ void	get_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 
 static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 {
-	char	*input_str;
 	pid_t	pid;
 
 	data.p_flag = TRUE;
 	pid = fork();
 	if (pid < 0)
-	{
-		ft_error_message("[Fork ERROR] Heredoc failed\n", 1);
-		return ;
-	}
+		ft_error("[Fork ERROR] Heredoc failed\n");
 	if (pid == 0)
 	{
 		signal(SIGINT, ft_sig_handler_in_heredoc);
@@ -80,6 +73,8 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 
 static void	rl_heredoc_child(char *delimiter, t_heredoc_fd *heredoc_fd)
 {
+	char	*input_str;
+	
 	while (1)
 	{
 		input_str = readline("heredoc > ");

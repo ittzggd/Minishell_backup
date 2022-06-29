@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_redirections.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 04:43:42 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 07:11:14 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ void	in_red(char *filename)
 		ft_error_message("minishell: ", 1);
 		ft_error_message(filename, 1);
 		ft_error_message(" No such file or directory\n", 1);
-		/*
-		error
-		*/
-		return ;
+		exit(data.exit_status);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);

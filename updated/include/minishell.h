@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 06:42:35 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/06/30 07:04:34 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,8 @@ char	**create_argv(int cnt, t_astnode *argsnode);
 void	command_not_found_error(char *cmd);
 void	fork_before_run_execve(char **filepath, int idx, char **argv);
 void	command_without_pipe(char *execve_cmd, int idx, char **argv, char **filepath);
+
+void	_error(char *error_msg);
+void	execve_cmd(t_astnode *argsnode);
 
 #endif
