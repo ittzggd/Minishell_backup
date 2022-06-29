@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 03:14:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 04:22:27 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
-
-// echo "$PATH"hello => $PATH가 get_envv로 치환한 뒤 strjoin
-// while (token[j - 2] == '\"' && token[j + key_len] != '\"')  // echo $USER"hello
-// 	key_len++;
 
 void	replace_env_to_value(int i)
 {
@@ -114,12 +110,3 @@ int	init_envp(char *input, char **key, char **value)
 	}
 	return (init_flag);
 }
-
-// 환경변수를 비교하여 교체
-	/*
-	strncmp로 환경변수 목록에서 찾아오기 => get_env함수 존재
-	$와 괄호를 제외한 문자열구하기 = name
-	원래 환경변수 $()문자열 free!
-	data.ptype[i] = T_WORD
-	return (new env)  혹은 data.pptokens[i] = new env
-	*/

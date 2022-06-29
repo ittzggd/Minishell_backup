@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:12:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/24 18:37:35 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 03:05:30 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ static char	*path_join(char *path_env, char *path_cmd)
 		return (NULL);
 	len1 = ft_strlen(path_env);
 	len2 = ft_strlen(path_cmd);
-	len2++; // /  추가
+	len2++;
 	new_str = (char *)ft_calloc(((len1 + len2) + 1), sizeof(char));
 	if (!new_str)
+	/*
+		error
+		*/
 		return (NULL);
 	ft_strlcpy(new_str, path_env, len1 + 1);
 	*(new_str + len1) = '/';
@@ -45,7 +48,7 @@ static char	*path_join(char *path_env, char *path_cmd)
 	return (new_str);
 }
 
-char **join_filepath(char *execve_cmd)
+char	**join_filepath(char *execve_cmd)
 {
 	int		i;
 	int		len;
@@ -57,11 +60,17 @@ char **join_filepath(char *execve_cmd)
 	len = get_path_len(path);
 	filepath = ft_calloc(len + 1, sizeof(char *));
 	if (!filepath)
+	/*
+		error
+		*/
 		exit(1);
 	while (path[i])
 	{
 		filepath[i] = path_join(path[i], execve_cmd);
 		if (!filepath[i])
+		/*
+		error
+		*/
 			exit(1);
 		i++;
 	}

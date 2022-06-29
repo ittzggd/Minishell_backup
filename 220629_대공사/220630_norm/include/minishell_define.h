@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_define.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:03:00 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:03:04 by hejang           ###   ########.fr       */
+/*   Updated: 2022/06/30 04:12:21 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ enum e_quote_flag
 	DOUBLE_QUOTE
 };
 
-enum e_io_redirection
-{
-	STDINPUT = 1,
-	STDOUTPUT,
-	HEREDOC
-};
+// enum e_io_redirection
+// {
+// 	STDINPUT = 1,
+// 	STDOUTPUT,
+// 	HEREDOC
+// };
 
 #endif
