@@ -20,6 +20,7 @@ int	ft_export(t_astnode *args_node)
 	char	*p_equal;
 	int		init_flag;
 	int		i;
+	int		index;
 
 	init_flag = FALSE;
 	data.exit_status = 0;
@@ -31,20 +32,24 @@ int	ft_export(t_astnode *args_node)
 	i = 1;
 	while (args_node->prightchild->pvalue_index[i] != -1)
 	{
-		input = remove_quote(data.lexer.pptokens[args_node->prightchild->pvalue_index[i]]);
+		index = args_node->prightchild->pvalue_index[i];
+		input = remove_quote(data.lexer.pptokens[index]);
 		init_flag = init_envp(input, &key, &value);
-		if (input != data.lexer.pptokens[args_node->prightchild->pvalue_index[i]])
+		if (input != data.lexer.pptokens[index])
 			free(input);
-		if (init_flag == ERROR)
-		{
-			data.exit_status = 1;
-			i++;
-			continue ;
-		}
+		// if (init_flag == ERROR)  :: calloc -1 =>  exit
+		// {
+		// 	data.exit_status = 1;
+		// 	i++;
+		// 	continue ;
+		// }
 		if (is_valid_env(key) == ERROR)
 		{
-			printf("nanoshell: export: %s: not a valid identifier\n", key);
-			data.exit_status = 1;
+			ft_error_message("nanoshell: export: ", 1);
+			ft_error_message(key, 1);
+			ft_error_message(": not a valid identifier\n", 1);
+			i++; // added
+			continue ; // added
 		}
 		else if (is_valid_env(key) == TRUE)
 		{

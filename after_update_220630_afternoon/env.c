@@ -91,6 +91,7 @@ int	init_envp(char *input, char **key, char **value)
 	int		init_flag;
 	char	*p_equal;
 
+	init_flag = FALSE; // 220701 added : maybe NUll is user init? or auto setting? distinguish
 	p_equal = ft_strchr(input, '=');
 	if (p_equal)
 	{
