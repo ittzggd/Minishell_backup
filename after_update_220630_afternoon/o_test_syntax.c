@@ -41,11 +41,12 @@ int	syntax_analysis(void)
 }
 
 void	syntax_error(int *ret_status)
-{8
-	char *error_msg;
+{
+	// char *error_msg;
 	
-	error_msg = ft_strdup("nanoshell: syntax error near unexpected token\n");
-	write(2, error_msg, ft_strlen(error_msg));
-	data.exit_status = 258;
+	// error_msg = ft_strdup("nanoshell: syntax error near unexpected token\n");
+	// write(2, error_msg, ft_strlen(error_msg));
+	// data.exit_status = 258;
+	ft_error_message("nanoshell: syntax error near unexpected token\n", 258);
 	*ret_status = 258;
 }

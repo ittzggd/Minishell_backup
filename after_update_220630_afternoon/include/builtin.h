@@ -15,16 +15,21 @@
 
 # include "minishell_define.h"
 
+int		ft_cd(t_astnode *args_node);
+
 int		ft_echo(t_astnode *args_node);
 int		ft_pwd(void);
 int		ft_env(int export_flag);
 int		ft_unset(t_astnode *args_node);
 int		ft_export(t_astnode *args_node);
 void	ft_exit(t_astnode *args_node);
-int		ft_cd(t_astnode *args_node);
+
+
+// ft_nanoshell utils
 void	ft_nanoshell(char *filepath);
+char	*envv_join(char *key, char *value);
+char	**envvlist_to_envp(void);
 
 void	exit_status_numeric_error(t_astnode *args_node);
 void	update_pwd_oldpwd(char *key);
-
 #endif

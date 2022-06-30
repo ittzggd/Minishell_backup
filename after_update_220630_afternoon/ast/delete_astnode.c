@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_red.h                                    :+:      :+:    :+:   */
+/*   delete_astnode.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 15:55:50 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 19:58:34 by hejang           ###   ########.fr       */
+/*   Created: 2022/07/01 03:38:03 by yukim             #+#    #+#             */
+/*   Updated: 2022/07/01 03:38:03 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_RED_H
-# define MINISHELL_RED_H
+#include"../include/minishell.h"
 
-# include <fcntl.h>
-
-void	out_red(char *filename);
-void	in_red(char *filename);
-void	append_red(char *filename);
-void	heredoc(char *delimiter);
-
-#endif
+void	delete_astnode(t_astnode *node)
+{
+	if (node)
+	{
+		delete_astnode(node->pleftchild);
+		delete_astnode(node->prightchild);
+		free(node);
+	}
+}

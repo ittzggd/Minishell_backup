@@ -12,7 +12,7 @@
 
 #include"../include/minishell.h"
 
-int	ft_export(t_astnode *args_node) // export USER=1 HI=2 HOME=3
+int	ft_export(t_astnode *args_node)
 {
 	char	*input;
 	char	*key;
@@ -23,11 +23,10 @@ int	ft_export(t_astnode *args_node) // export USER=1 HI=2 HOME=3
 
 	init_flag = FALSE;
 	data.exit_status = 0;
-	// input = data.lexer.pptokens[args_node->prightchild->pvalue_index[1]];
-	if (args_node->prightchild->pvalue_index[1] == END) // 아스키 코드순으로 출력 = env 실행
+	if (args_node->prightchild->pvalue_index[1] == END)
 	{
 		ft_env(TRUE);
-		return (data.exit_status);	 // exit_status : 성공
+		return (data.exit_status);
 	}
 	i = 1;
 	while (args_node->prightchild->pvalue_index[i] != -1)
@@ -41,7 +40,6 @@ int	ft_export(t_astnode *args_node) // export USER=1 HI=2 HOME=3
 			data.exit_status = 1;
 			i++;
 			continue ;
-			// return (data.exit_status);
 		}
 		if (is_valid_env(key) == ERROR)
 		{

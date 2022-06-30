@@ -10,25 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TREE_UTILS_H
-# define TREE_UTILS_H
+#ifndef AST_H
+# define AST_H
 
 # include "minishell_define.h"
 
+int			init_idx(int index, t_astnode *node);
 t_astnode*	insert_leftchildnode_ast(t_astnode* p_parentnode, int nodetype);
 t_astnode*	insert_rightchildnode_ast(t_astnode* p_parentnode, int nodetype);
 
-int			init_idx(int index, t_astnode *node);
+void		init_ast(void);
+int			recur_pipe(t_astnode *ast_node, int index);
 void		tree_cmd(t_astnode *ast_node, int index);
 void		tree_reds(t_astnode *ast_node, int index);
-void		init_ast(void);
 int			tree_args(t_astnode *ast_node, int index);
-int			recur_pipe(t_astnode *ast_node, int index); // 가장 처음은 초기화된 rootNode, index = 0 이 들어옴
-// void deletet_ast(t_ast* p_ast);
-// void deletet_astnode(t_astnode** pㅜode); // 댕글링 포인터 처리 위해서 이중포인터로 전달
-void	delete_ast(t_astnode *node);
-void	free_data_ast(void);
 
+void		goto_redirection(t_astnode *red_node);
+void		postorder_travel_reds(t_astnode *reds_node);
+void		postorder_travel_command(t_astnode *cmdnode);
+void		postorder_travel_ast(t_astnode *ast_node);
 
+void		delete_astnode(t_astnode *node);
+void		free_data_ast(void);
 
 #endif

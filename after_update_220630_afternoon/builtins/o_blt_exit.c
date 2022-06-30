@@ -28,8 +28,6 @@ void	ft_exit(t_astnode *args_node)
 	{
 		str = data.lexer.pptokens[args_node->prightchild->pvalue_index[1]];
 		data.exit_status = ft_atoi(str, args_node->prightchild);
-		printf("ft_exit str : %s\n", str);
-		printf("ft_exit str => data.exit_status : %d\n", data.exit_status);
 		if(cnt > 2)
 		{
 			data.exit_status = exit_status_argc_error(args_node->prightchild);
@@ -44,12 +42,14 @@ void	exit_status_numeric_error(t_astnode *args_node)
 	char *str;
 
 	str = data.lexer.pptokens[args_node->pvalue_index[1]];
-	printf("exit: minishell: %s: ", str);
-	printf("numeric argument required");
+	ft_error_message("exit: minishell: ", 255);
+	ft_error_message(str, 255);
+	ft_error_message(": numeric argument required", 255);
 	exit(255);
 }
+
 static int	exit_status_argc_error(t_astnode *args_node)
 {
-	printf("minishell: exit :too many arguments\n");
+	ft_error_message("minishell: exit :too many arguments\n", 1);
 	return (1);
 }

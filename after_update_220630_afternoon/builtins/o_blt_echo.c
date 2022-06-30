@@ -12,42 +12,38 @@
 
 #include "../include/minishell.h"
 
-/*
-printf => write(fd, buf, len) 로 바꾸기
-echo "hi" > a.txt > b.txt
-
-*/
-
-static int	do_echo(t_astnode *args_node, int option_flag);
+static int	do_echo(t_astnode *args_node);
+static void	do_echo_dollor_question_mark(void);
+static void	do_echo_print(int *arg, char *rm_quote_str);
 
 int	ft_echo(t_astnode *args_node)
 {
 	int	*arg;
 	int	option_flag;
 
-	// if (!data)
-	// 	return (ERROR);
 	option_flag = FALSE;
 	arg = args_node->prightchild->pvalue_index;
-	while(*arg != -1)
+	while (*arg != END)
 	{
-		if(data.lexer.ptype[*arg] == T_OPTION)
+		if (data.lexer.ptype[*arg] == T_OPTION)
 			option_flag = TRUE;
 		arg++;
 	}
-	if(do_echo(args_node, option_flag) == ERROR)
-		return (ERROR);
+	do_echo(args_node, option_flag);
+	if (option_flag != TRUE)
+		printf("\n");
+	data.exit_status = 0;
 	return (TRUE);
 }
 
-static int	do_echo(t_astnode *args_node, int option_flag)
+static int	do_echo(t_astnode *args_node)
 {
 	int		*arg;
 	char	*rm_quote_str;
 	
 	arg = args_node->prightchild->pvalue_index;
 	arg++;
-	while(*arg != -1)
+	while(*arg != END)
 	{
 		if(data.lexer.ptype[*arg] == T_OPTION)
 		{
@@ -55,28 +51,26 @@ static int	do_echo(t_astnode *args_node, int option_flag)
 			continue;
 		}
 		rm_quote_str = remove_quote(data.lexer.pptokens[*arg]);
-		if(!rm_quote_str)
-		{
-			data.exit_status = 1;
-			return (ERROR);
-		}
 		if(ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
-		{
-			printf("%d", data.exit_status);
-			data.exit_status = 0;
-		}
+			do_echo_dollor_question_mark();
 		else
-		{
-			printf("%s", rm_quote_str);
-			if (*(arg + 1) != -1)
-				printf(" ");
-		}
+			do_echo_print(arg, rm_quote_str);
 		if (rm_quote_str != data.lexer.pptokens[*arg])
 			free(rm_quote_str);
 		arg++;
 	}
-	if (option_flag != TRUE)
-		printf("\n");
-	data.exit_status = 0;
 	return (TRUE);
+}
+
+static void	do_echo_dollor_question_mark(void)
+{
+	printf("%d", data.exit_status);
+	data.exit_status = 0;
+}
+
+static void	do_echo_print(int *arg, char *rm_quote_str)
+{
+	printf("%s", rm_quote_str);
+	if (*(arg + 1) != END)
+		printf(" ");
 }

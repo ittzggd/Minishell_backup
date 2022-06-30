@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_message.c                                 :+:      :+:    :+:   */
+/*   free_delete_ast.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 13:45:09 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/29 23:24:42 by hejang           ###   ########.fr       */
+/*   Created: 2022/07/01 03:30:35 by yukim             #+#    #+#             */
+/*   Updated: 2022/07/01 03:30:35 by yukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include"../include/minishell.h"
 
-void	ft_error_message(char *message, int exit_status)
+void free_data_ast(void)
 {
-	int	len;
-
-	len = ft_strlen(message);
-	write(2, message, len);
-	data.exit_status = exit_status;
+	if (data.ast.prootnode)
+	{
+		delete_astnode(data.ast.prootnode);
+		ft_bzero(&data.ast, sizeof(t_ast));
+	}
 }

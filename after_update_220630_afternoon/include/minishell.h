@@ -24,7 +24,7 @@
 # include <sys/stat.h>
 # include "minishell_define.h"
 # include "utils.h"
-# include "tree_utils.h"
+# include "ast.h"
 # include "builtin.h"
 # include "minishell_pipe.h"
 # include "minishell_red.h"
@@ -50,8 +50,7 @@ int			init_envp(char *input, char **key, char **value);
 int		syntax_analysis(void);
 
 
-char	*envv_join(char *key, char *value);
-char	**envvlist_to_envp(void);
+
 
 char	**join_filepath(char *execve_cmd);
 
