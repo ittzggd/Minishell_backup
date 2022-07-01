@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   o_blt_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:28 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:22:41 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:51:35 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_env(int export_flag)
 {
-	t_envv_node *curr;
+	t_envv_node	*curr;
 
 	curr = data.envv_list;
 	data.exit_status = 0;
 	if (export_flag == TRUE)
 	{
-		while(curr)
+		while (curr)
 		{
 			if (curr->init_flag)
 				printf("declare -x %s=\"%s\"\n", curr->key, curr->value);

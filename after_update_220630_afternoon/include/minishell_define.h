@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:03:00 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 06:17:17 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 11:57:48 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,15 @@
 # define FALSE 0
 # define ERROR -1
 # define END -1
+# define NOT_USED -1
 # define ALLOCATE_FAILED -2
+
+// enum e_io_redirection
+// {
+// 	STDINPUT = 1,
+// 	STDOUTPUT,
+// 	HEREDOC
+// };
 
 typedef struct s_astnode
 {
@@ -74,7 +82,6 @@ typedef struct s_envv_node
 	struct s_envv_node	*p_link;
 }			t_envv_node;
 
-
 typedef struct s_cmd
 {
 	char	*cmd[9];
@@ -82,7 +89,6 @@ typedef struct s_cmd
 
 enum e_ast_node_type
 {
-	// 트리그림 이름이랑 똑같이 바꾸기
 	A_PIPE = 1,
 	A_COMMAND,
 	A_REDIRECTIONS,
@@ -113,11 +119,5 @@ enum e_quote_flag
 	DOUBLE_QUOTE
 };
 
-enum e_io_redirection
-{
-	STDINPUT = 1,
-	STDOUTPUT,
-	HEREDOC
-};
 
 #endif

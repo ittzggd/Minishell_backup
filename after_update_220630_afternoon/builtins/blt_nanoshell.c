@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_nanoshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/29 23:22:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:51:00 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_nanoshell(char *filepath)
 	argv[1] = NULL;
 	execve(argv[0], argv, envp);
 }
-
 
 char	**envvlist_to_envp(void)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ast.c                                         :+:      :+:    :+:   */
+/*   postorder_travel_command.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:30:40 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 07:13:16 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:48:34 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	postorder_travel_command(t_astnode *cmdnode)
 	if (cmdnode)
 	{
 		postorder_travel_reds(cmdnode->pleftchild);
-		if(cmdnode->prightchild->prightchild->pvalue_index)
+		if (cmdnode->prightchild->prightchild->pvalue_index)
 			exec_cmd(cmdnode->prightchild);
 	}
 }
@@ -39,16 +39,16 @@ void	goto_redirection(t_astnode *red_node)
 	char	*red;
 	char	*filename;
 
-	if(!red_node->prightchild->pvalue_index)
+	if (!red_node->prightchild->pvalue_index)
 		return ;
 	red = data.lexer.pptokens[red_node->pleftchild->pvalue_index[0]];
 	filename = data.lexer.pptokens[red_node->prightchild->pvalue_index[0]];
-	if(ft_strncmp(red, "<", -1))
+	if (ft_strncmp(red, "<", -1))
 		in_red(filename);
-	else if(ft_strncmp(red,">", -1))
+	else if (ft_strncmp(red, ">", -1))
 		out_red(filename);
-	else if(ft_strncmp(red,">>", -1))
+	else if (ft_strncmp(red, ">>", -1))
 		append_red(filename);
-	else if(ft_strncmp(red,"<<", -1))
-	 	heredoc(filename);
+	else if (ft_strncmp(red, "<<", -1))
+		heredoc(filename);
 }

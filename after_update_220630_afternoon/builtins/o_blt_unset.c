@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   o_blt_unset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:23:25 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:56:43 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../include/minishell.h"
+
+static void	is_prev_pipe__ft_unset_util(t_astnode *args_node);
 
 int	ft_unset(t_astnode *args_node) //astNode로 받는 이유 : unset USER HI HOME
 {
@@ -21,7 +23,7 @@ int	ft_unset(t_astnode *args_node) //astNode로 받는 이유 : unset USER HI HO
 
 	data.exit_status = 0;
 	if (args_node->prightchild->pvalue_index[1] == END)
-		return (data.exit_status); // exit_status : 성공
+		return (data.exit_status);
 	i = 1;
 	while (args_node->prightchild->pvalue_index[i] != END)
 	{
@@ -35,13 +37,21 @@ int	ft_unset(t_astnode *args_node) //astNode로 받는 이유 : unset USER HI HO
 			data.exit_status = 1;
 			i++;
 			continue ;
-			//return (1); // exit_status : 실패
 		}
-		// 파이프 다음인가?
-		if (data.lexer.ptype[args_node->prightchild->pvalue_index[0] - 1] == T_PIPE)
-			return (data.exit_status); // exit_status : 성공
+		if (is_prev_pipe__ft_unset_util(args_node) == TRUE)
+			return (data.exit_status);
 		remove_ll_element(&data.envv_list, env_node->key);
 		i++;
 	}
-	return (data.exit_status); // exit_status : 성공
+	return (data.exit_status);
+}
+
+static void	is_prev_pipe__ft_unset_util(t_astnode *args_node)
+{
+	int	position;
+
+	position = args_node->prightchild->pvalue_index[0] - 1;
+	if (data.lexer.ptype[position] == T_PIPE)
+		return (TRUE);
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 03:29:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 03:29:13 by yukim            ###   ########.fr       */
+/*   Updated: 2022/07/01 11:49:16 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	tree_reds(t_astnode *ast_node, int index)
 	char		**tokens;
 	t_astnode	*reds_leftchild;
 	t_astnode	*reds_rightchild;
-	
+
 	if (ast_node->nodetype != A_REDIRECTIONS)
 		return ;
 	tokens = data.lexer.pptokens;
-	reds_leftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION); // RED
-	reds_rightchild = insert_rightchildnode_ast(ast_node, 0); // REDS
+	reds_leftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION);
+	reds_rightchild = insert_rightchildnode_ast(ast_node, 0);
 	if (data.lexer.ptype[index] == T_REDIRECTION)
 		insert_redschild(reds_leftchild, index);
 	index++;

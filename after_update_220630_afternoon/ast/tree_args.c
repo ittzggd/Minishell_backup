@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 03:32:01 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 03:32:01 by yukim            ###   ########.fr       */
+/*   Updated: 2022/07/01 11:48:46 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	tree_args(t_astnode *ast_node, int index)
 	while (data.lexer.pptokens[index] && data.lexer.ptype[index] != T_PIPE)
 	{
 		if (data.lexer.ptype[index] == T_COMMAND)
-			break;
+			break ;
 		index++;
 	}
 	init_idx(index, args_leftchild);

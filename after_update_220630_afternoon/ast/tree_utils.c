@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_tree_utils.c                                     :+:      :+:    :+:   */
+/*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 03:23:51 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 06:07:00 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:50:15 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void pvalue_idx_init_idx(int *tmp, int idx, t_astnode *node, int size);
+static void	pvalue_idx_init_idx(int *tmp, int idx, t_astnode *node, int size);
 
-t_astnode* insert_leftchildnode_ast(t_astnode* p_parentnode, int nodetype)
+t_astnode	*insert_leftchildnode_ast(t_astnode *p_parentnode, int nodetype)
 {
-	t_astnode *pchild;
+	t_astnode	*pchild;
 
-	if (p_parentnode->pleftchild) 
+	if (p_parentnode->pleftchild)
 	{
 		ft_error_message("LeftChild Node already exist \n", 1);
 		free_all_in_data();
@@ -30,9 +30,9 @@ t_astnode* insert_leftchildnode_ast(t_astnode* p_parentnode, int nodetype)
 	return (pchild);
 }
 
-t_astnode* insert_rightchildnode_ast(t_astnode* p_parentnode, int nodetype)
+t_astnode	*insert_rightchildnode_ast(t_astnode *p_parentnode, int nodetype)
 {
-	t_astnode *pchild;
+	t_astnode	*pchild;
 
 	if (p_parentnode->prightchild)
 	{
@@ -56,7 +56,7 @@ int	init_idx(int index, t_astnode *node)
 		calloc_nullcheck(&tmp, 2, sizeof(int));
 	else
 	{
-		while(node->pvalue_index[existing_size] != -1)
+		while (node->pvalue_index[existing_size] != -1)
 			existing_size++;
 		calloc_nullcheck(&tmp, existing_size + 2, sizeof(int));
 	}
@@ -64,7 +64,7 @@ int	init_idx(int index, t_astnode *node)
 	return (TRUE);
 }
 
-static void pvalue_idx_init_idx(int *tmp, int idx, t_astnode *node, int size)
+static void	pvalue_idx_init_idx(int *tmp, int idx, t_astnode *node, int size)
 {
 	int	i;
 

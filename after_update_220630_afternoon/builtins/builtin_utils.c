@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 04:18:16 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 04:18:16 by yukim            ###   ########.fr       */
+/*   Updated: 2022/07/01 11:51:14 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	update_pwd_oldpwd(char *key)
 {
-	char	*value;
-	char	*tmp;
+	char		*value;
+	char		*tmp;
 	t_envv_node	*node;
-	
+
 	node = get_el_node(data.envv_list, key);
 	if (node)
 	{
@@ -31,7 +31,6 @@ void	update_pwd_oldpwd(char *key)
 				node->value = NULL;
 			}
 			value = getcwd(NULL, 0);
-	
 		}
 		insert_envv(key, value, TRUE);
 	}

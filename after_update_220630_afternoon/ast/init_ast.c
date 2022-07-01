@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_ast.c                                            :+:      :+:    :+:   */
+/*   init_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 06:14:57 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 11:45:51 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,28 @@ void	init_ast(void)
 	recur_pipe(root_node, 0);
 }
 
-int	recur_pipe(t_astnode *ast_node, int index)
+int	recur_pipe(t_astnode *astnode, int index)
 {
-	char **tokens;
-	int c_index;
+	char	**tokens;
+	int		c_index;
 
 	tokens = data.lexer.pptokens;
 	c_index = index;
-	while(tokens[index])
+	while (tokens[index])
 	{
 		if (data.lexer.ptype[index] == T_PIPE)
 		{
-			ast_node->nodetype = A_PIPE;
-			init_idx(index, ast_node);
-			ast_node->pleftchild = insert_leftchildnode_ast(ast_node, A_COMMAND);
-			tree_cmd(ast_node->pleftchild, c_index);
-			ast_node->prightchild = insert_rightchildnode_ast(ast_node, 0);
-			if (recur_pipe(ast_node->prightchild, index + 1))
+			astnode->nodetype = A_PIPE;
+			init_idx(index, astnode);
+			astnode->pleftchild = insert_leftchildnode_ast(astnode, A_COMMAND);
+			tree_cmd(astnode->pleftchild, c_index);
+			astnode->prightchild = insert_rightchildnode_ast(astnode, 0);
+			if (recur_pipe(astnode->prightchild, index + 1))
 				return (TRUE);
 		}
 		index++;
 	}
-	ast_node->nodetype = A_COMMAND;
-	tree_cmd(ast_node, c_index);
+	astnode->nodetype = A_COMMAND;
+	tree_cmd(astnode, c_index);
 	return (TRUE);
 }

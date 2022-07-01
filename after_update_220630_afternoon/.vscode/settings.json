@@ -28,5 +28,7 @@
 		"type_traits": "c",
 		"vector": "c",
 		"memory": "c"
-	}
+	},
+	"files.autoSave": "onFocusChange",
+	"files.insertFinalNewline": true
 }

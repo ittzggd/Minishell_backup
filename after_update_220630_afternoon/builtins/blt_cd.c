@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:22:01 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 11:50:52 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_cd(t_astnode *args_node)
 	idx = args_node->prightchild->pvalue_index[1];
 	if (idx == END || ft_strncmp(rm_quote_tmp, "~", 1))
 	{
-		if(cd_home(&home_path, &dst_path, &rm_quote_tmp) == ERROR)
+		if (cd_home(&home_path, &dst_path, &rm_quote_tmp) == ERROR)
 			return (data.exit_status);
 	}
 	else
