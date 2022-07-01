@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 23:22:36 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 05:55:12 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 13:24:40 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	tokenize_input(char *input)
 	if (!data.lexer.pptokens)
 	{
 		free_all_in_data();
-		exit(1);
+		ft_error("tokenize_input : allocation error");
 	}
 	split_index = ft_split_str((char *)input, data.lexer.pptokens);
 	if (split_index == ERROR)

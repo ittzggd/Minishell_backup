@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/29 23:24:12 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 13:04:32 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int		case_redirection(char const *str, int *i);
 char	*remove_quote(char *quote_str);
 
 void	ft_error_message(char *message, int exit_status);
+void	ft_error(char *error_msg);
 
 #endif

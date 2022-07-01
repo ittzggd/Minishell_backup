@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 05:34:30 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 13:18:02 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ t_envv_node	*ft_lstnew(t_envv_node element)
 {
 	t_envv_node	*new;
 
-	calloc_nullcheck(&new, 1, sizeof(t_envv_node));
+	new = ft_calloc(1, sizeof(t_envv_node));
+	if(!new)
+		ft_error("ft_lstnew : allocation failed");
 	new->key = ft_strdup(element.key);
 	new->value = ft_strdup(element.value);
 	new->init_flag = element.init_flag;

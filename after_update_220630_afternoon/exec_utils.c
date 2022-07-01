@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 04:22:34 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 19:14:36 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	**create_argv(int cnt, t_astnode *argsnode)
 
 	i = 0;
 	argnode = argsnode->prightchild;
-	argv = (char **)ft_calloc(i + 1, sizeof(char *));
+	argv = (char **)ft_calloc(2, sizeof(char *));
 	while (i < cnt)
 	{
-		argv[i] = ft_strdup(data.lexer.pptokens[argnode->pvalue_index[i]]);
+		argv[i] = remove_quote(data.lexer.pptokens[argnode->pvalue_index[i]]);
 		i++;
 	}
-	argv[i] = NULL;
+	argv[i] = 0;
 	return (argv);
 }
 

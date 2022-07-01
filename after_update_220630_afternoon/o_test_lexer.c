@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   o_test_lexer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 04:45:27 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 15:26:01 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,13 @@ void	lexical_analysis(void)
 	int		i;
 	int		command_flag;
 
-	i = -1;
+	i = 0;
 	command_flag = FALSE;
 
-	// ft_calloc 후 할당 실패시 free 하는 함수 만들기
 	data.lexer.ptype = (int *)ft_calloc(data.tokens_cnt + 1, sizeof(int));
 	if (!data.lexer.ptype)
-	/*
-	error
-	*/
-		return ;
-	while (data.lexer.pptokens[++i])
+		ft_error("lexical_analysis : allocation error");
+	while (data.lexer.pptokens[i])
 	{
 		data.lexer.ptype[i] = get_type(data.lexer.pptokens[i]);
 		if (data.lexer.ptype[i] == T_WORD)
@@ -50,6 +46,7 @@ void	lexical_analysis(void)
 			if (word_to_option(&i, &command_flag) == FALSE)
 				return ;
 		}
+		i++;
 	}
 }
 
@@ -90,7 +87,7 @@ static void	type_word_to_cmd(int *i, int *command_flag)
 		type[*i] = T_COMMAND;
 		*command_flag = TRUE;
 	}
-	else if (*command_flag == FALSE && type[*i - 2] == T_REDIRECTION)
+	else if (*command_flag == FALSE && (*i > 1) && type[*i - 2] == T_REDIRECTION)
 	{
 		type[*i] = T_COMMAND;
 		*command_flag = TRUE;

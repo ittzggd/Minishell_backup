@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   o_blt_unset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 11:56:43 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 19:22:06 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../include/minishell.h"
 
-static void	is_prev_pipe__ft_unset_util(t_astnode *args_node);
+static int	is_prev_pipe__ft_unset_util(t_astnode *args_node);
 
 int	ft_unset(t_astnode *args_node) //astNode로 받는 이유 : unset USER HI HOME
 {
@@ -46,11 +46,13 @@ int	ft_unset(t_astnode *args_node) //astNode로 받는 이유 : unset USER HI HO
 	return (data.exit_status);
 }
 
-static void	is_prev_pipe__ft_unset_util(t_astnode *args_node)
+static int	is_prev_pipe__ft_unset_util(t_astnode *args_node)
 {
 	int	position;
 
 	position = args_node->prightchild->pvalue_index[0] - 1;
+	if (position < 0)
+		return (FALSE);
 	if (data.lexer.ptype[position] == T_PIPE)
 		return (TRUE);
 	return (FALSE);

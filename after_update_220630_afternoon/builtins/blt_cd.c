@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 11:50:52 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 19:33:14 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_cd(t_astnode *args_node)
 	int		idx;
 
 	data.exit_status = 0;
+	printf("pvalue_index : %d\n", args_node->prightchild->pvalue_index[1]);
+	printf("data.lexer.pptokens[1] = %s\n", data.lexer.pptokens[1]);
 	tmp = data.lexer.pptokens[args_node->prightchild->pvalue_index[1]];
 	rm_quote_tmp = remove_quote(tmp);
 	idx = args_node->prightchild->pvalue_index[1];
@@ -72,7 +74,13 @@ static void	update_pwd(void)
 static void	free_rm_quote_str(char *tmp, char *rm_quote_tmp, char *dst_path)
 {
 	if (dst_path != rm_quote_tmp)
-		free(dst_path);
+	{
+		if(dst_path)
+			free(dst_path);
+	}
 	if (rm_quote_tmp != tmp)
-		free(rm_quote_tmp);
+	{
+		if(rm_quote_tmp)
+			free(rm_quote_tmp);
+	}
 }

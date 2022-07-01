@@ -27,7 +27,9 @@
 		"tuple": "c",
 		"type_traits": "c",
 		"vector": "c",
-		"memory": "c"
+		"memory": "c",
+		"complex": "c",
+		"sstream": "c"
 	},
 	"files.autoSave": "onFocusChange",
 	"files.insertFinalNewline": true

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   postorder_travel_ast.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:51:54 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 11:59:13 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 13:08:08 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	while_pipe_or_command(t_astnode *ast_node, pid_t *pid);
 static void	c_in_while(int i, int *prev_fd, int *pipe_line, t_astnode *astnode);
-static void	parent_in_while_pipe_or_cmd(int *prev_fd, int *pipe_line);
+static void	parent_in_while_pipe_or_cmd(int i, int *prev_fd, int *pipe_line);
 
 void	postorder_travel_ast(t_astnode *ast_node)
 {
@@ -22,7 +22,9 @@ void	postorder_travel_ast(t_astnode *ast_node)
 	int		i;
 
 	data.p_flag = TRUE;
-	calloc_nullcheck(&pid, data.pipe_cnt + 1, sizeof(int));
+	pid = ft_calloc(data.pipe_cnt + 1, sizeof(int));
+	if(!pid)
+		ft_error("postorder_travel_ast : allocation failed ");
 	while_pipe_or_command(ast_node, pid);
 	i = 0;
 	while (i < data.pipe_cnt + 1)
@@ -56,7 +58,7 @@ static void	while_pipe_or_command(t_astnode *ast_node, pid_t *pid)
 			ft_error("[Fork ERROR] ast failed\n");
 		if (pid[i] == 0)
 			c_in_while(i, &prev_fd, pipe_line, ast_node);
-		parent_in_while_pipe_or_cmd(&prev_fd, pipe_line);
+		parent_in_while_pipe_or_cmd(i, &prev_fd, pipe_line);
 		i++;
 		ast_node = ast_node->prightchild;
 	}
@@ -81,7 +83,7 @@ static void	c_in_while(int i, int *prev_fd, int *pipe_line, t_astnode *astnode)
 	exit(data.exit_status);
 }
 
-static void	parent_in_while_pipe_or_cmd(int *prev_fd, int *pipe_line)
+static void	parent_in_while_pipe_or_cmd(int i, int *prev_fd, int *pipe_line)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);

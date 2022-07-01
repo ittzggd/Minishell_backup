@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   o_blt_echo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 11:51:30 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 14:26:18 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_echo(t_astnode *args_node)
 			option_flag = TRUE;
 		arg++;
 	}
-	do_echo(args_node, option_flag);
+	do_echo(args_node);
 	if (option_flag != TRUE)
 		printf("\n");
 	data.exit_status = 0;
@@ -70,7 +70,10 @@ static void	do_echo_dollor_question_mark(void)
 
 static void	do_echo_print(int *arg, char *rm_quote_str)
 {
-	printf("%s", rm_quote_str);
+	if (!rm_quote_str)
+		printf ("\n");
+	else
+		printf("%s", rm_quote_str);
 	if (*(arg + 1) != END)
 		printf(" ");
 }

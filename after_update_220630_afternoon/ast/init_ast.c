@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:20:15 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/01 11:45:51 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 15:27:10 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	init_ast(void)
 {
 	t_astnode	*root_node;
 
-	calloc_nullcheck(&root_node, 1, sizeof(t_astnode));
+	root_node = ft_calloc(1, sizeof(t_astnode));
+	if(!root_node)
+		ft_error("init ast : allocation failed\n");
 	data.ast.prootnode = root_node;
 	recur_pipe(root_node, 0);
 }

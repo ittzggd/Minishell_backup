@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/29 23:23:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 13:37:37 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,11 @@ int	ft_export(t_astnode *args_node)
 		init_flag = init_envp(input, &key, &value);
 		if (input != data.lexer.pptokens[index])
 			free(input);
-		// if (init_flag == ERROR)  :: calloc -1 =>  exit
-		// {
-		// 	data.exit_status = 1;
-		// 	i++;
-		// 	continue ;
-		// }
 		if (is_valid_env(key) == ERROR)
 		{
 			ft_error_message("nanoshell: export: ", 1);
 			ft_error_message(key, 1);
 			ft_error_message(": not a valid identifier\n", 1);
-			i++; // added
-			continue ; // added
 		}
 		else if (is_valid_env(key) == TRUE)
 		{

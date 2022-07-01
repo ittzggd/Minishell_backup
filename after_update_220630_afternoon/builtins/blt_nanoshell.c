@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_nanoshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/01 11:51:00 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 19:19:13 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_nanoshell(char *filepath)
 	struct stat	*buf;
 
 	reset_stdfd();
-	if (!ft_strncmp(filepath, "nanoshell", -1) && stat(filepath, buf) == -1)
+	if (ft_strncmp(filepath, "nanoshell", -1) && stat(filepath, buf) == -1)
 	{
 		ft_error_message("nanoshell : command not found : ", 1);
 		ft_error_message(filepath, 1);
@@ -70,7 +70,9 @@ char	*envv_join(char *key, char *value)
 	len2 = ft_strlen(value);
 	if (value && *value)
 		len2++;
-	calloc_nullcheck(&new_str, len1 + len2 + 1, sizeof(char));
+	new_str = ft_calloc(len1 + len2 + 1, sizeof(char));
+	if(!new_str)
+		ft_error("envv_join : allocation failed\n");
 	ft_strlcpy(new_str, key, len1 + 1);
 	if (value && *value)
 	{

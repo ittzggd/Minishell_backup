@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_all.c                                      :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:23:54 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/09 09:43:42 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/01 17:08:25 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "./include/minishell.h"
 
 void	free_data_envvlist(void)
 {
@@ -36,7 +36,7 @@ void	free_data_envvlist(void)
 void	free_all_in_data(void)
 {
 	reset_data();
-	free_data_envvlist();
+//	free_data_envvlist();
 }
 
 

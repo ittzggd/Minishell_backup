@@ -97,7 +97,9 @@ int	ft_split_str(char *str, char **tokens)
 		wlen = ft_wordlen(str);
 		if (wlen == ERROR)
 			return (ERROR);
-		calloc_nullcheck(&tokens[i], wlen + 1, sizeof(char));
+		tokens[i] = ft_calloc(wlen + 1, sizeof(char));
+		if(!tokens[i])
+			ft_error("ft_split_str : allocation failed\n");
 		while (j < wlen)
 		{
 			tokens[i][j] = *str;

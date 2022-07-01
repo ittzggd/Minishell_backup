@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:15:19 by hejang            #+#    #+#             */
-/*   Updated: 2022/06/30 06:31:54 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 14:50:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ char	*remove_quote(char *quote_str)
 	i = 0;
 	ret_len = get_len_without_quote(quote_str);
 	if (ret_len == ft_strlen(quote_str))
-		return (quote_str);
-	calloc_nullcheck(&ret, ret_len + 1, sizeof(char));
+	{
+		ret = ft_strdup(quote_str);
+		return (ret);
+	}
+		// return (quote_str);
+	ret = ft_calloc(ret_len + 1, sizeof(char));
+	if (!ret)
+		ft_error("remove_quote : allocation error");
 	while (*quote_str)
 	{
 		if (!is_quote(*quote_str))
@@ -45,6 +51,8 @@ static	int	get_len_without_quote(char *quote_str)
 
 	i = 0;
 	ret_len = 0;
+	if (!quote_str)
+		return (0);
 	while (quote_str[i])
 	{
 		if (!is_quote(quote_str[i]))

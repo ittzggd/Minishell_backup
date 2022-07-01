@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:12:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/06/30 04:45:00 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/01 13:32:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ static char	*path_join(char *path_env, char *path_cmd)
 	len2++;
 	new_str = (char *)ft_calloc(((len1 + len2) + 1), sizeof(char));
 	if (!new_str)
-	/*
-		error
-		*/
-		return (NULL);
+		ft_error("path_join : allocation error");
 	ft_strlcpy(new_str, path_env, len1 + 1);
 	*(new_str + len1) = '/';
 	ft_strlcat(new_str + len1 + 1, path_cmd, len2 + 1);
@@ -60,18 +57,10 @@ char	**join_filepath(char *execve_cmd)
 	len = get_path_len(path);
 	filepath = ft_calloc(len + 1, sizeof(char *));
 	if (!filepath)
-	/*
-		error
-		*/
-		exit(1);
+		ft_error("join_filepath : allocation error");
 	while (path[i])
 	{
 		filepath[i] = path_join(path[i], execve_cmd);
-		if (!filepath[i])
-		/*
-		error
-		*/
-			exit(1);
 		i++;
 	}
 	filepath[i] = NULL;
