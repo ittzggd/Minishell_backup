@@ -40,9 +40,11 @@ static int	is_not_ifs(int i, char **str, char **tokens)
 {
 	int j;
 	int wlen;
+	int	wc_flag;
+	int	quote;
 
 	j = 0;
-	wlen = ft_wordlen(*str);
+	wlen = ft_wordlen(*str, i, wc_flag, quote);
 	if (wlen == ERROR)
 		return (ERROR);
 	tokens[i] = ft_calloc(wlen + 1, sizeof(char));

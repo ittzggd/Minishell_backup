@@ -6,22 +6,16 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 19:05:03 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 209:07:04 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 static int	skip_quote(char	const *str, int *i, int *quote);
-
-int	case_redirection(char const *str, int *i)
-{
-	if (is_redirection(&str[*i]) == ERROR)
-		return (ERROR);
-	while (str[*i] && is_redirection(&str[*i]))
-		(*i)++;
-	return (TRUE);
-}
+static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag);
+static int wc_else(char const *str, int *i, int *quote);
+static	int	get_wc(char const *str, int *i, int *quote, int *wc_flag, int *wc);
 
 int ft_wordcount(char const *str)
 {
@@ -37,62 +31,83 @@ int ft_wordcount(char const *str)
 	wc = 0;
 	while (str[i])
 	{
-		quote = is_quote(str[i]);
-		ret = skip_quote(str, &i, &quote);
-		if(ret == TRUE)
+		ret = get_wc(str, &i, &quote, &wc_flag, &wc);
+		if (ret == CONTINUE)
 			continue;
-		else if(ret == data.exit_status)
+		else if (ret == ERROR)
+		{
+			data.exit_status = 1;
 			return (data.exit_status);
-		if (str[i] && is_redirection(&str[i]))
-		{
-			if (case_redirection(str, &i) == ERROR)
-				return (ERROR);
-			wc_flag = 1;
 		}
-		else if (str[i] && is_ifs(str[i]))
-		{
-			while (str[i] && is_ifs(str[i]))
-				i++;
-			wc_flag = 1;
-			continue ;
-		}
-		else if (str[i] && is_pipe(&str[i]))
-		{
-			if (is_pipe(&str[i]) == ERROR)
-				return (ERROR);
-			i++;
-			wc_flag = 1;
-		}
-		else
-		{
-			ret = wc_else(str, &i, &quote);
-			if (ret == TRUE)
-				continue;
-			else if (ret == data.exit_status)
-				return (data.exit_status);
-		}
-		if (wc_flag == 1)
-			wc++;
 	}
 	return (wc);
 }
 
+static	int	get_wc(char const *str, int *i, int *quote, int *wc_flag, int *wc)
+{
+	int	ret;
+
+	*quote = is_quote(str[*i]);
+	ret = skip_quote(str, i, quote);
+	if (ret == CONTINUE || ret == ERROR)
+		return(ret);
+	ret = red_ifs_pipe(str, i, quote, wc_flag);
+	if (ret == CONTINUE || ret == ERROR)
+		return (ret);
+	else if (ret == FALSE)
+	{
+		ret = wc_else(str, i, quote);
+		if (ret == CONTINUE || ret == ERROR)
+			return (ret);
+	}
+	if (*wc_flag == 1)
+		(*wc)++;
+	return (TRUE);
+}
+
+
 static int	skip_quote(char	const *str, int *i, int *quote)
 {
-	if (str[(*i)] && *quote)
+	if (str[*i] && *quote)
 	{
 		(*i)++;
-		while(str[*i] && *quote != is_quote(str[*i]))
+		while (str[*i] && *quote != is_quote(str[*i]))
 			(*i)++;
 		if (str[*i] == '\0' && *quote != is_quote(str[*i]))
-		{
-			data.exit_status = 1;
-			return (data.exit_status);
-		if(is_quote(str[(*i) + 1]))
+			return (ERROR);
+		if (is_quote(str[(*i) + 1]))
 		{
 			(*i)++;
-			return (TRUE);
+			return (CONTINUE);
 		}
+	}
+	return (TRUE);
+
+}
+
+static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag)
+{
+	if (str[*i] && is_redirection(&str[*i]))
+	{
+		if (case_redirection(str, i) == ERROR)
+			return (ERROR);
+		*wc_flag = 1;
+		return (TRUE);
+	}
+	else if (str[*i] && is_ifs(str[*i]))
+	{
+		while (str[*i] && is_ifs(str[*i]))
+			(*i)++;
+		*wc_flag = 1;
+		return (CONTINUE) ;
+	}
+	else if (str[*i] && is_pipe(&str[*i]))
+	{
+		if (is_pipe(&str[*i]) == ERROR)
+			return (ERROR);
+		(*i)++;
+		*wc_flag = 1;
+		return (TRUE);
 	}
 	return (FALSE);
 }
@@ -107,18 +122,16 @@ static int wc_else(char const *str, int *i, int *quote)
 		if (str[*i] && *quote)
 		{
 			(*i)++;
-			while(str[*i] && *quote != is_quote(str[*i]))
+			while (str[*i] && *quote != is_quote(str[*i]))
 				(*i)++;
 			if (str[*i] == '\0' && *quote != is_quote(str[*i]))
-			{
-				data.exit_status = 1;
-				return (data.exit_status);
-			}
-			if(is_quote(str[(*i) + 1]))
+				return (ERROR);
+			if (is_quote(str[(*i) + 1]))
 			{
 				(*i)++;
-				return (TRUE);
+				return (CONTINUE);
 			}
 		}
 	}
+	return (TRUE);
 }

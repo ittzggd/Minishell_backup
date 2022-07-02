@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 18:45:01 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:00:23 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	preprocess_heredoc(void)
 	create_delimiter_list();
 	pid = fork();
 	if(pid == 0)
-		heredoc_do_chile();
+		heredoc_do_child();
 	else
 		heredoc_do_parent(pid);
 	data.heredoc_flag = FALSE;

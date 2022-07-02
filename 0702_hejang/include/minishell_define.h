@@ -6,11 +6,11 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:03:00 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 18:39:50 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:03:10 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-yukimyukim  50y ukim50#ifndef MINISHELL_DEFINE_H
+#ifndef MINISHELL_DEFINE_H
 # define MINISHELL_DEFINE_H
 
 # include <termios.h>
@@ -21,6 +21,7 @@ yukimyukim  50y ukim50#ifndef MINISHELL_DEFINE_H
 # define END -1
 # define NOT_USED -1
 # define ALLOCATE_FAILED -2
+# define CONTINUE -3
 
 typedef struct s_astnode
 {

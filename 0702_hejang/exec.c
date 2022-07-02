@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 17:49:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 21:26:44 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ void	fork_before_run_execve(char **filepath, int idx, char **argv)
 	if (pid2 == 0)
 	{
 		reset_signal();
+		if (!filepath)
+		{
+			// 빈문자열 할당해서 하기
+		}
 		while (filepath[idx])
 		{
 			if (execve(filepath[idx], argv, NULL) == -1)

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:39:26 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 19:07:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:55:23 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd);
 void	exec_heredoc(int i, int *idx)
 {
 	char	*delimiter_without_quote;
+	char	*delimiter;
 
 	if (ft_strncmp("<<", data.lexer.pptokens[i], -1))
 	{
+		delimiter = data.lexer.pptokens[i + 1];
 		if (delimiter[0] == '$' && delimiter[1] != '\0')
 		{
 			delimiter_without_quote = get_envv(delimiter + 1);
@@ -49,7 +51,6 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 		if (ft_strncmp(input_str, delimiter, -1))
 		{
 			close(heredoc_fd->fd[1]);
-			//exit(data.exit_status);
 			break;
 		}
 		write(heredoc_fd->fd[1], input_str, ft_strlen(input_str));

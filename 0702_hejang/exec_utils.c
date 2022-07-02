@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/02 17:52:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:53:43 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	**create_argv(int cnt, t_astnode *argsnode)
 		argv[i] = remove_quote(data.lexer.pptokens[argnode->pvalue_index[i]]);
 		i++;
 	}
-	// argv[i] = 0;
 	return (argv);
 }
 

@@ -6,19 +6,29 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:04:31 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 19:04:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 21:03:57 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_wordlen(char const *str)
-{
-	int	i;
-	int	wc_flag;
-	int quote;
+static int	case_is_quote_next(int *wc_flag, int *i, char *str);
+static int	case_is_quote(int *i, char *str, int quote);
+static int	case_else_in_while(int *i, char *str);
 
-	quote = 0;
+int	case_redirection(char const *str, int *i)
+{
+	if (is_redirection(&str[*i]) == ERROR)
+		return (ERROR);
+	while (str[*i] && is_redirection(&str[*i]))
+		(*i)++;
+	return (TRUE);
+}
+
+int	ft_wordlen(char const *str, int i, int wc_flag, int quote)
+{
+	int	ret;
+
 	i = 0;
 	wc_flag = 1;
 	while (str[i])
@@ -26,52 +36,78 @@ int	ft_wordlen(char const *str)
 		quote = is_quote(str[i]);
 		if (str[i] && quote)
 		{
-			i++;
-			while(str[i] && quote != is_quote(str[i]))
-				i++;
-			if (str[i] == '\0' && quote != is_quote(str[i]))
+			ret = case_is_quote(&i, str, quote);
+			if (ret == ERROR)
 				return (ERROR);
-			if(is_quote(str[i+1]))
-			{
-				i++;
-			 	continue;
-			}
+			else if (ret == CONTINUE)
+				continue ;
 		}
-		if (str[i] && is_redirection(&str[i]))
-		{
-			case_redirection(str, &i);
-			wc_flag = 1;
-		}
-		else if (str[i] && is_pipe(&str[i]))
-		{
-			return (1);
-		}
-		else if (str[i] && is_ifs(str[i]))
-			wc_flag = 1;
-		else
-		{
-			while (str[i] && !is_ifs(str[i]) && !is_redirection(&str[i]) \
-						&&  !is_pipe(&str[i]))
-			{
-				i++;
-				quote = is_quote(str[i]);
-				if (str[i] && quote)
-				{
-					i++;
-					while(str[i] && quote != is_quote(str[i]))
-						i++;
-					if (str[i] == '\0' && quote != is_quote(str[i]))
-						return (ERROR);
-					if(is_quote(str[i+1]))
-					{
-						i++;
-						continue;
-					}
-				}
-			}
-		}
+		ret = case_is_quote_next(&wc_flag, &i, str);
+		if (ret == ERROR || ret == TRUE)
+			return (ret);
+		else if (ret == CONTINUE)
+			continue ;
 		if (wc_flag == 1)
 			break ;
 	}
 	return (i);
+}
+
+static int	case_is_quote_next(int *wc_flag, int *i, char *str)
+{
+	int	ret;
+
+	ret = 0;
+	if (str[*i] && is_redirection(&str[*i]))
+	{
+		case_redirection(str, &i);
+		*wc_flag = 1;
+	}
+	else if (str[*i] && is_pipe(&str[*i]))
+		return (TRUE);
+	else if (str[*i] && is_ifs(str[*i]))
+		*wc_flag = 1;
+	else
+	{
+		ret = case_else_in_while(i, str);
+		if (ret == ERROR || ret == CONTINUE)
+			return (ret);
+	}
+	return (0);
+}
+
+static int	case_is_quote(int *i, char *str, int quote)
+{
+	(*i)++;
+	while(str[*i] && quote != is_quote(str[*i]))
+		(*i)++;
+	if (str[*i] == '\0' && quote != is_quote(str[*i]))
+		return (ERROR);
+	if(is_quote(str[*i + 1]))
+	{
+		(*i)++;
+	 	return (CONTINUE);
+	}
+	return (0);
+}
+
+static int	case_else_in_while(int *i, char *str)
+{
+	int	quote;
+	int	ret;
+
+	quote = 0;
+	while (str[*i] && !is_ifs(str[*i]) && !is_redirection(&str[*i]) \
+						&& !is_pipe(&str[*i]))
+	{
+		(*i)++;
+		quote = is_quote(str[*i]);
+		if (str[*i] && quote)
+		{
+			ret = case_is_quote(&i, str, quote);
+			if (ret == ERROR || ret == CONTINUE)
+				return (ret);
+		}
+	}
+	return (0);
 }

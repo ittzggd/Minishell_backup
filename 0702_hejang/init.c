@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:08:48 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 16:58:06 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 21:06:00 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,4 @@ static void	init_data_envvlist(char **envp)
 		insert_envv(key, value, TRUE);
 		envp++;
 	}
-	//insert_envv("OLDPWD", NULL, TRUE);
 }

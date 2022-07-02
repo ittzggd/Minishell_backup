@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:12:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/01 13:32:53 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 21:24:47 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	get_path_len(char **path)
 	int	i;
 
 	i = 0;
+	if(!path || !*path)
+		return (0);
 	if (path)
 	{
 		while (path[i])
@@ -54,6 +56,8 @@ char	**join_filepath(char *execve_cmd)
 
 	i = 0;
 	path = ft_split(get_envv("PATH"), ':');
+	if (!path)
+		return (NULL);
 	len = get_path_len(path);
 	filepath = ft_calloc(len + 1, sizeof(char *));
 	if (!filepath)

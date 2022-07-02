@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 18:50:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:12:45 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_unset_with_args(t_astnode *args_node)
 		else
 		{
 			if (is_prev_pipe__ft_unset_util(args_node) == TRUE)
-				return (data.exit_status);
+				return ;
 			remove_ll_element(&data.envv_list, env_node->key);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 13:39:42 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/02 20:56:58 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ void	heredoc(char *delimiter)
 			break ;
 		i++;
 	}
-	// printf("data.heredoc_delimiter : %s\n", data.heredoc_delimiter[i]);
-	// printf("delimiter : %s\n", delimiter);
-	// printf("i : %d\n", i);
 	read_fd = data.heredoc_fd[i].fd[0];
 	dup2(read_fd, STDIN_FILENO);
 	close(read_fd);
