@@ -43,7 +43,7 @@ char	**allocate_empty_str_in_filepath(void)
 
 	filepath = ft_calloc(2, sizeof(char *));
 	if (!filepath)
-		ft_error("fork_before_run_execve : filepath allocation failed\n");
+		ft_error("allocate_empty_str_in_filepath : allocation failed\n");
 	filepath[0] = ft_strdup("");
 	return (filepath);
 }
