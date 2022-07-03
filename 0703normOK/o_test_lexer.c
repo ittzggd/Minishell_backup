@@ -6,15 +6,14 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:30:08 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:32:11 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
 static int	get_type(char *value);
-static void	type_word_to_cmd(int *i, int *command_flag);
-static void	type_pipe(int *command_flag);
+static void	type_word_to_cmd(int *i, int *cmd_flag);
 static int	word_to_option(int *i, int *command_flag);
 
 void	lexical_analysis(void)
@@ -33,7 +32,10 @@ void	lexical_analysis(void)
 		if (g_data.lexer.ptype[i] == T_WORD)
 			type_word_to_cmd(&i, &command_flag);
 		if (g_data.lexer.ptype[i] == T_PIPE)
-			type_pipe(&command_flag);
+		{
+			g_data.pipe_cnt++;
+			command_flag = FALSE;
+		}
 		else if (g_data.lexer.ptype[i] == T_REDIRECTION)
 		{
 			g_data.redirection_cnt++;
@@ -71,7 +73,7 @@ static int	get_type(char *value)
 	return (type);
 }
 
-static void	type_word_to_cmd(int *i, int *command_flag)
+static void	type_word_to_cmd(int *i, int *cmd_flag)
 {
 	int	*type;
 
@@ -79,17 +81,17 @@ static void	type_word_to_cmd(int *i, int *command_flag)
 	if (*i == 0)
 	{
 		type[*i] = T_COMMAND;
-		*command_flag = TRUE;
+		*cmd_flag = TRUE;
 	}
 	else if (*i != 0 && type[*i - 1] == T_PIPE)
 	{
 		type[*i] = T_COMMAND;
-		*command_flag = TRUE;
+		*cmd_flag = TRUE;
 	}
-	else if (*command_flag == FALSE && (*i > 1) && type[*i - 2] == T_REDIRECTION)
+	else if (*cmd_flag == FALSE && (*i > 1) && type[*i - 2] == T_REDIRECTION)
 	{
 		type[*i] = T_COMMAND;
-		*command_flag = TRUE;
+		*cmd_flag = TRUE;
 	}
 }
 
@@ -118,10 +120,4 @@ static int	word_to_option(int *i, int *command_flag)
 		}
 	}
 	return (TRUE);
-}
-
-static void	type_pipe(int *command_flag)
-{
-	g_data.pipe_cnt++;
-	*command_flag = FALSE;
 }

@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:07:11 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:30:19 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int			ft_wordcount(char const *str);
 //lexer
 void		lexical_analysis(void);
 void		replace_env_to_value(int i);
-int			check_env(char	*token, int i, int *j);
-void		get_value(char *key, char *token, int key_len, int i, int j);
+// int			check_env(char	*token, int i, int *j);
+// void		get_value(char *key, char *token, int key_len, int i, int j);
 char		*get_envv(char *key);
 t_envv_node	*get_el_node(t_envv_node *envv_list, char *key);
 void		insert_envv(char *key, char *value, int init_flag);

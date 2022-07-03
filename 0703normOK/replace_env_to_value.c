@@ -1,18 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_utils.c                                        :+:      :+:    :+:   */
+/*   replace_env_to_value.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:12:31 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:16:32 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:30:39 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-int	check_env(char	*token, int i, int *j)
+static int	check_env(char	*token, int i, int *j);
+static void	get_value(char *key, char *token, int key_len, int i, int j);
+
+void	replace_env_to_value(int i)
+{
+	char	*key;
+	char	*token;
+	char	*argv;
+	int		j;
+	int		key_len;
+
+	token = g_data.lexer.pptokens[i];
+	j = 0;
+	if (check_env(token, i, &j) == TRUE)
+		return ;
+	key_len = 0;
+	while (token[j + key_len])
+	{
+		if (!ft_is_alpha(token[j + key_len]) && (token[j + key_len] != '_') \
+			&& !ft_is_digit(token[j + key_len]) && (token[j + key_len] != '?'))
+			break ;
+		key_len++;
+	}
+	key = ft_calloc(key_len + 1, sizeof(char));
+	if (!key)
+		ft_error("replace_env_to_value : allocation failed\n");
+	if (key)
+		get_value(key, token, key_len, i, j);
+}
+
+static int	check_env(char	*token, int i, int *j)
 {
 	if (ft_strncmp(&token[*j], "$", -1))
 		return (TRUE);
@@ -40,7 +70,7 @@ int	check_env(char	*token, int i, int *j)
 	return (FALSE);
 }
 
-void	get_value(char *key, char *token, int key_len, int i, int j)
+static void	get_value(char *key, char *token, int key_len, int i, int j)
 {
 	char	*argv;
 

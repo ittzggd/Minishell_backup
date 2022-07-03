@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:19:28 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:31:41 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int	main(int argc, char *argv[], char **envp)
 	if (argc == 1)
 	{
 		init_setting(envp);
-		while (1)
-			start_nanoshell();
-		// close(g_data.std_fd[0]);
+		start_nanoshell();
+		// close(g_data.std_fd[0]); 
 		// close(g_data.std_fd[1]);
 	}
 	return (g_data.exit_status);
@@ -33,20 +32,23 @@ static void	start_nanoshell(void)
 {
 	char	*input_str;
 
-	reset_signal();
-	reset_stdfd();
-	input_str = readline("nanoshell >> ");
-	if (input_str)
+	while (1)
 	{
-		if (input_str_is_not_null(input_str) == CONTINUE)
-			continue ;
+		reset_signal();
+		reset_stdfd();
+		input_str = readline("nanoshell >> ");
+		if (input_str)
+		{
+			if (input_str_is_not_null(input_str) == CONTINUE)
+				continue ;
+		}
+		else
+			input_str_is_null();
+		add_history(input_str);
+		reset_data();
+		if (input_str)
+			free(input_str);
 	}
-	else
-		input_str_is_null();
-	add_history(input_str);
-	reset_data();
-	if (input_str)
-		free(input_str);
 }
 
 static int	input_str_is_not_null(char *input_str)

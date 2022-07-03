@@ -6,38 +6,11 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:16:49 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:29:10 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
-
-void	replace_env_to_value(int i)
-{
-	char	*key;
-	char	*token;
-	char	*argv;
-	int		j;
-	int		key_len;
-
-	token = g_data.lexer.pptokens[i];
-	j = 0;
-	if (check_env(token, i, &j) == TRUE)
-		return ;
-	key_len = 0;
-	while (token[j + key_len])
-	{
-		if (!ft_is_alpha(token[j + key_len]) && (token[j + key_len] != '_') \
-			&& !ft_is_digit(token[j + key_len]) && (token[j + key_len] != '?'))
-			break ;
-		key_len++;
-	}
-	key = ft_calloc(key_len + 1, sizeof(char));
-	if (!key)
-		ft_error("replace_env_to_value : allocation failed\n");
-	if (key)
-		get_value(key, token, key_len, i, j);
-}
 
 void	insert_envv(char *key, char *value, int init_flag)
 {
