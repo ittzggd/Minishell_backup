@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:18:15 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 20:54:33 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ static void	heredoc_do_parent(int pid);
 void	preprocess_heredoc(void)
 {
 	char	*delimiter;
-	int		len;
+	int		count;
 	pid_t	pid;
 
 	g_data.heredoc_flag = TRUE;
 	g_data.exit_status = 0;
-	g_data.heredoc_delimiter = ft_calloc(g_data.heredoc_cnt + 1, sizeof(char *));
+	count = g_data.heredoc_cnt;
+	g_data.heredoc_delimiter = ft_calloc(count + 1, sizeof(char *));
 	if (!g_data.heredoc_delimiter)
 		ft_error("[preprocess_heredoc] heredoc_delimiter: allocation failed\n");
-	g_data.heredoc_fd = ft_calloc(g_data.heredoc_cnt, sizeof(t_heredoc_fd *));
+	g_data.heredoc_fd = ft_calloc(count, sizeof(t_heredoc_fd *));
 	if (!g_data.heredoc_fd)
 		ft_error("[preprocess_heredoc] heredoc_fd : allocation failed\n");
 	create_delimiter_list();
