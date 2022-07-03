@@ -6,11 +6,21 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 23:22:36 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:57:19 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:09:36 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
+
+int	analyze_input(char *input)
+{
+	if (tokenize_input(input) == ERROR)
+		return (ERROR);
+	lexical_analysis();
+	if (syntax_analysis() != 0)
+		return (ERROR);
+	return (TRUE);
+}
 
 int	tokenize_input(char *input)
 {
