@@ -6,11 +6,12 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 21:26:44 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 14:24:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
+char    **allocate_empty_str_in_filepath(void);
 
 void	exec_ast(void)
 {
@@ -108,10 +109,8 @@ void	fork_before_run_execve(char **filepath, int idx, char **argv)
 	if (pid2 == 0)
 	{
 		reset_signal();
-		if (!filepath)
-		{
-			// 빈문자열 할당해서 하기
-		}
+		if(!filepath)
+			filepath = allocate_empty_str_in_filepath();
 		while (filepath[idx])
 		{
 			if (execve(filepath[idx], argv, NULL) == -1)
@@ -120,7 +119,7 @@ void	fork_before_run_execve(char **filepath, int idx, char **argv)
 				break ;
 		}
 		if (!filepath[idx])
-			command_not_found_error(argv[0]);
+		 	command_not_found_error(argv[0]);
 	}
 	else
 	{
@@ -128,3 +127,5 @@ void	fork_before_run_execve(char **filepath, int idx, char **argv)
 		exit(data.exit_status);
 	}
 }
+
+

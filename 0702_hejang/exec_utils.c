@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/02 20:53:43 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 14:22:50 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,16 @@ void	command_not_found_error(char *cmd)
 	ft_error_message(cmd, 1);
 	ft_error_message("\n", 1);
 	exit(data.exit_status);
+}
+
+char    **allocate_empty_str_in_filepath(void)
+{
+    char    **filepath;
+
+    filepath = ft_calloc(2, sizeof(char *));
+    if (!filepath)
+        ft_error("fork_before_run_execve : filepath allocation failed\n");
+    filepath[0] = ft_strdup("");
+	filepath[1] = NULL;
+    return (filepath);
 }
