@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:03:53 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 17:30:08 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@ void	lexical_analysis(void)
 
 	i = 0;
 	command_flag = FALSE;
-	data.lexer.ptype = (int *)ft_calloc(data.tokens_cnt + 1, sizeof(int));
-	if (!data.lexer.ptype)
+	g_data.lexer.ptype = (int *)ft_calloc(g_data.tokens_cnt + 1, sizeof(int));
+	if (!g_data.lexer.ptype)
 		ft_error("lexical_analysis : allocation failed\n");
-	while (data.lexer.pptokens[i])
+	while (g_data.lexer.pptokens[i])
 	{
-		data.lexer.ptype[i] = get_type(data.lexer.pptokens[i]);
-		if (data.lexer.ptype[i] == T_WORD)
+		g_data.lexer.ptype[i] = get_type(g_data.lexer.pptokens[i]);
+		if (g_data.lexer.ptype[i] == T_WORD)
 			type_word_to_cmd(&i, &command_flag);
-		if (data.lexer.ptype[i] == T_PIPE)
+		if (g_data.lexer.ptype[i] == T_PIPE)
 			type_pipe(&command_flag);
-		else if (data.lexer.ptype[i] == T_REDIRECTION)
+		else if (g_data.lexer.ptype[i] == T_REDIRECTION)
 		{
-			data.redirection_cnt++;
-			if (ft_strncmp("<<", data.lexer.pptokens[i], -1))
-				data.heredoc_cnt++;
+			g_data.redirection_cnt++;
+			if (ft_strncmp("<<", g_data.lexer.pptokens[i], -1))
+				g_data.heredoc_cnt++;
 		}
-		else if (data.lexer.ptype[i] == T_WORD)
+		else if (g_data.lexer.ptype[i] == T_WORD)
 		{
 			if (word_to_option(&i, &command_flag) == FALSE)
 				return ;
@@ -75,7 +75,7 @@ static void	type_word_to_cmd(int *i, int *command_flag)
 {
 	int	*type;
 
-	type = data.lexer.ptype;
+	type = g_data.lexer.ptype;
 	if (*i == 0)
 	{
 		type[*i] = T_COMMAND;
@@ -98,8 +98,8 @@ static int	word_to_option(int *i, int *command_flag)
 	int		*type;
 	char	**tokens;
 
-	type = data.lexer.ptype;
-	tokens = data.lexer.pptokens;
+	type = g_data.lexer.ptype;
+	tokens = g_data.lexer.pptokens;
 	if (i != 0 && type[*i - 1] == T_COMMAND)
 	{
 		if (is_option(tokens[*i]))
@@ -108,12 +108,12 @@ static int	word_to_option(int *i, int *command_flag)
 	if (is_env(tokens[*i]))
 	{
 		replace_env_to_value(*i);
-		if (!data.lexer.pptokens[*i])
+		if (!g_data.lexer.pptokens[*i])
 		{
 			/*
 			 error
 			 */
-			data.exit_status = 1;
+			g_data.exit_status = 1;
 			return (FALSE);
 		}
 	}
@@ -122,6 +122,6 @@ static int	word_to_option(int *i, int *command_flag)
 
 static void	type_pipe(int *command_flag)
 {
-	data.pipe_cnt++;
+	g_data.pipe_cnt++;
 	*command_flag = FALSE;
 }

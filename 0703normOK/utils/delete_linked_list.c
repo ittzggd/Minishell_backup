@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 16:54:28 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 17:46:14 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clear_linked_list(t_envv_node **p_list)
 	if (curr)
 		free(curr);
 	p_list = tmp;
-	data.envv_list = *p_list;
+	g_data.envv_list = *p_list;
 	return ;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:12:15 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 21:24:47 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 17:29:35 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_path_len(char **path)
 	int	i;
 
 	i = 0;
-	if(!path || !*path)
+	if (!path || !*path)
 		return (0);
 	if (path)
 	{
@@ -40,7 +40,7 @@ static char	*path_join(char *path_env, char *path_cmd)
 	len2++;
 	new_str = (char *)ft_calloc(((len1 + len2) + 1), sizeof(char));
 	if (!new_str)
-		ft_error("path_join : allocation error");
+		ft_error("path_join : allocation failed\n");
 	ft_strlcpy(new_str, path_env, len1 + 1);
 	*(new_str + len1) = '/';
 	ft_strlcat(new_str + len1 + 1, path_cmd, len2 + 1);
@@ -61,7 +61,7 @@ char	**join_filepath(char *execve_cmd)
 	len = get_path_len(path);
 	filepath = ft_calloc(len + 1, sizeof(char *));
 	if (!filepath)
-		ft_error("join_filepath : allocation error");
+		ft_error("join_filepath : allocation failed\n");
 	while (path[i])
 	{
 		filepath[i] = path_join(path[i], execve_cmd);

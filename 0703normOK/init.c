@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 20:08:48 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 21:06:00 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 17:31:53 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@ void	init_setting(char **envp)
 
 static void	init_data_stdfd(void)
 {
-	if (pipe(data.std_fd) < 0)
+	if (pipe(g_data.std_fd) < 0)
 	{
-		data.exit_status = 1;
-		exit(data.exit_status);
+		g_data.exit_status = 1;
+		exit(g_data.exit_status);
 	}
-	close(data.std_fd[0]);
-	close(data.std_fd[1]);
-	data.std_fd[0] = dup(STDIN_FILENO);
-	data.std_fd[1] = dup(STDOUT_FILENO);
+	close(g_data.std_fd[0]);
+	close(g_data.std_fd[1]);
+	g_data.std_fd[0] = dup(STDIN_FILENO);
+	g_data.std_fd[1] = dup(STDOUT_FILENO);
 }
 
 static void	init_data_termios(void)
 {
-	tcgetattr(data.std_fd[0], &data.origin_term);
-	data.changed_term = data.origin_term;
-	data.changed_term.c_lflag &= ~(ECHOCTL);
-	tcsetattr(data.std_fd[0], TCSANOW, &data.changed_term);
+	tcgetattr(g_data.std_fd[0], &g_data.origin_term);
+	g_data.changed_term = g_data.origin_term;
+	g_data.changed_term.c_lflag &= ~(ECHOCTL);
+	tcsetattr(g_data.std_fd[0], TCSANOW, &g_data.changed_term);
 }
 
 static void	init_data_envvlist(char **envp)

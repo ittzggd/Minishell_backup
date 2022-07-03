@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/02 17:04:45 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 17:31:33 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	main(int argc, char *argv[], char **envp)
 					continue ;
 				}
 				init_ast();
-				if (data.heredoc_cnt > 0)
+				if (g_data.heredoc_cnt > 0)
 				{
 					preprocess_heredoc();
-					if (data.exit_status == 1)
+					if (g_data.exit_status == 1)
 					{
 						add_history(input_str);
 						reset_data();
@@ -57,11 +57,6 @@ int	main(int argc, char *argv[], char **envp)
 			else
 			{
 				printf("exit\n");
-				/*
-				error
-				*/
-				// free
-					// data에 있는 모든 것 free.
 				exit(0);
 			}
 			add_history(input_str);
@@ -69,13 +64,8 @@ int	main(int argc, char *argv[], char **envp)
 			if (input_str)
 				free(input_str);
 		}
-
-		// 종료 전 열린 파이프 닫기
-		close(data.std_fd[0]);
-		close(data.std_fd[1]);
-		// 종료 전 data에 남은 것들 free
-		//envv_list 랑 data,,,,
+		close(g_data.std_fd[0]);
+		close(g_data.std_fd[1]);
 	}
-	return (data.exit_status);
+	return (g_data.exit_status);
 }
-

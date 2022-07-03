@@ -3,8 +3,10 @@ CC = gcc -g3 -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror 
 AR = ar
 ARFLAGS = crs
-COMFILE_FLAGS = -lreadline -L/opt/homebrew/opt/readline/lib
-OBJ_FLAGS = -I/opt/homebrew/opt/readline/include
+# COMFILE_FLAGS = -lreadline -L/opt/homebrew/opt/readline/lib
+# OBJ_FLAGS = -I/opt/homebrew/opt/readline/include
+COMFILE_FALGS = -lreadline -L${HOME}/.brew/opt/readline/lib
+OBJ_FLAGS = -I${HOME}/.brew/opt/readline/include
 SRCS =  $(wildcard ${PWD}/*.c) \
 		$(wildcard ${PWD}/*/*.c)
 #MAIN_SRCS =  $(addprefix src/, main.c) src/install/execve.c src/install/fork.c

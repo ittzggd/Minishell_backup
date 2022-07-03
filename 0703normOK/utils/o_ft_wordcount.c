@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 16:56:40 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 17:51:54 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int ft_wordcount(char const *str)
 	{
 		ret = get_wc(str, &i, &quote, &wc_flag, &wc);
 		if (ret == CONTINUE)
-			continue;
+			continue ;
 		else if (ret == ERROR)
 		{
-			data.exit_status = 1;
-			return (data.exit_status);
+			g_data.exit_status = 1;
+			return (g_data.exit_status);
 		}
 	}
 	return (wc);
@@ -50,7 +50,7 @@ static	int	get_wc(char const *str, int *i, int *quote, int *wc_flag, int *wc)
 	*quote = is_quote(str[*i]);
 	ret = skip_quote(str, i, quote);
 	if (ret == CONTINUE || ret == ERROR)
-		return(ret);
+		return (ret);
 	ret = red_ifs_pipe(str, i, quote, wc_flag);
 	if (ret == CONTINUE || ret == ERROR)
 		return (ret);
@@ -99,7 +99,7 @@ static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag)
 		while (str[*i] && is_ifs(str[*i]))
 			(*i)++;
 		*wc_flag = 1;
-		return (CONTINUE) ;
+		return (CONTINUE);
 	}
 	else if (str[*i] && is_pipe(&str[*i]))
 	{

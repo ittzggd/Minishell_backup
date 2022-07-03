@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:04:31 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 16:55:43 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 17:50:11 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	ft_wordlen(char const *str, int i, int wc_flag, int quote)
 		quote = is_quote(str[i]);
 		if (str[i] && quote)
 		{
-			ret = case_is_quote(&i, str, quote);
+			ret = case_is_quote(&i, (char *)str, quote);
 			if (ret == ERROR)
 				return (ERROR);
 			else if (ret == CONTINUE)
 				continue ;
 		}
-		ret = case_is_quote_next(&wc_flag, &i, str);
+		ret = case_is_quote_next(&wc_flag, &i, (char *)str);
 		if (ret == ERROR || ret == TRUE)
 			return (ret);
 		else if (ret == CONTINUE)
@@ -60,7 +60,7 @@ static int	case_is_quote_next(int *wc_flag, int *i, char *str)
 	ret = 0;
 	if (str[*i] && is_redirection(&str[*i]))
 	{
-		case_redirection(str, &i);
+		case_redirection(str, i);
 		*wc_flag = 1;
 	}
 	else if (str[*i] && is_pipe(&str[*i]))
@@ -104,7 +104,7 @@ static int	case_else_in_while(int *i, char *str)
 		quote = is_quote(str[*i]);
 		if (str[*i] && quote)
 		{
-			ret = case_is_quote(&i, str, quote);
+			ret = case_is_quote(i, str, quote);
 			if (ret == ERROR || ret == CONTINUE)
 				return (ret);
 		}

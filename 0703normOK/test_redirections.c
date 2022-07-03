@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_redirections.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 20:56:58 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 17:28:09 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	in_red(char *filename)
 		ft_error_message("minishell: ", 1);
 		ft_error_message(filename, 1);
 		ft_error_message(" No such file or directory\n", 1);
-		exit(data.exit_status);
+		exit(g_data.exit_status);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
@@ -60,13 +60,13 @@ void	heredoc(char *delimiter)
 	int	read_fd;
 
 	i = 0;
-	while (i < data.heredoc_cnt)
+	while (i < g_data.heredoc_cnt)
 	{
-		if (ft_strncmp(data.heredoc_delimiter[i], delimiter, -1))
+		if (ft_strncmp(g_data.heredoc_delimiter[i], delimiter, -1))
 			break ;
 		i++;
 	}
-	read_fd = data.heredoc_fd[i].fd[0];
+	read_fd = g_data.heredoc_fd[i].fd[0];
 	dup2(read_fd, STDIN_FILENO);
 	close(read_fd);
 }

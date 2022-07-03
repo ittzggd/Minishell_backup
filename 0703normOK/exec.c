@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/02 21:26:44 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/03 17:35:12 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	exec_ast(void)
 {
-	if (data.pipe_cnt > 0)
-		postorder_travel_ast(data.ast.prootnode);
+	if (g_data.pipe_cnt > 0)
+		postorder_travel_ast(g_data.ast.prootnode);
 	else
-		postorder_travel_command(data.ast.prootnode);
+		postorder_travel_command(g_data.ast.prootnode);
 }
 
 void	exec_cmd(t_astnode *argsnode)
@@ -26,7 +26,7 @@ void	exec_cmd(t_astnode *argsnode)
 	char		*blt_cmd;
 
 	argnode = argsnode->prightchild;
-	blt_cmd = data.lexer.pptokens[argnode->pvalue_index[0]];
+	blt_cmd = g_data.lexer.pptokens[argnode->pvalue_index[0]];
 	if (ft_strncmp(blt_cmd, "cd", -1))
 		ft_cd(argsnode);
 	else if (ft_strncmp(blt_cmd, "echo", -1))
@@ -53,14 +53,14 @@ void	execve_cmd(t_astnode *argsnode)
 	char		**envp;
 	char		**filepath;
 
-	data.exit_status = 0;
+	g_data.exit_status = 0;
 	cnt = 0;
-	execve_cmd = data.lexer.pptokens[argsnode->prightchild->pvalue_index[0]];
+	execve_cmd = g_data.lexer.pptokens[argsnode->prightchild->pvalue_index[0]];
 	filepath = join_filepath(execve_cmd);
 	while (argsnode->prightchild->pvalue_index[cnt] != END)
 		cnt++;
 	argv = create_argv(cnt, argsnode);
-	if (data.pipe_cnt == 0)
+	if (g_data.pipe_cnt == 0)
 		command_without_pipe(execve_cmd, 0, argv, filepath);
 	else
 	{
@@ -78,7 +78,7 @@ void	command_without_pipe(char *execve_cmd, int idx, char **argv, char **filepat
 	pid = fork();
 	if (pid < 0)
 		ft_error("[Fork ERROR] execve failed\n");
-	data.p_flag = TRUE;
+	g_data.p_flag = TRUE;
 	if (pid == 0)
 	{
 		if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
@@ -90,12 +90,12 @@ void	command_without_pipe(char *execve_cmd, int idx, char **argv, char **filepat
 	{
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);
-		waitpid(pid, &data.exit_status, 0);
+		waitpid(pid, &g_data.exit_status, 0);
 	}
-	if (WIFEXITED(data.exit_status))
-		data.exit_status = WEXITSTATUS(data.exit_status);
-	else if (WIFSIGNALED(data.exit_status))
-		data.exit_status = WTERMSIG(data.exit_status) + 128;
+	if (WIFEXITED(g_data.exit_status))
+		g_data.exit_status = WEXITSTATUS(g_data.exit_status);
+	else if (WIFSIGNALED(g_data.exit_status))
+		g_data.exit_status = WTERMSIG(g_data.exit_status) + 128;
 }
 
 void	fork_before_run_execve(char **filepath, int idx, char **argv)
@@ -120,6 +120,6 @@ void	fork_before_run_execve(char **filepath, int idx, char **argv)
 		if (!filepath[idx])
 			command_not_found_error(argv[0]);
 	}
-	waitpid(pid2, &(data.exit_status), 0);
-	exit(data.exit_status);
+	waitpid(pid2, &(g_data.exit_status), 0);
+	exit(g_data.exit_status);
 }
