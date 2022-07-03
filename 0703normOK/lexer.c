@@ -6,26 +6,32 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:56:34 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 20:43:25 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
+static void	set_lexer_ptype(void);
 static int	get_type(char *value);
 static void	type_word_to_cmd(int *i, int *cmd_flag);
-static int	word_to_option(int *i, int *command_flag);
+static void	word_to_option(int *i, int *command_flag);
 
-int	lexical_analysis(void)
+void	lexical_analysis(void)
+{
+	g_data.lexer.ptype = (int *)ft_calloc(g_data.tokens_cnt + 1, sizeof(int));
+	if (!g_data.lexer.ptype)
+		ft_error("lexical_analysis : allocation failed\n");
+	set_lexer_ptype();
+}
+
+static void	set_lexer_ptype(void)
 {
 	int		i;
 	int		command_flag;
 
 	i = 0;
 	command_flag = FALSE;
-	g_data.lexer.ptype = (int *)ft_calloc(g_data.tokens_cnt + 1, sizeof(int));
-	if (!g_data.lexer.ptype)
-		ft_error("lexical_analysis : allocation failed\n");
 	while (g_data.lexer.pptokens[i])
 	{
 		g_data.lexer.ptype[i] = get_type(g_data.lexer.pptokens[i]);
@@ -43,13 +49,9 @@ int	lexical_analysis(void)
 				g_data.heredoc_cnt++;
 		}
 		else if (g_data.lexer.ptype[i] == T_WORD)
-		{
-			if (word_to_option(&i, &command_flag) == ERROR)
-				return (ERROR);
-		}
+			word_to_option(&i, &command_flag);
 		i++;
 	}
-	return (TRUE);
 }
 
 static int	get_type(char *value)
@@ -96,7 +98,7 @@ static void	type_word_to_cmd(int *i, int *cmd_flag)
 	}
 }
 
-static int	word_to_option(int *i, int *command_flag)
+static void	word_to_option(int *i, int *command_flag)
 {
 	int		*type;
 	char	**tokens;
@@ -109,13 +111,5 @@ static int	word_to_option(int *i, int *command_flag)
 			type[*i] = T_OPTION;
 	}
 	if (is_env(tokens[*i]))
-	{
 		replace_env_to_value(*i);
-		if (!g_data.lexer.pptokens[*i])
-		{
-			ft_error_message("[NULL] Env value is invalid\n", 1);
-			return (ERROR);
-		}
-	}
-	return (TRUE);
 }

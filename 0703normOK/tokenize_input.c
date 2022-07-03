@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 23:22:36 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:50:34 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 20:46:52 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	analyze_input(char *input)
 {
 	if (tokenize_input(input) == ERROR)
 		return (ERROR);
-	if (lexical_analysis() == ERROR)
-		return (ERROR);
+	lexical_analysis();
 	if (syntax_analysis() != 0)
 		return (ERROR);
 	return (TRUE);

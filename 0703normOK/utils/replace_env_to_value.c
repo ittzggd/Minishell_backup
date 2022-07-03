@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:12:31 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 20:10:44 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 20:18:14 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ void	replace_env_to_value(int i)
 static char	*get_value(char *token, int j, int key_len)
 {
 	char	*key;
-	char	*argv;
+	char	*value;
 
 	key = ft_calloc(key_len + 1, sizeof(char));
 	if (!key)
 		ft_error("replace_env_to_value : allocation failed\n");
 	ft_strlcpy(key, &token[j], key_len + 1);
-	argv = get_envv(key);
+	value = get_envv(key);
 	if (key)
 		free(key);
-	return (argv);
+	if (!value)
+		value = ft_strdup("");
+	return (value);
 }
 
 static int	check_env(char	*token, int i, int *j)
