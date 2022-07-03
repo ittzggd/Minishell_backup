@@ -6,14 +6,14 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:12:31 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:57:50 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 20:10:44 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 static int	check_env(char	*token, int i, int *j);
-static char	*get_value_from_envvlist(char *token, int j, int key_len);
+static char	*get_value(char *token, int j, int key_len);
 
 void	replace_env_to_value(int i)
 {
@@ -34,7 +34,7 @@ void	replace_env_to_value(int i)
 			break ;
 		key_len++;
 	}
-	argv = get_value_from_envvlist(token, j, key_len);
+	argv = get_value(token, j, key_len);
 	if (token[j + key_len] == '\0')
 		g_data.lexer.pptokens[i] = argv;
 	else
@@ -43,7 +43,7 @@ void	replace_env_to_value(int i)
 		free(token);
 }
 
-static char	*get_value_from_envvlist(char *token, int j, int key_len)
+static char	*get_value(char *token, int j, int key_len)
 {
 	char	*key;
 	char	*argv;
