@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:16:58 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 17:55:26 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ char	**allocate_empty_str_in_filepath(void)
 	if (!filepath)
 		ft_error("allocate_empty_str_in_filepath : allocation failed\n");
 	filepath[0] = ft_strdup("");
+	filepath[1] = NULL;
 	return (filepath);
 }

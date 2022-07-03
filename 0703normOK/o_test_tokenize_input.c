@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 23:22:36 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:35:59 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 17:57:19 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int	tokenize_input(char *input)
 	split_index = ft_split_str((char *)input, g_data.lexer.pptokens);
 	if (split_index == ERROR)
 		return (ERROR);
+	return (TRUE);
 }
