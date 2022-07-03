@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_PIPE_H
-# define MINISHELL_PIPE_H
+// #ifndef MINISHELL_EXEC_H
+// # define MINISHELL_EXEC_H
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <sys/types.h>
+// # include <fcntl.h>
+// # include <unistd.h>
+// # include <sys/wait.h>
+// # include <sys/types.h>
 
-void	exec_ast(void);
-void	exec_cmd(t_astnode *argsnode);
+// void	exec_ast(void);
+// void	exec_cmd(t_astnode *argsnode);
 
-#endif 
+// #endif 

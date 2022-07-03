@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <sys/wait.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include "minishell_define.h"
@@ -56,6 +57,8 @@ void		syntax_check_pipe(int *curr, int *ret_status);
 void		syntax_check_null(int *curr, int *ret_status);
 
 // exec
+void		exec_ast(void);
+void		exec_cmd(t_astnode *argsnode);
 void		execve_cmd(t_astnode *argsnode);
 char		**join_filepath(char *execve_cmd);
 char		**create_argv(int cnt, t_astnode *argsnode);
