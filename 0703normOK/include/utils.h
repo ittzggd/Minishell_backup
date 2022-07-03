@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:05:24 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:33:31 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void		*ft_memset(void *s, int c, size_t n);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t number, size_t size);
-char		*ft_free_all(char **ret);
+// char		*ft_free_all(char **ret);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_test_lexer.c                                     :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:32:11 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:50:08 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	get_type(char *value);
 static void	type_word_to_cmd(int *i, int *cmd_flag);
 static int	word_to_option(int *i, int *command_flag);
 
-void	lexical_analysis(void)
+int	lexical_analysis(void)
 {
 	int		i;
 	int		command_flag;
@@ -44,11 +44,12 @@ void	lexical_analysis(void)
 		}
 		else if (g_data.lexer.ptype[i] == T_WORD)
 		{
-			if (word_to_option(&i, &command_flag) == FALSE)
-				return ;
+			if (word_to_option(&i, &command_flag) == ERROR)
+				return (ERROR);
 		}
 		i++;
 	}
+	return (TRUE);
 }
 
 static int	get_type(char *value)
@@ -112,11 +113,8 @@ static int	word_to_option(int *i, int *command_flag)
 		replace_env_to_value(*i);
 		if (!g_data.lexer.pptokens[*i])
 		{
-			/*
-			 error
-			 */
-			g_data.exit_status = 1;
-			return (FALSE);
+			ft_error_massege("[NULL] Env value is invalid\n");
+			return (ERROR);
 		}
 	}
 	return (TRUE);
