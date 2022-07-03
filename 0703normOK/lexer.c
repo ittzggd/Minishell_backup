@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:50:08 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:56:34 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static int	word_to_option(int *i, int *command_flag)
 		replace_env_to_value(*i);
 		if (!g_data.lexer.pptokens[*i])
 		{
-			ft_error_massege("[NULL] Env value is invalid\n");
+			ft_error_message("[NULL] Env value is invalid\n", 1);
 			return (ERROR);
 		}
 	}

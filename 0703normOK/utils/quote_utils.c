@@ -6,11 +6,11 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:15:19 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:29:02 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:56:52 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"./include/minishell.h"
+#include "../include/minishell.h"
 
 static	int	get_len_without_quote(char *quote_str);
 

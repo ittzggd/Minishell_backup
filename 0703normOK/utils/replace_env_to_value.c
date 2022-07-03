@@ -6,17 +6,17 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:12:31 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:41:10 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:57:50 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "../include/minishell.h"
 
 static int	check_env(char	*token, int i, int *j);
+static char	*get_value_from_envvlist(char *token, int j, int key_len);
 
 void	replace_env_to_value(int i)
 {
-	char	*key;
 	char	*token;
 	char	*argv;
 	int		j;
@@ -34,22 +34,28 @@ void	replace_env_to_value(int i)
 			break ;
 		key_len++;
 	}
+	argv = get_value_from_envvlist(token, j, key_len);
+	if (token[j + key_len] == '\0')
+		g_data.lexer.pptokens[i] = argv;
+	else
+		g_data.lexer.pptokens[i] = ft_strjoin(argv, &token[j + key_len]);
+	if (token)
+		free(token);
+}
+
+static char	*get_value_from_envvlist(char *token, int j, int key_len)
+{
+	char	*key;
+	char	*argv;
+
 	key = ft_calloc(key_len + 1, sizeof(char));
 	if (!key)
 		ft_error("replace_env_to_value : allocation failed\n");
+	ft_strlcpy(key, &token[j], key_len + 1);
+	argv = get_envv(key);
 	if (key)
-	{
-		ft_strlcpy(key, &token[j], key_len + 1);
-		argv = get_envv(key);
-		if (key)
-			free(key);
-		if (token[j + key_len] == '\0')
-			g_data.lexer.pptokens[i] = argv;
-		else
-			g_data.lexer.pptokens[i] = ft_strjoin(argv, &token[j + key_len]);
-		if (token)
-			free(token);
-	}
+		free(key);
+	return (argv);
 }
 
 static int	check_env(char	*token, int i, int *j)
@@ -79,4 +85,3 @@ static int	check_env(char	*token, int i, int *j)
 		(*j)++;
 	return (FALSE);
 }
-

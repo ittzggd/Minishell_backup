@@ -6,11 +6,11 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:39:26 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:17:35 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:57:02 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "../include/minishell.h"
 
 static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd);
 

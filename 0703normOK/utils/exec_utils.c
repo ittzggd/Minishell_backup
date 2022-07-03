@@ -6,11 +6,11 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:55:26 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:57:27 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"./include/minishell.h"
+#include "../include/minishell.h"
 
 char	**create_argv(int cnt, t_astnode *argsnode)
 {

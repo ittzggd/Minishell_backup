@@ -6,11 +6,11 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:08:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:28:23 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/03 18:56:56 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "../include/minishell.h"
 
 void	syntax_check_command(int *curr)
 {
