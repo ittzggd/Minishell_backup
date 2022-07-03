@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 20:19:45 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 00:31:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "utils.h"
 # include "ast.h"
 # include "builtin.h"
-# include "minishell_pipe.h"
+# include "minishell_exec.h"
 # include "minishell_red.h"
 
 extern t_data	g_data;

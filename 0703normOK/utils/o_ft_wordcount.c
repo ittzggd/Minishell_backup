@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   o_ft_wordcount.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:51:54 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 00:22:16 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	skip_quote(char	const *str, int *i, int *quote);
 static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag);
-static int wc_else(char const *str, int *i, int *quote);
-static	int	get_wc(char const *str, int *i, int *quote, int *wc_flag, int *wc);
+static int	wc_else(char const *str, int *i, int *quote);
+static int	get_wc(char const *str, int *i, int *wc_flag, int *wc);
 
-int ft_wordcount(char const *str)
+int	ft_wordcount(char const *str)
 {
 	int	ret;
 	int	i;
@@ -31,7 +31,7 @@ int ft_wordcount(char const *str)
 	wc = 0;
 	while (str[i])
 	{
-		ret = get_wc(str, &i, &quote, &wc_flag, &wc);
+		ret = get_wc(str, &i, &wc_flag, &wc);
 		if (ret == CONTINUE)
 			continue ;
 		else if (ret == ERROR)
@@ -43,20 +43,21 @@ int ft_wordcount(char const *str)
 	return (wc);
 }
 
-static	int	get_wc(char const *str, int *i, int *quote, int *wc_flag, int *wc)
+static	int	get_wc(char const *str, int *i, int *wc_flag, int *wc)
 {
 	int	ret;
+	int	quote;
 
-	*quote = is_quote(str[*i]);
-	ret = skip_quote(str, i, quote);
+	quote = is_quote(str[*i]);
+	ret = skip_quote(str, i, &quote);
 	if (ret == CONTINUE || ret == ERROR)
 		return (ret);
-	ret = red_ifs_pipe(str, i, quote, wc_flag);
+	ret = red_ifs_pipe(str, i, &quote, wc_flag);
 	if (ret == CONTINUE || ret == ERROR)
 		return (ret);
 	else if (ret == FALSE)
 	{
-		ret = wc_else(str, i, quote);
+		ret = wc_else(str, i, &quote);
 		if (ret == CONTINUE || ret == ERROR)
 			return (ret);
 	}
@@ -64,7 +65,6 @@ static	int	get_wc(char const *str, int *i, int *quote, int *wc_flag, int *wc)
 		(*wc)++;
 	return (TRUE);
 }
-
 
 static int	skip_quote(char	const *str, int *i, int *quote)
 {
@@ -82,7 +82,6 @@ static int	skip_quote(char	const *str, int *i, int *quote)
 		}
 	}
 	return (TRUE);
-
 }
 
 static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag)
@@ -112,10 +111,10 @@ static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag)
 	return (FALSE);
 }
 
-static int wc_else(char const *str, int *i, int *quote)
+static int	wc_else(char const *str, int *i, int *quote)
 {
-	while (str[*i] && !is_ifs(str[*i]) && !is_redirection(&str[*i]) \
-			&& !is_pipe(&str[*i]))
+	while (str[*i] && !is_ifs(str[*i]) && !is_redirection(&str[*i])
+		&& !is_pipe(&str[*i]))
 	{
 		(*i)++;
 		*quote = is_quote(str[*i]);

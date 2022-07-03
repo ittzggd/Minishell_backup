@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 20:54:33 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 00:24:15 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	preprocess_heredoc(void)
 		ft_error("[preprocess_heredoc] heredoc_fd : allocation failed\n");
 	create_delimiter_list();
 	pid = fork();
-	if(pid == 0)
+	if (pid == 0)
 		heredoc_do_child();
 	else
 		heredoc_do_parent(pid);
@@ -66,7 +66,7 @@ static void	heredoc_do_child(void)
 {
 	int	i;
 	int	idx;
-	
+
 	i = 0;
 	idx = 0;
 	g_data.p_flag = TRUE;
@@ -86,7 +86,7 @@ static void	heredoc_do_child(void)
 static void	heredoc_do_parent(int pid)
 {
 	int	i;
-	
+
 	i = 0;
 	waitpid(pid, &(g_data.exit_status), 0);
 	if (WIFEXITED(g_data.exit_status))
@@ -99,4 +99,3 @@ static void	heredoc_do_parent(int pid)
 		i++;
 	}
 }
- 
