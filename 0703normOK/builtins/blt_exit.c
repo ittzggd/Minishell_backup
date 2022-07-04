@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_blt_exit.c                                       :+:      :+:    :+:   */
+/*   blt_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:05 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:09:24 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:25:10 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static int	exit_status_argc_error(t_astnode *args_node);
+static int	exit_status_argc_error(void);
 
 void	ft_exit(t_astnode *args_node)
 {
@@ -30,7 +30,7 @@ void	ft_exit(t_astnode *args_node)
 		g_data.exit_status = ft_atoi(str, args_node->prightchild);
 		if (cnt > 2)
 		{
-			g_data.exit_status = exit_status_argc_error(args_node->prightchild);
+			g_data.exit_status = exit_status_argc_error();
 			return ;
 		}
 	}
@@ -48,7 +48,7 @@ void	exit_status_numeric_error(t_astnode *args_node)
 	exit(255);
 }
 
-static int	exit_status_argc_error(t_astnode *args_node)
+static int	exit_status_argc_error(void)
 {
 	ft_error_message("minishell: exit :too many arguments\n", 1);
 	return (1);

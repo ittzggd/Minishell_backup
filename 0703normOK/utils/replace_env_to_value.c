@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_env_to_value.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:12:31 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 20:18:14 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 12:30:25 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	replace_env_to_value(int i)
 	{
 		g_data.lexer.pptokens[i] = ft_strjoin(argv, &token[j + key_len]);
 		free(argv);
-	}
+	}	
 	if (token)
 		free(token);
 }

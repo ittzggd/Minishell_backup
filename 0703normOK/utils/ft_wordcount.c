@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_ft_wordcount.c                                   :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 00:22:16 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/04 14:28:40 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 static int	skip_quote(char	const *str, int *i, int *quote);
-static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag);
+static int	red_ifs_pipe(char const *str, int *i, int *wc_flag);
 static int	wc_else(char const *str, int *i, int *quote);
 static int	get_wc(char const *str, int *i, int *wc_flag, int *wc);
 
@@ -52,7 +52,7 @@ static	int	get_wc(char const *str, int *i, int *wc_flag, int *wc)
 	ret = skip_quote(str, i, &quote);
 	if (ret == CONTINUE || ret == ERROR)
 		return (ret);
-	ret = red_ifs_pipe(str, i, &quote, wc_flag);
+	ret = red_ifs_pipe(str, i, wc_flag);
 	if (ret == CONTINUE || ret == ERROR)
 		return (ret);
 	else if (ret == FALSE)
@@ -84,7 +84,7 @@ static int	skip_quote(char	const *str, int *i, int *quote)
 	return (TRUE);
 }
 
-static int	red_ifs_pipe(char const *str, int *i, int *quote, int *wc_flag)
+static int	red_ifs_pipe(char const *str, int *i, int *wc_flag)
 {
 	if (str[*i] && is_redirection(&str[*i]))
 	{

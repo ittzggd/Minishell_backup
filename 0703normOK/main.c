@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:31:41 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:18:41 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ static void	input_str_is_null(void);
 
 int	main(int argc, char *argv[], char **envp)
 {
+	(void)argv;
 	if (argc == 1)
 	{
 		init_setting(envp);
 		start_nanoshell();
-		// close(g_data.std_fd[0]); 
-		// close(g_data.std_fd[1]);
 	}
 	return (g_data.exit_status);
 }

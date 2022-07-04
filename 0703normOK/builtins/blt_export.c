@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_blt_export.c                                     :+:      :+:    :+:   */
+/*   blt_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:09:30 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:44:44 by y yukimukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	export_with_args(t_astnode *args_node)
 	int		i;
 
 	i = 1;
-	while (args_node->prightchild->pvalue_index[i] != -1)
+	while (args_node->prightchild->pvalue_index[i] != END)
 	{
 		init_variables_ft_export(args_node, i, &input);
 		init_flag = init_envp(input, &key, &value);
@@ -44,11 +44,7 @@ static void	export_with_args(t_astnode *args_node)
 		if (is_valid_env(key) == ERROR)
 			is_valid_env__error_msg(key);
 		else if (is_valid_env(key) == TRUE)
-		{
 			insert_envv(key, value, init_flag);
-			if (!value)
-				continue ;
-		}
 		i++;
 	}
 }

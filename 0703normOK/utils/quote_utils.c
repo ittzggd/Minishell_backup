@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:15:19 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 18:56:52 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:28:56 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	int	get_len_without_quote(char *quote_str);
 char	*remove_quote(char *quote_str)
 {
 	char	*ret;
-	int		ret_len;
+	size_t	ret_len;
 	int		i;
 
 	i = 0;

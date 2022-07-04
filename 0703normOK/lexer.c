@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 20:43:25 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:21:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	set_lexer_ptype(void);
 static int	get_type(char *value);
 static void	type_word_to_cmd(int *i, int *cmd_flag);
-static void	word_to_option(int *i, int *command_flag);
+static void	word_to_option(int *i);
 
 void	lexical_analysis(void)
 {
@@ -49,7 +49,7 @@ static void	set_lexer_ptype(void)
 				g_data.heredoc_cnt++;
 		}
 		else if (g_data.lexer.ptype[i] == T_WORD)
-			word_to_option(&i, &command_flag);
+			word_to_option(&i);
 		i++;
 	}
 }
@@ -98,7 +98,7 @@ static void	type_word_to_cmd(int *i, int *cmd_flag)
 	}
 }
 
-static void	word_to_option(int *i, int *command_flag)
+static void	word_to_option(int *i)
 {
 	int		*type;
 	char	**tokens;

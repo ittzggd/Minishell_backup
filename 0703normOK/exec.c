@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 18:08:11 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:21:29 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	execve_cmd(t_astnode *argsnode)
 	int			cnt;
 	char		*execve_cmd;
 	char		**argv;
-	char		**envp;
 	char		**filepath;
 
 	g_data.exit_status = 0;
@@ -64,7 +63,7 @@ void	execve_cmd(t_astnode *argsnode)
 		cmd_without_pipe(execve_cmd, 0, argv, filepath);
 	else
 	{
-		if (ft_strnstr(execve_cmd, "nanoshell", ft_strlen(execve_cmd)))
+		if (ft_strnstr(execve_cmd, "minishell", ft_strlen(execve_cmd)))
 			ft_nanoshell(execve_cmd);
 		else
 			fork_before_run_execve(filepath, 0, argv);
@@ -81,7 +80,7 @@ void	cmd_without_pipe(char *cmd, int idx, char **argv, char **filepath)
 	g_data.p_flag = TRUE;
 	if (pid == 0)
 	{
-		if (ft_strnstr(cmd, "nanoshell", ft_strlen(cmd)))
+		if (ft_strnstr(cmd, "minishell", ft_strlen(cmd)))
 			ft_nanoshell(cmd);
 		else
 			fork_before_run_execve(filepath, idx, argv);

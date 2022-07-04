@@ -32,6 +32,7 @@ void	ft_sig_handler_in_heredoc(int sig_num)
 
 void	ctrl_c(int sig_num)
 {
+	(void)sig_num;
 	if (g_data.heredoc_flag == TRUE)
 		return ;
 	if (g_data.p_flag == TRUE)
@@ -51,6 +52,7 @@ void	ctrl_c(int sig_num)
 
 void	ctrl_bs(int sig_num)
 {
+	(void)sig_num;
 	if (g_data.p_flag == TRUE)
 	{
 		if (g_data.heredoc_flag == TRUE)

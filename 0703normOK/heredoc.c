@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 00:24:15 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/04 14:20:23 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	heredoc_do_parent(int pid);
 
 void	preprocess_heredoc(void)
 {
-	char	*delimiter;
 	int		count;
 	pid_t	pid;
 

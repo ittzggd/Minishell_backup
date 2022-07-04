@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 00:31:31 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/04 12:18:50 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "utils.h"
 # include "ast.h"
 # include "builtin.h"
-# include "minishell_exec.h"
 # include "minishell_red.h"
 
 extern t_data	g_data;

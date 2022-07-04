@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_blt_echo.c                                       :+:      :+:    :+:   */
+/*   blt_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:09:07 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 12:34:39 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	do_echo(t_astnode *args_node)
 			continue ;
 		}
 		rm_quote_str = remove_quote(g_data.lexer.pptokens[*arg]);
-		if (ft_strncmp(rm_quote_str, "$?", ft_strlen(rm_quote_str)))
+		if (ft_strncmp(rm_quote_str, "$?", -1))
 			do_echo_dollor_question_mark();
 		else
 			do_echo_print(arg, rm_quote_str);

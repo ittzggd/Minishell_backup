@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 03:33:21 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:07:54 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:24:35 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	tree_cmd(t_astnode *ast_node, int index)
 {
 	char	**tokens;
 	int		*type;
-	int		c_index;
 
 	if (ast_node->nodetype != A_COMMAND)
 		return ;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_ft_minishell_split.c                             :+:      :+:    :+:   */
+/*   ft_minishell_split.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:40:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 16:56:28 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/04 14:27:58 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int	is_not_ifs(int i, char **str, char **tokens)
 	int	quote;
 
 	j = 0;
+	wc_flag = 0;
+	quote = 0;
 	wlen = ft_wordlen(*str, i, wc_flag, quote);
 	if (wlen == ERROR)
 		return (ERROR);
