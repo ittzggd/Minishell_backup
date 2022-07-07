@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 14:21:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/06 15:21:21 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,4 @@ static void	word_to_option(int *i)
 		if (is_option(tokens[*i]))
 			type[*i] = T_OPTION;
 	}
-	if (is_env(tokens[*i]))
-		replace_env_to_value(*i);
 }

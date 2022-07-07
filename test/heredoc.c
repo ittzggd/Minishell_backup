@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 14:20:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/06 15:17:491 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ static void	create_delimiter_list(void)
 	tokens = g_data.lexer.pptokens;
 	while (hd_idx < g_data.heredoc_cnt)
 	{
-		if (ft_strncmp("<<", tokens[t_idx], -1))
+		if(g_data.lexer.ptype[t_idx] == T_REDIRECTION)
 		{
-			if (pipe(g_data.heredoc_fd[hd_idx].fd) < 0)
-				ft_error("[Pipe ERROR] Heredoc failed\n");
-			g_data.heredoc_delimiter[hd_idx] = ft_strdup(tokens[t_idx + 1]);
-			hd_idx++;
+			if (ft_strncmp("<<", tokens[t_idx], -1))
+			{
+				if (pipe(g_data.heredoc_fd[hd_idx].fd) < 0)
+					ft_error("[Pipe ERROR] Heredoc failed\n");
+				g_data.heredoc_delimiter[hd_idx] = ft_strdup(tokens[t_idx + 1]);
+				hd_idx++;
+			}
 		}
 		t_idx++;
 	}

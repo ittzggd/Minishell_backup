@@ -6,7 +6,7 @@
 #    By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 14:13:39 by yukim             #+#    #+#              #
-#    Updated: 2022/07/04 19:22:02 by hejang           ###   ########.fr        #
+#    Updated: 2022/07/07 12:36:12 by hejang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ UTILS_SRCS = utils/delete_linked_list.c utils/exec_utils.c \
 			utils/ft_split.c utils/ft_strchr.c utils/ft_strdup.c utils/ft_strjoin.c \
 			utils/ft_strlcat.c utils/ft_strlcpy.c utils/ft_strlen.c utils/ft_strncmp.c utils/ft_strnstr.c \
 			utils/ft_wordcount.c utils/heredoc_utils.c utils/is_utils_01.c utils/is_utils_02.c \
-			utils/quote_utils.c utils/remove_ll_element.c utils/replace_env_to_value.c utils/syntax_utils.c
+			utils/quote_utils.c utils/remove_ll_element.c utils/replace_env_to_value.c utils/syntax_utils.c quote_env.c
 
 MAIN_SRCS = main.c \
 			init.c signal.c reset.c\

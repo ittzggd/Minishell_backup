@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 20:57:29 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 12:35:34 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int			analyze_input(char *input);
 int			tokenize_input(char *input);
 char		**ft_minishell_split(const char *str);
 int			ft_wordcount(char const *str);
+void		replace_quote_env(void);
 
 //lexer
 void		lexical_analysis(void);

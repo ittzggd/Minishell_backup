@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_utils_02.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:44:39 by katherineja       #+#    #+#             */
-/*   Updated: 2022/07/03 16:56:11 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/06 14:48:22 by hejang           ###   ########.fr            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,26 @@ int	is_option(char *value)
 int	is_env(char *value)
 {
 	int	i;
+	int	quote;
 
 	i = 0;
-	if (value[i] == '$' || (value[i] == '\"' && value[i + 1] == '$'))
-		return (TRUE);
+	while (value[i])
+	{
+		quote = is_quote(value[i]);
+		if (value[i] && quote)
+		{
+			i++;
+			while (value[i] && quote != is_quote(value[i]))
+			{
+				if (quote == DOUBLE_QUOTE && value[i] == '$')
+					return (TRUE);
+				i++;
+			}
+		}
+		else if (quote == 0 && value[i] == '$')
+			return (TRUE);
+		i++;
+	}
 	return (FALSE);
 }
 
