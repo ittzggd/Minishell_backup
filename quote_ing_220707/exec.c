@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 21:00:46 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 22:33:12 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,9 @@ void	fork_before_run_execve(int idx, char **argv, char *execve_cmd)
 			command_not_found_error(argv[0]);
 	}
 	waitpid(pid2, &(g_data.exit_status), 0);
+	if (WIFEXITED(g_data.exit_status))
+		g_data.exit_status = WEXITSTATUS(g_data.exit_status);
+	else if (WIFSIGNALED(g_data.exit_status))
+		g_data.exit_status = WTERMSIG(g_data.exit_status) + 128;
 	exit(g_data.exit_status);
 }

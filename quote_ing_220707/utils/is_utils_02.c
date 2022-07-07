@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 10:44:39 by katherineja       #+#    #+#             */
-/*   Updated: 2022/07/03 16:56:11 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 22:44:24 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,9 @@ int	is_env(char *value)
 			i++;
 			while (value[i] && quote != is_quote(value[i]))
 			{
-				// if (quote == DOUBLE_QUOTE && value[i] == '$' && is_quote(value[i + 1])== DOUBLE_QUOTE)
-				// 	return (FALSE);
 				if (quote == DOUBLE_QUOTE && value[i] == '$')
 				{
-					if (is_quote(value[i + 1])== DOUBLE_QUOTE)
-						return (FALSE);
-					else
+					if (is_quote(value[i + 1]) != DOUBLE_QUOTE)
 						return (TRUE);
 				}
 				i++;
