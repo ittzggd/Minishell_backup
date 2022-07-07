@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:19:44 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 20:52:07 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 21:15:50 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,23 @@
 void	rm_command_quote(int i);
 void	rm_argument_quote(int i);
 
-void	replace_quote_env()
+void	replace_quote_env(void)
 {
 	int		i;
 
 	i = 0;
-	while(g_data.lexer.pptokens[i] != NULL)
+	while (g_data.lexer.pptokens[i] != NULL)
 	{
-		if(g_data.lexer.ptype[i] == T_COMMAND)
+		if (g_data.lexer.ptype[i] == T_COMMAND)
 			rm_command_quote(i);
-		else if(g_data.lexer.ptype[i] == T_WORD)
+		else if (g_data.lexer.ptype[i] == T_REDIRECTION)
+		{
+			i++;
+			if (g_data.lexer.pptokens[i] == NULL)
+				break ;
+			rm_command_quote(i);
+		}
+		else if (g_data.lexer.ptype[i] == T_WORD)
 			rm_argument_quote(i);
 		i++;
 	}
@@ -62,7 +69,7 @@ void	rm_command_quote(int i)
 	rm_quote = ft_calloc(len + 1, sizeof(char));
 	idx = 0;
 	len = 0;
-	while(tokens[idx] != '\0')
+	while (tokens[idx] != '\0')
 	{
 		quote = is_quote(tokens[idx]);
 		if (quote && tokens[idx])

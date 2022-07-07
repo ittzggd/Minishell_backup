@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 12:34:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 21:22:06 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_echo(t_astnode *args_node)
 static int	do_echo(t_astnode *args_node)
 {
 	int		*arg;
-	char	*rm_quote_str;
+	char	*str;
 
 	arg = args_node->prightchild->pvalue_index;
 	arg++;
@@ -50,13 +50,11 @@ static int	do_echo(t_astnode *args_node)
 			arg++;
 			continue ;
 		}
-		rm_quote_str = remove_quote(g_data.lexer.pptokens[*arg]);
-		if (ft_strncmp(rm_quote_str, "$?", -1))
+		str = g_data.lexer.pptokens[*arg];
+		if (ft_strncmp(str, "$?", -1))
 			do_echo_dollor_question_mark();
 		else
-			do_echo_print(arg, rm_quote_str);
-		if (rm_quote_str != g_data.lexer.pptokens[*arg])
-			free(rm_quote_str);
+			do_echo_print(arg, str);
 		arg++;
 	}
 	return (TRUE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 14:20:23 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 21:39:06 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	create_delimiter_list(void)
 	tokens = g_data.lexer.pptokens;
 	while (hd_idx < g_data.heredoc_cnt)
 	{
-		if(g_data.lexer.ptype[t_idx] == T_REDIRECTION)
+		if (g_data.lexer.ptype[t_idx] == T_REDIRECTION)
 		{
 			if (ft_strncmp("<<", tokens[t_idx], -1))
 			{

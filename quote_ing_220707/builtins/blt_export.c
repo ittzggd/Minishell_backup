@@ -39,8 +39,6 @@ static void	export_with_args(t_astnode *args_node)
 	{
 		init_variables_ft_export(args_node, i, &input);
 		init_flag = init_envp(input, &key, &value);
-		if (input)
-			free(input);
 		if (is_valid_env(key) == ERROR)
 			is_valid_env__error_msg(key);
 		else if (is_valid_env(key) == TRUE)
@@ -54,7 +52,7 @@ static void	init_variables_ft_export(t_astnode *argsnode, int i, char **input)
 	int		index;
 
 	index = argsnode->prightchild->pvalue_index[i];
-	*input = remove_quote(g_data.lexer.pptokens[index]);
+	*input = g_data.lexer.pptokens[index];
 }
 
 static void	is_valid_env__error_msg(char *key)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 17:20:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 21:00:46 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	fork_before_run_execve(int idx, char **argv, char *execve_cmd)
 	if (pid2 == 0)
 	{
 		reset_signal();
-		if(ft_strchr(execve_cmd, '/'))
+		if (ft_strchr(execve_cmd, '/'))
 		{
 			filepath = ft_calloc(2, sizeof(char *));
 			filepath[0] = ft_strdup(execve_cmd);

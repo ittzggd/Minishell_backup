@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 18:57:48 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 21:10:58 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,45 @@
 
 static void	chdir_error(char *tmp);
 static void	update_pwd(void);
-static void	free_rm_quote_str(char *rm_quote_tmp, char *dst_path);
-static int	cd_home(char **home_path, char **dst_path, char **rm_quote_tmp);
+// static void	free_rm_quote_str(char *rm_quote_tmp, char *dst_path);
+static int	cd_home(char **home_path, char **dst_path, char **tmp);
 
 int	ft_cd(t_astnode *args_node)
 {
 	char	*tmp;
-	char	*rm_quote_tmp;
+	// char	*rm_quote_tmp;
 	char	*dst_path;
 	char	*home_path;
 	int		idx;
 
 	g_data.exit_status = 0;
 	tmp = g_data.lexer.pptokens[args_node->prightchild->pvalue_index[1]];
-	rm_quote_tmp = remove_quote(tmp);
+	// rm_quote_tmp = remove_quote(tmp);
 	idx = args_node->prightchild->pvalue_index[1];
-	if (idx == END || ft_strncmp(rm_quote_tmp, "~", -1))
+	if (idx == END || ft_strncmp(tmp, "~", -1))
 	{
-		if (cd_home(&home_path, &dst_path, &rm_quote_tmp) == ERROR)
+		if (cd_home(&home_path, &dst_path, &tmp) == ERROR)
 			return (g_data.exit_status);
 	}
-	else if (ft_strncmp(rm_quote_tmp, "-", -1))
+	else if (ft_strncmp(tmp, "-", -1))
 		dst_path = get_envv("OLDPWD");
 	else
-		dst_path = rm_quote_tmp;
+		dst_path = tmp;
 	if (chdir(dst_path) == ERROR)
 		chdir_error(tmp);
 	else
 		update_pwd();
-	free_rm_quote_str(rm_quote_tmp, dst_path);
+	// free_rm_quote_str(tmp, dst_path);
 	return (g_data.exit_status);
 }
 
-static int	cd_home(char **home_path, char **dst_path, char **rm_quote_tmp)
+static int	cd_home(char **home_path, char **dst_path, char **tmp)
 {
 	*home_path = get_envv("HOME");
-	*dst_path = ft_strjoin(*home_path, *rm_quote_tmp + 1);
+	*dst_path = ft_strjoin(*home_path, *tmp + 1);
 	if (!home_path)
 	{
-		free(*rm_quote_tmp);
+		free(*tmp);
 		chdir_error(*dst_path);
 		return (ERROR);
 	}
@@ -76,13 +76,13 @@ static void	update_pwd(void)
 		g_data.current_path = getcwd(NULL, 0);
 }
 
-static void	free_rm_quote_str(char *rm_quote_tmp, char *dst_path)
-{
- 	if (dst_path == rm_quote_tmp)
- 		free(dst_path);
- 	else
-	{
- 		free(rm_quote_tmp);
-		free(dst_path);
-	}
- }
+// static void	free_rm_quote_str(char *rm_quote_tmp, char *dst_path)
+// {
+//  	if (dst_path == rm_quote_tmp)
+//  		free(dst_path);
+//  	else
+// 	{
+//  		free(rm_quote_tmp);
+// 		free(dst_path);
+// 	}
+//  }

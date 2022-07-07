@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Jul  7 20:56:55 2022
+# Make data base, printed on Thu Jul  7 21:00:18 2022
 
 # Variables
 
@@ -152,7 +152,6 @@ SUFFIXES :=
 # environment
 MAKELEVEL := 0
 # makefile (from `Makefile', line 43)
- 
 MAIN_SRCS = main.c init.c signal.c reset.c redirections.c heredoc.c token.c lexer.c syntax.c exec.c data.c env.c path.c quote_env.c
 # environment
 LANG = C
@@ -190,7 +189,7 @@ VSCODE_PID = 15658
 ast/tree_cmd.o: ast/tree_cmd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/tree_cmd'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -202,7 +201,7 @@ ast/tree_cmd.o: ast/tree_cmd.c
 utils/is_utils_02.o: utils/is_utils_02.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/is_utils_02'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -232,7 +231,7 @@ ast/postorder_travel_command.c:
 builtins/blt_pwd.o: builtins/blt_pwd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_pwd'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -244,7 +243,8 @@ builtins/blt_pwd.o: builtins/blt_pwd.c
 data.o: data.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `data'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
+ 
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -274,7 +274,7 @@ builtins/blt_utils.c:
 builtins/blt_unset.o: builtins/blt_unset.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_unset'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -323,7 +323,7 @@ heredoc.c:
 utils/ft_calloc.o: utils/ft_calloc.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_calloc'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -335,7 +335,7 @@ utils/ft_calloc.o: utils/ft_calloc.c
 utils/ft_minishell_split.o: utils/ft_minishell_split.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_minishell_split'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -370,7 +370,7 @@ utils/ft_split.c:
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
+#  Last modified 2022-07-07 20:57:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -379,7 +379,7 @@ main.c:
 builtins/blt_nanoshell.o: builtins/blt_nanoshell.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_nanoshell'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -400,7 +400,7 @@ utils/ft_minishell_atoi.c:
 ast/tree_args.o: ast/tree_args.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/tree_args'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -430,9 +430,8 @@ utils/ft_strlcat.c:
 ast/tree_utils.o: ast/tree_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/tree_utils'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
- 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -443,7 +442,7 @@ ast/tree_utils.o: ast/tree_utils.c
 utils/replace_env_to_value.o: utils/replace_env_to_value.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/replace_env_to_value'
-#  Last modified 2022-07-07 20:56:24
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -482,7 +481,7 @@ utils/ft_bzero.c:
 utils/ft_strlcpy.o: utils/ft_strlcpy.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strlcpy'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -509,7 +508,7 @@ exec.c:
 utils/ft_strncmp.o: utils/ft_strncmp.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strncmp'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -529,8 +528,9 @@ utils/is_utils_01.c:
 
 # Not a target:
 Makefile:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:56:16
+#  Last modified 2022-07-07 20:58:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -566,7 +566,7 @@ quote_env.c:
 utils/ft_strdup.o: utils/ft_strdup.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strdup'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -587,7 +587,7 @@ env.c:
 utils/ft_strchr.o: utils/ft_strchr.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strchr'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -617,7 +617,7 @@ utils/is_utils_02.c:
 utils/ft_wordcount.o: utils/ft_wordcount.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_wordcount'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -629,7 +629,7 @@ utils/ft_wordcount.o: utils/ft_wordcount.c
 quote_env.o: quote_env.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `quote_env'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -641,7 +641,7 @@ quote_env.o: quote_env.c
 builtins/blt_cd.o: builtins/blt_cd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_cd'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -671,7 +671,7 @@ data.c:
 utils/quote_utils.o: utils/quote_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/quote_utils'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -683,7 +683,7 @@ utils/quote_utils.o: utils/quote_utils.c
 utils/ft_strnstr.o: utils/ft_strnstr.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strnstr'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -695,7 +695,7 @@ utils/ft_strnstr.o: utils/ft_strnstr.c
 redirections.o: redirections.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `redirections'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -704,10 +704,9 @@ redirections.o: redirections.c
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
 	
 
- 
 minishell: main.o init.o signal.o reset.o redirections.o heredoc.o token.o lexer.o syntax.o exec.o data.o env.o path.o quote_env.o ast/delete_astnode.o ast/free_data_ast.o ast/init_ast.o ast/postorder_travel_ast.o ast/postorder_travel_command.o ast/tree_args.o ast/tree_cmd.o ast/tree_reds.o ast/tree_utils.o builtins/blt_cd.o builtins/blt_echo.o builtins/blt_env.o builtins/blt_exit.o builtins/blt_export.o builtins/blt_nanoshell.o builtins/blt_pwd.o builtins/blt_unset.o builtins/blt_utils.o utils/delete_linked_list.o utils/exec_utils.o utils/ft_bzero.o utils/ft_calloc.o utils/ft_error.o utils/ft_lstadd_back.o utils/ft_lstnew.o utils/ft_memset.o utils/ft_minishell_atoi.o utils/ft_minishell_split.o utils/ft_split_str_util.o utils/ft_split.o utils/ft_strchr.o utils/ft_strdup.o utils/ft_strjoin.o utils/ft_strlcat.o utils/ft_strlcpy.o utils/ft_strlen.o utils/ft_strncmp.o utils/ft_strnstr.o utils/ft_wordcount.o utils/heredoc_utils.o utils/is_utils_01.o utils/is_utils_02.o utils/quote_utils.o utils/remove_ll_element.o utils/replace_env_to_value.o utils/syntax_utils.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-07 20:56:24
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -728,7 +727,7 @@ builtins/blt_unset.c:
 token.o: token.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `token'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -767,11 +766,12 @@ fclean: clean
 utils/syntax_utils.o: utils/syntax_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/syntax_utils'
-#  Last modified 2022-07-07 20:56:24
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+ 
 #  commands to execute (from `Makefile', line 62):
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
 	
@@ -815,7 +815,7 @@ ast/tree_args.c:
 ast/init_ast.o: ast/init_ast.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/init_ast'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -827,7 +827,7 @@ ast/init_ast.o: ast/init_ast.c
 builtins/blt_exit.o: builtins/blt_exit.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_exit'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -839,7 +839,7 @@ builtins/blt_exit.o: builtins/blt_exit.c
 utils/ft_error.o: utils/ft_error.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_error'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -869,7 +869,7 @@ utils/replace_env_to_value.c:
 utils/ft_lstadd_back.o: utils/ft_lstadd_back.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_lstadd_back'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -896,7 +896,7 @@ utils/ft_strlcpy.c:
 utils/ft_split_str_util.o: utils/ft_split_str_util.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_split_str_util'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -908,7 +908,7 @@ utils/ft_split_str_util.o: utils/ft_split_str_util.c
 builtins/blt_echo.o: builtins/blt_echo.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_echo'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -929,7 +929,7 @@ utils/ft_strncmp.c:
 utils/remove_ll_element.o: utils/remove_ll_element.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/remove_ll_element'
-#  Last modified 2022-07-07 20:56:24
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -941,11 +941,10 @@ utils/remove_ll_element.o: utils/remove_ll_element.c
 reset.o: reset.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `reset'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 62):
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
@@ -963,7 +962,7 @@ utils/ft_lstnew.c:
 builtins/blt_export.o: builtins/blt_export.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_export'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -990,7 +989,7 @@ utils/ft_strdup.c:
 utils/exec_utils.o: utils/exec_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/exec_utils'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1011,7 +1010,7 @@ clean:
 ast/postorder_travel_command.o: ast/postorder_travel_command.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/postorder_travel_command'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1023,7 +1022,7 @@ ast/postorder_travel_command.o: ast/postorder_travel_command.c
 utils/ft_lstnew.o: utils/ft_lstnew.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_lstnew'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1044,7 +1043,8 @@ utils/ft_strchr.c:
 ast/delete_astnode.o: ast/delete_astnode.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/delete_astnode'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
+ 
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1074,7 +1074,7 @@ builtins/blt_cd.c:
 builtins/blt_utils.o: builtins/blt_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_utils'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1095,7 +1095,7 @@ ast/tree_reds.c:
 utils/ft_memset.o: utils/ft_memset.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_memset'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1107,7 +1107,7 @@ utils/ft_memset.o: utils/ft_memset.c
 init.o: init.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `init'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1128,7 +1128,7 @@ utils/quote_utils.c:
 utils/delete_linked_list.o: utils/delete_linked_list.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/delete_linked_list'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1140,7 +1140,7 @@ utils/delete_linked_list.o: utils/delete_linked_list.c
 ast/postorder_travel_ast.o: ast/postorder_travel_ast.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/postorder_travel_ast'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1152,7 +1152,7 @@ ast/postorder_travel_ast.o: ast/postorder_travel_ast.c
 heredoc.o: heredoc.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `heredoc'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1200,7 +1200,7 @@ token.c:
 syntax.o: syntax.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `syntax'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1212,13 +1212,12 @@ syntax.o: syntax.c
 utils/ft_split.o: utils/ft_split.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_split'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 62):
- 
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
 	
 
@@ -1243,7 +1242,7 @@ builtins/blt_env.c:
 utils/ft_strlen.o: utils/ft_strlen.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strlen'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1255,7 +1254,7 @@ utils/ft_strlen.o: utils/ft_strlen.c
 main.o: main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1267,7 +1266,7 @@ main.o: main.c
 utils/heredoc_utils.o: utils/heredoc_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/heredoc_utils'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1288,7 +1287,7 @@ utils/syntax_utils.c:
 utils/ft_minishell_atoi.o: utils/ft_minishell_atoi.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_minishell_atoi'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1300,7 +1299,7 @@ utils/ft_minishell_atoi.o: utils/ft_minishell_atoi.c
 path.o: path.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `path'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1312,11 +1311,12 @@ path.o: path.c
 utils/ft_strlcat.o: utils/ft_strlcat.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strlcat'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+ 
 #  commands to execute (from `Makefile', line 62):
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
 	
@@ -1324,7 +1324,7 @@ utils/ft_strlcat.o: utils/ft_strlcat.c
 ast/tree_reds.o: ast/tree_reds.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/tree_reds'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1336,7 +1336,7 @@ ast/tree_reds.o: ast/tree_reds.c
 lexer.o: lexer.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `lexer'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1348,7 +1348,7 @@ lexer.o: lexer.c
 ast/free_data_ast.o: ast/free_data_ast.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `ast/free_data_ast'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1360,7 +1360,7 @@ ast/free_data_ast.o: ast/free_data_ast.c
 utils/ft_bzero.o: utils/ft_bzero.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_bzero'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:57
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1390,7 +1390,7 @@ utils/ft_strjoin.c:
 exec.o: exec.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `exec'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1420,7 +1420,7 @@ utils/ft_lstadd_back.c:
 utils/is_utils_01.o: utils/is_utils_01.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/is_utils_01'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1432,7 +1432,7 @@ utils/is_utils_01.o: utils/is_utils_01.c
 builtins/blt_env.o: builtins/blt_env.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `builtins/blt_env'
-#  Last modified 2022-07-07 20:56:22
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1462,7 +1462,7 @@ builtins/blt_echo.c:
 signal.o: signal.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `signal'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1474,7 +1474,7 @@ signal.o: signal.c
 utils/ft_strjoin.o: utils/ft_strjoin.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `utils/ft_strjoin'
-#  Last modified 2022-07-07 20:56:23
+#  Last modified 2022-07-07 20:58:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1492,7 +1492,6 @@ utils/remove_ll_element.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
 # Not a target:
 reset.c:
 #  Implicit rule search has been done.
@@ -1505,7 +1504,7 @@ reset.c:
 env.o: env.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `env'
-#  Last modified 2022-07-07 20:56:21
+#  Last modified 2022-07-07 20:58:56
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1536,6 +1535,6 @@ builtins/blt_export.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jul  7 20:56:55 2022
+# Finished Make data base on Thu Jul  7 21:00:18 2022
 
  
