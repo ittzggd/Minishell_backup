@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:19:44 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 19:19:44 by yukim            ###   ########.fr       */
+/*   Updated: 2022/07/07 20:52:07 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	rm_command_quote(int i)
 void	rm_argument_quote(int i)
 {
 	char	*tokens;
-	char	*tmp;
+	// char	*tmp;
 	char	*rm_quote;
 
 	tokens = g_data.lexer.pptokens[i];

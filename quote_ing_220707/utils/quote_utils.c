@@ -37,7 +37,7 @@ char	*remove_quote(char *quote_str)
 		quote = is_quote(quote_str[i]);
 		if (quote_str[i] && quote == DOUBLE_QUOTE)
 		{
-			i++
+			i++;
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
 				if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
@@ -70,7 +70,7 @@ char	*remove_quote(char *quote_str)
 		}
 		else if (quote_str[i] && quote == SINGLE_QUOTE)
 		{
-			i++
+			i++;
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
 				ret[j] = quote_str[i];
@@ -133,7 +133,7 @@ static	int	get_len_without_quote(char *quote_str)
 		quote = is_quote(quote_str[i]);
 		if (quote_str[i] && quote == DOUBLE_QUOTE)
 		{
-			i++
+			i++;
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
 				if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
@@ -164,7 +164,7 @@ static	int	get_len_without_quote(char *quote_str)
 		}
 		else if (quote_str[i] && quote == SINGLE_QUOTE)
 		{
-			i++
+			i++;
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
 				i++;
