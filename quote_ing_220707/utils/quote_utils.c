@@ -29,40 +29,36 @@ char	*remove_quote(char *quote_str)
 	i = 0;
 	j = 0;
 	ret_len = get_len_without_quote(quote_str);
-	if (ret_len == ft_strlen(quote_str))
-	{
-		ret = ft_strdup(quote_str);
-		return (ret);
-	}
 	ret = ft_calloc(ret_len + 1, sizeof(char));
 	if (!ret)
 		ft_error("remove_quote : allocation failed\n");
 	while (quote_str[i])
 	{
 		quote = is_quote(quote_str[i]);
-		if (quote_str[i] && quote)
+		if (quote_str[i] && quote == DOUBLE_QUOTE)
 		{
-			i++;
+			i++
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
-				if (quote == DOUBLE_QUOTE && quote_str[i] == '$')
+				if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
 				{
 					i++;
-					key_len = ft_key_len(quote_str, i);
+					if (!ft_is_alpha(quote_str[i]))
+						key_len = 1;
+					else
+						key_len = ft_key_len(quote_str, i);
 					key = ft_calloc(key_len + 1, sizeof(char));
 					if (!key)
-						ft_error("get_len_without_quote : allocation failed\n");
+						ft_error("remove_quote_while_1 : allocation failed\n");
 					ft_strlcpy(key, &quote_str[i], key_len + 1);
 					value = get_envv(key);
-					ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
-					i = i + key_len;
-					if (key)
-						free(key);
 					if (!value)
 						value = ft_strdup("");
+					ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
+					i = i + key_len;
 					j = j + ft_strlen(value);
-					if (value)
-						free(value);
+					free(key);
+					free(value);
 				}
 				else
 				{
@@ -72,10 +68,45 @@ char	*remove_quote(char *quote_str)
 				}
 			}
 		}
-		else if (quote_str[i])
+		else if (quote_str[i] && quote == SINGLE_QUOTE)
 		{
-			ret[j] = quote_str[i];
-			j++;
+			i++
+			while (quote_str[i] && quote != is_quote(quote_str[i]))
+			{
+				ret[j] = quote_str[i];
+				i++;
+				j++;
+			}
+		}
+		else if (quote_str[i] && quote == FALSE)
+		{
+			if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
+			{
+				i++;
+				if (!ft_is_alpha(quote_str[i]))
+					key_len = 1;
+				else
+					key_len = ft_key_len(quote_str, i);
+				key = ft_calloc(key_len + 1, sizeof(char));
+				if (!key)
+					ft_error("remove_quote_while_2 : allocation failed\n");
+				ft_strlcpy(key, &quote_str[i], key_len + 1);
+				value = get_envv(key);
+				if (!value)
+					value = ft_strdup("");
+				ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
+				i = i + key_len;
+				j = j + ft_strlen(value);
+				free(key);
+				free(value);
+			}
+			else
+			{
+				ret[j] = quote_str[i];
+				i++;
+				j++;
+			}
+			continue ;
 		}
 		i++;
 	}
@@ -86,7 +117,7 @@ char	*remove_quote(char *quote_str)
 static	int	get_len_without_quote(char *quote_str)
 {
 	int	i;
-	int	len;
+	int	ret_len;
 	int	quote;
 
 	char	*key;
@@ -96,21 +127,81 @@ static	int	get_len_without_quote(char *quote_str)
 	if (!quote_str)
 		return (0);
 	i = 0;
-	len = 0;
+	ret_len = 0;
 	while (quote_str[i])
 	{
 		quote = is_quote(quote_str[i]);
-		if (quote_str[i] && quote)
+		if (quote_str[i] && quote == DOUBLE_QUOTE)
 		{
-
+			i++
+			while (quote_str[i] && quote != is_quote(quote_str[i]))
+			{
+				if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
+				{
+					i++;
+					if (!ft_is_alpha(quote_str[i]))
+						key_len = 1;
+					else
+						key_len = ft_key_len(quote_str, i);
+					key = ft_calloc(key_len + 1, sizeof(char));
+					if (!key)
+						ft_error("get_len_without_quote : allocation failed\n");
+					ft_strlcpy(key, &quote_str[i], key_len + 1);
+					value = get_envv(key);
+					if (!value)
+						value = ft_strdup("");
+					i = i + key_len;
+					ret_len = ret_len + ft_strlen(value);
+					free(key);
+					free(value);
+				}
+				else
+				{
+					i++;
+					ret_len++;
+				}
+			}
 		}
-		else
+		else if (quote_str[i] && quote == SINGLE_QUOTE)
 		{
-			len++;
+			i++
+			while (quote_str[i] && quote != is_quote(quote_str[i]))
+			{
+				i++;
+				ret_len++;
+			}
+		}
+		else if (quote_str[i] && quote == FALSE)
+		{
+			if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
+			{
+				i++;
+				if (!ft_is_alpha(quote_str[i]))
+					key_len = 1;
+				else
+					key_len = ft_key_len(quote_str, i);
+				key = ft_calloc(key_len + 1, sizeof(char));
+				if (!key)
+					ft_error("get_len_without_quote : allocation failed\n");
+				ft_strlcpy(key, &quote_str[i], key_len + 1);
+				value = get_envv(key);
+				if (!value)
+					value = ft_strdup("");
+				i = i + key_len;
+				ret_len = ret_len + ft_strlen(value);
+				free(key);
+				free(value);
+			}
+			else
+			{
+				i++;
+				ret_len++;
+			}
+			continue ;
 		}
 		i++;
 	}
-	return (len);
+	return (ret_len);
 }
 
 

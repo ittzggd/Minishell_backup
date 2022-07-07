@@ -42,14 +42,19 @@ int	is_env(char *value)
 			i++;
 			while (value[i] && quote != is_quote(value[i]))
 			{
+				// if (quote == DOUBLE_QUOTE && value[i] == '$' && is_quote(value[i + 1])== DOUBLE_QUOTE)
+				// 	return (FALSE);
 				if (quote == DOUBLE_QUOTE && value[i] == '$')
-					return (TRUE);
-				if (quote == DOUBLE_QUOTE && value[i] == '$' && is_quote(value[i + 1])== DOUBLE_QUOTE)
-					return (FALSE);
+				{
+					if (is_quote(value[i + 1])== DOUBLE_QUOTE)
+						return (FALSE);
+					else
+						return (TRUE);
+				}
 				i++;
 			}
 		}
-		else if (quote == 0 && value[i] == '$')
+		else if (quote == 0 && value[i] == '$' && value[i + 1] != '\0')
 			return (TRUE);
 		i++;
 	}

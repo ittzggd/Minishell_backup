@@ -95,10 +95,11 @@ void	rm_argument_quote(int i)
 	char	*rm_quote;
 
 	tokens = g_data.lexer.pptokens[i];
-	tmp = g_data.lexer.pptokens[i];
+	// tmp = g_data.lexer.pptokens[i];
 	rm_quote = remove_quote(tokens);
 	g_data.lexer.pptokens[i] = rm_quote;
-	free(tmp);
+	// free(tmp);
+	free(tokens);
 }
 
 
