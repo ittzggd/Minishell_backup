@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 14:18:41 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 12:17:50 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 static void	start_nanoshell(void);
 static int	input_str_is_not_null(char *input_str);
 static void	input_str_is_null(void);
+void	postorderTravelBinSTree(t_astnode *node);
+
+
+void	postorderTravelBinSTree(t_astnode *node)
+{
+	int i = 0;
+
+	if(node)
+	{
+		printf("node type : %d  ", node->nodetype);
+		if(node->pvalue_index)
+		{
+			while(node->pvalue_index[i] != -1)
+			{
+				printf("       value : %s         ", g_data.lexer.pptokens[node->pvalue_index[i]]);
+				i++;
+			}
+		}
+		printf("\n");
+		postorderTravelBinSTree(node->pleftchild);
+		postorderTravelBinSTree(node->prightchild);
+	}
+}
 
 int	main(int argc, char *argv[], char **envp)
 {
@@ -58,6 +81,7 @@ static int	input_str_is_not_null(char *input_str)
 		return (CONTINUE);
 	}
 	init_ast();
+	postorderTravelBinSTree(g_data.ast.prootnode);
 	if (g_data.heredoc_cnt > 0)
 	{
 		preprocess_heredoc();

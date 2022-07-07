@@ -44,6 +44,8 @@ int	is_env(char *value)
 			{
 				if (quote == DOUBLE_QUOTE && value[i] == '$')
 					return (TRUE);
+				if (quote == DOUBLE_QUOTE && value[i] == '$' && is_quote(value[i + 1])== DOUBLE_QUOTE)
+					return (FALSE);
 				i++;
 			}
 		}
