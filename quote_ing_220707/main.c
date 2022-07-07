@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 21:49:11 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 21:50:47 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ static int	input_str_is_not_null(char *input_str)
 static void	input_str_is_null(void)
 {
 	printf("\e[Ananoshell >> exit\n");
-	exit(0);
+	exit(g_data.exit_status);
 }

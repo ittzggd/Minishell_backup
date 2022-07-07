@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:15:19 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 21:22:41 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 22:30:29 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ char	*remove_quote(char *quote_str)
 			i++;
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
-				if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
+				if (quote_str[i] == '$' && quote_str[i + 1] == '?')
+				{
+					value = ft_itoa(g_data.exit_status);
+					ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
+					j = j + ft_strlen(value);
+					i = i + 2;
+				}
+				else if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
 				{
 					i++;
 					if (!ft_is_alpha(quote_str[i]))
@@ -80,7 +87,14 @@ char	*remove_quote(char *quote_str)
 		}
 		else if (quote_str[i] && quote == FALSE)
 		{
-			if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
+			if (quote_str[i] == '$' && quote_str[i + 1] == '?')
+			{
+				value = ft_itoa(g_data.exit_status);
+				ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
+				j = j + ft_strlen(value);
+				i = i + 2;
+			}
+			else if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
 			{
 				i++;
 				if (!ft_is_alpha(quote_str[i]))
@@ -136,7 +150,13 @@ static	int	get_len_without_quote(char *quote_str)
 			i++;
 			while (quote_str[i] && quote != is_quote(quote_str[i]))
 			{
-				if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
+				if (quote_str[i] == '$' && quote_str[i + 1] == '?')
+				{
+					value = ft_itoa(g_data.exit_status);
+					ret_len = ret_len + ft_strlen(value);
+					i = i + 2;
+				}
+				else if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
 				{
 					i++;
 					if (!ft_is_alpha(quote_str[i]))
@@ -173,7 +193,13 @@ static	int	get_len_without_quote(char *quote_str)
 		}
 		else if (quote_str[i] && quote == FALSE)
 		{
-			if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
+			if (quote_str[i] == '$' && quote_str[i + 1] == '?')
+			{
+				value = ft_itoa(g_data.exit_status);
+				ret_len = ret_len + ft_strlen(value);
+				i = i + 2;
+			}
+			else if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
 			{
 				i++;
 				if (!ft_is_alpha(quote_str[i]))
@@ -203,11 +229,6 @@ static	int	get_len_without_quote(char *quote_str)
 	}
 	return (ret_len);
 }
-
-
-
-
-
 
 /*
 열린 따옴표 만나면, 같은 닫힌 따옴표 만날때 까지 하나로 퉁치고,

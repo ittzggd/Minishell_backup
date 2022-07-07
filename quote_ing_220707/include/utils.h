@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 17:09:24 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/07 22:25:51 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char		*ft_strchr(const char *s, int c);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 char		**ft_split(char const *s, char c);
 long long	ft_atoi(const char *str, t_astnode *args_node);
-char		*ft_itoa(size_t num);
+char		*ft_itoa(int n);
 t_envv_node	*ft_lstnew(t_envv_node element);
 void		ft_lstadd_back(t_envv_node *new);
 void		remove_ll_element(t_envv_node **p_list, char *key);

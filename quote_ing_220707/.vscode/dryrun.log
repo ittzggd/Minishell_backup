@@ -1,6 +1,8 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/yukim/Desktop/2207707minishell/quote_ing_220707'
-make: Nothing to be done for `all'.
+gcc -g3 -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/quote_utils.c -o utils/quote_utils.o
  
+gcc -g3 -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_itoa.c -o utils/ft_itoa.o
+gcc -g3 -Wall -Wextra -Werror  -lreadline -L/Users/yukim/.brew/opt/readline/lib main.o init.o signal.o reset.o redirections.o heredoc.o token.o lexer.o syntax.o exec.o data.o env.o path.o quote_env.o ast/delete_astnode.o ast/free_data_ast.o ast/init_ast.o ast/postorder_travel_ast.o ast/postorder_travel_command.o ast/tree_args.o ast/tree_cmd.o ast/tree_reds.o ast/tree_utils.o builtins/blt_cd.o builtins/blt_echo.o builtins/blt_env.o builtins/blt_exit.o builtins/blt_export.o builtins/blt_nanoshell.o builtins/blt_pwd.o builtins/blt_unset.o builtins/blt_utils.o utils/delete_linked_list.o utils/exec_utils.o utils/ft_bzero.o utils/ft_calloc.o utils/ft_error.o utils/ft_lstadd_back.o utils/ft_lstnew.o utils/ft_memset.o utils/ft_minishell_atoi.o utils/ft_minishell_split.o utils/ft_split_str_util.o utils/ft_split.o utils/ft_strchr.o utils/ft_strdup.o utils/ft_strjoin.o utils/ft_strlcat.o utils/ft_strlcpy.o utils/ft_strlen.o utils/ft_strncmp.o utils/ft_strnstr.o utils/ft_wordcount.o utils/heredoc_utils.o utils/is_utils_01.o utils/is_utils_02.o utils/quote_utils.o utils/remove_ll_element.o utils/replace_env_to_value.o utils/syntax_utils.o utils/ft_itoa.o -o minishell 
 make: Leaving directory `/Users/yukim/Desktop/2207707minishell/quote_ing_220707'
  

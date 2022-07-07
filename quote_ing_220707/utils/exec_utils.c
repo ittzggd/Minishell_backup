@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 21:04:28 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 21:52:35 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ char	**create_argv(int cnt, t_astnode *argsnode)
 
 void	command_not_found_error(char *cmd)
 {
+	add_history(cmd);
 	ft_error_message("nanoshell : command not found : ", 1);
 	ft_error_message(cmd, 1);
 	ft_error_message("\n", 1);
-	add_history(cmd);
 	exit(g_data.exit_status);
 }
 

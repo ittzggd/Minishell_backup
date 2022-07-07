@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 21:22:06 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/07 22:05:01 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	do_echo(t_astnode *args_node)
 			continue ;
 		}
 		str = g_data.lexer.pptokens[*arg];
+		printf("$? == %s\n", str);
 		if (ft_strncmp(str, "$?", -1))
 			do_echo_dollor_question_mark();
 		else
