@@ -24,8 +24,8 @@ void	replace_quote_env()
 	{
 		if(g_data.lexer.ptype[i] == T_COMMAND)
 			rm_command_quote(i);
-		// else if(g_data.lexer.ptype[i] == T_WORD)
-		// 	// rm_argument_quote(i);
+		else if(g_data.lexer.ptype[i] == T_WORD)
+			rm_argument_quote(i);
 		i++;
 	}
 }
