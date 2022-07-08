@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   blt_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 22:05:01 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 18:19:01 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 static int	do_echo(t_astnode *args_node);
-static void	do_echo_dollor_question_mark(void);
 static void	do_echo_print(int *arg, char *rm_quote_str);
 
 int	ft_echo(t_astnode *args_node)
@@ -51,20 +50,10 @@ static int	do_echo(t_astnode *args_node)
 			continue ;
 		}
 		str = g_data.lexer.pptokens[*arg];
-		printf("$? == %s\n", str);
-		if (ft_strncmp(str, "$?", -1))
-			do_echo_dollor_question_mark();
-		else
-			do_echo_print(arg, str);
+		do_echo_print(arg, str);
 		arg++;
 	}
 	return (TRUE);
-}
-
-static void	do_echo_dollor_question_mark(void)
-{
-	printf("%d", g_data.exit_status);
-	g_data.exit_status = 0;
 }
 
 static void	do_echo_print(int *arg, char *rm_quote_str)

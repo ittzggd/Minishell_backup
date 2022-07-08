@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_test_syntax.c                                    :+:      :+:    :+:   */
+/*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:07:44 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/03 17:29:51 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 15:42:43 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	syntax_analysis(void)
 	{
 		if (g_data.lexer.ptype[curr] == T_COMMAND)
 			syntax_check_command(&curr);
-		else if (g_data.lexer.ptype[curr] == T_OPTION)
-			syntax_check_option(&curr, &ret_status);
+		// else if (g_data.lexer.ptype[curr] == T_OPTION)
+		// 	syntax_check_option(&curr, &ret_status);
 		else if (g_data.lexer.ptype[curr] == T_REDIRECTION)
 			syntax_check_redirection(&curr, &ret_status);
 		else if (curr == 0)

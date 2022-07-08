@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 21:52:35 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 18:06:40 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ char	**allocate_empty_str_in_filepath(void)
 	return (filepath);
 }
 
-void	free_argv(char **argv)
+void	free_argv(char **argv, int cnt)
 {
+	int	i;
+
+	i = 0;
 	if (argv)
 	{
-		free(argv[0]);
-		free(argv[1]);
+		while(i < cnt)
+		{
+			free(argv[i]);
+			i++;
+		}
 		free(argv);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 16:25:25 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:21:46 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	in_red(char *filename)
 	{
 		ft_error_message("minishell: ", 1);
 		ft_error_message(filename, 1);
-		ft_error_message(" No such file or directory", 1);
+		ft_error_message(" No such file or directory\n", 1);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);

@@ -57,7 +57,7 @@ void	ctrl_bs(int sig_num)
 	{
 		if (g_data.heredoc_flag == TRUE)
 			return ;
-		ft_error_message("Quit: 3\n", 131);
+		ft_error_message("^\\Quit: 3\n", 131);
 		exit(g_data.exit_status);
 	}
 	else if (g_data.p_flag == FALSE)

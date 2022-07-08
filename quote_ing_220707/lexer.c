@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 14:21:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/08 19:02:24 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ static int	get_type(char *value)
 	else if (is_quote(*value))
 	{
 		value++;
-		type = get_type(value);
+		if (*value == '\0')
+			return (T_WORD);
+		else
+			type = get_type(value);
 		if (type == T_PIPE || type == T_REDIRECTION || type == T_ENV)
 			type = T_WORD;
 	}

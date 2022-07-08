@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/04 14:28:40 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/08 18:52:08 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	ft_wordcount(char const *str)
 			continue ;
 		else if (ret == ERROR)
 		{
-			g_data.exit_status = 1;
-			return (g_data.exit_status);
+			syntax_error(&ret);
+			return (ERROR);
 		}
 	}
 	return (wc);
@@ -89,7 +89,10 @@ static int	red_ifs_pipe(char const *str, int *i, int *wc_flag)
 	if (str[*i] && is_redirection(&str[*i]))
 	{
 		if (case_redirection(str, i) == ERROR)
+		{
+			syntax_error(&g_data.exit_status);
 			return (ERROR);
+		}
 		*wc_flag = 1;
 		return (TRUE);
 	}
@@ -103,7 +106,10 @@ static int	red_ifs_pipe(char const *str, int *i, int *wc_flag)
 	else if (str[*i] && is_pipe(&str[*i]))
 	{
 		if (is_pipe(&str[*i]) == ERROR)
+		{
+			syntax_error(&g_data.exit_status);
 			return (ERROR);
+		}
 		(*i)++;
 		*wc_flag = 1;
 		return (TRUE);

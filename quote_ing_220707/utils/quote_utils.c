@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:15:19 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 22:30:29 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 19:10:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ char	*remove_quote(char *quote_str)
 					ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
 					j = j + ft_strlen(value);
 					i = i + 2;
+					free(value);
 				}
-				else if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
+				else if (quote_str[i] == '$' && !is_quote(quote_str[i + 1]))
 				{
 					i++;
 					if (!ft_is_alpha(quote_str[i]))
@@ -93,6 +94,7 @@ char	*remove_quote(char *quote_str)
 				ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
 				j = j + ft_strlen(value);
 				i = i + 2;
+				free(value);
 			}
 			else if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
 			{
@@ -155,8 +157,9 @@ static	int	get_len_without_quote(char *quote_str)
 					value = ft_itoa(g_data.exit_status);
 					ret_len = ret_len + ft_strlen(value);
 					i = i + 2;
+					free(value);
 				}
-				else if (quote_str[i] == '$' && quote_str[i + 1] != '\"')
+				else if (quote_str[i] == '$' && !is_quote(quote_str[i + 1]))
 				{
 					i++;
 					if (!ft_is_alpha(quote_str[i]))
@@ -198,6 +201,7 @@ static	int	get_len_without_quote(char *quote_str)
 				value = ft_itoa(g_data.exit_status);
 				ret_len = ret_len + ft_strlen(value);
 				i = i + 2;
+				free(value);
 			}
 			else if (quote_str[i] == '$' && quote_str[i + 1] != '\0')
 			{

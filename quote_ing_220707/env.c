@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 14:40:17 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/08 18:07:00 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	insert_envv(char *key, char *value, int init_flag)
 		is_exist->value = ft_strdup(value);
 		free(value);
 		free(tmp);
+		free(key);
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 22:33:12 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 18:06:31 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	execve_cmd(t_astnode *argsnode)
 		else
 			fork_before_run_execve(0, argv, execve_cmd);
 	}
-	free_argv(argv);
+	free_argv(argv, cnt);
 }
 
 void	cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd)

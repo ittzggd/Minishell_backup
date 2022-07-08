@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 21:10:58 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 19:25:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,24 @@ static void	chdir_error(char *tmp)
 {
 	ft_error_message("minishell : cd : ", 1);
 	ft_error_message(tmp, 1);
-	ft_error_message("No such file or directory\n", 1);
+	ft_error_message(": No such file or directory\n", 1);
 }
 
 static void	update_pwd(void)
 {
-	update_pwd_oldpwd("OLDPWD");
-	update_pwd_oldpwd("PWD");
+	char	*tmp;
+	char	*key;
+
+	tmp = g_data.current_path;
+	key = ft_strdup("OLDPWD");
+	update_pwd_oldpwd(key);
+	key = ft_strdup("PWD");
+	update_pwd_oldpwd(key);
 	g_data.current_path = get_envv("PWD");
 	if (!g_data.current_path)
 		g_data.current_path = getcwd(NULL, 0);
+	if(tmp != g_data.current_path)
+		free(tmp);
 }
 
 // static void	free_rm_quote_str(char *rm_quote_tmp, char *dst_path)

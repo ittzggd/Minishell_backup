@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 21:50:47 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 18:25:14 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ static void	start_nanoshell(void)
 		if (input_str)
 		{
 			if (input_str_is_not_null(input_str) == CONTINUE)
+			{
+				add_history(input_str);
+				free(input_str);
 				continue ;
+			}
 		}
 		else
 			input_str_is_null();
@@ -55,7 +59,7 @@ static int	input_str_is_not_null(char *input_str)
 {
 	if (analyze_input(input_str) == ERROR)
 	{
-		free_data_lexer();
+		reset_data();
 		return (CONTINUE);
 	}
 	init_ast();

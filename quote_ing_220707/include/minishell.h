@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 20:57:29 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:15:39 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			init_envp(char *input, char **key, char **value);
 int			syntax_analysis(void);
 void		syntax_error(int *ret_status);
 void		syntax_check_command(int *curr);
-void		syntax_check_option(int *curr, int *ret_status);
+// void		syntax_check_option(int *curr, int *ret_status);
 void		syntax_check_redirection(int *curr, int *ret_status);
 void		syntax_check_pipe(int *curr, int *ret_status);
 void		syntax_check_null(int *curr, int *ret_status);

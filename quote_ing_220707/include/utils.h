@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/07 22:25:51 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/08 18:06:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_envv_node	*ft_lstnew(t_envv_node element);
 void		ft_lstadd_back(t_envv_node *new);
 void		remove_ll_element(t_envv_node **p_list, char *key);
 char		*remove_quote(char *quote_str);
-void		free_argv(char **argv);
+void		free_argv(char **argv, int cnt);
 
 void		clear_linked_list(t_envv_node **p_list);
 void		delete_linked_list(t_envv_node **p_list);
