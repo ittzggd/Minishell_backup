@@ -105,7 +105,7 @@ static void	word_to_option(int *i)
 
 	type = g_data.lexer.ptype;
 	tokens = g_data.lexer.pptokens;
-	if (i != 0 && type[*i - 1] == T_COMMAND)
+	if (i != 0 && (type[*i - 1] == T_COMMAND || type[*i - 1] == T_OPTION))
 	{
 		if (is_option(tokens[*i]))
 			type[*i] = T_OPTION;

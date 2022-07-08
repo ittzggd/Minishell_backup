@@ -1,1518 +1,745 @@
-make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 3.81
 # Copyright (C) 2006  Free Software Foundation, Inc.
 # This is free software; see the source for copying conditions.
 # There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-# This program built for i386-apple-darwin11.3.0
+# This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Thu Jul  7 22:27:36 2022
+# ����ũ ����Ÿ���̽�, Fri Jul 08 12:54:06 2022
+�� ǥ��
+# ����
 
-# Variables
-
- 
-# automatic
+# �ڵ�
 <D = $(patsubst %/,%,$(dir $<))
-# automatic
+# �ڵ�
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 23)
-COMFILE_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
-# automatic
-?D = $(patsubst %/,%,$(dir $?))
-# automatic
-@D = $(patsubst %/,%,$(dir $@))
-# automatic
-@F = $(notdir $@)
-# makefile
-CURDIR := /Users/yukim/Desktop/2207707minishell/quote_ing_220707
-# makefile
-SHELL = /bin/sh
-# makefile (from `Makefile', line 19)
-RM = rm -rf
-# environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# environment
-_ = /usr/bin/make
-# makefile (from `Makefile', line 20)
-CFLAGS = -Wall -Wextra -Werror 
-# makefile (from `Makefile', line 26)
-AST_SRCS = ast/delete_astnode.c  ast/free_data_ast.c ast/init_ast.c ast/postorder_travel_ast.c ast/postorder_travel_command.c ast/tree_args.c ast/tree_cmd.c ast/tree_reds.c ast/tree_utils.c
-# makefile (from `Makefile', line 1)
-MAKEFILE_LIST :=  Makefile
-# environment
-VSCODE_NODE_CACHED_DATA_DIR = /Users/yukim/Library/Application Support/Code/CachedData/6ab598523be7a800d7f3eb4d92d7ab9a66069390
-# makefile (from `Makefile', line 24)
-OBJ_FLAGS = -I${HOME}/.brew/opt/readline/include
-# environment
-VERBOSE_LOGGING = true
-# environment
-VSCODE_LOGS = /Users/yukim/Library/Application Support/Code/logs/20220707T204922
-# makefile (from `Makefile', line 55)
-OBJS = $(MAIN_OBJS) $(AST_OBJS) $(BLT_OBJS) $(UTILS_OBJS)
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cmhh003544/T/vscode-ipc-56d3a255-d501-4053-9931-8d05b6f28e1a.sock
-# makefile (from `Makefile', line 34)
-UTILS_SRCS = utils/delete_linked_list.c utils/exec_utils.c utils/ft_bzero.c utils/ft_calloc.c utils/ft_error.c utils/ft_lstadd_back.c utils/ft_lstnew.c utils/ft_memset.c utils/ft_minishell_atoi.c utils/ft_minishell_split.c utils/ft_split_str_util.c utils/ft_split.c utils/ft_strchr.c utils/ft_strdup.c utils/ft_strjoin.c utils/ft_strlcat.c utils/ft_strlcpy.c utils/ft_strlen.c utils/ft_strncmp.c utils/ft_strnstr.c utils/ft_wordcount.c utils/heredoc_utils.c utils/is_utils_01.c utils/is_utils_02.c utils/quote_utils.c utils/remove_ll_element.c utils/replace_env_to_value.c utils/syntax_utils.c utils/ft_itoa.c
-# environment
-PATH = /Users/yukim/.brew/bin:/Users/yukim/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
-# environment
-VSCODE_LOG_STACK = false
-# environment
-ELECTRON_RUN_AS_NODE = 1
-# default
-.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
-# environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Us5MZFuTRw/Listeners
-# automatic
-%F = $(notdir $%)
-# environment
-PWD = /Users/yukim/Desktop/2207707minishell/quote_ing_220707
-# environment
-HOME = /Users/yukim
-# default
-MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
-# makefile (from `Makefile', line 30)
-BLT_SRCS = builtins/blt_cd.c builtins/blt_echo.c builtins/blt_env.c builtins/blt_exit.c builtins/blt_export.c builtins/blt_nanoshell.c builtins/blt_pwd.c builtins/blt_unset.c builtins/blt_utils.c
-# environment
-LOGNAME = yukim
-# environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# automatic
-^D = $(patsubst %/,%,$(dir $^))
-# environment
-XPC_FLAGS = 0x0
-# default
-MAKE = $(MAKE_COMMAND)
-# default
-MAKECMDGOALS := all
-# environment
-SHLVL = 1
-# makefile (from `Makefile', line 18)
-CC = gcc -g3
-# default
-MAKE_VERSION := 3.81
-# environment
-AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
-# environment
-USER = yukim
-# makefile
-.DEFAULT_GOAL := all
-# makefile (from `Makefile', line 50)
-MAIN_OBJS = $(MAIN_SRCS:.c=.o)
-# makefile (from `Makefile', line 13)
-NAME = minishell
-# environment
-PIPE_LOGGING = true
-# automatic
-%D = $(patsubst %/,%,$(dir $%))
-# default
-MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
-# default
-.VARIABLES := 
-# environment
-TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cmhh003544/T/
-# automatic
-*F = $(notdir $*)
-# environment
-VSCODE_IPC_HOOK = /Users/yukim/Library/Application Support/Code/1.39.2-main.sock
-# makefile
+# ����ũ����
 MAKEFLAGS = Rrqp
-# environment
+# ����ũ���� (from `makefile', line 23)
+COMFILE_FLAGS = -lreadline -L${HOME}/.brew/opt/readline/lib
+# ȯ��
+VSCODE_LOG_NATIVE = false
+# �ڵ�
+?D = $(patsubst %/,%,$(dir $?))
+# �ڵ�
+@D = $(patsubst %/,%,$(dir $@))
+# ȯ��
+HOMEDRIVE = C:
+# �ڵ�
+@F = $(notdir $@)
+# �ڵ�
+^D = $(patsubst %/,%,$(dir $^))
+# ����ũ����
+CURDIR := c:/Users/������/Desktop/clear220707minishell/quote_ing_220707
+# �⺻��
+SHELL := sh.exe
+# ����ũ���� (from `makefile', line 19)
+RM = rm -rf
+# ȯ��
+WINDIR = C:\WINDOWS
+# ȯ��
+VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{},"_languagePackSupport":true}
+# ȯ��
+VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+# ����ũ���� (from `makefile', line 20)
+CFLAGS = -Wall -Wextra -Werror 
+# ȯ��
+ONEDRIVE = C:\Users\������\OneDrive
+# ����ũ���� (from `makefile', line 26)
+AST_SRCS = ast/delete_astnode.c  ast/free_data_ast.c ast/init_ast.c ast/postorder_travel_ast.c ast/postorder_travel_command.c ast/tree_args.c ast/tree_cmd.c ast/tree_reds.c ast/tree_utils.c
+# ȯ��
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# ����ũ���� (from `makefile', line 1)
+MAKEFILE_LIST :=  makefile
+# ȯ��
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# ȯ��
+TMP = C:\Users\������\AppData\Local\Temp
+# ����ũ���� (from `makefile', line 24)
+OBJ_FLAGS = -I${HOME}/.brew/opt/readline/include
+# ȯ��
+VSCODE_VERBOSE_LOGGING = true
+# ȯ��
+PROGRAMW6432 = C:\Program Files
+# ����ũ���� (from `makefile', line 55)
+OBJS = $(MAIN_OBJS) $(AST_OBJS) $(BLT_OBJS) $(UTILS_OBJS)
+# ȯ��
+PROGRAMDATA = C:\ProgramData
+# ȯ��
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f85c402f-c8dc-4d51-8073-50894f42acd3-sock
+# ȯ��
+VSCODE_CWD = C:\Users\������\AppData\Local\Programs\Microsoft VS Code
+# ����ũ���� (from `makefile', line 34)
+UTILS_SRCS = utils/delete_linked_list.c utils/exec_utils.c utils/ft_bzero.c utils/ft_calloc.c utils/ft_error.c utils/ft_lstadd_back.c utils/ft_lstnew.c utils/ft_memset.c utils/ft_minishell_atoi.c utils/ft_minishell_split.c utils/ft_split_str_util.c utils/ft_split.c utils/ft_strchr.c utils/ft_strdup.c utils/ft_strjoin.c utils/ft_strlcat.c utils/ft_strlcpy.c utils/ft_strlen.c utils/ft_strncmp.c utils/ft_strnstr.c utils/ft_wordcount.c utils/heredoc_utils.c utils/is_utils_01.c utils/is_utils_02.c utils/quote_utils.c utils/remove_ll_element.c utils/replace_env_to_value.c utils/syntax_utils.c utils/ft_itoa.c
+# ȯ��
+PATH = C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\������\AppData\Local\Microsoft\WindowsApps;C:\Users\������\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\������\AppData\Local\GitHubDesktop\bin;C:\Program Files\mingw-w64\mingw64\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Users\������\AppData\Roaming\npm
+# ȯ��
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# ȯ��
+PROCESSOR_ARCHITECTURE = x86
+# ȯ��
+USERPROFILE = C:\Users\������
+# ȯ��
+ALLUSERSPROFILE = C:\ProgramData
+# ȯ��
+VSCODE_LOG_STACK = false
+# ȯ��
+NUMBER_OF_PROCESSORS = 16
+# ȯ��
+ELECTRON_RUN_AS_NODE = 1
+# �⺻��
+.FEATURES := target-specific order-only second-expansion else-if archives
+# �ڵ�
+%F = $(notdir $%)
+# ȯ��
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_25648_MZDECNMAJCHWQSJA
+# ȯ��
+VSCODE_PIPE_LOGGING = true
+# ȯ��
+COMPUTERNAME = DESKTOP-E4NGFC2
+# ȯ��
+PROGRAMFILES = C:\Program Files (x86)
+# ȯ��
+DRIVERDATA = C:\Windows\System32\Dri 
+vers\DriverData
+# ȯ��
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# ȯ��
+USERNAME = ������
+# ȯ��
+PUBLIC = C:\Users\Public
+# ȯ��
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# ȯ��
+VSCODE_CODE_CACHE_PATH = C:\Users\������\AppData\Roaming\Code\CachedData\30d9c6cd9483b2cc586687151bcbcd635f373630
+# ����ũ���� (from `makefile', line 30)
+BLT_SRCS = builtins/blt_cd.c builtins/blt_echo.c builtins/blt_env.c builtins/blt_exit.c builtins/blt_export.c builtins/blt_nanoshell.c builtins/blt_pwd.c builtins/blt_unset.c builtins/blt_utils.c
+# ȯ��
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# ȯ��
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# ȯ��
+LOGONSERVER = \\DESKTOP-E4NGFC2
+# ȯ��
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# ȯ��
+USERDOMAIN = DESKTOP-E4NGFC2
+# �⺻��
+MAKE = $(MAKE_COMMAND)
+# �⺻��
+MAKECMDGOALS := all
+# ����ũ���� (from `makefile', line 18)
+CC = gcc -g3
+# �⺻��
+MAKE_VERSION := 3.81
+# ����ũ����
+.DEFAULT_GOAL := all
+# ����ũ���� (from `makefile', line 50)
+MAIN_OBJS = $(MAIN_SRCS:.c=.o)
+# ����ũ���� (from `makefile', line 13)
+NAME = minishell
+# ȯ��
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# �ڵ�
+%D = $(patsubst %/,%,$(dir $%))
+# ȯ��
+LOCALAPPDATA = C:\Users\������\AppData\Local
+# ȯ��
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# �⺻��
+MAKE_COMMAND := make.exe
+# ȯ��
+PROCESSOR_ARCHITEW6432 = AMD64
+# �⺻��
+.VARIABLES := 
+# �ڵ�
+*F = $(notdir $*)
+# ȯ��
+PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
+# ȯ��
+OS = Windows_NT
+# ȯ��
+VSCODE_IPC_HOOK = \\.\pipe\7eec81eb4536cd38cf47505cc0f47cce-1.68.1-main-sock
+# ȯ��
+HOMEPATH = \Users\������
+# ȯ��
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# ȯ��
+PROMPT = $P$G
+# ȯ��
 MFLAGS = -Rrqp
-# automatic
+# �ڵ�
 *D = $(patsubst %/,%,$(dir $*))
-# environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.4568
-# automatic
+# ȯ��
+SYSTEMROOT = C:\WINDOWS
+# �ڵ�
 +D = $(patsubst %/,%,$(dir $+))
-# automatic
+# �ڵ�
 +F = $(notdir $+)
-# makefile (from `Makefile', line 51)
+# ȯ��
+APPDATA = C:\Users\������\AppData\Roaming
+# ����ũ���� (from `makefile', line 51)
 AST_OBJS = $(AST_SRCS:.c=.o)
-# environment
-__CF_USER_TEXT_ENCODING = 0x19484:0x0:0x0
-# default
+# ȯ��
+TEMP = C:\Users\������\AppData\Local\Temp
+# ȯ��
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# �⺻��
 MAKEFILES := 
-# automatic
+# �ڵ�
 <F = $(notdir $<)
-# environment
+# ȯ��
 LC_ALL = C
-# automatic
+# �ڵ�
 ^F = $(notdir $^)
-# makefile (from `Makefile', line 53)
+# ����ũ���� (from `makefile', line 53)
 UTILS_OBJS = $(UTILS_SRCS:.c=.o)
-# default
+# �⺻��
 SUFFIXES := 
-# default
-.INCLUDE_DIRS = /usr/local/include
-# environment
+# ȯ��
+SYSTEMDRIVE = C:
+# ȯ��
+SESSIONNAME = Console
+# ȯ��
+PROCESSOR_REVISION = 6001
+# ȯ��
 MAKELEVEL := 0
-# makefile (from `Makefile', line 44)
+# ����ũ���� (from `makefile', line 44)
 MAIN_SRCS = main.c init.c signal.c reset.c redirections.c heredoc.c token.c lexer.c syntax.c exec.c data.c env.c path.c quote_env.c
-# environment
+# ȯ��
 LANG = C
-# makefile (from `Makefile', line 52)
+# ȯ��
+PROCESSOR_LEVEL = 23
+# ȯ��
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# ����ũ���� (from `makefile', line 52)
 BLT_OBJS = $(BLT_SRCS:.c=.o)
-# environment
-VSCODE_PID = 15658
+# ȯ��
+VSCODE_PID = 25648
+# ȯ��
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-E4NGFC2
 # variable set hash-table stats:
- 
-# Load=73/1024=7%, Rehash=0, Collisions=8/114=7%
+# Load=104/1024=10%, Rehash=0, Collisions=13/141=9%
 
 # Pattern-specific Variable Values
 
-# No pattern-specific variable values.
+# ������ ���� ���� ������ �����ϴ�.
 
-# Directories
+# ���丮
 
-# utils (device 16777225, inode 5926849): 53 files, no impossibilities so far.
-# . (device 16777225, inode 5926798): 39 files, no impossibilities.
-# ast (device 16777225, inode 5926806): 20 files, no impossibilities so far.
-# builtins (device 16777225, inode 5926817): 20 files, no impossibilities so far.
+# C:\Users\������\AppData\Local\Programs\Microsoft VS Code\bin (Ű C:/Users/������/AppData/Local/Programs/Microsoft VS Code/bin, ����ð� 1655697607): 4 ����, 0�� �Ұ���.
+# C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (Ű C:/WINDOWS/System32/WindowsPowerShell/v1.0/, ����ð� 1642388924): 32 ����, 0�� �Ұ���.
+# C:\Users\������\AppData\Roaming\npm (Ű C:/Users/������/AppData/Roaming/npm, ����ð� 1651056164): 2 ����, 0�� �Ұ���.
+# C:\WINDOWS\System32\Wbem (Ű C:/WINDOWS/System32/Wbem, ����ð� 1652880834): 155 ����, 0�� �Ұ���.
+# . (Ű c:/Users/������/Desktop/clear220707minishell/quote_ing_220707, ����ð� 1657252365): 24 ����, 0�� �Ұ���.
+# C:\Program Files\nodejs\ (Ű C:/Program Files/nodejs/, ����ð� 1651056171): 13 ����, 0�� �Ұ���.
+# C:\Users\������\AppData\Local\GitHubDesktop\bin (Ű C:/Users/������/AppData/Local/GitHubDesktop/bin, ����ð� 1630886141): 4 ����, 0�� �Ұ���.
+# C:\Users\������\AppData\Local\Microsoft\WindowsApps (Ű C:/Users/������/AppData/Local/Microsoft/WindowsApps, ����ð� 1657109064): 24 ����, 0�� �Ұ���.
+# C:\WINDOWS\System32\OpenSSH\: stat�� �� �� �������ϴ�.
+# C:\WINDOWS (Ű C:/WINDOWS, ����ð� 1646572182): 116 ����, 0�� �Ұ���.
+# C:\Program Files\mingw-w64\mingw64\bin (Ű C:/Program Files/mingw-w64/mingw64/bin, ����ð� 1650290333): 58 ����, 0�� �Ұ���.
+# C:\Program Files\Git\cmd (Ű C:/Program Files/Git/cmd, ����ð� 1630886014): 8 ����, 0�� �Ұ���.
+# C:\WINDOWS\system32 (Ű C:/WINDOWS/system32, ����ð� 1657172223): 3022 ����, 0�� �Ұ���.
+# C:\Program Files (x86)\GnuWin32\bin (Ű C:/Program Files (x86)/GnuWin32/bin, ����ð� 1650808618): 5 ����, 0�� �Ұ���.
 
-# 132 files, no impossibilities in 4 directories.
+# 3467 ����, 0�� impossibilities in 14 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  commands to execute (from `Makefile', line 63):
+#  ������ ���ɾ� (`makefile'����, 63��° ��):
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
 	
 
-# 1 implicit rules, 0 (0.0%) terminal.
+# 1���� ������ ��Ģ, 0 (0.0%) �͹̳�.
 
-# Files
+# ����
 
-ast/tree_cmd.o: ast/tree_cmd.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/tree_cmd'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+ast/tree_cmd.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/is_utils_02.o: utils/is_utils_02.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/is_utils_02'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/is_utils_02.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/exec_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:52:35
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+builtins/blt_pwd.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-ast/postorder_travel_command.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+data.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-builtins/blt_pwd.o: builtins/blt_pwd.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_pwd'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-data.o: data.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `data'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-ast/delete_astnode.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-builtins/blt_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-builtins/blt_unset.o: builtins/blt_unset.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_unset'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-init.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-utils/delete_linked_list.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+builtins/blt_unset.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 all: minishell
-#  Phony target (prerequisite of .PHONY).
-#  Command-line target.
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
+#  ���� Ÿ�� (.PHONY�� ��������).
+#  ������ Ÿ��.
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵǾ����ϴ�.
+#  ���ŵ� �ʿ䰡 ���� (-q ������).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/6=0%
 
-# Not a target:
-heredoc.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:39:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_calloc.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_calloc.o: utils/ft_calloc.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_calloc'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-utils/ft_minishell_split.o: utils/ft_minishell_split.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_minishell_split'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_minishell_split.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 .PHONY: all clean fclean re
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-syntax.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-utils/ft_split.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
+# Ÿ���� �ƴ�:
 main.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:50:47
-#  File has been updated.
-#  Successfully updated.
+#  ������ ��Ģ Ž���� �Ϸ�Ǿ����ϴ�.
+#  ������ ���� 2022-07-08 12:52:45
+#  ������ ���ŵǾ����ϴ�.
+#  ���������� ���ŵ�.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-builtins/blt_nanoshell.o: builtins/blt_nanoshell.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_nanoshell'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+builtins/blt_nanoshell.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_minishell_atoi.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+.DEFAULT:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-ast/tree_args.o: ast/tree_args.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/tree_args'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+ast/tree_args.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-path.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+ast/tree_utils.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_strlcat.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-ast/tree_utils.o: ast/tree_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/tree_utils'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
+# Ÿ���� �ƴ�:
 utils/replace_env_to_value.o:
-#  Implicit rule search has not been done.
- 
-#  Modification time never checked.
-#  File has not been updated.
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-lexer.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
+# Ÿ���� �ƴ�:
+utils/ft_strlcpy.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+
+# Ÿ���� �ƴ�:
+utils/ft_strncmp.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+
+# Ÿ���� �ƴ�:
+utils/ft_strdup.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+
+# Ÿ���� �ƴ�:
+makefile:
+#  ������ ��Ģ Ž���� �Ϸ�Ǿ����ϴ�.
+#  ������ ���� 2022-07-08 12:52:45
+#  ������ ���ŵǾ����ϴ�.
+#  ���������� ���ŵ�.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-# Not a target:
-ast/free_data_ast.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_strchr.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_bzero.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_wordcount.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_strlcpy.o: utils/ft_strlcpy.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strlcpy'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+quote_env.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-exec.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:00:46
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+builtins/blt_cd.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+# Ÿ���� �ƴ�:
+utils/quote_utils.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_strncmp.o: utils/ft_strncmp.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strncmp'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_strnstr.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/is_utils_01.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+redirections.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-Makefile:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 22:27:35
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-utils/ft_memset.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-signal.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-quote_env.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:15:50
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/ft_strdup.o: utils/ft_strdup.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strdup'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-env.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/ft_strchr.o: utils/ft_strchr.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strchr'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-ast/tree_cmd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-utils/is_utils_02.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/ft_wordcount.o: utils/ft_wordcount.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_wordcount'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-quote_env.o: quote_env.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `quote_env'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-builtins/blt_cd.o: builtins/blt_cd.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_cd'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-builtins/blt_pwd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-data.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/quote_utils.o: utils/quote_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/quote_utils'
-#  Last modified 2022-07-07 22:16:08
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := utils/quote_utils.o
-# automatic
-# % := 
-# automatic
-# * := utils/quote_utils
-# automatic
-# + := utils/quote_utils.c
-# automatic
-# | := 
-# automatic
-# < := utils/quote_utils.c
-# automatic
-# ^ := utils/quote_utils.c
-# automatic
-# ? := utils/quote_utils.c
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=4/16=25%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-utils/ft_strnstr.o: utils/ft_strnstr.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strnstr'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-redirections.o: redirections.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `redirections'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
- 
 minishell: main.o init.o signal.o reset.o redirections.o heredoc.o token.o lexer.o syntax.o exec.o data.o env.o path.o quote_env.o ast/delete_astnode.o ast/free_data_ast.o ast/init_ast.o ast/postorder_travel_ast.o ast/postorder_travel_command.o ast/tree_args.o ast/tree_cmd.o ast/tree_reds.o ast/tree_utils.o builtins/blt_cd.o builtins/blt_echo.o builtins/blt_env.o builtins/blt_exit.o builtins/blt_export.o builtins/blt_nanoshell.o builtins/blt_pwd.o builtins/blt_unset.o builtins/blt_utils.o utils/delete_linked_list.o utils/exec_utils.o utils/ft_bzero.o utils/ft_calloc.o utils/ft_error.o utils/ft_lstadd_back.o utils/ft_lstnew.o utils/ft_memset.o utils/ft_minishell_atoi.o utils/ft_minishell_split.o utils/ft_split_str_util.o utils/ft_split.o utils/ft_strchr.o utils/ft_strdup.o utils/ft_strjoin.o utils/ft_strlcat.o utils/ft_strlcpy.o utils/ft_strlen.o utils/ft_strncmp.o utils/ft_strnstr.o utils/ft_wordcount.o utils/heredoc_utils.o utils/is_utils_01.o utils/is_utils_02.o utils/quote_utils.o utils/remove_ll_element.o utils/replace_env_to_value.o utils/syntax_utils.o utils/ft_itoa.o
-#  Implicit rule search has not been done.
-#  Last modified 2022-07-07 22:16:08
-#  File has been updated.
-#  Needs to be updated (-q is set).
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵǾ����ϴ�.
+#  ���ŵ� �ʿ䰡 ���� (-q ������).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/6=0%
-#  commands to execute (from `Makefile', line 60):
+#  ������ ���ɾ� (`makefile'����, 60��° ��):
 	$(CC) $(CFLAGS) $(COMFILE_FLAGS) $(OBJS) -o $(NAME) 
 	
 
-# Not a target:
-builtins/blt_unset.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-token.o: token.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `token'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-utils/ft_calloc.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-utils/ft_minishell_split.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+token.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 fclean: clean
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 69):
+#  ���� Ÿ�� (.PHONY�� ��������).
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+#  ������ ���ɾ� (`makefile'����, 69��° ��):
 	$(RM) $(NAME)
 	
 
-# Not a target:
+# Ÿ���� �ƴ�:
 utils/syntax_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-builtins/blt_exit.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+.SUFFIXES:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_strnstr.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+ast/init_ast.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-builtins/blt_nanoshell.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+builtins/blt_exit.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-ast/tree_args.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_error.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-ast/init_ast.o: ast/init_ast.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/init_ast'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_lstadd_back.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-builtins/blt_exit.o: builtins/blt_exit.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_exit'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_split_str_util.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_error.o: utils/ft_error.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_error'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+builtins/blt_echo.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-ast/tree_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/ft_lstadd_back.o: utils/ft_lstadd_back.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_lstadd_back'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-utils/ft_strlcpy.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-.DEFAULT:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-utils/ft_split_str_util.o: utils/ft_split_str_util.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_split_str_util'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-builtins/blt_echo.o: builtins/blt_echo.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_echo'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-utils/ft_strncmp.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
+# Ÿ���� �ƴ�:
 utils/remove_ll_element.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-reset.o: reset.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `reset'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+reset.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_lstnew.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-builtins/blt_export.o: builtins/blt_export.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_export'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
- 
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+builtins/blt_export.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 re: fclean all
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
+#  ���� Ÿ�� (.PHONY�� ��������).
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
+# Ÿ���� �ƴ�:
 utils/ft_itoa.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_strdup.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/exec_utils.o: utils/exec_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/exec_utils'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/exec_utils.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 clean:
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 66):
+#  ���� Ÿ�� (.PHONY�� ��������).
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
+#  ������ ���ɾ� (`makefile'����, 66��° ��):
 	$(RM) $(OBJS) 
 	
 
-ast/postorder_travel_command.o: ast/postorder_travel_command.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/postorder_travel_command'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+ast/postorder_travel_command.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_lstnew.o: utils/ft_lstnew.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_lstnew'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_lstnew.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_strchr.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+ast/delete_astnode.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-ast/delete_astnode.o: ast/delete_astnode.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/delete_astnode'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+builtins/blt_utils.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_wordcount.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_memset.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-builtins/blt_cd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:10:58
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+init.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-builtins/blt_utils.o: builtins/blt_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_utils'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/delete_linked_list.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-ast/tree_reds.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+ast/postorder_travel_ast.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_memset.o: utils/ft_memset.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_memset'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+heredoc.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-init.o: init.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `init'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+syntax.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/quote_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 22:27:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_split.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/delete_linked_list.o: utils/delete_linked_list.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/delete_linked_list'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-ast/postorder_travel_ast.o: ast/postorder_travel_ast.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/postorder_travel_ast'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-heredoc.o: heredoc.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `heredoc'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-utils/ft_strlen.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-redirections.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-ast/postorder_travel_ast.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-token.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-syntax.o: syntax.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `syntax'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-utils/ft_split.o: utils/ft_split.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_split'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-utils/heredoc_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:47:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-builtins/blt_env.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-utils/ft_strlen.o: utils/ft_strlen.c
- 
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strlen'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_strlen.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 main.o: main.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
+#  ������ ��Ģ Ž���� �Ϸ�Ǿ����ϴ�.
+#  ������/���� ���� ����: `main'
+#  ������ �������� �ʽ��ϴ�.
+#  ������ ���ŵǾ����ϴ�.
+#  ���ŵ� �ʿ䰡 ���� (-q ������).
+# �ڵ�
+# @ := main.o
+# �ڵ�
+# % := 
+# �ڵ�
+# * := main
+# �ڵ�
+# + := main.c
+# �ڵ�
+# | := 
+# �ڵ�
+# < := main.c
+# �ڵ�
+# ^ := main.c
+# �ڵ�
+# ? := main.c
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
+# Load=8/32=25%, Rehash=0, Collisions=4/16=25%
+#  ������ ���ɾ� (`makefile'����, 63��° ��):
 	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
 	
 
-utils/heredoc_utils.o: utils/heredoc_utils.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/heredoc_utils'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/heredoc_utils.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_minishell_atoi.o: utils/ft_minishell_atoi.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_minishell_atoi'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_minishell_atoi.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-path.o: path.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `path'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+path.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_strlcat.o: utils/ft_strlcat.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strlcat'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_strlcat.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-ast/tree_reds.o: ast/tree_reds.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/tree_reds'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+ast/tree_reds.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-lexer.o: lexer.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+lexer.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-ast/free_data_ast.o: ast/free_data_ast.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `ast/free_data_ast'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+ast/free_data_ast.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/ft_bzero.o: utils/ft_bzero.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_bzero'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+utils/ft_bzero.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-ast/init_ast.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+exec.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_strjoin.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/is_utils_01.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-exec.o: exec.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
+# Ÿ���� �ƴ�:
+builtins/blt_env.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_error.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+signal.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-# Not a target:
-utils/ft_lstadd_back.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+utils/ft_strjoin.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
-utils/is_utils_01.o: utils/is_utils_01.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/is_utils_01'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-builtins/blt_env.o: builtins/blt_env.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `builtins/blt_env'
-#  Last modified 2022-07-07 22:16:06
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-utils/ft_split_str_util.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-builtins/blt_echo.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 22:05:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-signal.o: signal.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `signal'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-utils/ft_strjoin.o: utils/ft_strjoin.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `utils/ft_strjoin'
-#  Last modified 2022-07-07 22:16:07
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-reset.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 20:49:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-env.o: env.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `env'
-#  Last modified 2022-07-07 22:16:05
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 63):
-	$(CC) $(CFLAGS) $(OBJ_FLAGS) -c $< -o $@
-	
-
-# Not a target:
-builtins/blt_export.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-07 21:03:20
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Ÿ���� �ƴ�:
+env.o:
+#  ������ ��Ģ Ž���� �Ϸ���� �ʾҽ��ϴ�.
+#  ���� �ð��� ���� �˻���� �ʾ���.
+#  ������ ���ŵ��� �ʾҽ��ϴ�.
 
 # files hash-table stats:
-# Load=127/1024=12%, Rehash=0, Collisions=95/380=25%
-# VPATH Search Paths
+# Load=71/1024=7%, Rehash=0, Collisions=10/155=6%
+# VPATH Ž�� ���
 
-# No `vpath' search paths.
+# `vpath' Ž�� ��ΰ� ����.
 
-# No general (`VPATH' variable) search path.
+# �Ϲ����� (`VPATH' ����) Ž�� ��ΰ� ����. 
+
 
 # # of strings in strcache: 1
 # # of strcache buffers: 1
- 
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jul  7 22:27:36 2022
-
+# ����ũ ����Ÿ ���̽� ��ħ, Fri Jul 08 12:54:06 2022
+����
  
