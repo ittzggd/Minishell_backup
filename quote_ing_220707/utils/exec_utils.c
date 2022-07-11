@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 03:53:00 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 18:06:40 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 16:48:48 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char	**create_argv(int cnt, t_astnode *argsnode)
 void	command_not_found_error(char *cmd)
 {
 	add_history(cmd);
-	ft_error_message("nanoshell : command not found : ", 1);
-	ft_error_message(cmd, 1);
-	ft_error_message("\n", 1);
+	ft_error_message("nanoshell : command not found : ", 127);
+	ft_error_message(cmd, 127);
+	ft_error_message("\n", 127);
 	exit(g_data.exit_status);
 }
 

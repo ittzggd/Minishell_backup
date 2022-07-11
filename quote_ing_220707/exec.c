@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 14:53:57 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:29:21 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd)
 void	fork_before_run_execve(int idx, char **argv, char *execve_cmd)
 {
 	pid_t	pid2;
-	char	**filepath;
 
 	pid2 = fork();
 	if (pid2 < 0)

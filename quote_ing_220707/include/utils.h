@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/11 15:16:13 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 18:49:18 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,10 @@ void		get_len_case_replace_env(int *i, int *ret_len, char *quote_str);
 char		*remove_quote(char *quote_str);
 void		rm_quote_case_exit_status(int *i, int *j, char *ret);
 void		rm_quote_case_replace(int *i, int *j, char *quote_str, char *ret);
+
+void		heredoc_replace_env_loop(char *origin, char	*ret, char *value);
+void		heredoc_replace_env(char *origin, char *ret, int *i, int *j);
+void		heredoc_exit_status(char *value, int *ret_len, int *i);
+void		get_len_with_envvalue_loop_in_heredoc(char *origin, char *value, int *i, int *ret_len);
 
 #endif

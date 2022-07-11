@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:19:44 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 14:44:03 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 16:05:10 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void	replace_quote_env(void)
 void	rm_command_quote(int i)
 {
 	char	*tokens;
-	// char	*tmp;
 	char	*rm_quote;
 	int		len;
-	int		idx;
 	int		quote;
 
 	tokens = g_data.lexer.pptokens[i];	

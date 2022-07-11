@@ -6,7 +6,7 @@
 #    By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 14:13:39 by yukim             #+#    #+#              #
-#    Updated: 2022/07/11 15:09:44 by hejang           ###   ########.fr        #
+#    Updated: 2022/07/11 16:08:15 by hejang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,15 @@ BLT_SRCS = builtins/blt_cd.c builtins/blt_echo.c builtins/blt_env.c \
 			builtins/blt_exit.c builtins/blt_export.c builtins/blt_nanoshell.c \
 			builtins/blt_pwd.c builtins/blt_unset.c builtins/blt_utils.c
 
-UTILS_SRCS = utils/delete_linked_list.c utils/exec_utils.c \
+UTILS_SRCS = utils/delete_linked_list.c utils/remove_ll_element.c \
 			utils/ft_bzero.c utils/ft_calloc.c utils/ft_error.c \
-			utils/ft_lstadd_back.c utils/ft_lstnew.c utils/ft_memset.c \
+			utils/ft_lstadd_back.c utils/ft_lstnew.c utils/ft_memset.c utils/ft_itoa.c \
 			utils/ft_minishell_atoi.c utils/ft_minishell_split.c utils/ft_split_str_util.c \
 			utils/ft_split.c utils/ft_strchr.c utils/ft_strdup.c utils/ft_strjoin.c \
 			utils/ft_strlcat.c utils/ft_strlcpy.c utils/ft_strlen.c utils/ft_strncmp.c utils/ft_strnstr.c \
-			utils/ft_wordcount.c utils/heredoc_utils.c utils/is_utils_01.c utils/is_utils_02.c \
-			utils/remove_ll_element.c utils/syntax_utils.c utils/ft_key_len.c \
-			utils/ft_itoa.c utils/quote_utils.c utils/remove_quote.c \
-			utils/get_len_without_quote.c
+			utils/ft_key_len.c utils/quote_utils.c utils/remove_quote.c utils/get_len_without_quote.c \
+			utils/ft_wordcount.c utils/syntax_utils.c utils/heredoc_utils.c utils/heredoc_utils_02.c\
+			utils/exec_utils.c utils/exec_utils_02.c utils/is_utils_01.c utils/is_utils_02.c 
 #  utils/replace_env_to_value.c
 MAIN_SRCS = main.c \
 			init.c signal.c reset.c\
