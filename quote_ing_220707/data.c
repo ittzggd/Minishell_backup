@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_data.c                                        :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:31:33 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:06:40 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/11 14:27:59 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	reset_data(void)
 	g_data.tokens_cnt = 0;
 	g_data.redirection_cnt = 0;
 	g_data.pipe_cnt = 0;
-	g_data.heredoc_cnt = 0;
 	g_data.p_flag = 0;
 	free_data_heredoc_fd();
 	free_data_heredoc_delimiter();

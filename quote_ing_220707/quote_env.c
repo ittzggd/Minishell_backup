@@ -6,14 +6,14 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:19:44 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/08 19:24:15 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 14:44:03 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-void	rm_command_quote(int i);
-void	rm_argument_quote(int i);
+static int	get_command_len(int i, int *quote);
+static void	copy_command(char *rm_quote, char *tokens, int *quote, int len);
 
 void	replace_quote_env(void)
 {
@@ -47,52 +47,11 @@ void	rm_command_quote(int i)
 	int		quote;
 
 	tokens = g_data.lexer.pptokens[i];	
-	// tmp = tokens;
-	len = 0;
-	idx = 0;
-	while(tokens[idx] != '\0')
-	{
-		quote = is_quote(tokens[idx]);
-		if (quote && tokens[idx])
-		{
-			idx++;
-			while (tokens[idx] && quote != is_quote(tokens[idx]))
-			{
-				len++;
-				idx++;
-			}
-		}
-		else
-			len++;
-		idx++;
-	}
+	len = get_command_len(i, &quote);
 	rm_quote = ft_calloc(len + 1, sizeof(char));
-	idx = 0;
-	len = 0;
-	while (tokens[idx] != '\0')
-	{
-		quote = is_quote(tokens[idx]);
-		if (quote && tokens[idx])
-		{
-			idx++;
-			while (tokens[idx] && quote != is_quote(tokens[idx]))
-			{
-				rm_quote[len] = tokens[idx];
-				len++;
-				idx++;
-			}
-		}
-		else
-		{
-			rm_quote[len] = tokens[idx];
-			len++;
-		}
-		idx++;
-	}
-	rm_quote[len] = '\0';
+	copy_command(rm_quote, tokens, &quote, 0);	
 	g_data.lexer.pptokens[i] = rm_quote;
 	free(tokens);
-	// free(tmp);
 }
 
 void	rm_argument_quote(int i)
@@ -109,43 +68,58 @@ void	rm_argument_quote(int i)
 	free(tokens);
 }
 
+static int	get_command_len(int i, int *quote)
+{
+	char	*tokens;
+	int		len;
+	int		idx;
 
-// char	*rm_quote(char *str_with_quote)
-// {
-	// int		quote_flag;
-	// int		i;
-	// int		idx;
-	// int		len;
-	// char	*rm_quote;
-	// char	*tmp;
+	tokens = g_data.lexer.pptokens[i];
+	len = 0;
+	idx = 0;
+	while(tokens[idx] != '\0')
+	{
+		*quote = is_quote(tokens[idx]);
+		if (*quote && tokens[idx])
+		{
+			idx++;
+			while (tokens[idx] && *quote != is_quote(tokens[idx]))
+			{
+				len++;
+				idx++;
+			}
+		}
+		else
+			len++;
+		idx++;
+	}
+	return (len);
+}
 
-	// i = 0;
-	// idx = 0;
-	// len = 0;
-	// while(str_with_quote[i])
-	// {
-	// 	if(is_quote(str_with_quote[i]) == FALSE))
-	// 	{
-	// 		while(str_with_quote[i] && is_quote(str_with_quote[i]) == FALSE)
-	// 		{
-	// 			len++;
-	// 			i++;
-	// 		}
-	// 		rm_quote = ft_calloc(len + 1, sizeof(char));
-	// 		rm_quote = ft_strlcpy(rm_quote, str_with_quote, len + 1);
-	// 	}
-	// 	if(str_with_quote[i] && is_quote(str_with_quote) != FALSE)
-	// 	{
-	// 		quote_flag = is_quote(str_with_quote[i]);
-	// 		i++;
-	// 		len = 0;
-	// 		idx = i;
-	// 		while(quote_flag != is_quote(str_with_quote[i])
-	// 		{
-	// 			len++;
-	// 			i++;
-	// 		}
+static	void	copy_command(char *rm_quote, char *tokens, int *quote, int len)
+{
+	int	idx;
 
-	// 	}
-	// }
-//}
+	idx = 0;
+	while (tokens[idx] != '\0')
+	{
+		*quote = is_quote(tokens[idx]);
+		if (*quote && tokens[idx])
+		{
+			idx++;
+			while (tokens[idx] && *quote != is_quote(tokens[idx]))
+			{
+				rm_quote[len] = tokens[idx];
+				len++;
+				idx++;
+			}
+		}
+		else
+		{
+			rm_quote[len] = tokens[idx];
+			len++;
+		}
+		idx++;
+	}
+	rm_quote[len] = '\0';
+}

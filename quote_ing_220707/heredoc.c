@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 21:39:06 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/11 14:28:05 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	preprocess_heredoc(void)
 		heredoc_do_child();
 	else
 		heredoc_do_parent(pid);
+	
 	g_data.heredoc_flag = FALSE;
 }
 

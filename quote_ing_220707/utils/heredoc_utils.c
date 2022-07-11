@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:39:26 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/07 23:02:40 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/11 15:17:00 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 		write(heredoc_fd->fd[1], "\n", 1);
 	}
 	close(heredoc_fd->fd[1]);
+	close(heredoc_fd->fd[0]);
 }
 
 static int	is_heredoc_env(char *value)
@@ -81,10 +82,7 @@ static char	*replace_env_in_heredoc(char *origin)
 	int		quote;
 	char	*ret;
 	int		all_len;
-
-	char	*key;
 	char	*value;
-	int		key_len;
 
 	if (!origin)
 		return (NULL);
@@ -105,25 +103,7 @@ static char	*replace_env_in_heredoc(char *origin)
 			i = i + 2;
 		}
 		else if (origin[i] == '$' && origin[i + 1] != '\0' && quote == 0)
-		{
-			i++;
-			if (!ft_is_alpha(origin[i]))
-				key_len = 1;
-			else
-				key_len = ft_key_len(origin, i);
-			key = ft_calloc(key_len + 1, sizeof(char));
-			if (!key)
-				ft_error("replace_env_in_heredoc : allocation failed\n");
-			ft_strlcpy(key, &origin[i], key_len + 1);
-			value = get_envv(key);
-			if (!value)
-				value = ft_strdup("");
-			ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
-			i = i + key_len;
-			j = j + ft_strlen(value);
-			free(key);
-			free(value);
-		}
+			heredoc_replace_env(origin, ret, &i, &j);
 		else
 		{
 			ret[j] = origin[i];

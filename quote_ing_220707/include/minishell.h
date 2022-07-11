@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 15:15:39 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 14:54:54 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void		replace_quote_env(void);
 
 //lexer
 void		lexical_analysis(void);
-void		replace_env_to_value(int i);
-int			ft_key_len(char *token, int j);
+// void		replace_env_to_value(int i);
 char		*get_envv(char *key);
 t_envv_node	*get_el_node(t_envv_node *envv_list, char *key);
 void		insert_envv(char *key, char *value, int init_flag);
@@ -52,7 +51,6 @@ int			init_envp(char *input, char **key, char **value);
 int			syntax_analysis(void);
 void		syntax_error(int *ret_status);
 void		syntax_check_command(int *curr);
-// void		syntax_check_option(int *curr, int *ret_status);
 void		syntax_check_redirection(int *curr, int *ret_status);
 void		syntax_check_pipe(int *curr, int *ret_status);
 void		syntax_check_null(int *curr, int *ret_status);
@@ -65,6 +63,7 @@ char		**join_filepath(char *execve_cmd);
 char		**create_argv(int cnt, t_astnode *argsnode);
 void		cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd);
 void		fork_before_run_execve(int idx, char **argv, char *execve_cmd);
+void		fork_before_run_execve_child(int idx, char *execve_cmd, char **argv);
 char		**allocate_empty_str_in_filepath(void);
 void		command_not_found_error(char *cmd);
 

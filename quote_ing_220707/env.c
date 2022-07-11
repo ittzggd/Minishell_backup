@@ -6,11 +6,13 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 18:07:00 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:04:17 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
+
+static void	free_arg(char *key,char *value);
 
 void	insert_envv(char *key, char *value, int init_flag)
 {
@@ -24,9 +26,8 @@ void	insert_envv(char *key, char *value, int init_flag)
 	{
 		tmp = is_exist->value;
 		is_exist->value = ft_strdup(value);
-		free(value);
+		free_arg(key, value);
 		free(tmp);
-		free(key);
 	}
 	else
 	{
@@ -35,8 +36,7 @@ void	insert_envv(char *key, char *value, int init_flag)
 		element.init_flag = init_flag;
 		new = ft_lstnew(element);
 		ft_lstadd_back(new);
-		free(key);
-		free(value);
+		free_arg(key, value);
 		g_data.envv_cnt++;
 	}
 }
@@ -92,4 +92,10 @@ int	init_envp(char *input, char **key, char **value)
 		*value = NULL;
 	}
 	return (init_flag);
+}
+
+static void	free_arg(char *key,char *value)
+{
+	free(key);
+	free(value);
 }

@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/08 18:06:31 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 14:53:57 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	execve_cmd(t_astnode *argsnode)
 void	cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd)
 {
 	pid_t	pid;
-	char	**filepath;
 
 	pid = fork();
 	if (pid < 0)
@@ -80,7 +79,6 @@ void	cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd)
 	g_data.p_flag = TRUE;
 	if (pid == 0)
 	{
-		filepath = join_filepath(execve_cmd);
 		if (ft_strnstr(cmd, "minishell", ft_strlen(cmd)))
 			ft_nanoshell(cmd);
 		else
@@ -107,28 +105,7 @@ void	fork_before_run_execve(int idx, char **argv, char *execve_cmd)
 	if (pid2 < 0)
 		ft_error("[FORK ERROR] fork_before_run_execve failed\n");
 	if (pid2 == 0)
-	{
-		reset_signal();
-		if (ft_strchr(execve_cmd, '/'))
-		{
-			filepath = ft_calloc(2, sizeof(char *));
-			filepath[0] = ft_strdup(execve_cmd);
-			filepath[1] = NULL;
-		}
-		else
-			filepath = join_filepath(execve_cmd);
-		if (!filepath)
-			filepath = allocate_empty_str_in_filepath();
-		while (filepath[idx])
-		{
-			if (execve(filepath[idx], argv, NULL) == -1)
-				idx++;
-			else
-				break ;
-		}
-		if (!filepath[idx])
-			command_not_found_error(argv[0]);
-	}
+		fork_before_run_execve_child(idx, execve_cmd, argv);
 	waitpid(pid2, &(g_data.exit_status), 0);
 	if (WIFEXITED(g_data.exit_status))
 		g_data.exit_status = WEXITSTATUS(g_data.exit_status);

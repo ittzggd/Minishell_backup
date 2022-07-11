@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 18:25:14 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 14:44:03 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	start_nanoshell(void)
 		reset_signal();
 		reset_stdfd();
 		input_str = readline("nanoshell >> ");
-		// printf("rm_quote  : %s\n", remove_quote(input_str));
 		if (input_str)
 		{
 			if (input_str_is_not_null(input_str) == CONTINUE)

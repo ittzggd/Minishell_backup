@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 18:06:51 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:16:13 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ char		*ft_itoa(int n);
 t_envv_node	*ft_lstnew(t_envv_node element);
 void		ft_lstadd_back(t_envv_node *new);
 void		remove_ll_element(t_envv_node **p_list, char *key);
-char		*remove_quote(char *quote_str);
 void		free_argv(char **argv, int cnt);
 
 void		clear_linked_list(t_envv_node **p_list);
 void		delete_linked_list(t_envv_node **p_list);
+
+void		rm_command_quote(int i);
+void		rm_argument_quote(int i);
 
 //is_
 int			is_ifs(const char c);
@@ -56,5 +58,13 @@ int			ft_is_digit(int c);
 
 void		ft_error_message(char *message, int exit_status);
 void		ft_error(char *error_msg);
+
+int			ft_key_len(char *token, int j);
+int			get_len_without_quote(char *quote_str);
+void		get_len_case_exit_status(int *i, int *ret_len);
+void		get_len_case_replace_env(int *i, int *ret_len, char *quote_str);
+char		*remove_quote(char *quote_str);
+void		rm_quote_case_exit_status(int *i, int *j, char *ret);
+void		rm_quote_case_replace(int *i, int *j, char *quote_str, char *ret);
 
 #endif
