@@ -34,7 +34,7 @@ void	exec_heredoc(int i, int *idx)
 			j++;
 		}
 		if (delimiter_quote_flag)
-			rm_command_quote(i + 1);
+			rm_argument_quote(i + 1);
 		delimiter = g_data.lexer.pptokens[i + 1];
 		rl_heredoc(delimiter, &g_data.heredoc_fd[*idx], delimiter_quote_flag);
 		(*idx)++;

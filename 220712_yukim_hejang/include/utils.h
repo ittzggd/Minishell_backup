@@ -67,7 +67,6 @@ void		copy_char(char *input, int *i, int *j, char *ret);
 void		replace_env_case_exit_status(int *i, int *j, char *ret);
 
 // remove_quote
-void		rm_command_quote(int i);
 void		rm_argument_quote(int i);
 char		*remove_quote(char *quote_str);
 
