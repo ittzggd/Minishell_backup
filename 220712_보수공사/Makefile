@@ -6,7 +6,7 @@
 #    By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 14:13:39 by yukim             #+#    #+#              #
-#    Updated: 2022/07/12 15:49:55 by yukim            ###   ########seoul.kr   #
+#    Updated: 2022/07/12 15:55:10 by yukim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,10 @@ UTILS_SRCS = utils/delete_linked_list.c utils/remove_ll_element.c \
 			utils/is_utils_01.c utils/is_utils_02.c 
 
 MAIN_SRCS = main.c \
-			init.c signal.c reset.c\
+			init.c signal.c reset.c \
 			redirections.c heredoc.c \
-			token.c lexer.c syntax.c exec.c\
-			data.c env.c path.c quote_env.c \
+			token.c lexer.c syntax.c exec.c \
+			data.c env.c path.c quote_env.c
 			
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 AST_OBJS = $(AST_SRCS:.c=.o)
