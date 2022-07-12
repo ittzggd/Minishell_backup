@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote_utils.c                                      :+:      :+:    :+:   */
+/*   replace_env_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 14:59:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 19:13:29 by yukim            ###   ########seoul.kr  */
+/*   Created: 2022/07/12 14:56:21 by yukim             #+#    #+#             */
+/*   Updated: 2022/07/12 15:49:08 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ void	get_len_case_exit_status(int *i, int *ret_len)
 	free(value);
 }
 
-void	get_len_case_replace_env(int *i, int *ret_len, char *quote_str)
+void	get_len_case_replace_env(int *i, int *ret_len, char *input)
 {
 	char	*key;
 	char	*value;
 	int		key_len;
 
 	(*i)++;
-	if (!ft_is_alpha(quote_str[*i]))
+	if (!ft_is_alpha(input[*i]))
 		key_len = 1;
 	else
-		key_len = ft_key_len(quote_str, *i);
+		key_len = ft_key_len(input, *i);
 	key = ft_calloc(key_len + 1, sizeof(char));
 	if (!key)
-		ft_error("get_len_without_quote : allocation failed\n");
-	ft_strlcpy(key, &quote_str[*i], key_len + 1);
+		ft_error("get_len_case_replace_env : allocation failed\n");
+	ft_strlcpy(key, &input[*i], key_len + 1);
 	value = get_envv(key);
 	if (!value)
 		value = ft_strdup("");
@@ -46,7 +46,7 @@ void	get_len_case_replace_env(int *i, int *ret_len, char *quote_str)
 	free(value);
 }
 
-void	rm_quote_case_exit_status(int *i, int *j, char *ret)
+void	replace_env_case_exit_status(int *i, int *j, char *ret)
 {
 	char	*value;
 
@@ -57,21 +57,21 @@ void	rm_quote_case_exit_status(int *i, int *j, char *ret)
 	free(value);
 }
 
-void	rm_quote_case_replace(int *i, int *j, char *quote_str, char *ret)
+void	replace_env_case_replace(int *i, int *j, char *input, char *ret)
 {
 	char	*key;
 	char	*value;
 	int		key_len;
 
 	(*i)++;
-	if (!ft_is_alpha(quote_str[*i]))
+	if (!ft_is_alpha(input[*i]))
 		key_len = 1;
 	else
-		key_len = ft_key_len(quote_str, *i);
+		key_len = ft_key_len(input, *i);
 	key = ft_calloc(key_len + 1, sizeof(char));
 	if (!key)
-		ft_error("rm_quote_case_replace_env : allocation failed\n");
-	ft_strlcpy(key, &quote_str[*i], key_len + 1);
+		ft_error("replace_env_case_replace : allocation failed\n");
+	ft_strlcpy(key, &input[*i], key_len + 1);
 	value = get_envv(key);
 	if (!value)
 		value = ft_strdup("");
@@ -80,4 +80,11 @@ void	rm_quote_case_replace(int *i, int *j, char *quote_str, char *ret)
 	*j = *j + ft_strlen(value);
 	free(key);
 	free(value);
+}
+
+void	copy_char(char *input, int *i, int *j, char *ret)
+{
+	ret[*j] = input[*i];
+	(*i)++;
+	(*j)++;
 }
