@@ -1,7 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/yukim/Desktop/220712_afternoon/220712_yukim_hejang'
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c main.c -o main.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c init.c -o init.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c signal.c -o signal.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c reset.c -o reset.o
@@ -9,14 +8,12 @@ gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readl
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c heredoc.c -o heredoc.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c token.c -o token.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c lexer.c -o lexer.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c syntax.c -o syntax.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c exec.c -o exec.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c data.c -o data.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c env.c -o env.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c path.c -o path.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c quote_env.c -o quote_env.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c ast/delete_astnode.c -o ast/delete_astnode.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c ast/free_data_ast.c -o ast/free_data_ast.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c ast/init_ast.c -o ast/init_ast.o
@@ -26,7 +23,6 @@ gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readl
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c ast/tree_cmd.c -o ast/tree_cmd.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c ast/tree_reds.c -o ast/tree_reds.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c ast/tree_utils.c -o ast/tree_utils.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_cd.c -o builtins/blt_cd.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_echo.c -o builtins/blt_echo.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_env.c -o builtins/blt_env.o
@@ -34,12 +30,10 @@ gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readl
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_export.c -o builtins/blt_export.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_nanoshell.c -o builtins/blt_nanoshell.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_pwd.c -o builtins/blt_pwd.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_unset.c -o builtins/blt_unset.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c builtins/blt_utils.c -o builtins/blt_utils.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/delete_linked_list.c -o utils/delete_linked_list.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/remove_ll_element.c -o utils/remove_ll_element.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_bzero.c -o utils/ft_bzero.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_calloc.c -o utils/ft_calloc.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_error.c -o utils/ft_error.o
@@ -47,7 +41,6 @@ gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readl
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_lstnew.c -o utils/ft_lstnew.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_memset.c -o utils/ft_memset.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_itoa.c -o utils/ft_itoa.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_minishell_atoi.c -o utils/ft_minishell_atoi.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_minishell_split.c -o utils/ft_minishell_split.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_split_str_util.c -o utils/ft_split_str_util.o
@@ -56,7 +49,6 @@ gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readl
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_strjoin.c -o utils/ft_strjoin.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_strlcat.c -o utils/ft_strlcat.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_strlcpy.c -o utils/ft_strlcpy.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_strlen.c -o utils/ft_strlen.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_strncmp.c -o utils/ft_strncmp.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_strnstr.c -o utils/ft_strnstr.o
@@ -65,13 +57,12 @@ gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readl
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_key_len.c -o utils/ft_key_len.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/remove_quote.c -o utils/remove_quote.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/replace_env_utils.c -o utils/replace_env_utils.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/get_len_replaced_str.c -o utils/get_len_replaced_str.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/replace_env_to_value.c -o utils/replace_env_to_value.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_wordcount.c -o utils/ft_wordcount.o
+ 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/ft_wordcount_utils.c -o utils/ft_wordcount_utils.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/heredoc_utils.c -o utils/heredoc_utils.o
- 
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/heredoc_utils_02.c -o utils/heredoc_utils_02.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/exec_utils.c -o utils/exec_utils.o
 gcc -g3 -fsanitize=address -Wall -Wextra -Werror  -I/Users/yukim/.brew/opt/readline/include -c utils/exec_utils_02.c -o utils/exec_utils_02.o

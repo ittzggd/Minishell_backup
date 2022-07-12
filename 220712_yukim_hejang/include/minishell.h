@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/12 19:33:17 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 19:36:03 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char		**create_argv(int cnt, t_astnode *argsnode);
 void		cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd);
 void		fork_before_run_execve(int idx, char **argv, char *execve_cmd);
 void		fork_before_run_execve_child(int idx, char *ecve_cmd, char **argv);
-char		**allocate_empty_str_in_filepath(void);
+char		**allocate_empty_str_in_filepath(char *execve_cmd);
 void		command_not_found_error(char *cmd);
 
 // heredoc
