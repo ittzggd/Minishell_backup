@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:19:44 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 16:05:10 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 14:35:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	replace_quote_env(void)
 			i++;
 			if (g_data.lexer.pptokens[i] == NULL)
 				break ;
-			rm_command_quote(i);
+			if (ft_strncmp("<<", g_data.lexer.pptokens[i - 1], -1) == FALSE)
+				rm_command_quote(i);
 		}
 		else if (g_data.lexer.ptype[i] == T_WORD)
 			rm_argument_quote(i);

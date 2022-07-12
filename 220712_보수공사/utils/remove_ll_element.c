@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_ll_element.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 18:47:04 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:16:03 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	free_envv_node(t_envv_node *curr)
 static void	init_prev(t_envv_node **tmp, t_envv_node *curr, t_envv_node *prev)
 {
 	if (prev == NULL)
-		tmp = &curr->p_link;
+		*tmp = curr->p_link;
 	else
 		prev->p_link = curr->p_link;
 }

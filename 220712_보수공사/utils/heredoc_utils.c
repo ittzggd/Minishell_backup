@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:39:26 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 19:16:19 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd);
+static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd, int d_quote);
 static int	is_heredoc_env(char *value);
 static char	*replace_env_in_heredoc(char *origin);
 static	int	get_len_with_envvalue_in_heredoc(char *origin);
@@ -20,16 +20,28 @@ static	int	get_len_with_envvalue_in_heredoc(char *origin);
 void	exec_heredoc(int i, int *idx)
 {
 	char	*delimiter;
+	int		delimiter_quote_flag;
+	int		j;
 
+	j = 0;
+	delimiter_quote_flag = 0;
 	if (ft_strncmp("<<", g_data.lexer.pptokens[i], -1))
 	{
+		while (g_data.lexer.pptokens[i + 1][j])
+		{
+			if (is_quote(g_data.lexer.pptokens[i + 1][j]) != FALSE)
+				delimiter_quote_flag = TRUE;
+			j++;
+		}
+		if (delimiter_quote_flag)
+			rm_command_quote(i + 1);
 		delimiter = g_data.lexer.pptokens[i + 1];
-		rl_heredoc(delimiter, &g_data.heredoc_fd[*idx]);
+		rl_heredoc(delimiter, &g_data.heredoc_fd[*idx], delimiter_quote_flag);
 		(*idx)++;
 	}
 }
 
-static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
+static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd, int d_quote)
 {
 	char	*input_str;
 	char	*env_str;
@@ -43,7 +55,7 @@ static void	rl_heredoc(char *delimiter, t_heredoc_fd *heredoc_fd)
 			close(heredoc_fd->fd[1]);
 			break ;
 		}
-		if (is_heredoc_env(input_str))
+		if (d_quote == FALSE && is_heredoc_env(input_str))
 		{
 			env_str = replace_env_in_heredoc(input_str);
 			free(input_str);

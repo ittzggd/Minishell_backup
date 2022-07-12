@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils_02.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:46:06 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/11 19:13:00 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	fork_before_run_execve_child(int idx, char *ecve_cmd, char **argv)
 {
 	char	**filepath;
+	char	**envp;
 
 	reset_signal();
+	envp = envvlist_to_envp();
 	if (ft_strchr(ecve_cmd, '/'))
 	{
 		filepath = ft_calloc(2, sizeof(char *));
@@ -29,7 +31,7 @@ void	fork_before_run_execve_child(int idx, char *ecve_cmd, char **argv)
 		filepath = allocate_empty_str_in_filepath();
 	while (filepath[idx])
 	{
-		if (execve(filepath[idx], argv, NULL) == -1)
+		if (execve(filepath[idx], argv, envp) == -1)
 			idx++;
 		else
 			break ;

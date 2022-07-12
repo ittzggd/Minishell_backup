@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:43:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/11 14:44:03 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 14:35:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	start_nanoshell(void)
 	{
 		reset_signal();
 		reset_stdfd();
-		input_str = readline("nanoshell >> ");
+		input_str = readline("nanoshell $ ");
 		if (input_str)
 		{
 			if (input_str_is_not_null(input_str) == CONTINUE)
@@ -47,7 +47,8 @@ static void	start_nanoshell(void)
 		}
 		else
 			input_str_is_null();
-		add_history(input_str);
+		if (*input_str != '\0')
+			add_history(input_str);
 		reset_data();
 		if (input_str)
 			free(input_str);
@@ -78,6 +79,6 @@ static int	input_str_is_not_null(char *input_str)
 
 static void	input_str_is_null(void)
 {
-	printf("\e[Ananoshell >> exit\n");
+	printf("\e[Ananoshell $ exit\n");
 	exit(g_data.exit_status);
 }

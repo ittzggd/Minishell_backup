@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 19:05:12 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ int	ft_cd(t_astnode *args_node)
 	int		idx;
 
 	g_data.exit_status = 0;
-	tmp = g_data.lexer.pptokens[args_node->prightchild->pvalue_index[1]];
 	idx = args_node->prightchild->pvalue_index[1];
+	if(idx == END)
+		tmp = ft_strdup("~");
+	else
+		tmp = ft_strdup(g_data.lexer.pptokens[args_node->prightchild->pvalue_index[1]]);
 	if (idx == END || ft_strncmp(tmp, "~", -1))
 	{
 		if (cd_home(&home_path, &dst_path, &tmp) == ERROR)
@@ -39,6 +42,9 @@ int	ft_cd(t_astnode *args_node)
 		chdir_error(tmp);
 	else
 		update_pwd();
+	if(tmp != dst_path)
+		free(dst_path);
+	free(tmp);
 	return (g_data.exit_status);
 }
 

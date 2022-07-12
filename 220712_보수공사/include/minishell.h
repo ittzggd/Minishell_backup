@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:44:50 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/11 19:23:47 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:51 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void		exec_heredoc(int i, int *idx);
 // signal
 void		ctrl_c(int sig_num);
 void		ctrl_bs(int sig_num);
-void		ft_sig_handler_in_heredoc(int sig_num);
+void		ft_sig_handler_in_heredoc_sigint(int sig_num);
+void		ft_sig_handler_in_heredoc_sigquit(int sig_num);
 
 // reset, free
 void		free_data_heredoc_fd(void);

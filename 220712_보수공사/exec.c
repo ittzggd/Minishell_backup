@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 20:07:14 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 15:29:21 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 13:36:08 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	cmd_without_pipe(char *cmd, int idx, char **argv, char *execve_cmd)
 
 	pid = fork();
 	if (pid < 0)
-		ft_error("[Fork ERROR] execve failed\n");
+		ft_error("[FORK ERROR] execve failed\n");
 	g_data.p_flag = TRUE;
 	if (pid == 0)
 	{

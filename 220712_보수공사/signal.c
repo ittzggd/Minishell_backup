@@ -12,22 +12,22 @@
 
 #include "./include/minishell.h"
 
-void	ft_sig_handler_in_heredoc(int sig_num)
+void	ft_sig_handler_in_heredoc_sigint(int sig_num)
 {
-	if (sig_num == SIGINT)
-	{
-		close(STDIN_FILENO);
-		ft_error_message("\n", 1);
-		rl_on_new_line();
-		g_data.exit_status = 1;
-		if (g_data.p_flag == TRUE)
-			exit(g_data.exit_status);
-	}
-	else if (sig_num == SIGQUIT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-	}
+	(void)sig_num;
+	close(STDIN_FILENO);
+	ft_error_message("\n", 1);
+	rl_on_new_line();
+	g_data.exit_status = 1;
+	if (g_data.p_flag == TRUE)
+		exit(g_data.exit_status);
+}
+
+void	ft_sig_handler_in_heredoc_sigquit(int sig_num)
+{
+	(void)sig_num;
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 void	ctrl_c(int sig_num)
@@ -37,7 +37,7 @@ void	ctrl_c(int sig_num)
 		return ;
 	if (g_data.p_flag == TRUE)
 	{
-		ft_error_message("", 130);
+		ft_error_message("^C\n", 130);
 		rl_on_new_line();
 		exit(g_data.exit_status);
 	}
@@ -62,6 +62,8 @@ void	ctrl_bs(int sig_num)
 	}
 	else if (g_data.p_flag == FALSE)
 	{
+		if (g_data.heredoc_flag == TRUE)
+			return ;
 		rl_on_new_line();
 		rl_redisplay();
 	}

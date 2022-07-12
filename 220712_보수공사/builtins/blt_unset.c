@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   o_blt_unset.c                                      :+:      :+:    :+:   */
+/*   blt_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:41 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:10:05 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@ static void	ft_unset_with_args(t_astnode *args_node)
 {
 	int			i;
 	char		*key;
-	char		*rm_quote_key;
+	// char		*rm_quote_key;
 	t_envv_node	*env_node;
 
 	i = 1;
 	while (args_node->prightchild->pvalue_index[i] != END)
 	{
 		key = g_data.lexer.pptokens[args_node->prightchild->pvalue_index[i]];
-		rm_quote_key = remove_quote(key);
-		env_node = get_el_node(g_data.envv_list, rm_quote_key);
-		if (rm_quote_key)
-			free(rm_quote_key);
+		env_node = get_el_node(g_data.envv_list, key);
+		// rm_quote_key = remove_quote(key);
+		// env_node = get_el_node(g_data.envv_list, rm_quote_key);
+		// if (rm_quote_key)
+		// 	free(rm_quote_key);
 		if (!env_node)
 			g_data.exit_status = 1;
 		else

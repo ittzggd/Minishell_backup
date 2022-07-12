@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 19:05:56 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ static void	export_with_args(t_astnode *args_node)
 		init_variables_ft_export(args_node, i, &input);
 		init_flag = init_envp(input, &key, &value);
 		if (is_valid_env(key) == ERROR)
+		{
 			is_valid_env__error_msg(key);
+			free(key);
+			free(value);
+		}
 		else if (is_valid_env(key) == TRUE)
 			insert_envv(key, value, init_flag);
 		i++;
@@ -57,7 +61,7 @@ static void	init_variables_ft_export(t_astnode *argsnode, int i, char **input)
 
 static void	is_valid_env__error_msg(char *key)
 {
-	ft_error_message("nanoshell: export: ", 1);
+	ft_error_message("minishell: export: ", 1);
 	ft_error_message(key, 1);
 	ft_error_message(": not a valid identifier\n", 1);
 }

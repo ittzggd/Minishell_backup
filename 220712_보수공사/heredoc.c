@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:44:36 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 14:28:05 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 14:35:53 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ static void	heredoc_do_child(void)
 	i = 0;
 	idx = 0;
 	g_data.p_flag = TRUE;
-	signal(SIGINT, ft_sig_handler_in_heredoc);
-	signal(SIGQUIT, ft_sig_handler_in_heredoc);
+	signal(SIGINT, ft_sig_handler_in_heredoc_sigint);
+	signal(SIGQUIT, ft_sig_handler_in_heredoc_sigquit);
 	while (idx < g_data.heredoc_cnt)
 	{
 		if (g_data.lexer.ptype[i] == T_REDIRECTION)

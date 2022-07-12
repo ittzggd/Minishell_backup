@@ -6,7 +6,7 @@
 /*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:07:44 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 15:42:43 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 14:35:54 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	syntax_analysis(void)
 
 void	syntax_error(int *ret_status)
 {
-	ft_error_message("nanoshell: syntax error near unexpected token\n", 258);
+	ft_error_message("minishell: syntax error near unexpected token\n", 258);
 	*ret_status = 258;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wordcount_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:21:52 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/11 19:27:39 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 14:35:54 by hejang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ static int	red_ifs_pipe(char const *str, int *i, int *wc_flag)
 	if (str[*i] && is_redirection(&str[*i]))
 	{
 		if (case_redirection(str, i) == ERROR)
-		{
-			syntax_error(&g_data.exit_status);
 			return (ERROR);
-		}
 		*wc_flag = 1;
 		return (TRUE);
 	}
@@ -85,10 +82,7 @@ static int	red_ifs_pipe(char const *str, int *i, int *wc_flag)
 static int	case_pipe_in_red_ifs_pipe(char const *str, int *i, int *wc_flag)
 {
 	if (is_pipe(&str[*i]) == ERROR)
-	{
-		syntax_error(&g_data.exit_status);
 		return (ERROR);
-	}
 	(*i)++;
 	*wc_flag = 1;
 	return (TRUE);
