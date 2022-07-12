@@ -18,9 +18,9 @@ void	ft_sig_handler_in_heredoc_sigint(int sig_num)
 	close(STDIN_FILENO);
 	ft_error_message("\n", 1);
 	rl_on_new_line();
-	g_data.exit_status = 1;
-	if (g_data.p_flag == TRUE)
-		exit(g_data.exit_status);
+	g_exit_status = 1;
+	if (data.p_flag == TRUE)
+		exit(g_exit_status);
 }
 
 void	ft_sig_handler_in_heredoc_sigquit(int sig_num)
@@ -33,15 +33,15 @@ void	ft_sig_handler_in_heredoc_sigquit(int sig_num)
 void	ctrl_c(int sig_num)
 {
 	(void)sig_num;
-	if (g_data.heredoc_flag == TRUE)
+	if (data.heredoc_flag == TRUE)
 		return ;
-	if (g_data.p_flag == TRUE)
+	if (data.p_flag == TRUE)
 	{
 		ft_error_message("^C\n", 130);
 		rl_on_new_line();
-		exit(g_data.exit_status);
+		exit(g_exit_status);
 	}
-	else if (g_data.p_flag == FALSE)
+	else if (data.p_flag == FALSE)
 	{
 		ft_error_message("\n", 1);
 		rl_on_new_line();
@@ -53,16 +53,16 @@ void	ctrl_c(int sig_num)
 void	ctrl_bs(int sig_num)
 {
 	(void)sig_num;
-	if (g_data.p_flag == TRUE)
+	if (data.p_flag == TRUE)
 	{
-		if (g_data.heredoc_flag == TRUE)
+		if (data.heredoc_flag == TRUE)
 			return ;
 		ft_error_message("^\\Quit: 3\n", 131);
-		exit(g_data.exit_status);
+		exit(g_exit_status);
 	}
-	else if (g_data.p_flag == FALSE)
+	else if (data.p_flag == FALSE)
 	{
-		if (g_data.heredoc_flag == TRUE)
+		if (data.heredoc_flag == TRUE)
 			return ;
 		rl_on_new_line();
 		rl_redisplay();

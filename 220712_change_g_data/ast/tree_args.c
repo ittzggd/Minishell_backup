@@ -6,15 +6,15 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 03:32:01 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:07:48 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 17:06:36 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../include/minishell.h"
 
-static int	args_utils(int *index, t_astnode *args_rightchild);
+static int	args_utils(t_data *data, int *index, t_astnode *args_rightchild);
 
-int	tree_args(t_astnode *ast_node, int index)
+int	tree_args(t_data *data, t_astnode *ast_node, int index)
 {
 	t_astnode	*args_leftchild;
 	t_astnode	*args_rightchild;
@@ -22,24 +22,24 @@ int	tree_args(t_astnode *ast_node, int index)
 	if (ast_node->nodetype != A_ARGUMENTS)
 		return (ERROR);
 	args_leftchild = insert_leftchildnode_ast(ast_node, A_FILEPATH);
-	while (g_data.lexer.pptokens[index] && g_data.lexer.ptype[index] != T_PIPE)
+	while (data->lexer.pptokens[index] && data->lexer.ptype[index] != T_PIPE)
 	{
-		if (g_data.lexer.ptype[index] == T_COMMAND)
+		if (data->lexer.ptype[index] == T_COMMAND)
 			break ;
 		index++;
 	}
 	init_idx(index, args_leftchild);
 	args_rightchild = insert_rightchildnode_ast(ast_node, A_ARGUMENT);
-	while (g_data.lexer.pptokens[index] && g_data.lexer.ptype[index] != T_PIPE)
-		args_utils(&index, args_rightchild);
+	while (data->lexer.pptokens[index] && data->lexer.ptype[index] != T_PIPE)
+		args_utils(data, &index, args_rightchild);
 	return (TRUE);
 }
 
-static int	args_utils(int *index, t_astnode *args_rightchild)
+static int	args_utils(t_data *data, int *index, t_astnode *args_rightchild)
 {
 	int	*type;
 
-	type = g_data.lexer.ptype;
+	type = data->lexer.ptype;
 	if (type[*index] == T_REDIRECTION)
 		(*index)++;
 	else

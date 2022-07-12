@@ -3,58 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 18:44:47 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/08 19:02:24 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:47:42 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-static void	set_lexer_ptype(void);
-static int	get_type(char *value);
-static void	type_word_to_cmd(int *i, int *cmd_flag);
-static void	word_to_option(int *i);
+static void	set_lexer_ptype(t_data *data);
+static int	get_type(t_data *data, char *value);
+static void	type_word_to_cmd(t_data *data, int *i, int *cmd_flag);
+static void	word_to_option(t_data *data, int *i);
 
-void	lexical_analysis(void)
+void	lexical_analysis(t_data *data)
 {
-	g_data.lexer.ptype = (int *)ft_calloc(g_data.tokens_cnt + 1, sizeof(int));
-	if (!g_data.lexer.ptype)
+	data->lexer.ptype = (int *)ft_calloc(data->tokens_cnt + 1, sizeof(int));
+	if (!data->lexer.ptype)
 		ft_error("lexical_analysis : allocation failed\n");
-	set_lexer_ptype();
+	set_lexer_ptype(data);
 }
 
-static void	set_lexer_ptype(void)
+static void	set_lexer_ptype(t_data *data)
 {
 	int		i;
 	int		command_flag;
 
 	i = 0;
 	command_flag = FALSE;
-	while (g_data.lexer.pptokens[i])
+	while (data->lexer.pptokens[i])
 	{
-		g_data.lexer.ptype[i] = get_type(g_data.lexer.pptokens[i]);
-		if (g_data.lexer.ptype[i] == T_WORD)
-			type_word_to_cmd(&i, &command_flag);
-		if (g_data.lexer.ptype[i] == T_PIPE)
+		data->lexer.ptype[i] = get_type(data, data->lexer.pptokens[i]);
+		if (data->lexer.ptype[i] == T_WORD)
+			type_word_to_cmd(data, &i, &command_flag);
+		if (data->lexer.ptype[i] == T_PIPE)
 		{
-			g_data.pipe_cnt++;
+			data->pipe_cnt++;
 			command_flag = FALSE;
 		}
-		else if (g_data.lexer.ptype[i] == T_REDIRECTION)
+		else if (data->lexer.ptype[i] == T_REDIRECTION)
 		{
-			g_data.redirection_cnt++;
-			if (ft_strncmp("<<", g_data.lexer.pptokens[i], -1))
-				g_data.heredoc_cnt++;
+			data->redirection_cnt++;
+			if (ft_strncmp("<<", data->lexer.pptokens[i], -1))
+				data->heredoc_cnt++;
 		}
-		else if (g_data.lexer.ptype[i] == T_WORD)
-			word_to_option(&i);
+		else if (data->lexer.ptype[i] == T_WORD)
+			word_to_option(data, &i);
 		i++;
 	}
 }
 
-static int	get_type(char *value)
+static int	get_type(t_data *data, char *value)
 {
 	int	type;
 
@@ -70,7 +70,7 @@ static int	get_type(char *value)
 		if (*value == '\0')
 			return (T_WORD);
 		else
-			type = get_type(value);
+			type = get_type(data, value);
 		if (type == T_PIPE || type == T_REDIRECTION || type == T_ENV)
 			type = T_WORD;
 	}
@@ -79,11 +79,11 @@ static int	get_type(char *value)
 	return (type);
 }
 
-static void	type_word_to_cmd(int *i, int *cmd_flag)
+static void	type_word_to_cmd(t_data *data, int *i, int *cmd_flag)
 {
 	int	*type;
 
-	type = g_data.lexer.ptype;
+	type = data->lexer.ptype;
 	if (*i == 0)
 	{
 		type[*i] = T_COMMAND;
@@ -101,13 +101,13 @@ static void	type_word_to_cmd(int *i, int *cmd_flag)
 	}
 }
 
-static void	word_to_option(int *i)
+static void	word_to_option(t_data *data, int *i)
 {
 	int		*type;
 	char	**tokens;
 
-	type = g_data.lexer.ptype;
-	tokens = g_data.lexer.pptokens;
+	type = data->lexer.ptype;
+	tokens = data->lexer.pptokens;
 	if (i != 0 && (type[*i - 1] == T_COMMAND || type[*i - 1] == T_OPTION))
 	{
 		if (is_option(tokens[*i]))

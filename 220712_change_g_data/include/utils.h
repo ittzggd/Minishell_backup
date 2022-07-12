@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 19:01:08 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/12 15:43:30 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 19:22:50 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ long long	ft_atoi(const char *str, t_astnode *args_node);
 char		*ft_itoa(int n);
 t_envv_node	*ft_lstnew(t_envv_node element);
 void		ft_lstadd_back(t_envv_node *new);
-void		remove_ll_element(t_envv_node **p_list, char *key);
+void		remove_ll_element(t_data *data, t_envv_node **p_list, char *key);
 void		free_argv(char **argv, int cnt);
 
 void		clear_linked_list(t_envv_node **p_list);
@@ -67,14 +67,13 @@ void		copy_char(char *input, int *i, int *j, char *ret);
 void		replace_env_case_exit_status(int *i, int *j, char *ret);
 
 // remove_quote
-void		rm_command_quote(int i);
-void		rm_argument_quote(int i);
+void		rm_argument_quote(t_data *data, int i);
 char		*remove_quote(char *quote_str);
 
 // heredoc_utils
-void		heredoc_replace_env_loop(char *origin, char	*ret, char *value);
-void		heredoc_replace_env(char *origin, char *ret, int *i, int *j);
+void		heredoc_replace_env_loop(t_data *data, char *origin, char	*ret, char *value);
+void		heredoc_replace_env(t_data *data, char *origin, char *ret, int *i, int *j);
 void		heredoc_exit_status(char *value, int *ret_len, int *i);
-void		len_loop_in_heredoc(char *origin, char *value, int *i, int *retlen);
+void		len_loop_in_heredoc(t_data *data, char *origin, char *value, int *i, int *retlen);
 
 #endif

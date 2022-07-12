@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 14:56:21 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/12 15:49:08 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 16:33:55 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_len_case_exit_status(int *i, int *ret_len)
 {
 	char	*value;
 
-	value = ft_itoa(g_data.exit_status);
+	value = ft_itoa(g_exit_status);
 	*ret_len = *ret_len + ft_strlen(value);
 	*i = *i + 2;
 	free(value);
@@ -50,7 +50,7 @@ void	replace_env_case_exit_status(int *i, int *j, char *ret)
 {
 	char	*value;
 
-	value = ft_itoa(g_data.exit_status);
+	value = ft_itoa(g_exit_status);
 	ft_strlcpy(&ret[*j], value, ft_strlen(value) + 1);
 	*j = *j + ft_strlen(value);
 	*i = *i + 2;

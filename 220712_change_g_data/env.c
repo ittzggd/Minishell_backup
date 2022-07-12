@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 09:59:43 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:32:44 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-static void	free_arg(char *key,char *value);
+static void	free_arg(char *key, char *value);
 
-void	insert_envv(char *key, char *value, int init_flag)
+void	insert_envv(t_data *data, char *key, char *value, int init_flag)
 {
 	t_envv_node	element;
 	t_envv_node	*is_exist;
 	t_envv_node	*new;
 	char		*tmp;
 
-	is_exist = get_el_node(g_data.envv_list, key);
+	is_exist = get_el_node(data->envv_list, key);
 	if (is_exist)
 	{
-		if(!value)
+		if (!value)
 		{
 			free(key);
-			return;
+			return ;
 		}
 		tmp = is_exist->value;
 		is_exist->value = ft_strdup(value);
@@ -43,16 +43,16 @@ void	insert_envv(char *key, char *value, int init_flag)
 		new = ft_lstnew(element);
 		ft_lstadd_back(new);
 		free_arg(key, value);
-		g_data.envv_cnt++;
+		data->envv_cnt++;
 	}
 }
 
-char	*get_envv(char *key)
+char	*get_envv(t_data *data, char *key)
 {
 	t_envv_node	*key_node;
 	char		*ret;
 
-	key_node = get_el_node(g_data.envv_list, key);
+	key_node = get_el_node(data->envv_list, key);
 	if (!key_node)
 		return (NULL);
 	ret = ft_strdup(key_node->value);
@@ -73,7 +73,7 @@ t_envv_node	*get_el_node(t_envv_node *envv_list, char *key)
 	return (curr);
 }
 
-int	init_envp(char *input, char **key, char **value)
+int	init_envp(t_data *data, char *input, char **key, char **value)
 {
 	int		init_flag;
 	char	*p_equal;
@@ -100,7 +100,7 @@ int	init_envp(char *input, char **key, char **value)
 	return (init_flag);
 }
 
-static void	free_arg(char *key,char *value)
+static void	free_arg(char *key, char *value)
 {
 	free(key);
 	free(value);

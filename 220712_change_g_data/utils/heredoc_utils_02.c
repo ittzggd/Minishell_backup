@@ -6,13 +6,13 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:05:45 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/11 19:16:38 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 17:16:51 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	heredoc_replace_env_loop(char *origin, char	*ret, char *value)
+void	heredoc_replace_env_loop(t_data *data, char *origin, char	*ret, char *value)
 {
 	int	i;
 	int	j;
@@ -25,13 +25,13 @@ void	heredoc_replace_env_loop(char *origin, char	*ret, char *value)
 		quote = is_quote(origin[i + 1]);
 		if (origin[i] == '$' && origin[i + 1] == '?')
 		{
-			value = ft_itoa(g_data.exit_status);
+			value = ft_itoa(g_exit_status);
 			ft_strlcpy(&ret[j], value, ft_strlen(value) + 1);
 			j = j + ft_strlen(value);
 			i = i + 2;
 		}
 		else if (origin[i] == '$' && origin[i + 1] != '\0' && quote == 0)
-			heredoc_replace_env(origin, ret, &i, &j);
+			heredoc_replace_env(data, origin, ret, &i, &j);
 		else
 		{
 			ret[j] = origin[i];
@@ -41,7 +41,7 @@ void	heredoc_replace_env_loop(char *origin, char	*ret, char *value)
 	}
 }
 
-void	heredoc_replace_env(char *origin, char *ret, int *i, int *j)
+void	heredoc_replace_env(t_data *data, char *origin, char *ret, int *i, int *j)
 {
 	int		key_len;
 	char	*key;
@@ -57,7 +57,7 @@ void	heredoc_replace_env(char *origin, char *ret, int *i, int *j)
 	if (!key)
 		ft_error("replace_env_in_heredoc : allocation failed\n");
 	ft_strlcpy(key, &origin[*i], key_len + 1);
-	value = get_envv(key);
+	value = get_envv(data, key);
 	if (!value)
 		value = ft_strdup("");
 	ft_strlcpy(&ret[*j], value, ft_strlen(value) + 1);
@@ -67,7 +67,7 @@ void	heredoc_replace_env(char *origin, char *ret, int *i, int *j)
 	free(value);
 }
 
-void	len_loop_in_heredoc(char *origin, char *value, int *i, int *retlen)
+void	len_loop_in_heredoc(t_data *data, char *origin, char *value, int *i, int *retlen)
 {
 	int		key_len;
 	char	*key;
@@ -81,7 +81,7 @@ void	len_loop_in_heredoc(char *origin, char *value, int *i, int *retlen)
 	if (!key)
 		ft_error("get_len_with_envvalue_loop_in_heredoc : allocation failed\n");
 	ft_strlcpy(key, &origin[*i], key_len + 1);
-	value = get_envv(key);
+	value = get_envv(data, key);
 	if (!value)
 		value = ft_strdup("");
 	*i = *i + key_len;
@@ -92,7 +92,7 @@ void	len_loop_in_heredoc(char *origin, char *value, int *i, int *retlen)
 
 void	heredoc_exit_status(char *value, int *ret_len, int *i)
 {
-	value = ft_itoa(g_data.exit_status);
+	value = ft_itoa(g_exit_status);
 	*ret_len = *ret_len + ft_strlen(value);
 	*i = *i + 2;
 }

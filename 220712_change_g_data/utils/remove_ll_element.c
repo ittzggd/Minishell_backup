@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_ll_element.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 18:47:04 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 19:23:07 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_prev(t_envv_node **tmp, t_envv_node *curr, t_envv_node *prev);
 static void	free_envv_node(t_envv_node *curr);
 
-void	remove_ll_element(t_envv_node **p_list, char *key)
+void	remove_ll_element(t_data *data, t_envv_node **p_list, char *key)
 {
 	t_envv_node	**tmp;
 	t_envv_node	*curr;
@@ -31,7 +31,7 @@ void	remove_ll_element(t_envv_node **p_list, char *key)
 			init_prev(tmp, curr, prev);
 			free_envv_node(curr);
 			p_list = tmp;
-			g_data.envv_list = *p_list;
+			data->envv_list = *p_list;
 			return ;
 		}
 		prev = curr;

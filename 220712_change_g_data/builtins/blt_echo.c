@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:17 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/08 18:19:01 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 19:18:53 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	do_echo(t_astnode *args_node);
 static void	do_echo_print(int *arg, char *rm_quote_str);
 
-int	ft_echo(t_astnode *args_node)
+int	ft_echo(t_data *data, t_astnode *args_node)
 {
 	int	*arg;
 	int	option_flag;
@@ -24,14 +24,14 @@ int	ft_echo(t_astnode *args_node)
 	arg = args_node->prightchild->pvalue_index;
 	while (*arg != END)
 	{
-		if (g_data.lexer.ptype[*arg] == T_OPTION)
+		if (data.lexer.ptype[*arg] == T_OPTION)
 			option_flag = TRUE;
 		arg++;
 	}
 	do_echo(args_node);
 	if (option_flag != TRUE)
 		printf("\n");
-	g_data.exit_status = 0;
+	g_exit_status = 0;
 	return (TRUE);
 }
 
@@ -44,12 +44,12 @@ static int	do_echo(t_astnode *args_node)
 	arg++;
 	while (*arg != END)
 	{
-		if (g_data.lexer.ptype[*arg] == T_OPTION)
+		if (data.lexer.ptype[*arg] == T_OPTION)
 		{
 			arg++;
 			continue ;
 		}
-		str = g_data.lexer.pptokens[*arg];
+		str = data.lexer.pptokens[*arg];
 		do_echo_print(arg, str);
 		arg++;
 	}

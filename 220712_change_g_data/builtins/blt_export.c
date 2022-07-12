@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   blt_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 09:26:35 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 19:19:01 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	init_variables_ft_export(t_astnode *argsnode, int i, char **input);
 static void	export_with_args(t_astnode *args_node);
 static void	is_valid_env__error_msg(char *key);
 
-int	ft_export(t_astnode *args_node)
+int	ft_export(t_data *data, t_astnode *args_node)
 {
-	g_data.exit_status = 0;
+	g_exit_status = 0;
 	if (args_node->prightchild->pvalue_index[1] == END)
 		ft_env(TRUE);
 	else
 		export_with_args(args_node);
-	return (g_data.exit_status);
+	return (g_exit_status);
 }
 
 static void	export_with_args(t_astnode *args_node)
@@ -56,7 +56,7 @@ static void	init_variables_ft_export(t_astnode *argsnode, int i, char **input)
 	int		index;
 
 	index = argsnode->prightchild->pvalue_index[i];
-	*input = g_data.lexer.pptokens[index];
+	*input = data.lexer.pptokens[index];
 }
 
 static void	is_valid_env__error_msg(char *key)

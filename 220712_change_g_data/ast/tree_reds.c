@@ -6,7 +6,7 @@
 /*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 03:29:13 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/03 17:08:04 by yukim            ###   ########seoul.kr  */
+/*   Updated: 2022/07/12 17:05:23 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	insert_redschild(t_astnode *reds_leftchild, int index);
 
-void	tree_reds(t_astnode *ast_node, int index)
+void	tree_reds(t_data *data, t_astnode *ast_node, int index)
 {
 	char		**tokens;
 	t_astnode	*reds_leftchild;
@@ -22,18 +22,18 @@ void	tree_reds(t_astnode *ast_node, int index)
 
 	if (ast_node->nodetype != A_REDIRECTIONS)
 		return ;
-	tokens = g_data.lexer.pptokens;
+	tokens = data->lexer.pptokens;
 	reds_leftchild = insert_leftchildnode_ast(ast_node, A_REDIRECTION);
 	reds_rightchild = insert_rightchildnode_ast(ast_node, 0);
-	if (g_data.lexer.ptype[index] == T_REDIRECTION)
+	if (data->lexer.ptype[index] == T_REDIRECTION)
 		insert_redschild(reds_leftchild, index);
 	index++;
-	while (g_data.lexer.ptype[index] != T_PIPE && tokens[index])
+	while (data->lexer.ptype[index] != T_PIPE && tokens[index])
 	{
-		if (g_data.lexer.ptype[index] == T_REDIRECTION)
+		if (data->lexer.ptype[index] == T_REDIRECTION)
 		{
 			reds_rightchild->nodetype = A_REDIRECTIONS;
-			tree_reds(reds_rightchild, index);
+			tree_reds(data, reds_rightchild, index);
 			return ;
 		}
 		index++;

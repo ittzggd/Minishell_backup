@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:21:32 by yukim             #+#    #+#             */
-/*   Updated: 2022/07/12 14:35:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:33:55 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_wordcount(char const *str)
 			continue ;
 		else if (ret == ERROR)
 		{
-			syntax_error(&g_data.exit_status);
+			syntax_error(&g_exit_status);
 			return (ERROR);
 		}
 	}

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   blt_nanoshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hejang <hejang@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: yukim <yukim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:13:42 by hejang            #+#    #+#             */
-/*   Updated: 2022/07/04 20:47:52 by hejang           ###   ########.fr       */
+/*   Updated: 2022/07/12 19:19:05 by yukim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_nanoshell(char *filepath)
+void	ft_nanoshell(t_data *data, char *filepath)
 {
 	char		**envp;
 	char		*argv[2];
@@ -20,13 +20,13 @@ void	ft_nanoshell(char *filepath)
 
 	buf = NULL;
 	reset_stdfd();
-	g_data.exit_status = 0;
+	g_exit_status = 0;
 	if (ft_strncmp(filepath, "minishell", -1) && stat(filepath, buf) == -1)
 	{
 		ft_error_message("minishell : command not found : ", 1);
 		ft_error_message(filepath, 1);
 		ft_error_message("\n", 1);
-		exit(g_data.exit_status);
+		exit(g_exit_status);
 	}
 	envp = envvlist_to_envp();
 	argv[0] = "./minishell";
@@ -41,11 +41,11 @@ char	**envvlist_to_envp(void)
 	char		**envp;
 	t_envv_node	*curr;
 
-	cnt = g_data.envv_cnt;
+	cnt = data.envv_cnt;
 	envp = (char **)ft_calloc((cnt + 1), sizeof(char *));
 	if (!envp)
 		ft_error("envvlist_to_envp : alloction failed\n");
-	curr = g_data.envv_list;
+	curr = data.envv_list;
 	i = 0;
 	while (curr)
 	{
